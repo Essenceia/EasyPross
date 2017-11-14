@@ -1,4 +1,4 @@
-package Controller;
+package Model;
 
 public abstract class Graph_Base implements Interface.Grap_Base {
     //objets - default values

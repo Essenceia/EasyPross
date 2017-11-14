@@ -1,6 +1,4 @@
-package Controller;
-
-import Interface.Grap_Base;
+package Model;
 
 import java.util.Vector;
 

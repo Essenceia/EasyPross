@@ -1,4 +1,4 @@
-import Master.Graph_Manager;
+import Controller.Graph_Manager;
 
 public class Main {
 

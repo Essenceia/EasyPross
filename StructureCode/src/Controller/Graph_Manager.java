@@ -1,9 +1,7 @@
-package Master;
+package Controller;
 
-import Controller.*;
-import Interface.Grap_Base;
+import Model.*;
 
-import javax.print.Doc;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
@@ -74,7 +72,7 @@ public final class Graph_Manager implements Interface.Graph_Manager{
         }
 
     private Wire createWire(String[] parsedLine) {
-        return new Controller.Wire(Integer.valueOf(parsedLine[0])
+        return new Model.Wire(Integer.valueOf(parsedLine[0])
                 ,Integer.valueOf(parsedLine[2]));
     }
     private Vector<Wire> fillById(String[] list){

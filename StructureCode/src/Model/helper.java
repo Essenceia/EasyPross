@@ -1,8 +1,5 @@
-package Controller;
+package Model;
 
-import java.nio.Buffer;
-import java.util.Enumeration;
-import java.util.Iterator;
 import java.util.Vector;
 /*
 *Helper class static de signleton

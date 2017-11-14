@@ -1,4 +1,4 @@
-package Controller;
+package Model;
 
 public class Wire extends Graph_Base implements Interface.Wire{
     //internal data
