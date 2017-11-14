@@ -1,4 +1,4 @@
-##Chose a faire dans la semaine 
+## Chose a faire dans la semaine 
 
 +	Creer graphe a partir d'un document texte (code) 
 +	Serialiser l'objet, le deserialiser et reconstruire un graphe avec ce fichier (code)

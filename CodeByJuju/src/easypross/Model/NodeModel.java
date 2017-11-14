@@ -28,8 +28,8 @@ public class NodeModel extends ObjectModel {
      * @param description 
      */
     public NodeModel(String lock, boolean[] data_in, boolean[] data_out, int id, int type, String description) {
-        super(id, type, description);
-        this.lock = lock;
+       // super(id, type, description);
+        this.lock = "test";
         this.data_in = data_in;
         this.data_out = data_out;
     }
