@@ -11,6 +11,7 @@ public final class Graph_Manager implements Interface.Graph_Manager{
     protected Map<Integer, Node_Base> GNoeuds;
     protected Map<Integer,Probe_Start> GDebut;
     protected Map<Integer,Probe_End> GFin;
+    protected Graph_simplifie_objet GSimplified;
     public Graph_Manager() {
         GArrettes = new HashMap<Integer, Wire>();
         GNoeuds = new HashMap<Integer, Node_Base>();
@@ -27,6 +28,13 @@ public final class Graph_Manager implements Interface.Graph_Manager{
         readGNoeuds();
 
     }
+
+    @Override
+    public void init_simplified_graph(String file) {
+        GSimplified = new Graph_simplifie_objet(GArrettes,GNoeuds,GDebut,GFin);
+        GSimplified.serialise_to_file(file);
+    }
+
     private void create_all_wires(){
         while (Document_Manager.hasNextLine()){
             String read = Document_Manager.getNextLine();
@@ -35,6 +43,7 @@ public final class Graph_Manager implements Interface.Graph_Manager{
             System.out.println("Result of split ");
             for (int i = 0; i < line.length; i++) {
                 System.out.println("Index "+Integer.toString(i)+" : "+line[i]);
+                
             }
             if(Integer.valueOf(line[1]) == 1){
                 System.out.println("We have found a wire");
@@ -59,11 +68,12 @@ public final class Graph_Manager implements Interface.Graph_Manager{
             type = Integer.valueOf(splitByComa[1]);
             switch (type){
                 case 1: System.out.println("Wire already created");
+                        
                     break;
                 case 2 :case  3:createLGate(splitByComa,type);
                     break;
-                case 4: case 5:createProb(splitByComa,type);
-
+                case 4:case 5:createProb(splitByComa,type);
+                    break;
                 default:System.out.println("Error : unknown type "+splitByComa[1]);
             }
         }else {
@@ -139,5 +149,21 @@ public final class Graph_Manager implements Interface.Graph_Manager{
             System.out.println(mapentry.getValue().getDescription());
         }
     }
-
+    
+    public Map<Integer,Wire> getArrete()
+    {
+        return GArrettes;
+    }
+    public Map<Integer,Node_Base> getNoeud()
+    {
+        return GNoeuds;
+    }
+    public Map<Integer,Probe_Start> getDebut()
+    {
+        return GDebut;
+    }
+    public Map<Integer,Probe_End> getFin()
+    {
+        return GFin;
+    }
 }

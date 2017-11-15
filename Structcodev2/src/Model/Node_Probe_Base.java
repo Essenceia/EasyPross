@@ -24,4 +24,8 @@ public abstract class Node_Probe_Base extends Graph_Base implements Interface.No
     public Boolean[] getData() {
         return data;
     }
+    public Vector<Wire> getwire()
+    {
+        return wire;
+    }
 }
