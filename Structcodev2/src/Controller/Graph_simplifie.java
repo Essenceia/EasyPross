@@ -2,8 +2,9 @@
 package Controller;
 
 
+import java.io.Serializable;
 
-public class Graph_simplifie {
+public class Graph_simplifie implements Serializable{
     private int id;
     private String description; 
     private int type;

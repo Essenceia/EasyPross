@@ -1,0 +1,14 @@
+<module>
+    <wire>
+        <id>1</id>
+        <size>1</size>
+    </wire>
+    <probe>
+        <id>2</id>
+        <out>1</out>
+    </probe>
+    <probe>
+        <id>3</id>
+        <in>1</in>
+    </probe>
+</module>

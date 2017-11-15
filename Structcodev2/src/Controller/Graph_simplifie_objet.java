@@ -1,18 +1,20 @@
 package Controller;
 
 
-import Model.Node_Base;
-import Model.Probe_End;
-import Model.Probe_Start;
-import Model.Wire;
+import Model.*;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
-
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Graph_simplifie_objet implements java.io.Serializable{
     
-    private Map<Integer,Graph_simplifie> Msimp;
+    private HashMap<Integer,Graph_simplifie> Msimp;
     
     public Graph_simplifie_objet(Map<Integer,Wire> gwire, Map<Integer, Node_Base> gnode, Map<Integer,Probe_Start>gprobes, Map<Integer,Probe_End>gprobend)
     {
@@ -62,10 +64,24 @@ public class Graph_simplifie_objet implements java.io.Serializable{
         }
         
     }
-    
-    public int[] tab_concatenate(Vector<Wire> vw)
+    public void serialise_to_file(String file){
+        try {
+            FileOutputStream fos =
+                    new FileOutputStream(file);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(Msimp);
+            oos.close();
+            fos.close();
+            System.out.println("Le graph simplifier a etait serialiser dans "+file);
+        }catch(IOException ioe)
+        {
+            ioe.printStackTrace();
+        }
+    }
+    private int[] tab_concatenate(Vector<Wire> vw)
     {
-       int[] tab = null; 
+        int size =helper.count_wire_size(vw);
+       int[] tab= new int[size];
        int j=0;
        for(Wire in:vw)
        {

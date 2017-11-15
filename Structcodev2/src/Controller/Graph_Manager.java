@@ -11,6 +11,7 @@ public final class Graph_Manager implements Interface.Graph_Manager{
     protected Map<Integer, Node_Base> GNoeuds;
     protected Map<Integer,Probe_Start> GDebut;
     protected Map<Integer,Probe_End> GFin;
+    protected Graph_simplifie_objet GSimplified;
     public Graph_Manager() {
         GArrettes = new HashMap<Integer, Wire>();
         GNoeuds = new HashMap<Integer, Node_Base>();
@@ -27,6 +28,13 @@ public final class Graph_Manager implements Interface.Graph_Manager{
         readGNoeuds();
 
     }
+
+    @Override
+    public void init_simplified_graph(String file) {
+        GSimplified = new Graph_simplifie_objet(GArrettes,GNoeuds,GDebut,GFin);
+        GSimplified.serialise_to_file(file);
+    }
+
     private void create_all_wires(){
         while (Document_Manager.hasNextLine()){
             String read = Document_Manager.getNextLine();
