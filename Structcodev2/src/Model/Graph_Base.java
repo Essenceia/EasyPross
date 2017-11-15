@@ -17,7 +17,6 @@ public abstract class Graph_Base implements Interface.Grap_Base {
     public int get_type(){
         return type;
     }
-
     public String getDescription() {
         return description;
     }

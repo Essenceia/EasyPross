@@ -12,6 +12,33 @@ public class ModuleView {
         this.nodeView = nodeView;
         this.wireView = wireView;
     }
-    
-
+    /// Getters and Setters \\\
+    /**
+     * getter NodeView
+     * @return nodeView
+     */
+    public NodeView getNodeView() {
+        return nodeView;
+    }
+    /**
+     * setter NodeView
+     * @param nodeView 
+     */
+    public void setNodeView(NodeView nodeView) {
+        this.nodeView = nodeView;
+    }
+    /**
+     * getter WireViw
+     * @return wireView
+     */
+    public WireView getWireView() {
+        return wireView;
+    }
+    /**
+     * setter WireView
+     * @param wireView 
+     */
+    public void setWireView(WireView wireView) {
+        this.wireView = wireView;
+    }
 }

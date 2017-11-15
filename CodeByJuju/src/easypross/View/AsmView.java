@@ -2,7 +2,7 @@ package easypross.View;
 
 public class AsmView {
     /**
-     * Cosntructor
+     * Constructor
      */
     public AsmView() {
     }

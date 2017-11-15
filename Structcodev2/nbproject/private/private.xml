@@ -2,28 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/Nicolas/Documents/Cours/ING4/PPE/Structcodev2/src/Controller/Graph_Manager.java</file>
-            <file>file:/C:/Users/Nicolas/Documents/Cours/ING4/PPE/Structcodev2/src/Model/LGate_OR.java</file>
-            <file>file:/C:/Users/Nicolas/Documents/Cours/ING4/PPE/Structcodev2/src/Interface/Docuement_Interpretor.java</file>
-            <file>file:/C:/Users/Nicolas/Documents/Cours/ING4/PPE/Structcodev2/src/Model/Probe_Start.java</file>
-            <file>file:/C:/Users/Nicolas/Documents/Cours/ING4/PPE/Structcodev2/src/Model/Probe_End.java</file>
-            <file>file:/C:/Users/Nicolas/Documents/Cours/ING4/PPE/Structcodev2/src/Model/Node_Probe_Base.java</file>
-            <file>file:/C:/Users/Nicolas/Documents/Cours/ING4/PPE/Structcodev2/src/Model/Wire.java</file>
-            <file>file:/C:/Users/Nicolas/Documents/Cours/ING4/PPE/Structcodev2/src/Model/Node_Base.java</file>
-            <file>file:/C:/Users/Nicolas/Documents/Cours/ING4/PPE/Structcodev2/src/Controller/Document_Manager.java</file>
-            <file>file:/C:/Users/Nicolas/Documents/Cours/ING4/PPE/Structcodev2/src/Model/LGate_Base.java</file>
-            <file>file:/C:/Users/Nicolas/Documents/Cours/ING4/PPE/Structcodev2/src/Model/LGate_AND.java</file>
-            <file>file:/C:/Users/Nicolas/Documents/Cours/ING4/PPE/Structcodev2/src/Interface/Grap_Base.java</file>
-            <file>file:/C:/Users/Nicolas/Documents/Cours/ING4/PPE/Structcodev2/src/Interface/Node_Base.java</file>
-            <file>file:/C:/Users/Nicolas/Documents/Cours/ING4/PPE/Structcodev2/src/Interface/Node_Probe_Base.java</file>
-            <file>file:/C:/Users/Nicolas/Documents/Cours/ING4/PPE/Structcodev2/src/Interface/Probe_Start.java</file>
-            <file>file:/C:/Users/Nicolas/Documents/Cours/ING4/PPE/Structcodev2/src/Model/Graph_Base.java</file>
-            <file>file:/C:/Users/Nicolas/Documents/Cours/ING4/PPE/Structcodev2/src/Interface/LGate_Base.java</file>
-            <file>file:/C:/Users/Nicolas/Documents/Cours/ING4/PPE/Structcodev2/src/structcodev2/Structcodev2.java</file>
-            <file>file:/C:/Users/Nicolas/Documents/Cours/ING4/PPE/Structcodev2/src/Interface/Graph_Manager.java</file>
-            <file>file:/C:/Users/Nicolas/Documents/Cours/ING4/PPE/Structcodev2/src/Interface/Wire.java</file>
-            <file>file:/C:/Users/Nicolas/Documents/Cours/ING4/PPE/Structcodev2/src/Model/helper.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
