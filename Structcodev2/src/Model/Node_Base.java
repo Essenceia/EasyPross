@@ -43,4 +43,14 @@ public abstract class Node_Base extends Graph_Base implements Interface.Node_Bas
         //mettre les donnes dans les wire en sortie
         helper.put_wire_data_in_buffer(Wire_out,data_out);
     }
+    
+    public Vector<Wire> getWireIn()
+    {
+       return Wire_in; 
+    }
+    
+    public Vector<Wire> getWireOut()
+    {
+       return Wire_out; 
+    }
 }

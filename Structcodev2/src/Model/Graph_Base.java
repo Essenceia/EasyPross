@@ -5,7 +5,7 @@ public abstract class Graph_Base implements Interface.Grap_Base {
     protected int id=0;
     protected int type=0;
     protected String description;
-    public Graph_Base(int next_id){
+    public Graph_Base(int next_id){ 
 
         id=next_id;
         description = "ID:"+Integer.toString(next_id)+" ";
