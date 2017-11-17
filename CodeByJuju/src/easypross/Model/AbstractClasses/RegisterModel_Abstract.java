@@ -2,9 +2,11 @@ package easypross.Model.AbstractClasses;
 
 public class RegisterModel_Abstract extends NodeModel_Abstract{
     /**
-     * Attributes : fileName
+     * Attributes : fileName, blockSize, blockCount
      */
-    private String fileName;
+    protected String fileName;
+    protected int block_size;
+    protected int block_count;
     /**
      * Constructor
      * @param lock

@@ -5,6 +5,8 @@
  */
 package easypross.View;
 
+import easypross.Controller.GraphManagerController;
+
 
 /**
  *
@@ -20,6 +22,10 @@ public class EasyPross {
     public static void main(String[] args) {
         // TODO code application logic here
     	System.out.println("coucou");
+        GraphManagerController Graph = new GraphManagerController();
+        Graph.load_new_module("testfile.txt");
+        System.out.println("Chargement des map fait");
+        Graph.init_simplified_graph("serialtest.ser");
     }
     /**
      * Methods

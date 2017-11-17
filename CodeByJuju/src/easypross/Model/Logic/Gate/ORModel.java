@@ -1,6 +1,8 @@
 package easypross.Model.Logic.Gate;
 
 import easypross.Model.AbstractClasses.LogicGateModel_Abstract;
+import easypross.Model.Wire.WireModel;
+import java.util.Vector;
 
 public class ORModel extends LogicGateModel_Abstract {
     /**
@@ -12,8 +14,10 @@ public class ORModel extends LogicGateModel_Abstract {
      * @param type
      * @param description 
      */
-    public ORModel(String lock, boolean[] data_in, boolean[] data_out, int id, int type, String description) {
-        super(lock, data_in, data_out, id, type, description);
+    public ORModel(int id, Vector<WireModel> wire_input, Vector<WireModel> wire_output){
+        super(id,wire_input,wire_output);
+        description +=" OU ";
+        type = 3;
     }
     //Override of interface methods of NodeInterface
     /**

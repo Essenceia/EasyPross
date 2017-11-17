@@ -1,7 +1,9 @@
 package easypross.Model.Logic.Gate;
 
+import easypross.Controller.HelperController;
 import easypross.Model.AbstractClasses.LogicGateModel_Abstract;
-import easypross.Model.*;
+import easypross.Model.Wire.WireModel;
+import java.util.Vector;
 
 public class ANDModel extends LogicGateModel_Abstract {
     /**
@@ -13,15 +15,25 @@ public class ANDModel extends LogicGateModel_Abstract {
      * @param type
      * @param description 
      */
-    public ANDModel(String lock, boolean[] data_in, boolean[] data_out, int id, int type, String description) {
-        super(lock, data_in, data_out, id, type, description);
+    public ANDModel(int id, Vector<WireModel> wire_input, Vector<WireModel> wire_output) {
+        super(id,wire_input,wire_output);
+        description +=" ET ";
+        type = 2;
     }
     //Override of interface methods of NodeInterface
     /**
      * Override action from NodeInterface
      */
     @Override
-    public void action(){
-        
+    public void action() {
+        boolean b =false;
+        get_incomming_data();
+        // add all bits
+
+        for (boolean bool: data_in){
+            b &= bool;
+        }
+        data_out=HelperController.set_all_to(b,data_out.length);
+        put_outputing_data();
     }
 }

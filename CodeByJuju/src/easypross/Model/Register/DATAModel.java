@@ -4,12 +4,6 @@ import easypross.Model.AbstractClasses.RegisterModel_Abstract;
 
 public class DATAModel extends RegisterModel_Abstract{
     /**
-     * Attributes : fileName, blockSize, blockCount
-     */
-    private String fileName;
-    private int block_size;
-    private int block_count;
-    /**
      * Constructor
      * @param fileName
      * @param block_size

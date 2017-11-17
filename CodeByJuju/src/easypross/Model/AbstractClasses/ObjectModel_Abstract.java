@@ -19,10 +19,17 @@ public abstract class ObjectModel_Abstract {
         this.description = description;
     }
     /**
+     * Constructor
+     * @param id 
+     */
+    public ObjectModel_Abstract(int id) {
+        this.id = id;
+    }
+    /**
      * getter ID
      * @return id
      */
-    int getId() {
+    public int getId() {
         // Automatically generated method. Please delete this comment before entering specific code.
         return this.id;
     }
@@ -30,7 +37,7 @@ public abstract class ObjectModel_Abstract {
      * setter ID
      * @param value 
      */
-    void setId(int value) {
+    public void setId(int value) {
         // Automatically generated method. Please delete this comment before entering specific code.
         this.id = value;
     }
@@ -38,7 +45,7 @@ public abstract class ObjectModel_Abstract {
      * getter Type
      * @return type
      */
-    int getType() {
+    public int getType() {
         // Automatically generated method. Please delete this comment before entering specific code.
         return this.type;
     }
@@ -46,7 +53,7 @@ public abstract class ObjectModel_Abstract {
      * setter Type
      * @param value 
      */
-    void setType(int value) {
+    public void setType(int value) {
         // Automatically generated method. Please delete this comment before entering specific code.
         this.type = value;
     }
@@ -54,7 +61,7 @@ public abstract class ObjectModel_Abstract {
      * getter Description
      * @return 
      */
-    String getDescription() {
+    public String getDescription() {
         // Automatically generated method. Please delete this comment before entering specific code.
         return this.description;
     }
@@ -62,7 +69,7 @@ public abstract class ObjectModel_Abstract {
      * setter Description
      * @param value 
      */
-    void setDescription(String value) {
+    public void setDescription(String value) {
         // Automatically generated method. Please delete this comment before entering specific code.
         this.description = value;
     }

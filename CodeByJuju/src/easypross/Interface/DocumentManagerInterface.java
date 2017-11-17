@@ -1,7 +1,7 @@
 package easypross.Interface;
 
 public interface DocumentManagerInterface {
-    public void open(String fileName);
+    //public void open(String fileName);
     public boolean close(String fileName);
-    public String readLine(String fileName);
+    //public String readLine(String fileName);
 }

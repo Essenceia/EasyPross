@@ -1,8 +1,8 @@
-package easypross.Model;
+package easypross.Model.Wire;
 
 import easypross.Model.AbstractClasses.ObjectModel_Abstract;
 
-public class WireModel extends ObjectModel_Abstract {
+public class WireModel extends ObjectModel_Abstract implements easypross.Interface.ObjectInterface{
     /**
      * Attributes : sizeBus, data[], active
      */
@@ -20,11 +20,18 @@ public class WireModel extends ObjectModel_Abstract {
      * @param type
      * @param description
      */
-    public WireModel(int sizeBus, boolean[] data, boolean active, int id, int type, String description) {
-        super(id, type, description);
-        this.sizeBus = sizeBus;
-        this.data = data;
-        this.active = active;
+    public WireModel(int id, int bus_size) {
+        super(id);
+        this.type=1;
+        if(bus_size > 0)sizeBus = bus_size;
+        else {
+            sizeBus = 1;
+            System.out.println("Erreur : Wire() , bus size doit etre > 0");
+        }
+        //descriptif
+        this.description += "Bus de donne "+Integer.toString(sizeBus)+"bits";
+        this.data = new boolean[sizeBus];
+        reset_values();
     }
     /**
      * getter sizeBus
@@ -68,6 +75,27 @@ public class WireModel extends ObjectModel_Abstract {
     public void setActive(boolean active) {
         this.active = active;
     }
-    
-
+    /**
+     * Methods
+     */
+    /**
+     * putDataAtIndex
+     * @param d
+     * @param index 
+     */
+    @Override
+    public void putDataAtIndex(boolean d, int index) {
+        if(index >= sizeBus){
+            System.out.println("Erreur index out of range wire");
+        }else{
+            data[index] =d;
+        }
+    }
+    @Override
+    public void reset_values() {
+        //super.reset_values();
+        for(int i=0; i < sizeBus ; i++){
+            data[0] = false;
+        }
+    }
 }
