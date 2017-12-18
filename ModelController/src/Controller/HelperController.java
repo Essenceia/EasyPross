@@ -49,6 +49,5 @@ public final class HelperController implements Interface.HelperInterface{
             ret[i] = value;
         }
         return ret;
-    }
-    
+    }  
 }
