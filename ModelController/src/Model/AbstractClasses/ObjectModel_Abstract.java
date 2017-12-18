@@ -1,29 +1,30 @@
 package Model.AbstractClasses;
 
+/** \class ObjectModel_Abstract ObjectModel_Abstract.java "Model/AbstractClasses/ObjectModel_Abstract.java"
+ *  \brief This is the basis for all of the objects of the simulator.
+ *
+ * It declares the basic attributes that all of the objects must have in our processor simulator for it to
+ * function correctly this includes : id, type and a descritption.
+ */
 public abstract class ObjectModel_Abstract {
     /**
      * Attibutes : id, type, description
      */
-    protected int id;
-    protected int type;
-    protected String description;
+    protected int id; /***< Unique identifier of the attribute, used to address the object. */
+    protected int type;/***< Type of the object in the simulation , eg: wire, AND gate, ect ...*/
+    protected String description;/***< Short textual description of the object will be inistalised during
+     construction. */
     /**
-     * Constructor
+     * Constructor, must be called by all child classes.
      * @param id
      * @param type
-     * @param description 
+     * @param description
      */
     public ObjectModel_Abstract(int id, int type, String description) {
         this.id = id;
         this.type = type;
+        this.description = "ID "+String.valueOf(id)+" Type "+String.valueOf(type)+" ";
         this.description = description;
-    }
-    /**
-     * Constructor
-     * @param id 
-     */
-    public ObjectModel_Abstract(int id) {
-        this.id = id;
     }
     /**
      * getter ID
@@ -35,7 +36,7 @@ public abstract class ObjectModel_Abstract {
     }
     /**
      * setter ID
-     * @param value 
+     * @param value
      */
     public void setId(int value) {
         // Automatically generated method. Please delete this comment before entering specific code.
@@ -51,7 +52,7 @@ public abstract class ObjectModel_Abstract {
     }
     /**
      * setter Type
-     * @param value 
+     * @param value
      */
     public void setType(int value) {
         // Automatically generated method. Please delete this comment before entering specific code.
@@ -59,7 +60,7 @@ public abstract class ObjectModel_Abstract {
     }
     /**
      * getter Description
-     * @return 
+     * @return
      */
     public String getDescription() {
         // Automatically generated method. Please delete this comment before entering specific code.
@@ -67,7 +68,7 @@ public abstract class ObjectModel_Abstract {
     }
     /**
      * setter Description
-     * @param value 
+     * @param value
      */
     public void setDescription(String value) {
         // Automatically generated method. Please delete this comment before entering specific code.
