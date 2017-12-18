@@ -12,7 +12,6 @@ public final class HelperController implements Interface.HelperInterface {
     }
 
     /**
-     * count_wire_size
      * Permet de compter le nombre de wire de la target, un vector de WireModel
      * 
      * @param target
