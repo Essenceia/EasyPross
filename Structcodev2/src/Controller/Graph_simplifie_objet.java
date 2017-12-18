@@ -12,7 +12,8 @@ import java.io.ObjectOutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Graph_simplifie_objet implements java.io.Serializable{
+
+public class Graph_simplifie_objet implements java.io.Serializable {
     
     private HashMap<Integer,Graph_simplifie> Msimp;
     

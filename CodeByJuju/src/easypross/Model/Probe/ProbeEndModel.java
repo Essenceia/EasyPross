@@ -25,9 +25,10 @@ public class ProbeEndModel extends ProbeModel_Abstract{
        HelperController.put_wire_data_in_buffer(this.wire,this.data);
     }
 
-    //@Override
     public boolean[] getData() {
         HelperController.put_wire_data_in_buffer(this.wire,this.data);
         return this.data;
     }
+
+
 }
