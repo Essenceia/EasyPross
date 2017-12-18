@@ -6,23 +6,18 @@ public class WireModel extends ObjectModel_Abstract implements Interface.ObjectI
     /**
      * Attributes : sizeBus, data[], active
      */
-    private int sizeBus;
-    private boolean[] data;
-    private boolean active;
+    private int sizeBus; // taille du bus de donnée
+    private boolean[] data; // tableau comprenant les données des bus
+    private boolean active; // A quoi sert active parce que pour le moment on s'en sert nul part??     Nico
 
     /**
-     * Constructor
-     *
-     * @param sizeBus
-     * @param data
-     * @param active
+     * 
      * @param id
-     * @param type
-     * @param description
+     * @param bus_size 
      */
     public WireModel(int id, int bus_size) {
         super(id);
-        this.type=1;
+        this.type=1; // correspondant au type des Wire (le 1)
         if(bus_size > 0)sizeBus = bus_size;
         else {
             sizeBus = 1;
@@ -30,9 +25,10 @@ public class WireModel extends ObjectModel_Abstract implements Interface.ObjectI
         }
         //descriptif
         this.description += "Bus de donne "+Integer.toString(sizeBus)+"bits";
-        this.data = new boolean[sizeBus];
+        this.data = new boolean[sizeBus];           
         reset_values();
     }
+    
     /**
      * getter sizeBus
      * @return sizeBus
@@ -40,6 +36,7 @@ public class WireModel extends ObjectModel_Abstract implements Interface.ObjectI
     public int getSizeBus() {
         return sizeBus;
     }
+    
     /**
      * setter sizeBus
      * @param sizeBus 
@@ -47,6 +44,7 @@ public class WireModel extends ObjectModel_Abstract implements Interface.ObjectI
     public void setSizeBus(int sizeBus) {
         this.sizeBus = sizeBus;
     }
+    
     /**
      * getter Data
      * @return data
@@ -54,6 +52,7 @@ public class WireModel extends ObjectModel_Abstract implements Interface.ObjectI
     public boolean[] getData() {
         return data;
     }
+    
     /**
      * setter Data
      * @param data 
@@ -61,6 +60,7 @@ public class WireModel extends ObjectModel_Abstract implements Interface.ObjectI
     public void setData(boolean[] data) {
         this.data = data;
     }
+    
     /**
      * getter Active
      * @return active
@@ -68,6 +68,7 @@ public class WireModel extends ObjectModel_Abstract implements Interface.ObjectI
     public boolean isActive() {
         return active;
     }
+    
     /**
      * setter Active
      * @param active 
@@ -75,6 +76,7 @@ public class WireModel extends ObjectModel_Abstract implements Interface.ObjectI
     public void setActive(boolean active) {
         this.active = active;
     }
+    
     /**
      * Methods
      */
@@ -95,7 +97,7 @@ public class WireModel extends ObjectModel_Abstract implements Interface.ObjectI
     public void reset_values() {
         //super.reset_values();
         for(int i=0; i < sizeBus ; i++){
-            data[0] = false;
+            data[i] = false;
         }
     }
 }

@@ -1,18 +1,17 @@
 package Model.Logic.Gate;
 
+import Controller.HelperController;
 import Model.AbstractClasses.LogicGateModel_Abstract;
 import Model.Wire.WireModel;
 import java.util.Vector;
 
 public class ORModel extends LogicGateModel_Abstract {
+    
     /**
-     * Constructor
-     * @param lock
-     * @param data_in
-     * @param data_out
+     * 
      * @param id
-     * @param type
-     * @param description 
+     * @param wire_input
+     * @param wire_output 
      */
     public ORModel(int id, Vector<WireModel> wire_input, Vector<WireModel> wire_output){
         super(id,wire_input,wire_output);
@@ -25,6 +24,14 @@ public class ORModel extends LogicGateModel_Abstract {
      */
     @Override
     public void action(){
-        
+        boolean b =false;
+        get_incomming_data();
+        // add all bits
+
+        for (boolean bool: data_in){
+            b |= bool;
+        }
+        data_out=HelperController.set_all_to(b,data_out.length);
+        put_outputing_data();
     }
 }
