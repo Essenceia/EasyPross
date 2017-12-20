@@ -1,6 +1,8 @@
 package Model.Logic.Unit;
 
 import Model.AbstractClasses.LogicUnitModel_Abstract;
+import Model.Wire.WireModel;
+import java.util.Vector;
 
 public class DEMUXModel extends LogicUnitModel_Abstract {
 
@@ -8,21 +10,32 @@ public class DEMUXModel extends LogicUnitModel_Abstract {
     private boolean[] instruct;
 
     /**
-     * Constructor
+     * Constructeur
      *
-     * @param data_in
-     * @param data_out
+     * @param synchrone
      * @param id
      * @param type
      * @param description
+     * @param wire_input
+     * @param wire_output
      * @param nb_demux
      * @param instruct
      */
-    public DEMUXModel(boolean[] data_in, boolean[] data_out, int id, int type, String description, int nb_demux, boolean[] instruct) {
-        super(data_in, data_out, id, type, description);
+    public DEMUXModel(boolean synchrone, int id, int type, String description, Vector<WireModel> wire_input, Vector<WireModel> wire_output, int nb_demux, boolean[] instruct) {
+        super(synchrone, id, type, description, wire_input, wire_output);
         this.nb_bit_demux = nb_demux;
-        this.instruct = new boolean[3];
-        for (int i = 0; i < 3; i++) {
+        int taille = 0;
+        if (nb_demux == 2) {
+            taille = 1;
+        }
+        if (nb_demux == 4) {
+            taille = 2;
+        }
+        if (nb_demux == 8) {
+            taille = 3;
+        }
+        this.instruct = new boolean[taille];
+        for (int i = 0; i < taille; i++) {
             this.instruct[i] = instruct[i];
         }
     }
@@ -34,70 +47,55 @@ public class DEMUXModel extends LogicUnitModel_Abstract {
     @Override
     public void action() {
         get_incomming_data();
-        boolean[] c = new boolean[3];
-        c[0] = instruct[0];
-        c[1] = instruct[1];
-        c[2] = instruct[2];
-        boolean[] data_in;
-        boolean[] s0;
-        boolean[] s1;
-        boolean[] s2;
-        boolean[] s3;
         switch (nb_bit_demux) {
             case 2:
-                s0 = new boolean[nb_bit_demux];
-                s1 = new boolean[nb_bit_demux];
-                data_in = new boolean[nb_bit_demux];
-                if (c[0] == false && c[1] == false && c[2] == false) {
-                    s0 = data_in;
-                    for (int i = 0; i < nb_bit_demux; i++) {
-                        s1[i] = false;
-                    }
+                if (instruct[0] == false) {
+                    output.get(0).setData(input.get(1).getData());
                 } else {
-                    s1 = data_in;
-                    for (int i = 0; i < nb_bit_demux; i++) {
-                        s0[i] = false;
-                    }
+                    output.get(1).setData(input.get(1).getData());
                 }
+
                 break;
 
             case 4:
-                s0 = new boolean[nb_bit_demux];
-                s1 = new boolean[nb_bit_demux];
-                s2 = new boolean[nb_bit_demux];
-                s3 = new boolean[nb_bit_demux];
-                data_in = new boolean[nb_bit_demux];
-                if (c[0] == false && c[1] == false && c[2] == false) {
-                    s0 = data_in;
-                    for (int i = 0; i < nb_bit_demux; i++) {
-                        s1[i] = false;
-                        s2[i] = false;
-                        s3[i] = false;
-                    }
+                if (instruct[0] == false && instruct[1] == false) {
+                    output.get(0).setData(input.get(1).getData());
                 }
-                if (c[0] == true && c[1] == false && c[2] == false) {
-                    s1 = data_in;
-                    for (int i = 0; i < nb_bit_demux; i++) {
-                        s0[i] = false;
-                        s2[i] = false;
-                        s3[i] = false;
-                    }
+                if (instruct[0] == true && instruct[1] == false) {
+                    output.get(1).setData(input.get(1).getData());
                 }
-                if (c[0] == false && c[1] == true && c[2] == false) {
-                    s2 = data_in;
-                    for (int i = 0; i < nb_bit_demux; i++) {
-                        s1[i] = false;
-                        s0[i] = false;
-                        s3[i] = false;
-                    }
+                if (instruct[0] == false && instruct[1] == true) {
+                    output.get(2).setData(input.get(1).getData());
                 }
-                if (c[0] == true && c[1] == true && c[2] == false) {
-                    s3 = data_in;
-                    for (int i = 0; i < nb_bit_demux; i++) {
-                        s1[i] = false;
-                        s2[i] = false;
-                        s0[i] = false;
-                    }
+                if (instruct[0] == true && instruct[1] == true) {
+                    output.get(3).setData(input.get(1).getData());
+                }
+                break;
+
+            case 8:
+                if (instruct[0] == false && instruct[1] == false && instruct[2] == false) {
+                    output.get(0).setData(input.get(1).getData());
+                }
+                if (instruct[0] == true && instruct[1] == false && instruct[2] == false) {
+                    output.get(1).setData(input.get(1).getData());
+                }
+                if (instruct[0] == false && instruct[1] == true && instruct[2] == false) {
+                    output.get(2).setData(input.get(1).getData());
+                }
+                if (instruct[0] == true && instruct[1] == true && instruct[2] == false) {
+                    output.get(3).setData(input.get(1).getData());
+                }
+                if (instruct[0] == false && instruct[1] == false && instruct[2] == true) {
+                    output.get(4).setData(input.get(1).getData());
+                }
+                if (instruct[0] == true && instruct[1] == false && instruct[2] == true) {
+                    output.get(5).setData(input.get(1).getData());
+                }
+                if (instruct[0] == false && instruct[1] == true && instruct[2] == true) {
+                    output.get(6).setData(input.get(1).getData());
+                }
+                if (instruct[0] == true && instruct[1] == true && instruct[2] == true) {
+                    output.get(7).setData(input.get(1).getData());
                 }
                 break;
             default:

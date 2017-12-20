@@ -11,7 +11,7 @@ public class MUXModel extends LogicUnitModel_Abstract {
 
     /**
      * Constructeur
-     * 
+     *
      * @param synchrone
      * @param id
      * @param type
@@ -19,13 +19,24 @@ public class MUXModel extends LogicUnitModel_Abstract {
      * @param wire_input
      * @param wire_output
      * @param nb_mux
-     * @param instruct 
+     * @param instruct
      */
-    public MUXModel(boolean synchrone,int id, int type, String description, Vector<WireModel> wire_input, Vector<WireModel> wire_output,int nb_mux, boolean[] instruct) {
-        super(synchrone,id, type, description,wire_input, wire_output);
+    public MUXModel(boolean synchrone, int id, int type, String description, Vector<WireModel> wire_input, Vector<WireModel> wire_output, int nb_mux, boolean[] instruct) {
+        super(synchrone, id, type, description, wire_input, wire_output);
         this.nb_bit_mux = nb_mux;
-        this.instruct = new boolean[3];
-        for (int i = 0; i < 3; i++) {
+
+        int taille = 0;
+        if (nb_mux == 2) {
+            taille = 1;
+        }
+        if (nb_mux == 4) {
+            taille = 2;
+        }
+        if (nb_mux == 8) {
+            taille = 3;
+        }
+        this.instruct = new boolean[taille];
+        for (int i = 0; i < taille; i++) {
             this.instruct[i] = instruct[i];
         }
     }
@@ -37,63 +48,55 @@ public class MUXModel extends LogicUnitModel_Abstract {
     @Override
     public void action() {
         get_incomming_data();
-        boolean[] c = new boolean[3];
-        c[0] = instruct[0];
-        c[1] = instruct[1];
-        c[2] = instruct[2];
-        boolean[] data_out;
-        boolean[] e0;
-        boolean[] e1;
-        boolean[] e2;
-        boolean[] e3;
         switch (nb_bit_mux) {
             case 2:
-                e0 = new boolean[nb_bit_mux];
-                e1 = new boolean[nb_bit_mux];
-                data_out = new boolean[nb_bit_mux];
-                for (int i = 3; i < nb_bit_mux + 3; i++) {
-                    e0[i - 3] = data_in[i];
-                }
-                for (int i = 3 + nb_bit_mux; i < nb_bit_mux + 3 + nb_bit_mux; i++) {
-                    e1[i - 3 - nb_bit_mux] = data_in[i];
-                }
-                if (c[0] == false && c[1] == false && c[2] == false) {
-                    data_out = e0;
+                if (instruct[0] == false) {
+                    output.get(0).setData(input.get(1).getData());
                 } else {
-                    data_out = e1;
+                    output.get(0).setData(input.get(2).getData());
                 }
 
                 break;
 
             case 4:
-                e0 = new boolean[nb_bit_mux];
-                e1 = new boolean[nb_bit_mux];
-                e2 = new boolean[nb_bit_mux];
-                e3 = new boolean[nb_bit_mux];
-                data_out = new boolean[nb_bit_mux];
-                for (int i = 3; i < nb_bit_mux + 3; i++) {
-                    e0[i - 3] = data_in[i];
+                if (instruct[0] == false && instruct[1] == false) {
+                    output.get(0).setData(input.get(1).getData());
                 }
-                for (int i = 3 + nb_bit_mux; i < nb_bit_mux + 3 + nb_bit_mux; i++) {
-                    e1[i - 3 - nb_bit_mux] = data_in[i];
+                if (instruct[0] == true && instruct[1] == false) {
+                    output.get(0).setData(input.get(2).getData());
                 }
-                for (int i = 3 + (2 * nb_bit_mux); i < 3 + (3 * nb_bit_mux); i++) {
-                    e2[i - 3 - (2 * nb_bit_mux)] = data_in[i];
+                if (instruct[0] == false && instruct[1] == true) {
+                    output.get(0).setData(input.get(3).getData());
                 }
-                for (int i = 3 + (3 * nb_bit_mux); i < 3 + (4 * nb_bit_mux); i++) {
-                    e3[i - 3 - (3 * nb_bit_mux)] = data_in[i];
+                if (instruct[0] == true && instruct[1] == true) {
+                    output.get(0).setData(input.get(4).getData());
                 }
-                if (c[0] == false && c[1] == false && c[2] == false) {
-                    data_out = e0;
+                break;
+
+            case 8:
+                if (instruct[0] == false && instruct[1] == false && instruct[2] == false) {
+                    output.get(0).setData(input.get(1).getData());
                 }
-                if (c[0] == true && c[1] == false && c[2] == false) {
-                    data_out = e1;
+                if (instruct[0] == true && instruct[1] == false && instruct[2] == false) {
+                    output.get(0).setData(input.get(2).getData());
                 }
-                if (c[0] == false && c[1] == true && c[2] == false) {
-                    data_out = e2;
+                if (instruct[0] == false && instruct[1] == true && instruct[2] == false) {
+                    output.get(0).setData(input.get(3).getData());
                 }
-                if (c[0] == true && c[1] == true && c[2] == false) {
-                    data_out = e3;
+                if (instruct[0] == true && instruct[1] == true && instruct[2] == false) {
+                    output.get(0).setData(input.get(4).getData());
+                }
+                if (instruct[0] == false && instruct[1] == false && instruct[2] == true) {
+                    output.get(0).setData(input.get(5).getData());
+                }
+                if (instruct[0] == true && instruct[1] == false && instruct[2] == true) {
+                    output.get(0).setData(input.get(6).getData());
+                }
+                if (instruct[0] == false && instruct[1] == true && instruct[2] == true) {
+                    output.get(0).setData(input.get(7).getData());
+                }
+                if (instruct[0] == true && instruct[1] == true && instruct[2] == true) {
+                    output.get(0).setData(input.get(8).getData());
                 }
                 break;
             default:
