@@ -18,11 +18,11 @@ public class ProbeStartModel extends ProbeModel_Abstract {
     /**
      * Constructor
      *\fn ProbeStartMode
-     * @param id
-     * @param link_wire   the wire the probe is connected to
+     * @param next_id
+     * @param wire_out   the wire the probe is connected to
      */
     public ProbeStartModel(int next_id, Vector<WireModel> wire_out) {
-        super(next_id, 4, "Start Size of Data " + this.getWire_size().toString(), wire_out);
+        super(next_id, TYPE_PROBE_START, "Start Size of Data " + wire_out.size(), wire_out);
         reset_values();
     }
 

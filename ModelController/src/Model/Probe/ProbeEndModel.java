@@ -15,11 +15,11 @@ public class ProbeEndModel extends ProbeModel_Abstract{
     /**
      * Constructor
      *\fn ProbeEndMode
-     * @param id
-     * @param link_wire   the wire the probe is connected to
+     * @param  next_id - unique id of object
+     * @param wire_out - the wire the probe is connected to
      */
     public ProbeEndModel(int next_id, Vector<WireModel> wire_out) {
-        super(next_id,5,"End Size of Data "+this.getWire_size().toString(),wire_out);
+        super(next_id,TYPE_PROBE_END,"End Size of Data "+wire_out.size(),wire_out);
         reset_values();
     }
 

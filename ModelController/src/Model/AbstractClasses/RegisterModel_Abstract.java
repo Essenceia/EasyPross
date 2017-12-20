@@ -360,4 +360,21 @@ public abstract class RegisterModel_Abstract extends NodeModel_Abstract {
         return retarray;
     }
 
+    /**
+     *
+     * @param nmninw
+     * @param nmboutw
+     * @param expected_in_wire
+     * @param expected_out_wire
+     */
+    protected void check_wire_number(int nmninw,int nmboutw,int expected_in_wire, int expected_out_wire){
+        //todo move to parent class to prevent duplicats
+        if(nmninw != expected_in_wire){
+            System.err.println("Error on id"+this.id+", unexpected number of in wires, "+expected_in_wire+" expected and got "+nmninw);
+        }
+        if(nmninw!= expected_out_wire){
+            System.err.println("Error on id"+this.id+", unexpected number of out wires, "+expected_out_wire+" expected and got "+nmninw);
+        }
+    }
+
 }

@@ -1,12 +1,14 @@
 package Model.AbstractClasses;
 
+import Model.GlobalDefines;
+
 /** \class ObjectModel_Abstract ObjectModel_Abstract.java "Model/AbstractClasses/ObjectModel_Abstract.java"
  *  \brief This is the basis for all of the objects of the simulator.
  *
  * It declares the basic attributes that all of the objects must have in our processor simulator for it to
  * function correctly this includes : id, type and a descritption.
  */
-public abstract class ObjectModel_Abstract {
+public abstract class ObjectModel_Abstract extends GlobalDefines{
     /**
      * Attibutes : id, type, description
      */
@@ -14,6 +16,7 @@ public abstract class ObjectModel_Abstract {
     protected int type;/***< Type of the object in the simulation , eg: wire, AND gate, ect ...*/
     protected String description;/***< Short textual description of the object will be inistalised during
      construction. */
+
     /**
      * Constructor, must be called by all child classes.
      * @param id

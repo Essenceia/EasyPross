@@ -3,6 +3,8 @@ package Model.AbstractClasses;
 import Controller.HelperController;
 import Interface.NodeInterface;
 import Model.Wire.WireModel;
+
+import java.lang.reflect.Array;
 import java.util.Vector;
 
 public abstract class NodeModel_Abstract extends ObjectModel_Abstract implements NodeInterface {
@@ -134,5 +136,43 @@ public abstract class NodeModel_Abstract extends ObjectModel_Abstract implements
     public void put_outputing_data() {
         //mettre les données dans les wires en sortie
         HelperController.put_wire_data_in_buffer(output, data_out);
+    }
+
+    /**
+     * boolarray_to_int
+     *
+     * Convert an array of booleans to an integer value
+     * @param array - array of boolean to be converted
+     * @return - resulting integer value
+     */
+    protected int boolarray_to_int(boolean[] array){
+        int retval = 0;
+        for(int i = 0 ; i < array.length ; i ++){
+            if(array[i])retval += Math.pow(2,i);
+        }
+        return retval;
+    }
+
+    /**
+     * int_to_boolarray
+     *
+     * Convert an int to an array of booleans
+     *
+     * @param data integer value to convert
+     * @return result of conversion, array of booleans
+     */
+    protected boolean[] int_to_boolarray(int data,int boolsize){
+        int div;
+        int asize = Math.max(((int) (Math.log(data)+1)),boolsize);
+        boolean[] retval= new boolean[asize];
+        Array.setBoolean(retval,retval.length,false);
+        for(int i = asize; i >-1; i ++){
+            div = (int)(data/Math.pow(2,i));
+            if(div>=1){
+                data -=div*Math.pow(2,i);
+                retval[i] = true;
+            }
+        }
+        return retval;
     }
 }

@@ -2,6 +2,8 @@ package Model.AbstractClasses;
 
 import Controller.HelperController;
 import Model.Wire.WireModel;
+
+import java.util.Arrays;
 import java.util.Vector;
 
 /**
@@ -25,9 +27,9 @@ public abstract class ProbeModel_Abstract extends ObjectModel_Abstract {
     /**
      * Constructor
      *
-     * @param id
-     * @param type
-     * @param description
+     * @param next_id - id of object
+     * @param type - type of object : wire , probe start , ect ...
+     * @param description - description
      * @param link_wire   the wire the probe is connected to
      */
     public ProbeModel_Abstract(int next_id, int type, String description, Vector<WireModel> link_wire) {
@@ -48,10 +50,8 @@ public abstract class ProbeModel_Abstract extends ObjectModel_Abstract {
     }
 
     /**
-     * \fn setter wire_size
-     *
-     * @return wire_size
-     */
+     *setter wire_size
+     **/
     public void setWire_size(Integer wire_size) {
         this.wire_size = wire_size;
     }
@@ -74,7 +74,6 @@ public abstract class ProbeModel_Abstract extends ObjectModel_Abstract {
     /**
      * \fn setter wire_size
      *
-     * @return wire_size
      * \note if setData has not been overwritten you are not supposed to be using it,
      * for instance a end probe is not suposed to be setting the data on it's line,
      * is is supposed to be a read only.
@@ -87,7 +86,7 @@ public abstract class ProbeModel_Abstract extends ObjectModel_Abstract {
      * <p>
      * \brief Resets the values of data to false
      */
-    private void reset_values() {
+    protected void reset_values() {
         Arrays.fill(data, false);
     }
 

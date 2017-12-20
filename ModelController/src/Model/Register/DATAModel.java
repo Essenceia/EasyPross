@@ -33,7 +33,7 @@ public class DATAModel extends RegisterModel_Abstract{
      */
     public DATAModel(int id,Vector<WireModel> wire_input, Vector<WireModel> wire_output ,
                      String absPath, String fname, int block_size, int block_number){
-        super(id,4,wire_input,wire_output,"Data ",absPath,fname,block_number,block_size);
+        super(id,TYPE_REG_DATA,wire_input,wire_output,"Data ",absPath,fname,block_number,block_size);
     }
 
     /**
