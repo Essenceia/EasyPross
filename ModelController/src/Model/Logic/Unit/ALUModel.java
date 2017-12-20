@@ -16,8 +16,8 @@ public class ALUModel extends LogicUnitModel_Abstract {
      * @param description
      * @param nbreBitsALU
      */
-    public ALUModel(boolean[] data_in, boolean[] data_out, int id, int type, String description, int nbreBitsALU) {
-        super(data_in, data_out, id, type, description);
+    public ALUModel(boolean synchrone, Vector<WireModel> wire_input, Vector<WireModel> wire_output, int id, int type, String description, int nbreBitsALU) {
+        super(synchrone, wire_input, wire_output, data_in, data_out, id, type, description);
         this.nbreBitsALU = nbreBitsALU;
     }
 
@@ -46,23 +46,11 @@ public class ALUModel extends LogicUnitModel_Abstract {
     @Override
     public void action() {
         int nbre1 = 0, nbre2 = 0, nbre3 = 0, opCode = 0;
-        for (int i = 0; i < 2; i++) {
-            if (data_in[i]) {
-                opCode += Math.pow(2, 3 - i);
-            }
-        }
-        for (int i = 3; i < 2 * nbreBitsALU + 3; i++) {
-            if (i >= 2 && i <= nbreBitsALU + 2) {
-                if (data_in[i]) {
-                    nbre1 += Math.pow(2, (nbreBitsALU - i) + 2);
-                }
-            }
-            if (i >= nbreBitsALU + 3 && i <= 2 * nbreBitsALU + 2) {
-                if (data_in[i]) {
-                    nbre2 += Math.pow(2, (nbreBitsALU - i) + 2 + nbreBitsALU);
-                }
-            }
-        }
+        boolean []tab1 = this.input.get(0).getData(), []tab2 = this.input.get(1), []tab3 = this.input.get(2), []data_out = new boolean[nbreBitsALU];
+
+	for(int i = 0; i < 3; i++) if(tab1[i]) opCode += Math.pow(2, 3-i);
+	for(int i = 0; i < tab2.length(); i++) if(tab2[i]) nbre1 += Math.pow(2, tab2.length() - i);
+	for(int i = 0; i < tab3.length(); i++) if(tab3[i]) nbre2 += Math.pow(2, tab3.length() - i);
         switch (opCode) {
             case 0:
                 nbre3 = nbre1 + nbre2;
@@ -70,7 +58,7 @@ public class ALUModel extends LogicUnitModel_Abstract {
             case 1:
                 nbre3 = nbre1 - nbre2;
                 break;
-            case 2: 
+            case 2:
                 nbre3 = nbre1 * nbre2;
                 break;
             case 3:
@@ -86,16 +74,16 @@ public class ALUModel extends LogicUnitModel_Abstract {
                 nbre3 = ~nbre1;
                 break;
             case 7:
-                nbre3 = nbre1^nbre2;
+                nbre3 = nbre1 ^ nbre2;
                 break;
             default:
                 break;
         }
-        boolean []data_out = new boolean[nbreBitsALU];
+
         for(int i = nbreBitsALU; i > -1; i--) {
             int dr = (int)(nbre3/Math.pow(2,i));
             if(dr != 0) nbre3 -= dr*Math.pow(2,i);
             data_out[i] = (dr != 0);
-        }       
+        }
     }
 }
