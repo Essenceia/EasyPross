@@ -16,20 +16,24 @@ public abstract class LogicModel_Abstract extends NodeModel_Abstract {
      * @param id
      * @param type
      * @param description 
-     */
     public LogicModel_Abstract(boolean synchrone, boolean[] data_in, boolean[] data_out, int id, int type, String description) {
         super(data_in, data_out, id, type, description);
         this.synchrone = synchrone;
-    }  
+    } */ 
     
     /**
+     * Constructor
      * 
+     * @param synchrone
      * @param id
+     * @param type
+     * @param description
      * @param wire_input
      * @param wire_output 
      */
-    public LogicModel_Abstract(int id, Vector<WireModel> wire_input, Vector<WireModel> wire_output) {
-        super(id, wire_input, wire_output);
+    public LogicModel_Abstract(boolean synchrone,int id, int type, String description, Vector<WireModel> wire_input, Vector<WireModel> wire_output) {
+        super(id, type, description,wire_input, wire_output);
+        this.synchrone = synchrone;
         description += " Logic "; // Ajout de la description Logic
         //check logic nodes can only have 1 bit as output
         if (data_out.length > 1) {

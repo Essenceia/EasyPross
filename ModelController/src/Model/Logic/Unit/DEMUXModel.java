@@ -15,6 +15,8 @@ public class DEMUXModel extends LogicUnitModel_Abstract {
      * @param id
      * @param type
      * @param description
+     * @param nb_demux
+     * @param instruct
      */
     public DEMUXModel(boolean[] data_in, boolean[] data_out, int id, int type, String description, int nb_demux, boolean[] instruct) {
         super(data_in, data_out, id, type, description);

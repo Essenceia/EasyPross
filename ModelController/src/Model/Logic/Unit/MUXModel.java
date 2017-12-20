@@ -1,6 +1,8 @@
 package Model.Logic.Unit;
 
 import Model.AbstractClasses.LogicUnitModel_Abstract;
+import Model.Wire.WireModel;
+import java.util.Vector;
 
 public class MUXModel extends LogicUnitModel_Abstract {
 
@@ -9,17 +11,18 @@ public class MUXModel extends LogicUnitModel_Abstract {
 
     /**
      * Constructeur
-     *
-     * @param data_in
-     * @param data_out
+     * 
+     * @param synchrone
      * @param id
      * @param type
      * @param description
+     * @param wire_input
+     * @param wire_output
      * @param nb_mux
-     * @param instruct
+     * @param instruct 
      */
-    public MUXModel(boolean[] data_in, boolean[] data_out, int id, int type, String description, int nb_mux, boolean[] instruct) {
-        super(data_in, data_out, id, type, description);
+    public MUXModel(boolean synchrone,int id, int type, String description, Vector<WireModel> wire_input, Vector<WireModel> wire_output,int nb_mux, boolean[] instruct) {
+        super(synchrone,id, type, description,wire_input, wire_output);
         this.nb_bit_mux = nb_mux;
         this.instruct = new boolean[3];
         for (int i = 0; i < 3; i++) {

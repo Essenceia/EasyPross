@@ -1,16 +1,20 @@
 package Model.AbstractClasses;
 
+import Model.Wire.WireModel;
+import java.util.Vector;
+
 public abstract class LogicUnitModel_Abstract extends LogicModel_Abstract{
     /**
      * Constructor
-     * @param data_in
-     * @param data_out
+     * 
+     * @param synchrone
      * @param id
      * @param type
-     * @param description 
+     * @param description
+     * @param wire_input
+     * @param wire_output 
      */
-    public LogicUnitModel_Abstract(boolean[] data_in, boolean[] data_out, int id, int type, String description) {
-        super(true, data_in, data_out, id, type, description);
+    public LogicUnitModel_Abstract(boolean synchrone,int id, int type, String description, Vector<WireModel> wire_input, Vector<WireModel> wire_output) {
+        super(synchrone,id, type, description,wire_input, wire_output);
     }
-    
 }
