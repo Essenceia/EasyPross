@@ -23,8 +23,8 @@ public class MUXModel extends LogicUnitModel_Abstract {
      */
     public MUXModel(boolean synchrone, int id, int type, String description, Vector<WireModel> wire_input, Vector<WireModel> wire_output, int nb_mux, boolean[] instruct) {
         super(synchrone, id, type, description, wire_input, wire_output);
+        this.type= 7;
         this.nb_bit_mux = nb_mux;
-
         int taille = 0;
         if (nb_mux == 2) {
             taille = 1;
@@ -42,7 +42,7 @@ public class MUXModel extends LogicUnitModel_Abstract {
         
         if(input.isEmpty())
         {
-            System.out.println("Erreur il n'y a pas de fil en entrée");
+            System.out.println("Erreur il n'y a pas de fils en entrée");
         }
     }
 

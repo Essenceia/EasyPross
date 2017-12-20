@@ -23,10 +23,11 @@ public class ALUModel extends LogicUnitModel_Abstract {
     public ALUModel(boolean synchrone, Vector<WireModel> wire_input, Vector<WireModel> wire_output, int id, int type, String description, int nbreBitsALU) {
         super(synchrone,id, type, description,wire_input, wire_output);
         this.nbreBitsALU = nbreBitsALU;
+        this.type= 9;
         
          if(input.isEmpty())
         {
-            System.out.println("Erreur il n'y a pas de fil en entrée");
+            System.out.println("Erreur il n'y a pas de fils en entrée");
         }
     }
 

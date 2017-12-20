@@ -24,6 +24,7 @@ public class DEMUXModel extends LogicUnitModel_Abstract {
     public DEMUXModel(boolean synchrone, int id, int type, String description, Vector<WireModel> wire_input, Vector<WireModel> wire_output, int nb_demux, boolean[] instruct) {
         super(synchrone, id, type, description, wire_input, wire_output);
         this.nb_bit_demux = nb_demux;
+        this.type= 8;
         int taille = 0;
         if (nb_demux == 2) {
             taille = 1;
@@ -41,7 +42,7 @@ public class DEMUXModel extends LogicUnitModel_Abstract {
         
         if(input.isEmpty())
         {
-            System.out.println("Erreur il n'y a pas de fil en entrée");
+            System.out.println("Erreur il n'y a pas de fils en entrée");
         }
         
     }
