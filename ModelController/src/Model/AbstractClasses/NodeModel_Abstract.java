@@ -18,30 +18,26 @@ public abstract class NodeModel_Abstract extends ObjectModel_Abstract implements
     protected int data_in_size; // taille du bus de donnée entrant
     protected int data_out_size; // taille du bus de donnée sortant
 
-    /**
-     * Constructor Complete
-     *
-     * @param data_in
-     * @param data_out
-     * @param id
-     * @param type
-     * @param description
-     */
+    /*
+    Ceci est une erreur , ce contructeur est le mauvais on devrait pas donner ls data mais les wires connecter
+    en entrer- sortie - Ja
     public NodeModel_Abstract(boolean[] data_in, boolean[] data_out, int id, int type, String description) {
         super(id, type, description);
         this.data_in = data_in;
         this.data_out = data_out;
     }
+*/
 
     /**
      * Constructeur qui initialise ces paramètres
-     *
      * @param id
+     * @param type
+     * @param description
      * @param wire_input
      * @param wire_output
      */
-    public NodeModel_Abstract(int id, Vector<WireModel> wire_input, Vector<WireModel> wire_output) {
-        super(id);
+    public NodeModel_Abstract(int id,  int type,String description,Vector<WireModel> wire_input, Vector<WireModel> wire_output) {
+        super(id, type, description);
         //descriptif
         description += "Noeud ";
         //taille des bus de donnee entrant et sortant

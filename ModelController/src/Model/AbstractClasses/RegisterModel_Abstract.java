@@ -1,15 +1,15 @@
 package Model.AbstractClasses;
-import java.io.File;
-/**
- * Constant values
- * <p>
- * Define the realtive paths to where the files will be stored
- * The temporary file will be stored in the systems default location for temporary
- * files.
- */
 
-public static final String FILE_SEPARATOR = System.getProperty("file.separator");
-public static final String WORKING_FILE_FOLDER_PATH=".."+FILE_SEPARATOR+"Model_CPU"+FILE_SEPARATOR;
+import Model.Wire.WireModel;
+
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.rmi.server.ExportException;
+import java.util.Arrays;
+import java.util.Vector;
+import java.util.stream.Stream;
+
 /**
  * RegisterModel_Abstract RegisterModel_Abstract.java "Model/AbstractClasses/RegisterModel_Abstract.java"
  * <p>
@@ -30,7 +30,18 @@ public static final String WORKING_FILE_FOLDER_PATH=".."+FILE_SEPARATOR+"Model_C
  * If no data has been set on that specific line then the file is initialised with all zeros.
  * If not file is found a new file will be created an initialised with all zeros.
  */
-public class RegisterModel_Abstract extends NodeModel_Abstract {
+public abstract class RegisterModel_Abstract extends NodeModel_Abstract {
+    /**
+     * Constant values
+     * <p>
+     * Define the realtive paths to where the files will be stored
+     * The temporary file will be stored in the systems default location for temporary
+     * files.
+     */
+
+    public static final String FILE_SEPARATOR = System.getProperty("file.separator");
+    public static final String WORKING_FILE_FOLDER_PATH = ".." + FILE_SEPARATOR + "Model_CPU" + FILE_SEPARATOR;
+
     /**
      * Attributes : fileName, tmp_fileName, blockSize, blockCount
      */
@@ -47,10 +58,6 @@ public class RegisterModel_Abstract extends NodeModel_Abstract {
      * Name of the temporary file that we have given to the API so it can be modified
      * by an exterior source.
      */
-    protected File data;
-    /**
-     * Working directory file that contains our data
-     */
     //protected boolean lock;/** @deprecated lock will be replaced by the use of a temporary file */
     protected int block_size;
     /**
@@ -58,20 +65,39 @@ public class RegisterModel_Abstract extends NodeModel_Abstract {
      */
     protected int block_count;/** Number of blocks (values) of data contrained in our register */
     /**
-     * Constructor
+     * Contructor
+     * <p>
+     * Build a new object of the register model class.
+     * <p>
+     * As this is the class from witch all other instances of register inherite verification of the
+     * existance of files as well as there initialisation are taken care of here.
+     * We also create our temporary file and initialise it to the contents of our working file's data.
+     * <p>
+     * TODO : Verify the file has the correct number of data blocks
      *
-     * @param data_in
-     * @param data_out
-     * @param id
-     * @param type
-     * @param description
+     * @param id          - unique id of our node
+     * @param type        - type of out node
+     * @param description - textual descritption of our node
+     * @param absPath     - absolute path to the root folder where we will be adding our working files
+     * @param fname       - name of our working file in the root folder
+     * @param wire_input  - wire comming in as input to our node
+     * @param wire_output - wire going out as output of our node
      */
-    public RegisterModel_Abstract(boolean[] data_in, boolean[] data_out, int id, int type, String description, String absPath, String fname) {
-        super(data_in, data_out, id, type, description);
+    public RegisterModel_Abstract(int id, int type, Vector<WireModel> wire_input,
+                                  Vector<WireModel> wire_output, String description,
+                                  String absPath, String fname,
+                                  int nmblocks, int block_size) {
+        super(id, type,
+                "Register model, with " + nmblocks +
+                        " of size " + block_size + " " + description,
+                wire_input, wire_output);
+        this.block_size = block_size;
+        this.block_count = nmblocks;
         this.fileName = fname;
         this.absfilePath = absPath;
+        String fpath = this.absfilePath + this.fileName;
         //check if files exists if not create them
-        if (File(this.absfilePath + this.fileName).isFile() == false) {
+        if (!(new File(fpath)).isFile()) {
             creatFile();
         }
         /*temporary files should never exist and thus have to be created with eatch new object
@@ -120,45 +146,56 @@ public class RegisterModel_Abstract extends NodeModel_Abstract {
     //Override of interface methods of NodeInterface
 
     /**
-     * Override action from NodeInterface
-     */
-    @Override
-    public void action() {
-
-    }
-
-    /**
      * readBlock
+     * <p>
+     * Read the value stored in a block of our data, we address them by block number.
      *
-     * @param block
-     * @return
+     * @param block_number - the block number we should be reading
+     * @return the value of the block we read , if an error is encountered we will return only zeros
      */
-    protected boolean[] readBlock(boolean[] block) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    protected boolean[] readBlock(int block_number) {
+        //open our working file
+        Stream<String> lines;
+        String line = new String();
+        String fpath = this.absfilePath + this.fileName;
+        try {
+            lines = Files.lines(Paths.get(fpath));
+            //goto line numbered block number
+            line = lines.skip(block_number).findFirst().get();
+        } catch (ExportException ex) {
+            ex.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return String_to_bool(line);
+
     }
 
     /**
      * writeBlock
      *
-     * @param newValues
-     * @param blockNumber
+     * @param newValues   - new value for a block to be writen in our file
+     * @param blockNumber - block number we should be writing to
      */
     protected void writeBlock(boolean[] newValues, int blockNumber) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    /**
-     * openFile
-     */
-    protected void openFile() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    /**
-     * closeFile
-     */
-    protected void closeFile() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //todo improve
+        try {
+            int lineNo = blockNumber;
+            String fpath = this.tmp_fileName + this.fileName;
+            LineNumberReader r = new LineNumberReader(new FileReader(fpath));
+            while (true) {
+                String line = r.readLine();
+                if (line == null) {
+                    break;
+                }
+                if (r.getLineNumber() != lineNo) {
+                    System.out.println(line);
+                }
+            }
+        } catch (Exception e) {
+            // if any error occurs
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -166,13 +203,15 @@ public class RegisterModel_Abstract extends NodeModel_Abstract {
      * Creat a new working file and initialise it to empty
      */
     private void creatFile() {
-        try{
-            this.data = new File(this.absfilePath+this.fileName);
-            if(this.data.createNewFile()){
-                System.out.println(this.absfilePath+this.fileName+" File Created");
-                init_default(this.data);
-            }else System.out.println("File "+this.absfilePath+this.fileName+" already exists");
-        }catch(Exception e) {
+        String fpath = this.absfilePath + this.fileName;
+        File newfile;
+        try {
+            newfile = new File(fpath);
+            if (newfile.createNewFile()) {
+                System.out.println(fpath + " File Created");
+                init_default(fpath);
+            } else System.out.println("File " + fpath + " already exists");
+        } catch (Exception e) {
 
             // if any error occurs
             e.printStackTrace();
@@ -183,10 +222,13 @@ public class RegisterModel_Abstract extends NodeModel_Abstract {
      * init_default
      * Initialised to default the content of a new working file according to the
      * number of blocks and the individual block size.
+     *
      * @param f file we are to initialise
      */
-    private void init_default(File f) {
+    private void init_default(String f) {
         String line_data, buffer;
+        line_data = new String();
+        buffer = new String();
         try {
 
             //init our line data that must be writen to our file
@@ -196,7 +238,7 @@ public class RegisterModel_Abstract extends NodeModel_Abstract {
             for (int i = 0; i < this.block_count; i++) {
                 buffer += line_data + "\n";
             }
-            f.write(buffer);
+            write_to_file(f, buffer);
 
         } catch (Exception e) {
             // if any error occurs
@@ -210,24 +252,112 @@ public class RegisterModel_Abstract extends NodeModel_Abstract {
      * contents of our working file.
      */
     private void creatTmpFile() {
-        File tmpfile = NULL;
-        try{
-            if(tmpfile.createTempFile(this.absfilePath,".txt")){
-                this.tmp_fileName = tmpfile.getAbsolutePath();
-                System.out.println(this.tmp_fileName+" File Created");
-                transfert_data(this.data,tmpfile);
-            }else System.out.println("File "+this.tmp_fileName+" has an creation error");
-        }catch(Exception e) {
+        File tmpfile;
+        try {
+            tmpfile = File.createTempFile(this.absfilePath, ".txt");
+            this.tmp_fileName = tmpfile.getAbsolutePath();
+            System.out.println(this.tmp_fileName + " File Created");
+            transfert_data(new File(this.absfilePath + this.fileName), tmpfile);
 
+        } catch (Exception e) {
+            System.out.println("File " + this.tmp_fileName + " has an creation error");
             // if any error occurs
             e.printStackTrace();
         }
     }
+
     /**
      * transfert_data_tmp
      * Transfers data from source file to destination file.
      */
-    void transfert_data(File source,File dest){
-        //TODO
+    private void transfert_data(File source, File dest) {
+        BufferedReader in;
+        BufferedWriter out;
+        // File fin = new File(source);
+        try {
+            FileInputStream fis = new FileInputStream(source);
+            in = new BufferedReader(new InputStreamReader(fis));
+
+            FileWriter fstream = new FileWriter(dest, true);
+            out = new BufferedWriter(fstream);
+
+            String aLine;
+            while ((aLine = in.readLine()) != null) {
+                //Process each line and add output to Dest.txt file
+                out.write(aLine);
+                out.newLine();
+            }
+            try {
+                // do not forget to close the buffer reader
+                in.close();
+                // close buffer writer
+                out.close();
+            } catch (Exception ex) {
+                // if any error occurs
+                ex.printStackTrace();
+            }
+        } catch (Exception ex) {
+            // if any error occurs
+            ex.printStackTrace();
+        }
+
+
     }
+
+    private void write_to_file(String fdest, String data) {
+        Writer writer;
+
+        try {
+            writer = new BufferedWriter(new OutputStreamWriter(
+                    new FileOutputStream(fdest), "utf-8"));
+            writer.write(data);
+            try {
+                writer.close();
+            } catch (Exception ex) {
+                // if any error occurs
+                ex.printStackTrace();
+            }
+        } catch (IOException ex) {
+            // if any error occurs
+            ex.printStackTrace();
+        }
+    }
+
+    /**
+     * String_to_bool
+     * <p>
+     * Convert a string got from our block into a array of bool
+     *
+     * @param input - String read from our block in our file
+     * @return - array of bool
+     */
+    private boolean[] String_to_bool(String input) {
+        int i = 0;
+        String[] splited = input.split("\\s+");
+        boolean[] retarray = new boolean[this.block_size];
+        if (splited.length < this.block_size) {
+            System.err.println("Error : unexpected lenght of sting, block " +
+                    "size should be " + this.block_size + " but length of string gotten" +
+                    "is only " + splited.length);
+            //fill up boolean array with false
+            Arrays.fill(retarray, false);
+        }
+        for (String val : splited) {
+            switch (val) {
+                case "0":
+                    retarray[i] = false;
+                    break;
+                case "1":
+                    retarray[i] = true;
+                    break;
+                default:
+                    System.err.println("Unexpected string value " + val);
+                    retarray[i] = false;
+                    break;
+            }
+            i++;
+        }
+        return retarray;
+    }
+
 }
