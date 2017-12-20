@@ -11,13 +11,14 @@ public class WireModel extends ObjectModel_Abstract implements Interface.ObjectI
     private boolean active; // A quoi sert active parce que pour le moment on s'en sert nul part??     Nico
 
     /**
-     * 
-     * @param id
-     * @param bus_size 
+     * Constructor
+     *
+     * Creat a wire of size "bus_wire" and initialise it to default value
+     * @param id - unique id of the wire
+     * @param bus_size - size of data bus in bits
      */
     public WireModel(int id, int bus_size) {
-        super(id);
-        this.type=1; // correspondant au type des Wire (le 1)
+        super(id, 1,"Wire width "+bus_size);
         if(bus_size > 0)sizeBus = bus_size;
         else {
             sizeBus = 1;
