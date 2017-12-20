@@ -10,3 +10,6 @@ associated with the diffrent objects of our model.
 + 4 _Data_
 + 5 _PC_
 + 6 _Text_
++ 7 _MUX_
++ 8 _DEMUX_
++ 9 _ALU_
