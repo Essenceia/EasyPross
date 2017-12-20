@@ -6,32 +6,33 @@ import Model.Wire.WireModel;
 import java.util.Vector;
 
 public class ORModel extends LogicGateModel_Abstract {
-    
+
     /**
-     * 
+     *
      * @param id
      * @param wire_input
-     * @param wire_output 
+     * @param wire_output
      */
-    public ORModel(int id, Vector<WireModel> wire_input, Vector<WireModel> wire_output){
-        super(id,wire_input,wire_output);
-        description +=" OU ";
+    public ORModel(int id, Vector<WireModel> wire_input, Vector<WireModel> wire_output) {
+        super(id, wire_input, wire_output);
+        description += " OU ";
         type = 3;
     }
+
     //Override of interface methods of NodeInterface
     /**
      * Override action from NodeInterface
      */
     @Override
-    public void action(){
-        boolean b =false;
+    public void action() {
+        boolean b = false;
         get_incomming_data();
         // add all bits
 
-        for (boolean bool: data_in){
+        for (boolean bool : data_in) {
             b |= bool;
         }
-        data_out=HelperController.set_all_to(b,data_out.length);
+        data_out = HelperController.set_all_to(b, data_out.length);
         put_outputing_data();
     }
 }

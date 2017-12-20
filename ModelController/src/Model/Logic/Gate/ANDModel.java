@@ -8,12 +8,11 @@ import java.util.Vector;
 public class ANDModel extends LogicGateModel_Abstract {
     
     /**
-     * 
+     * Constructor
      * @param id
      * @param wire_input
      * @param wire_output 
-     */
-     
+     */ 
     public ANDModel(int id, Vector<WireModel> wire_input, Vector<WireModel> wire_output) {
         super(id,wire_input,wire_output);
         description +=" ET ";
