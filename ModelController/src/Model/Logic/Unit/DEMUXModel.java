@@ -38,6 +38,12 @@ public class DEMUXModel extends LogicUnitModel_Abstract {
         for (int i = 0; i < taille; i++) {
             this.instruct[i] = instruct[i];
         }
+        
+        if(input.isEmpty())
+        {
+            System.out.println("Erreur il n'y a pas de fil en entrée");
+        }
+        
     }
 
     //Override of interface methods of NodeInterface
