@@ -13,10 +13,10 @@ public final class HelperController implements Interface.HelperInterface {
 
     /**
      * Permet de compter le nombre de wire de la target, un vector de WireModel
-     * 
+     *
      * @param target
-     * 
-     * @return count 
+     *
+     * @return count
      */
     public static int count_wire_size(Vector<WireModel> target) {
         int count = 0;
@@ -27,14 +27,14 @@ public final class HelperController implements Interface.HelperInterface {
         }
         return count;
     }
-    
+
     /**
      * Programme de débug
-     * 
+     *
      * @param data
      * @param buffer
-     * 
-     * @return buffer 
+     *
+     * @return buffer
      */
     public static boolean[] put_wire_data_in_buffer(Vector<WireModel> data, boolean[] buffer) {
         //debug
@@ -57,28 +57,28 @@ public final class HelperController implements Interface.HelperInterface {
         System.out.println(debug_string);
         return buffer;
     }
-    
+
     /**
-     * 
+     *
      * @param data
-     * @param buffer 
+     * @param buffer
      */
     public static void put_buffer_data_in_wire(Vector<WireModel> data, boolean[] buffer) {
         int g = 0;
         for (WireModel w : data) {
             for (int i = 0; i < w.getSizeBus(); i++) {
-                w.putDataAtIndex(buffer[g], g); 
+                w.putDataAtIndex(buffer[g], g);
                 g++;
             }
         }
     }
 
     /**
-     * 
+     *
      * @param value
      * @param size
-     * 
-     * @return ret : tableau de booléen 
+     *
+     * @return ret : tableau de booléen
      */
     public static boolean[] set_all_to(boolean value, int size) {
         boolean[] ret = new boolean[size]; // création du tableau de booléen

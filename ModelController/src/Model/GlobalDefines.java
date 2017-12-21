@@ -6,6 +6,7 @@ package Model;
  * Abstract class used to creat common defines shared across models
  */
 public abstract class GlobalDefines {
+
     /**
      * Types of objects
      */

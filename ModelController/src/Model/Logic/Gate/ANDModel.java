@@ -6,36 +6,37 @@ import Model.Wire.WireModel;
 import java.util.Vector;
 
 public class ANDModel extends LogicGateModel_Abstract {
-    
+
     /**
      * Constructeur
-     * 
+     *
      * @param synchrone
      * @param id
      * @param type
      * @param description
      * @param wire_input
-     * @param wire_output 
+     * @param wire_output
      */
-    public ANDModel(boolean synchrone,int id, int type, String description, Vector<WireModel> wire_input, Vector<WireModel> wire_output) {
-        super(synchrone,id,type,description, wire_input, wire_output);
-        description +=" ET ";
+    public ANDModel(boolean synchrone, int id, int type, String description, Vector<WireModel> wire_input, Vector<WireModel> wire_output) {
+        super(synchrone, id, type, description, wire_input, wire_output);
+        description += " ET ";
         type = 2;
     }
+
     //Override of interface methods of NodeInterface
     /**
      * Override action from NodeInterface
      */
     @Override
     public void action() {
-        boolean b =false;
+        boolean b = false;
         get_incomming_data();
         // add all bits
 
-        for (boolean bool: data_in){
+        for (boolean bool : data_in) {
             b &= bool;
         }
-        data_out=HelperController.set_all_to(b,data_out.length);
+        data_out = HelperController.set_all_to(b, data_out.length);
         put_outputing_data();
     }
 }

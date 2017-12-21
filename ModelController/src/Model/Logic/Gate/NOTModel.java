@@ -8,16 +8,16 @@ public class NOTModel extends LogicGateModel_Abstract {
 
     /**
      * Constructeur
-     * 
+     *
      * @param synchrone
      * @param id
      * @param type
      * @param description
      * @param wire_input
-     * @param wire_output 
+     * @param wire_output
      */
-    public NOTModel(boolean synchrone,int id, int type, String description, Vector<WireModel> wire_input, Vector<WireModel> wire_output) {
-        super(synchrone,id,type,description, wire_input, wire_output);
+    public NOTModel(boolean synchrone, int id, int type, String description, Vector<WireModel> wire_input, Vector<WireModel> wire_output) {
+        super(synchrone, id, type, description, wire_input, wire_output);
         description += " OU ";
         type = 3;
     }

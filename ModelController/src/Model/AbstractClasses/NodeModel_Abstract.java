@@ -10,8 +10,7 @@ import java.util.Vector;
 public abstract class NodeModel_Abstract extends ObjectModel_Abstract implements NodeInterface {
 
     /**
-     * Attributes :data_in[], data_out[], input &
-     * output (List<WireModel>)
+     * Attributes :data_in[], data_out[], input & output (List<WireModel>)
      */
     protected boolean[] data_in; //données entrantes
     protected boolean[] data_out; //données sortantes
@@ -28,17 +27,17 @@ public abstract class NodeModel_Abstract extends ObjectModel_Abstract implements
         this.data_in = data_in;
         this.data_out = data_out;
     }
-*/
-
+     */
     /**
      * Constructeur qui initialise ces paramètres
+     *
      * @param id
      * @param type
      * @param description
      * @param wire_input
      * @param wire_output
      */
-    public NodeModel_Abstract(int id,  int type,String description,Vector<WireModel> wire_input, Vector<WireModel> wire_output) {
+    public NodeModel_Abstract(int id, int type, String description, Vector<WireModel> wire_input, Vector<WireModel> wire_output) {
         super(id, type, description);
         //descriptif
         description += "Noeud ";
@@ -142,13 +141,16 @@ public abstract class NodeModel_Abstract extends ObjectModel_Abstract implements
      * boolarray_to_int
      *
      * Convert an array of booleans to an integer value
+     *
      * @param array - array of boolean to be converted
      * @return - resulting integer value
      */
-    protected int boolarray_to_int(boolean[] array){
+    protected int boolarray_to_int(boolean[] array) {
         int retval = 0;
-        for(int i = 0 ; i < array.length ; i ++){
-            if(array[i])retval += Math.pow(2,i);
+        for (int i = 0; i < array.length; i++) {
+            if (array[i]) {
+                retval += Math.pow(2, i);
+            }
         }
         return retval;
     }
@@ -159,17 +161,18 @@ public abstract class NodeModel_Abstract extends ObjectModel_Abstract implements
      * Convert an int to an array of booleans
      *
      * @param data integer value to convert
+     * @param boolsize
      * @return result of conversion, array of booleans
      */
-    protected boolean[] int_to_boolarray(int data,int boolsize){
+    protected boolean[] int_to_boolarray(int data, int boolsize) {
         int div;
-        int asize = Math.max(((int) (Math.log(data)+1)),boolsize);
-        boolean[] retval= new boolean[asize];
-        Array.setBoolean(retval,retval.length,false);
-        for(int i = asize; i >-1; i ++){
-            div = (int)(data/Math.pow(2,i));
-            if(div>=1){
-                data -=div*Math.pow(2,i);
+        int asize = Math.max(((int) (Math.log(data) + 1)), boolsize);
+        boolean[] retval = new boolean[asize];
+        Array.setBoolean(retval, retval.length, false);
+        for (int i = asize; i > -1; i++) {
+            div = (int) (data / Math.pow(2, i));
+            if (div >= 1) {
+                data -= div * Math.pow(2, i);
                 retval[i] = true;
             }
         }

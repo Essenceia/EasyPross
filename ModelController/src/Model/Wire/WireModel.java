@@ -2,7 +2,8 @@ package Model.Wire;
 
 import Model.AbstractClasses.ObjectModel_Abstract;
 
-public class WireModel extends ObjectModel_Abstract implements Interface.ObjectInterface{
+public class WireModel extends ObjectModel_Abstract implements Interface.ObjectInterface {
+
     /**
      * Attributes : sizeBus, data[], active
      */
@@ -14,90 +15,100 @@ public class WireModel extends ObjectModel_Abstract implements Interface.ObjectI
      * Constructor
      *
      * Creat a wire of size "bus_wire" and initialise it to default value
+     *
      * @param id - unique id of the wire
      * @param bus_size - size of data bus in bits
      */
     public WireModel(int id, int bus_size) {
-        super(id, 1,"Wire width "+bus_size);
-        if(bus_size > 0)sizeBus = bus_size;
-        else {
+        super(id, 1, "Wire width " + bus_size);
+        if (bus_size > 0) {
+            sizeBus = bus_size;
+        } else {
             sizeBus = 1;
             System.out.println("Erreur : Wire() , bus size doit etre > 0");
         }
         //descriptif
-        this.description += "Bus de donne "+Integer.toString(sizeBus)+"bits";
-        this.data = new boolean[sizeBus];           
+        this.description += "Bus de donne " + Integer.toString(sizeBus) + "bits";
+        this.data = new boolean[sizeBus];
         reset_values();
     }
-    
+
     /**
      * getter sizeBus
+     *
      * @return sizeBus
      */
     public int getSizeBus() {
         return sizeBus;
     }
-    
+
     /**
      * setter sizeBus
-     * @param sizeBus 
+     *
+     * @param sizeBus
      */
     public void setSizeBus(int sizeBus) {
         this.sizeBus = sizeBus;
     }
-    
+
     /**
      * getter Data
+     *
      * @return data
      */
     public boolean[] getData() {
         return data;
     }
-    
+
     /**
      * setter Data
-     * @param data 
+     *
+     * @param data
      */
     public void setData(boolean[] data) {
         this.data = data;
     }
-    
+
     /**
      * getter Active
+     *
      * @return active
      */
     public boolean isActive() {
         return active;
     }
-    
+
     /**
      * setter Active
-     * @param active 
+     *
+     * @param active
      */
     public void setActive(boolean active) {
         this.active = active;
     }
-    
+
     /**
      * Methods
      */
     /**
      * putDataAtIndex
+     *
      * @param d
-     * @param index 
+     * @param index
      */
     @Override
     public void putDataAtIndex(boolean d, int index) {
-        if(index >= sizeBus){
+        if (index >= sizeBus) {
             System.out.println("Erreur index out of range wire");
-        }else{
-            data[index] =d;
+        } else {
+            data[index] = d;
         }
     }
+
     @Override
     public void reset_values() {
         //super.reset_values();
-        for(int i=0; i < sizeBus ; i++){
+        for (int i = 0; i < sizeBus; i++) {
             data[i] = false;
         }
     }
