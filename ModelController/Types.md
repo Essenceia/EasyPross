@@ -13,3 +13,6 @@ associated with the diffrent objects of our model.
 + 7 _MUX_
 + 8 _DEMUX_
 + 9 _ALU_
++ 10 _ANDGATE_
++ 11 _ORGATE_
++ 12 _NOTGATE_
