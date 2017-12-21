@@ -72,7 +72,6 @@ public class GraphManagerController implements Interface.GraphManagerInterface {
             this.read_line(DocumentManagerController.readLine());
         }
         readGNoeuds();
-
     }
 
     //@Override
@@ -172,10 +171,10 @@ public class GraphManagerController implements Interface.GraphManagerInterface {
         in_wire = fillById(icommingWireID);
         out_wire = fillById(outcommingWireID);
         switch (type) {
-            case 2:
+            case 11:
                 GNoeuds.put(id, new ANDModel(synchrone, id, type, description, in_wire, out_wire));
                 break;
-            case 3:
+            case 12:
                 GNoeuds.put(id, new ORModel(synchrone, id, type, description, in_wire, out_wire));
                 break;
         }
@@ -188,10 +187,10 @@ public class GraphManagerController implements Interface.GraphManagerInterface {
         Vector<WireModel> wire;
         wire = fillById(conectedWireID);
         switch (type) {
-            case 4:
+            case 2:
                 GDebut.put(id, new ProbeStartModel(id, wire));
                 break;
-            case 5:
+            case 3:
                 GFin.put(id, new ProbeEndModel(id, wire));
                 break;
         }

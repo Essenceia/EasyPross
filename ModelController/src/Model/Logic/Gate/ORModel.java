@@ -20,7 +20,7 @@ public class ORModel extends LogicGateModel_Abstract {
     public ORModel(boolean synchrone, int id, int type, String description, Vector<WireModel> wire_input, Vector<WireModel> wire_output) {
         super(synchrone, id, type, description, wire_input, wire_output);
         description += " OU ";
-        type = 3;
+        type = 11;
     }
 
     //Override of interface methods of NodeInterface

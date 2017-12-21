@@ -20,7 +20,7 @@ public class ANDModel extends LogicGateModel_Abstract {
     public ANDModel(boolean synchrone, int id, int type, String description, Vector<WireModel> wire_input, Vector<WireModel> wire_output) {
         super(synchrone, id, type, description, wire_input, wire_output);
         description += " ET ";
-        type = 2;
+        type = 10;
     }
 
     //Override of interface methods of NodeInterface
