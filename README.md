@@ -8,3 +8,4 @@
 +	Petite image sur le rapport, chemin classique et notre voie, un complement du cours des profs Julie
 +	Voir si hierarchique ou non hierarchique (pas important) personne 
 +	Diagramme de classe dans le rapport Julie
++modifier trame de communication(commentaires)
