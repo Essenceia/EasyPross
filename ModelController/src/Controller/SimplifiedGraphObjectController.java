@@ -24,6 +24,7 @@ public class SimplifiedGraphObjectController {
      * @param gprobes
      * @param gprobend
      */
+    
     public SimplifiedGraphObjectController(Map<Integer, WireModel> gwire, Map<Integer, NodeModel_Abstract> gnode, Map<Integer, ProbeStartModel> gprobes, Map<Integer, ProbeEndModel> gprobend) {
         
         Msimp = new HashMap<Integer, SimplifiedGraphController>(); // table de hachage du graph simplifié 
