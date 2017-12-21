@@ -8,13 +8,18 @@ import java.util.Vector;
 public class ORModel extends LogicGateModel_Abstract {
 
     /**
+     * Constructeur
      *
+     * @param synchrone
      * @param id
+     * @param type
+     * @param description
      * @param wire_input
      * @param wire_output
      */
     public ORModel(int id, Vector<WireModel> wire_input, Vector<WireModel> wire_output,boolean syn) {
         super(id,TYPE_LOGIC_OR," OU",wire_input,wire_output,syn);
+
     }
 
     //Override of interface methods of NodeInterface

@@ -6,6 +6,7 @@ package Model;
  * Abstract class used to creat common defines shared across models
  */
 public abstract class GlobalDefines {
+
     /**
      * Types of objects
      */
@@ -20,8 +21,8 @@ public abstract class GlobalDefines {
     protected static final int TYPE_LOGIC_DEMUX = 8;
     protected static final int TYPE_LOGIC_ALU = 9;
     protected static final int TYPE_LOGIC_AND = 10;
-    protected static final int TYPE_LOGIC_NOT = 11;
-    protected static final int TYPE_LOGIC_OR = 12;
+    protected static final int TYPE_LOGIC_NOT = 12;
+    protected static final int TYPE_LOGIC_OR = 11;
 
     //TODO implement for logic gates
 }
