@@ -13,10 +13,8 @@ public class ORModel extends LogicGateModel_Abstract {
      * @param wire_input
      * @param wire_output
      */
-    public ORModel(int id, Vector<WireModel> wire_input, Vector<WireModel> wire_output) {
-        super(id, wire_input, wire_output);
-        description += " OU ";
-        type = 3;
+    public ORModel(int id, Vector<WireModel> wire_input, Vector<WireModel> wire_output,boolean syn) {
+        super(id,TYPE_LOGIC_OR," OU",wire_input,wire_output,syn);
     }
 
     //Override of interface methods of NodeInterface

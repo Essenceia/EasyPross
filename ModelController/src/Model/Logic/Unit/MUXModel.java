@@ -22,8 +22,8 @@ public class MUXModel extends LogicUnitModel_Abstract {
      * @param instruct
      */
     public MUXModel(boolean synchrone, int id, int type, String description, Vector<WireModel> wire_input, Vector<WireModel> wire_output, int nb_mux, boolean[] instruct) {
-        super(synchrone, id, type, description, wire_input, wire_output);
-        this.type= 7;
+        super(synchrone, id, TYPE_LOGIC_MUX, description, wire_input, wire_output);
+        //this.type= 7; pas besoin deja avec super
         this.nb_bit_mux = nb_mux;
         int taille = 0;
         if (nb_mux == 2) {

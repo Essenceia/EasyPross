@@ -16,5 +16,12 @@ public abstract class GlobalDefines {
     protected static final int TYPE_REG_DATA = 4;
     protected static final int TYPE_REG_PC = 5;
     protected static final int TYPE_REG_TEXT = 6;
+    protected static final int TYPE_LOGIC_MUX= 7;
+    protected static final int TYPE_LOGIC_DEMUX = 8;
+    protected static final int TYPE_LOGIC_ALU = 9;
+    protected static final int TYPE_LOGIC_AND = 10;
+    protected static final int TYPE_LOGIC_NOT = 11;
+    protected static final int TYPE_LOGIC_OR = 12;
+
     //TODO implement for logic gates
 }

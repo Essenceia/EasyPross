@@ -22,9 +22,9 @@ public class DEMUXModel extends LogicUnitModel_Abstract {
      * @param instruct
      */
     public DEMUXModel(boolean synchrone, int id, int type, String description, Vector<WireModel> wire_input, Vector<WireModel> wire_output, int nb_demux, boolean[] instruct) {
-        super(synchrone, id, type, description, wire_input, wire_output);
+        super(synchrone, id, TYPE_LOGIC_DEMUX, description, wire_input, wire_output);
         this.nb_bit_demux = nb_demux;
-        this.type= 8;
+        //this.type= 8; pas besoin deja dans super -Ja
         int taille = 0;
         if (nb_demux == 2) {
             taille = 1;

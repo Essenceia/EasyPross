@@ -21,9 +21,9 @@ public class ALUModel extends LogicUnitModel_Abstract {
      * @param nbreBitsALU 
      */
     public ALUModel(boolean synchrone, Vector<WireModel> wire_input, Vector<WireModel> wire_output, int id, int type, String description, int nbreBitsALU) {
-        super(synchrone,id, type, description,wire_input, wire_output);
+        super(synchrone,id, TYPE_LOGIC_ALU, description,wire_input, wire_output);
         this.nbreBitsALU = nbreBitsALU;
-        this.type= 9;
+        //this.type= 9; pas besoin deja defin avec super - Ja
         
          if(input.isEmpty())
         {

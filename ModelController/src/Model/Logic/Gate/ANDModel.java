@@ -13,10 +13,9 @@ public class ANDModel extends LogicGateModel_Abstract {
      * @param wire_input
      * @param wire_output 
      */ 
-    public ANDModel(int id, Vector<WireModel> wire_input, Vector<WireModel> wire_output) {
-        super(id,wire_input,wire_output);
-        description +=" ET ";
-        type = 2;
+    public ANDModel(int id, Vector<WireModel> wire_input, Vector<WireModel> wire_output,boolean syncrone) {
+        super(id,TYPE_LOGIC_AND," ET",wire_input,wire_output,syncrone);
+
     }
     //Override of interface methods of NodeInterface
     /**

@@ -13,10 +13,8 @@ public class NOTModel extends LogicGateModel_Abstract {
      * @param wire_input
      * @param wire_output
      */
-    public NOTModel(int id, Vector<WireModel> wire_input, Vector<WireModel> wire_output) {
-        super(id, wire_input, wire_output);
-        description += " OU ";
-        type = 3;
+    public NOTModel(int id, Vector<WireModel> wire_input, Vector<WireModel> wire_output,boolean syn) {
+        super(id,TYPE_LOGIC_NOT," NOT",wire_input,wire_output,syn);
     }
 
     /**
