@@ -2,6 +2,7 @@ package Controller;
 
 import Model.AbstractClasses.NodeModel_Abstract;
 import Model.Logic.Gate.ANDModel;
+import Model.Logic.Gate.NOTModel;
 import Model.Logic.Gate.ORModel;
 import Model.Probe.*;
 import Model.Wire.WireModel;
@@ -36,7 +37,12 @@ public class GraphManagerController implements Interface.GraphManagerInterface {
      */
     @Override
     public void tick() { // Call action() of every Node stored
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        action(); //action de NOT
+        
+        
+        
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -118,12 +124,17 @@ public class GraphManagerController implements Interface.GraphManagerInterface {
 
                     break;
                 case 2:
+                    createProb(splitByComa, type);
+                    break;
                 case 3:
+                    createProb(splitByComa, type);
+                    break;
+                case 12:
                     createLGate(splitByComa, type);
                     break;
                 case 4:
+                    break;
                 case 5:
-                    createProb(splitByComa, type);
                     break;
                 default:
                     System.out.println("Error : unknown type " + splitByComa[1]);
@@ -161,6 +172,7 @@ public class GraphManagerController implements Interface.GraphManagerInterface {
         Integer id = Integer.valueOf(line[0]);
         System.out.println("Incomming wire id list " + line[2]);
         String[] icommingWireID = line[2].split("\\.");
+        System.out.println(line[3]);
         System.out.println("Outcomming wire id list " + line[3]);
         String[] outcommingWireID = line[3].split("\\.");
         Vector<WireModel> in_wire;
@@ -172,10 +184,10 @@ public class GraphManagerController implements Interface.GraphManagerInterface {
         out_wire = fillById(outcommingWireID);
         switch (type) {
             case 11:
-                GNoeuds.put(id, new ANDModel(synchrone, id, type, description, in_wire, out_wire));
+                GNoeuds.put(id, new ANDModel(id,in_wire,out_wire,synchrone));
                 break;
             case 12:
-                GNoeuds.put(id, new ORModel(synchrone, id, type, description, in_wire, out_wire));
+                GNoeuds.put(id, new NOTModel(id,in_wire,out_wire,synchrone));
                 break;
         }
     }

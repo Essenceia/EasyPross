@@ -10,8 +10,12 @@ package Controller;
  * @author Utilisateur
  */
 public class mainController {
-    public static void main() {
-        GraphManagerController gmc1 = new GraphManagerController();
-        gmc1.createGraph();
-    }
+
+    public static void main(String[] args) {
+        GraphManagerController Graph = new GraphManagerController();
+        Graph.load_new_module("testfile.txt");
+        System.out.println("Chargement des map fait");
+        Graph.tick(); //appelle de tick avec la fonction action de not
+}
+   
 }

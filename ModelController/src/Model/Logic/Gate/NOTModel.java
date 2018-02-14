@@ -7,14 +7,11 @@ import java.util.Vector;
 public class NOTModel extends LogicGateModel_Abstract {
 
     /**
-     * Constructeur
-     *
-     * @param synchrone
+     * 
      * @param id
-     * @param type
-     * @param description
      * @param wire_input
      * @param wire_output
+     * @param syn 
      */
     public NOTModel(int id, Vector<WireModel> wire_input, Vector<WireModel> wire_output,boolean syn) {
         super(id,TYPE_LOGIC_NOT," NOT",wire_input,wire_output,syn);
