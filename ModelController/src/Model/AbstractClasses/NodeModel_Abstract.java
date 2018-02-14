@@ -134,7 +134,7 @@ public abstract class NodeModel_Abstract extends ObjectModel_Abstract implements
     //@Override
     public void put_outputing_data() {
         //mettre les données dans les wires en sortie
-        HelperController.put_wire_data_in_buffer(output, data_out);
+        HelperController.put_buffer_data_in_wire(this.output,this.data_out);
     }
 
     /**

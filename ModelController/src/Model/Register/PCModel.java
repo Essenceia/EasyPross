@@ -1,5 +1,6 @@
 package Model.Register;
 
+import Controller.HelperController;
 import Model.AbstractClasses.RegisterModel_Abstract;
 import Model.Wire.WireModel;
 
@@ -104,5 +105,8 @@ public class PCModel extends RegisterModel_Abstract {
             //do nothing we have sleep code
             System.out.println("PC with id " + this.id + " nothing to do, code is to off");
         }
+
+        //write out data to the exit wire
+        HelperController.put_buffer_data_in_wire(this.output,this.data_out);
     }
 }
