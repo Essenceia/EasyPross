@@ -1,5 +1,6 @@
 package Model.Register;
 
+import Controller.HelperController;
 import Model.AbstractClasses.RegisterModel_Abstract;
 import Model.Wire.WireModel;
 
@@ -83,7 +84,7 @@ public class TEXTModel extends RegisterModel_Abstract {
         }
 
         //write out data to the exit wire
-        this.output.get(0).setData(this.data_out);
+        HelperController.put_buffer_data_in_wire(this.output,this.data_out);
     }
 
 }

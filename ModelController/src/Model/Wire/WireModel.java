@@ -20,7 +20,7 @@ public class WireModel extends ObjectModel_Abstract implements Interface.ObjectI
      * @param bus_size - size of data bus in bits
      */
     public WireModel(int id, int bus_size) {
-        super(id, 1, "Wire width " + bus_size);
+        super(id, TYPE_WIRE, "Wire width " + bus_size);
         if (bus_size > 0) {
             sizeBus = bus_size;
         } else {

@@ -21,20 +21,20 @@ public final class HelperController implements Interface.HelperInterface {
     public static int count_wire_size(Vector<WireModel> target) {
         int count = 0;
         for (WireModel aTarget : target) {
-            //increment size of bus
-            //count += evector.next().get_data_size();
             count += aTarget.getSizeBus();
         }
         return count;
     }
 
     /**
-     * Programme de débug
+     * put_wire_data_in_buffer
      *
-     * @param data
-     * @param buffer
+     * transfert contents of data on wires to the given buffer of boolean
      *
-     * @return buffer
+     * @param data - origin of data
+     * @param buffer - array that is going to be filled
+     *
+     * @return - filled boolean
      */
     public static boolean[] put_wire_data_in_buffer(Vector<WireModel> data, boolean[] buffer) {
         //debug
@@ -48,7 +48,7 @@ public final class HelperController implements Interface.HelperInterface {
             }
         }
         System.out.println(debug_string);
-        //debug
+        // todo - take out when tested finished debug
         debug_string = "";
         for (boolean aBuffer : buffer) {
 
@@ -59,18 +59,35 @@ public final class HelperController implements Interface.HelperInterface {
     }
 
     /**
+     *put_buffer_data_in_wire
      *
-     * @param data
-     * @param buffer
+     * Transfert data from a boolean array into the output wires. This will fill all wires
+     * starting from the lowest indexed wire up untill the highest index and iterate over all
+     * the ellements of theys wires to copy the next ellement of our buffer into it.
+     *
+     * eg :
+     * data -> 2 wires, 1st of size 2, 2nd of size 6
+     * buffer -> 8 booleans
+     * ...
+     * data[0][0] = buffer[0]
+     * ...
+     * data[1][0] = buffer[2]
+     *
+     * @param data - where the data will be copied
+     * @param buffer - origin of data
      */
     public static void put_buffer_data_in_wire(Vector<WireModel> data, boolean[] buffer) {
         int g = 0;
         for (WireModel w : data) {
             for (int i = 0; i < w.getSizeBus(); i++) {
-                w.putDataAtIndex(buffer[g], g);
-                g++;
+                if(g < buffer.length){
+                    w.putDataAtIndex(buffer[g], g);
+                    g++;
+                }
+
             }
         }
+
     }
 
     /**
