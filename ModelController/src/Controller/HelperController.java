@@ -1,6 +1,10 @@
 package Controller;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Vector;
+
+import Model.AbstractClasses.ObjectModel_Abstract;
 import Model.Wire.WireModel;
 
 public final class HelperController implements Interface.HelperInterface {
@@ -104,4 +108,5 @@ public final class HelperController implements Interface.HelperInterface {
         }
         return ret;
     }
+
 }

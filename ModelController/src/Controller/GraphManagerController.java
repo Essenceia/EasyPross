@@ -1,19 +1,19 @@
 package Controller;
 
 import Model.AbstractClasses.NodeModel_Abstract;
+import Model.AbstractClasses.ObjectModel_Abstract;
+import Model.AbstractClasses.ProbeModel_Abstract;
 import Model.Logic.Gate.ANDModel;
 import Model.Logic.Gate.NOTModel;
 import Model.Logic.Gate.ORModel;
 import Model.Probe.*;
 import Model.Wire.WireModel;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Vector;
+
+import java.util.*;
 
 public class GraphManagerController implements Interface.GraphManagerInterface {
 
-    protected Map<Integer, WireModel> GArrettes;
+    protected HashMap<Integer, WireModel> GArrettes;
     protected Map<Integer, NodeModel_Abstract> GNoeuds;
     protected Map<Integer, ProbeStartModel> GDebut;
     protected Map<Integer, ProbeEndModel> GFin;
@@ -24,25 +24,43 @@ public class GraphManagerController implements Interface.GraphManagerInterface {
      */
     public GraphManagerController() {
         //this.documentManager(); -> Possible or not ?
-        GArrettes = new HashMap<Integer, WireModel>();
-        GNoeuds = new HashMap<Integer, NodeModel_Abstract>();
-        GDebut = new HashMap<Integer, ProbeStartModel>();
-        GFin = new HashMap<Integer, ProbeEndModel>();
+        GArrettes = new HashMap<>();
+        GNoeuds = new HashMap<>();
+        GDebut = new HashMap<>();
+        GFin = new HashMap<>();
+    }
+
+    //Helper to read graph
+    //Bon voila une wildcard
+    private void Print_info(HashMap<Integer,? extends ObjectModel_Abstract> map) {
+        for (Map.Entry<Integer,? extends ObjectModel_Abstract> entry : map.entrySet()) {
+            System.out.println("Id  = " + entry.getKey() + ", Description = " + entry.getValue().getDescription());
+        }
+
     }
 
     /// Override methods \\\
     /// Delete execption thrown! \\\
     /**
      * Override of tick from GraphManagerInterface
+     * Call action() of every Node stored
      */
     @Override
-    public void tick() { // Call action() of every Node stored
-        
-        action(); //action de NOT
-        
-        
-        
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void tick() {
+        //Debug read all nodes
+        System.out.println("Read of our graph objects : ");
+        System.out.println("Wires");
+        Print_info(GArrettes);
+        System.out.println("Probe debut");
+        Print_info((HashMap<Integer, ? extends ObjectModel_Abstract>) GDebut);
+        System.out.println("Probe fin");
+        Print_info((HashMap<Integer, ? extends ObjectModel_Abstract>) GFin);
+        System.out.println("Nodes");
+        Print_info((HashMap<Integer, ? extends ObjectModel_Abstract>)GNoeuds);
+        //Call action on all nodes
+        for (Map.Entry<Integer,? extends NodeModel_Abstract> entry : GNoeuds.entrySet()) {
+            entry.getValue().action();
+        }
     }
 
     /**
