@@ -24,12 +24,16 @@ public class NOTModel extends LogicGateModel_Abstract {
     @Override
     public void action() {
         int i = 0;
-        get_incomming_data();
+    get_incomming_data();
         // add all bits
 
         for (boolean bool : data_in) {
             data_out[i] = !bool;
             i++;
         }
+        //put outcomming data into wire
+        put_outputing_data();
     }
+
+
 }

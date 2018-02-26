@@ -13,11 +13,16 @@ import java.util.*;
 
 public class GraphManagerController implements Interface.GraphManagerInterface {
 
-    protected HashMap<Integer, WireModel> GArrettes;
+    /*protected HashMap<Integer, WireModel> GArrettes;
     protected Map<Integer, NodeModel_Abstract> GNoeuds;
     protected Map<Integer, ProbeStartModel> GDebut;
-    protected Map<Integer, ProbeEndModel> GFin;
-    protected SimplifiedGraphObjectController GSimplified;
+    protected Map<Integer, ProbeEndModel> GFin;*/
+    //for testing only :
+    public HashMap<Integer, WireModel> GArrettes;
+    public HashMap<Integer, NodeModel_Abstract> GNoeuds;
+    public HashMap<Integer, ProbeStartModel> GDebut;
+    public HashMap<Integer, ProbeEndModel> GFin;
+    public SimplifiedGraphObjectController GSimplified;
 
     /**
      * Constructor
@@ -47,6 +52,12 @@ public class GraphManagerController implements Interface.GraphManagerInterface {
      */
     @Override
     public void tick() {
+        /*boolean [] entr = new boolean [1];
+        entr[0] = false;
+        ProbeStartModel entree;
+        entree = GDebut.get(1);
+        entree.setData(entr);
+        GDebut.put(1, entree);*/
         //Debug read all nodes
         System.out.println("Read of our graph objects : ");
         System.out.println("Wires");

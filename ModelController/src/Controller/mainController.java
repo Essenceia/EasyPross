@@ -12,9 +12,12 @@ package Controller;
 public class mainController {
 
     public static void main(String[] args) {
+        XMLManager manager = new XMLManager();
+        manager.open_file("testxml.xml");
         GraphManagerController Graph = new GraphManagerController();
-        Graph.load_new_module("testfile.txt");
-        System.out.println("Chargement des map fait");
+        manager.parse_graph(Graph.GArrettes, Graph.GDebut, Graph.GFin, Graph.GNoeuds);
+       // Graph.load_new_module("testfile.txt");
+       // System.out.println("Chargement des map fait");
         Graph.tick(); //appelle de tick avec la fonction action de not
 }
    
