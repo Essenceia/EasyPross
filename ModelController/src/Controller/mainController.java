@@ -15,8 +15,7 @@ public class mainController {
         XMLManager manager = new XMLManager();
         manager.open_file("testxml.xml");
         GraphManagerController Graph = new GraphManagerController();
-        manager.parse_graph(Graph.GArrettes, Graph.GDebut, Graph.GFin, Graph.GNoeuds);
-       // Graph.load_new_module("testfile.txt");
+        Graph.load_new_module("testxml.xml");
        // System.out.println("Chargement des map fait");
         Graph.tick(); //appelle de tick avec la fonction action de not
 }

@@ -15,14 +15,12 @@ public class MUXModel extends LogicUnitModel_Abstract {
      * @param synchrone
      * @param id
      * @param type
-     * @param description
      * @param wire_input
      * @param wire_output
      * @param nb_mux
-     * @param instruct
      */
-    public MUXModel(boolean synchrone, int id, int type, String description, Vector<WireModel> wire_input, Vector<WireModel> wire_output, int nb_mux, boolean[] instruct) {
-        super(synchrone, id, TYPE_LOGIC_MUX, description, wire_input, wire_output);
+    public MUXModel(boolean synchrone, int id, int type, Vector<WireModel> wire_input, Vector<WireModel> wire_output, int nb_mux) {
+        super(synchrone, id, TYPE_LOGIC_MUX, " Multiplexer", wire_input, wire_output);
         //this.type= 7; pas besoin deja avec super
 
         this.nb_bit_mux = nb_mux;
@@ -38,7 +36,7 @@ public class MUXModel extends LogicUnitModel_Abstract {
         }
         this.instruct = new boolean[taille];
         for (int i = 0; i < taille; i++) {
-            this.instruct[i] = instruct[i];
+            this.instruct[i] = false;
         }
 
         if (input.isEmpty()) {

@@ -14,15 +14,12 @@ public class DEMUXModel extends LogicUnitModel_Abstract {
      *
      * @param synchrone
      * @param id
-     * @param type
-     * @param description
      * @param wire_input
      * @param wire_output
      * @param nb_demux
-     * @param instruct
      */
-    public DEMUXModel(boolean synchrone, int id, int type, String description, Vector<WireModel> wire_input, Vector<WireModel> wire_output, int nb_demux, boolean[] instruct) {
-        super(synchrone, id, TYPE_LOGIC_DEMUX, description, wire_input, wire_output);
+    public DEMUXModel(boolean synchrone, int id,  Vector<WireModel> wire_input, Vector<WireModel> wire_output, int nb_demux) {
+        super(synchrone, id, TYPE_LOGIC_DEMUX, " Demux", wire_input, wire_output);
         this.nb_bit_demux = nb_demux;
         int taille = 0;
         if (nb_demux == 2) {
@@ -36,7 +33,7 @@ public class DEMUXModel extends LogicUnitModel_Abstract {
         }
         this.instruct = new boolean[taille];
         for (int i = 0; i < taille; i++) {
-            this.instruct[i] = instruct[i];
+            this.instruct[i] = false;
         }
 
         if (input.isEmpty()) {

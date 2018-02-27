@@ -2,10 +2,17 @@ package Controller;
 
 import Model.AbstractClasses.NodeModel_Abstract;
 import Model.GlobalDefines;
+import Model.Logic.Gate.ANDModel;
 import Model.Logic.Gate.NOTModel;
+import Model.Logic.Gate.ORModel;
 import Model.Logic.Unit.ALUModel;
+import Model.Logic.Unit.DEMUXModel;
+import Model.Logic.Unit.MUXModel;
 import Model.Probe.ProbeEndModel;
 import Model.Probe.ProbeStartModel;
+import Model.Register.DATAModel;
+import Model.Register.PCModel;
+import Model.Register.TEXTModel;
 import Model.Wire.WireModel;
 import org.jdom2.Attribute;
 import org.jdom2.DataConversionException;
@@ -25,12 +32,25 @@ import java.util.Vector;
 public class XMLManager {
 
     private org.jdom2.Document document;
-    public Element racine;
+    private Element racine;
     private List wire;
     private List node;
     private List probe;
 
-    protected static final String LABEL_ROOT = "shemas";
+    protected static final String LABEL_ROOT = "graph";
+    protected static final String LABEL_NODE = "node";
+    protected static final String LABEL_WIRE = "wire";
+    protected static final String LABEL_WIRE_IN = "wire_in";
+    protected static final String LABEL_WIRE_OUT = "wire_out";
+    protected static final String LABEL_PROBE = "probe";
+    protected static final String ATTRIBUTE_ID = "id";
+    protected static final String ATTRIBUTE_TYPE= "type";
+    protected static final String ATTRIBUTE_SIZE= "size";
+    protected static final String ATTRIBUTE_FILE_NAME = "file_name";
+    protected static final String ATTRIBUTE_FILE_PATH = "path";
+    protected static final String ATTRIBUTE_CONTROL_BIT_SIZE = "control_bits";
+    protected static final String ATTRIBUTE_MEMORY_BLOCK_SIZE = "memory_block_size";
+    protected static final String ATTRIBUTE_NUMBER_MEMORY_BLOCKS = "memory_number_block";
 
     public XMLManager(){
         racine = new Element(LABEL_ROOT);
@@ -83,9 +103,9 @@ public class XMLManager {
 
     public void parse_graph(HashMap<Integer, WireModel> GArrettes,HashMap<Integer, ProbeStartModel> GSProbe,HashMap<Integer,ProbeEndModel> GEProbe,HashMap<Integer, NodeModel_Abstract> GNode){
         //On crée une List contenant tous les noeuds "etudiant" de l'Element racine
-        this.node = racine.getChildren("node");
-        this.wire = racine.getChildren("wire");
-        this.probe = racine.getChildren("probe");
+        this.node = racine.getChildren(LABEL_NODE);
+        this.wire = racine.getChildren(LABEL_WIRE);
+        this.probe = racine.getChildren(LABEL_PROBE);
 
         //must parse wire first next objects depend on it
         parse_wire(GArrettes);
@@ -113,8 +133,8 @@ public class XMLManager {
         {
             //Read all wires
             Element courant = (Element)i.next();
-            id = get_attribute(courant,"id");
-            size = get_attribute(courant, "size");
+            id = get_attribute(courant,ATTRIBUTE_ID);
+            size = get_attribute(courant, ATTRIBUTE_SIZE);
             nv_wire = new WireModel(id, size);
             //set values
             nv_wire.setData(get_IO_values(courant,size));
@@ -133,14 +153,15 @@ public class XMLManager {
         while (i.hasNext()) {
             //Read all probes
             courant = (Element) i.next();
-            id = get_attribute(courant, "id");
-            type = get_attribute(courant, "type");
+            id = get_attribute(courant, ATTRIBUTE_ID);
+            type = get_attribute(courant, ATTRIBUTE_TYPE);
             //get the id of connected wire
 
             //get the list of children
-            child_list = courant.getChildren("wire");
+            child_list = courant.getChildren(LABEL_WIRE);
 
             //select the approporeat probe type
+            System.out.println("Creating probes of type "+type.toString()+" with id "+id.toString());
             switch (type) {
                 case GlobalDefines.TYPE_PROBE_START:
                     ProbeStartModel s_nv_probe = new ProbeStartModel(id, list_wires(child_list, GArrettes));
@@ -160,10 +181,13 @@ public class XMLManager {
     private void parse_node(HashMap<Integer, NodeModel_Abstract> GNode, HashMap<Integer, WireModel> GArrettes) {
         //On crée un Iterator sur notre liste
         Iterator i = node.iterator();
+        NodeModel_Abstract nv_node;
         Integer id, type;
         //Integer for ALU
-        Integer sync, alu_bit_num;
-        String object_description;
+        Integer control_bit_num;
+        //Values for memory
+        String path,fname;
+        Integer block_size, num_block;
         Element courant;
         List child_list;
         Vector<WireModel> in_wire;
@@ -171,32 +195,68 @@ public class XMLManager {
         while (i.hasNext()) {
             //Read all probes
             courant = (Element) i.next();
-            id = get_attribute(courant, "id");
-            type = get_attribute(courant, "type");
+            id = get_attribute(courant, ATTRIBUTE_ID);
+            type = get_attribute(courant, ATTRIBUTE_TYPE);
             //get the id of connected wire
             //get the list of children
-            child_list = courant.getChildren("wire_in");
+            child_list = courant.getChildren(LABEL_WIRE_IN);
             in_wire = list_wires(child_list, GArrettes);
-            child_list = courant.getChildren("wire_out");
+            child_list = courant.getChildren(LABEL_WIRE_OUT);
             out_wire = list_wires(child_list, GArrettes);
+
+            nv_node = null;
 
             //select the approporeat node type
             switch (type) {
                 case GlobalDefines.TYPE_LOGIC_ALU:
-                    alu_bit_num = get_attribute(courant, "alubitnum");
-                    object_description = get_desc(courant);
-                    ALUModel nv_probe = new ALUModel(true, in_wire, out_wire, id,
-                            type,object_description , alu_bit_num);
-                    GNode.put(id,nv_probe);
+                    control_bit_num = get_attribute(courant, ATTRIBUTE_CONTROL_BIT_SIZE);
+                    nv_node = new ALUModel(true, in_wire, out_wire, id, control_bit_num);
                     break;
                 case GlobalDefines.TYPE_LOGIC_NOT:
-                    NOTModel nv_node = new NOTModel(id,in_wire, out_wire,true);
+                    nv_node = new NOTModel(id,in_wire, out_wire,true);
                     break;
-                //Todo : add other types of nodes
+                case GlobalDefines.TYPE_LOGIC_AND:
+                    nv_node = new ANDModel(id, in_wire, out_wire, true);
+                    break;
+                case GlobalDefines.TYPE_LOGIC_OR:
+                    nv_node = new ORModel(id, in_wire,out_wire,true);
+                    break;
+                case GlobalDefines.TYPE_LOGIC_DEMUX:
+                    control_bit_num = get_attribute(courant, ATTRIBUTE_CONTROL_BIT_SIZE);
+                    nv_node= new DEMUXModel(true, id,in_wire, out_wire, control_bit_num );
+                    break;
+                case GlobalDefines.TYPE_LOGIC_MUX:
+                    control_bit_num = get_attribute(courant, ATTRIBUTE_CONTROL_BIT_SIZE);
+                    nv_node = new MUXModel(true, id, type,in_wire, out_wire, control_bit_num );
+                break;
+                case GlobalDefines.TYPE_REG_DATA:
+                    path = get_text_attr(courant,ATTRIBUTE_FILE_PATH);
+                    fname = get_text_attr(courant, ATTRIBUTE_FILE_NAME);
+                    block_size = get_attribute(courant, ATTRIBUTE_MEMORY_BLOCK_SIZE);
+                    num_block = get_attribute(courant, ATTRIBUTE_NUMBER_MEMORY_BLOCKS);
+                    nv_node = new DATAModel(id,in_wire, out_wire, path,fname,block_size,num_block);
+                    break;
+                case GlobalDefines.TYPE_REG_PC:
+
+                    path = get_text_attr(courant,ATTRIBUTE_FILE_PATH);
+                    fname = get_text_attr(courant, ATTRIBUTE_FILE_NAME);
+                    block_size = get_attribute(courant, ATTRIBUTE_MEMORY_BLOCK_SIZE);
+                    //only have 1 block by default
+                    nv_node = new PCModel(id,in_wire,out_wire,path,fname,block_size);
+                    break;
+                case GlobalDefines.TYPE_REG_TEXT:
+                    path = get_text_attr(courant,ATTRIBUTE_FILE_PATH);
+                    fname = get_text_attr(courant, ATTRIBUTE_FILE_NAME);
+                    block_size = get_attribute(courant, ATTRIBUTE_MEMORY_BLOCK_SIZE);
+                    num_block = get_attribute(courant, ATTRIBUTE_NUMBER_MEMORY_BLOCKS);
+                    nv_node = new TEXTModel(id,in_wire, out_wire, path,fname,block_size,num_block);
+                    break;
+                    //Todo : add other types of nodes
                 default:
                     System.out.println("Error , unknown probe type : " + type.toString());
                     break;
             }
+            if(nv_node!= null)GNode.put(id,nv_node);
 
         }
     }
@@ -217,14 +277,24 @@ public class XMLManager {
                 tmpvw.add( GArrettes.get(w_id));
             }
         }
+        //debug read values of wire found
+        String str_io_values="";
+        System.out.println("Wire :");
+        for(WireModel debug_wire : tmpvw){
+            for(boolean b : debug_wire.getData()){
+                if(b == true)str_io_values+="1";
+                else str_io_values+="0";
+            }
+            System.out.println("- id:"+debug_wire.getId()+" "+str_io_values);
+        }
         return tmpvw;
     }
 
     //get text block attribute attached to object if any
-    private String get_desc(Element object){
+    private String get_text_attr(Element object,String attri_name){
         Attribute attr;
         String nv_string;
-        attr = object.getAttribute("description");
+        attr = object.getAttribute(attri_name);
         nv_string = attr.toString();
         return nv_string;
     }

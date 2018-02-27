@@ -18,11 +18,11 @@ public class GraphManagerController implements Interface.GraphManagerInterface {
     protected Map<Integer, ProbeStartModel> GDebut;
     protected Map<Integer, ProbeEndModel> GFin;*/
     //for testing only :
-    public HashMap<Integer, WireModel> GArrettes;
-    public HashMap<Integer, NodeModel_Abstract> GNoeuds;
-    public HashMap<Integer, ProbeStartModel> GDebut;
-    public HashMap<Integer, ProbeEndModel> GFin;
-    public SimplifiedGraphObjectController GSimplified;
+    private HashMap<Integer, WireModel> GArrettes;
+    private HashMap<Integer, NodeModel_Abstract> GNoeuds;
+    private HashMap<Integer, ProbeStartModel> GDebut;
+    private HashMap<Integer, ProbeEndModel> GFin;
+    private XMLManager XML_Graph;
 
     /**
      * Constructor
@@ -100,22 +100,14 @@ public class GraphManagerController implements Interface.GraphManagerInterface {
     }
 
     //@Override
-    public void load_new_module(String path_to_file) {
-        DocumentManagerController.open(path_to_file);
-        create_all_wires();
-        while (DocumentManagerController.hasNextLine()) {
-            this.read_line(DocumentManagerController.readLine());
-        }
-        readGNoeuds();
+   public void load_new_module(String path_to_file) {
+       XML_Graph = new XMLManager();
+       XML_Graph.open_file(path_to_file);
+       XML_Graph.parse_graph(GArrettes,GDebut, GFin,GNoeuds);
     }
 
-    //@Override
-    public void init_simplified_graph(String file) {
-        GSimplified = new SimplifiedGraphObjectController(GArrettes, GNoeuds, GDebut, GFin);
-        GSimplified.serialise_to_file(file);
-    }
 
-    private void create_all_wires() {
+   /* private void create_all_wires() {
         while (DocumentManagerController.hasNextLine()) {
             String read = DocumentManagerController.readLine();
             System.out.println("Line read " + read);
@@ -171,7 +163,8 @@ public class GraphManagerController implements Interface.GraphManagerInterface {
         } else {
             System.out.println("Error line to short , line:" + toread);
         }
-    }
+    }*/
+   /*
 
     private WireModel createWire(String[] parsedLine) {
         return new WireModel(Integer.valueOf(parsedLine[0]),
@@ -236,7 +229,7 @@ public class GraphManagerController implements Interface.GraphManagerInterface {
                 break;
         }
     }
-
+*/
     private void readGNoeuds() {
         GNoeuds.entrySet().forEach((mapentry) -> {
             System.out.println(mapentry.getValue().getDescription());
