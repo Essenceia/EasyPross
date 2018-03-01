@@ -16,8 +16,8 @@ public class mainController {
         manager.open_file("testxml.xml");
         GraphManagerController Graph = new GraphManagerController();
         Graph.load_new_module("testxml.xml");
-       // System.out.println("Chargement des map fait");
-        Graph.tick(); //appelle de tick avec la fonction action de not
+       // Graph.tick(); //appelle de tick avec la fonction action de not
+        Graph.save_module("save.xml");
 }
    
 }

@@ -58,6 +58,7 @@ public class ProbeStartModel extends ProbeModel_Abstract {
      *
      * @return wire_out
      */
+    @Override
     public Vector<WireModel> getWire() {
         return wire_out;
     }

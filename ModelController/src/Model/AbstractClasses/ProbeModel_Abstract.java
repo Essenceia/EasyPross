@@ -104,4 +104,13 @@ public abstract class ProbeModel_Abstract extends ObjectModel_Abstract {
         Arrays.fill(data, false);
     }
 
+    /**
+     * \fn getWire
+     * <p>
+     * \brief Get the vector wire connected to a probe
+     */
+    public Vector<WireModel> getWire() {
+        return null;
+    }
+
 }

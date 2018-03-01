@@ -105,7 +105,10 @@ public class GraphManagerController implements Interface.GraphManagerInterface {
        XML_Graph.open_file(path_to_file);
        XML_Graph.parse_graph(GArrettes,GDebut, GFin,GNoeuds);
     }
-
+    //@Override
+    public void save_module(String name_file) {
+        XML_Graph.save_to_xml(name_file,GArrettes,GDebut,GFin,GNoeuds );
+    }
 
    /* private void create_all_wires() {
         while (DocumentManagerController.hasNextLine()) {

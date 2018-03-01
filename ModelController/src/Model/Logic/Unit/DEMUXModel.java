@@ -6,7 +6,6 @@ import java.util.Vector;
 
 public class DEMUXModel extends LogicUnitModel_Abstract {
 
-    private int nb_bit_demux;
     private boolean[] instruct;
 
     /**

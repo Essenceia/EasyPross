@@ -124,10 +124,37 @@ public abstract class RegisterModel_Abstract extends NodeModel_Abstract {
      * and when we recive the signal ( and then only ) should be load the data
      * from the temporary file to our working file.
      */
-    protected String getFileName() {
+    public String getFileName() {
         return fileName;
     }
 
+    /**
+     * getter getBlockSize
+     *
+     * @return block_size
+     * <p>
+     */
+    public int getBlockSize() {
+        return block_size ;
+    }
+    /**
+     * getter getBlockCount
+     *
+     * @return block_count
+     * <p>
+     */
+    public int getBlockCount() {
+        return block_count ;
+    }
+    /**
+     * getter absfilePath
+     *
+     * @return absfilePath
+     * <p>
+     */
+    public String getFilePath() {
+        return absfilePath ;
+    }
     /**
      * getter Tmp_fileName
      *

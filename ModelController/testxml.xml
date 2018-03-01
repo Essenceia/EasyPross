@@ -14,11 +14,15 @@
     </wire>
     <node id="5" type="12">
         <wire_in id="2">
-
         </wire_in>
+        <wire_in id="6"></wire_in>
         <wire_out id="4">
 
         </wire_out>
     </node>
+    <wire id="6" type="1" size="2">
+        <io>0</io>
+        <io>1</io>
+    </wire>
 
 </graph>

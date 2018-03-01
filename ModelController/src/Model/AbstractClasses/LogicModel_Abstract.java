@@ -9,6 +9,10 @@ public abstract class LogicModel_Abstract extends NodeModel_Abstract {
      * Attributes : synchrone
      */
     protected boolean synchrone;
+    /**
+     * Attributes : control bits
+     */
+    protected int nb_bit_demux;
 
     /**
      * Constructor
@@ -42,5 +46,10 @@ public abstract class LogicModel_Abstract extends NodeModel_Abstract {
         if (data_out.length > 1) {
             System.out.println("Error in value of logic wire, cannot be > 1 bit");
         }
+        nb_bit_demux = 0; //by default no control bits
+    }
+
+    public int get_control_bit(){
+        return nb_bit_demux;
     }
 }
