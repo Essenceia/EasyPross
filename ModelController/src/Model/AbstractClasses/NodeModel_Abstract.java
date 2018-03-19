@@ -178,4 +178,5 @@ public abstract class NodeModel_Abstract extends ObjectModel_Abstract implements
         }
         return retval;
     }
+
 }

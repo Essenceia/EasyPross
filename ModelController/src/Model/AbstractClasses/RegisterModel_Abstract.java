@@ -3,12 +3,18 @@ package Model.AbstractClasses;
 import Model.Wire.WireModel;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.rmi.server.ExportException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Vector;
 import java.util.stream.Stream;
+import java.lang.String;
+import java.io.FileReader;
 
 /**
  * RegisterModel_Abstract RegisterModel_Abstract.java
@@ -65,6 +71,14 @@ public abstract class RegisterModel_Abstract extends NodeModel_Abstract {
     protected int block_count;
 
     /**
+     * File that contains our data
+     */
+    protected List<String> buffer_file;
+    protected File our_file = null;
+    protected boolean update_file_on_change=false;
+    protected Path path_to_file;
+    private long last_modified_t =0;
+    /**
      * Number of blocks (values) of data contrained in our register
      */
     /**
@@ -104,13 +118,15 @@ public abstract class RegisterModel_Abstract extends NodeModel_Abstract {
         this.absfilePath = absPath;
         String fpath = this.absfilePath + this.fileName;
         //check if files exists if not create them
-        if (!(new File(fpath)).isFile()) {
+        our_file = new File(fpath);
+        path_to_file = Paths.get(fpath);
+        if (!our_file.isFile()) {
             creatFile();
         }
         /*temporary files should never exist and thus have to be created with eatch new object
         initialisation
          */
-        creatTmpFile();
+       // creatTmpFile();
     }
     // Getters and Setters \\
 
@@ -179,70 +195,14 @@ public abstract class RegisterModel_Abstract extends NodeModel_Abstract {
     }
     //Override of interface methods of NodeInterface
 
-    /**
-     * readBlock
-     * <p>
-     * Read the value stored in a block of our data, we address them by block
-     * number.
-     *
-     * @param block_number - the block number we should be reading
-     * @return the value of the block we read , if an error is encountered we
-     * will return only zeros
-     */
-    protected boolean[] readBlock(int block_number) {
-        //open our working file
-        Stream<String> lines;
-        String line = new String();
-        String fpath = this.absfilePath + this.fileName;
-        try {
-            lines = Files.lines(Paths.get(fpath));
-            //goto line numbered block number
-            line = lines.skip(block_number).findFirst().get();
-        } catch (ExportException ex) {
-            ex.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return String_to_bool(line);
-
-    }
-
-    /**
-     * writeBlock
-     *
-     * @param newValues - new value for a block to be writen in our file
-     * @param blockNumber - block number we should be writing to
-     */
-    protected void writeBlock(boolean[] newValues, int blockNumber) {
-        //todo improve
-        try {
-            int lineNo = blockNumber;
-            String fpath = this.tmp_fileName + this.fileName;
-            LineNumberReader r = new LineNumberReader(new FileReader(fpath));
-            while (true) {
-                String line = r.readLine();
-                if (line == null) {
-                    break;
-                }
-                if (r.getLineNumber() != lineNo) {
-                    System.out.println(line);
-                }
-            }
-        } catch (Exception e) {
-            // if any error occurs
-            e.printStackTrace();
-        }
-    }
-
-    /**
+      /**
      * creatFile Creat a new working file and initialise it to empty
      */
     private void creatFile() {
         String fpath = this.absfilePath + this.fileName;
-        File newfile;
         try {
-            newfile = new File(fpath);
-            if (newfile.createNewFile()) {
+            our_file = new File(fpath);
+            if (our_file.createNewFile()) {
                 System.out.println(fpath + " File Created");
                 init_default(fpath);
             } else {
@@ -262,17 +222,18 @@ public abstract class RegisterModel_Abstract extends NodeModel_Abstract {
      * @param f file we are to initialise
      */
     private void init_default(String f) {
-        String line_data, buffer;
+        String line_data;
+        List<String> buffer;
         line_data = new String();
-        buffer = new String();
+        buffer = new ArrayList<>();
         try {
 
             //init our line data that must be writen to our file
             for (int b = 0; b < this.block_size; b++) {
-                line_data += "0 ";
+                line_data += "0.";
             }
             for (int i = 0; i < this.block_count; i++) {
-                buffer += line_data + "\n";
+                buffer.add( line_data + "\n");
             }
             write_to_file(f, buffer);
 
@@ -337,13 +298,15 @@ public abstract class RegisterModel_Abstract extends NodeModel_Abstract {
 
     }
 
-    private void write_to_file(String fdest, String data) {
+    private void write_to_file(String fdest, List<String> data) {
         Writer writer;
 
         try {
             writer = new BufferedWriter(new OutputStreamWriter(
                     new FileOutputStream(fdest), "utf-8"));
-            writer.write(data);
+            for(String towrite : data) {
+                writer.write(towrite);
+            }
             try {
                 writer.close();
             } catch (IOException ex) {
@@ -392,7 +355,32 @@ public abstract class RegisterModel_Abstract extends NodeModel_Abstract {
         }
         return retarray;
     }
-
+    /**
+     * bool_to_String
+     * <p>
+     * Convert a boolean array got from our block into a string to be writen to our file
+     *
+     * @param input - Boolean read from the data of our node
+     * @return - String
+     */
+    private String bool_to_String(boolean[] input) {
+        int i = 0;
+        String nv_string = "";
+        boolean to_write[] = new boolean[this.block_size];
+        if (input.length != this.block_size) {
+            System.err.println("Error : unexpected lenght of sting, block "
+                    + "size should be " + this.block_size + " but length of boolean gotten"
+                    + "is only " + input.length);
+            Arrays.fill(input, false);
+        }else{
+            to_write = input.clone();
+        }
+        for (boolean val : to_write) {
+            if (!val)nv_string = "0.";
+            else nv_string = "1.";
+            }
+        return nv_string;
+    }
     /**
      *
      * @param nmninw
@@ -407,6 +395,92 @@ public abstract class RegisterModel_Abstract extends NodeModel_Abstract {
         }
         if (nmninw != expected_out_wire) {
             System.err.println("Error on id" + this.id + ", unexpected number of out wires, " + expected_out_wire + " expected and got " + nmninw);
+        }
+    }
+
+    /*
+     * /fn read_file
+     * @param line_index specifies the index of the line we are to read
+     *
+     * /note Index start at 0
+     TODO test
+     */
+    protected boolean[] read_file(int line_index){
+        boolean return_value[] = new boolean[this.block_size];
+        String line;
+        line_index = check_line_valide(line_index);
+        if(this.buffer_file == null){
+            reload_file_buffer();
+        }
+        if(this.buffer_file != null){
+            //we can read a line from file
+                //read a line from the internal buffer
+                line = this.buffer_file.get(line_index);
+                //convert to int
+                return_value = String_to_bool(line);
+
+        }
+        return return_value;
+
+
+    }
+    /*
+     * /fn read_file
+     * @param line_index specifies the index of the line we are to read
+     *
+     * /note Index start at 0
+     TODO test
+     */
+    protected void write_file(int line_index,boolean[] value){
+        int return_value = 0;
+        String line;
+        line = bool_to_String(value);
+        line_index = check_line_valide(line_index);
+        if(this.buffer_file == null){
+            reload_file_buffer();
+        }
+        if(this.buffer_file != null){
+            //update a line in a buffer
+            //check if it is diffrent
+            if(!this.buffer_file.get(line_index).equals(line)) {
+                //we found a diffrence so we update our buffer value
+                this.buffer_file.set(line_index, line);
+                //we write the diffrence to our file
+                if(update_file_on_change){
+                    //time stamp will be automaticaly set
+                    write_to_file(this.absfilePath + this.fileName, this.buffer_file);
+                }
+
+            }
+        }
+    }
+    /*    File utilies for registers */
+    protected void reload_file_buffer(){
+        //check if we need to reload buffer => has been modified sinc ?
+        if(this.last_modified_t != this.our_file.lastModified())
+        try  {
+            //update the last modified time stamp
+            this.last_modified_t = this.our_file.lastModified();
+            String fname = this.absfilePath + this.fileName;
+            buffer_file = new ArrayList<>(Files.readAllLines(this.path_to_file, StandardCharsets.UTF_8));
+
+        } catch (IOException e) {
+            System.out.println("Can't creat read buffer on file");
+            e.printStackTrace();
+        }
+    }
+
+    private int check_line_valide(int line_index){
+        if(line_index > this.block_count){
+            System.out.println("Error :: index of line is out of bounds got "+line_index+" max expected value "+this.block_size);
+            return  line_index % this.block_size;
+        }
+        return line_index;
+    }
+    private void write_changes_to_file(){
+        //check if file already open
+        if(this.our_file== null){
+            //open
         }
     }
 }

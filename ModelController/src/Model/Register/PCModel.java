@@ -4,6 +4,10 @@ import Controller.HelperController;
 import Model.AbstractClasses.RegisterModel_Abstract;
 import Model.Wire.WireModel;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
 import java.util.Vector;
 
 /**
@@ -25,16 +29,17 @@ public class PCModel extends RegisterModel_Abstract {
     /**
      * Index of the diffrent wires and there roles
      */
-    private static final int IN_COMMANDE_WIRE = 0;
+    private static final int IN_COMMANDE_READ_WIRE = 0;
+    private static final int IN_COMMANDE_WRITE_WIRE = 1;
     /*commande wire where we get instruction of what we are to perform on pc*/
-    private static final int IN_DATA_WIRE = 1;/*data to modify the pc value*/
-    private static final int OUT_DATA_WIRE = 0;/*wire we put our new pc value on*/
+    private static final int IN_DATA_WIRE = 2;/*data to modify the pc value*/
+    private static final int OUT_DATA_WIRE = 3;/*wire we put our new pc value on*/
     /**
      * Values of commands that we get on the commande wire
      */
     private static final int PC_CODE_SLEEP = 0;/*do nothing*/
-    private static final int PC_CODE_INCREMENT = 1;/*increment pc by the value on data wire*/
-    private static final int PC_CODE_SET_TO = 2;/*switch out value of pc to the value in data*/
+    private static final int PC_WRITE_COMMANDE = 1;/*if value on write wire = this then write new value*/
+    private static final int PC_READ_COMMANDE = 2;/*if value on read wire = this then read value*/
     /**
      * Value of the index at whitch we have set our data in our file
      */
@@ -42,7 +47,7 @@ public class PCModel extends RegisterModel_Abstract {
 
     /**
      * Constructor
-     *
+     * <p>
      * We don't specify a block number because we are only expected to have one
      * value in our PC : the current programme counter.
      *
@@ -54,59 +59,56 @@ public class PCModel extends RegisterModel_Abstract {
      * @param block_size
      */
     public PCModel(int id, Vector<WireModel> wire_input, Vector<WireModel> wire_output,
-            String absPath, String fname, int block_size) {
+                   String absPath, String fname, int block_size) {
         super(id, TYPE_REG_PC, wire_input, wire_output, "PC ", absPath, fname, 1, block_size);
-        check_wire_number(wire_input.size(), wire_output.size(), 2, 1);
+        check_wire_number(wire_input.size(), wire_output.size(), 3, 1);
 
     }
 
     //Override of interface methods of NodeInterface
+
     /**
      * Override action from NodeInterface
-     *
+     * <p>
      * Acording to the mode specified by input wire 1 we will be : doing nothing
      * / incrementing by a value/ rewriting the value of PC , with our 2nd input
      * wire as a basis.
-     *
+     * <p>
      * Our output wire reflects the current value of our programme counter.
      */
     @Override
     public void action() {
         //ressources
-        int pc_commande = boolarray_to_int(this.input.get(IN_COMMANDE_WIRE).getData());
-        int new_data = boolarray_to_int(this.input.get(IN_DATA_WIRE).getData());
-        int current_pc;
+        int read_commande = boolarray_to_int(this.input.get(IN_COMMANDE_READ_WIRE).getData());
+        int write_commande = boolarray_to_int(this.input.get(IN_COMMANDE_READ_WIRE).getData());
+        boolean new_data[] ;
+
         //todo implement
         //blindage
         this.output.get(OUT_DATA_WIRE).setActive(false);
-        if (pc_commande > PC_CODE_SLEEP) {
+        if (read_commande + write_commande > PC_CODE_SLEEP) {
             //set output wire as active
             this.output.get(OUT_DATA_WIRE).setActive(true);
 
-            //modifiy PC value according to commande
-            switch (pc_commande) {
-                case PC_CODE_INCREMENT:
-                    current_pc = boolarray_to_int(this.readBlock(PC_VALUE_FILE_INDEX));
-                    current_pc += new_data;
-                    break;
-                case PC_CODE_SET_TO:
-                    current_pc = new_data;
-                    break;
-                default:
-                    System.err.println("Error, unexpected commande on PC , got :" + pc_commande);
-                    current_pc = 0; // error in PC value
-                    break;
+            //if read
+            if (read_commande == IN_COMMANDE_READ_WIRE) {
+                boolean[] value = this.input.get(IN_DATA_WIRE).getData();
+                new_data = value.clone();
+                //check if diffrent
+                if (new_data.equals(read_file(PC_VALUE_FILE_INDEX)) == false) {
+                    //write change to file
+                    write_file(PC_VALUE_FILE_INDEX, value);
+                }
             }
-            System.out.println("New value of PC " + current_pc);
-            //wright back value of PC
-            this.writeBlock(int_to_boolarray(current_pc, this.block_size), PC_VALUE_FILE_INDEX);
 
-        } else {
-            //do nothing we have sleep code
-            System.out.println("PC with id " + this.id + " nothing to do, code is to off");
+            //if write to output wire
+            if (write_commande == IN_COMMANDE_WRITE_WIRE) {
+                //write out data to the exit wire
+                this.data_out = read_file(PC_VALUE_FILE_INDEX);
+                HelperController.put_buffer_data_in_wire(this.output, this.data_out);
+            }
         }
-
-        //write out data to the exit wire
-        HelperController.put_buffer_data_in_wire(this.output,this.data_out);
     }
+
+
 }
