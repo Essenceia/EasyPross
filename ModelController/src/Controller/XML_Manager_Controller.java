@@ -61,7 +61,9 @@ public class XML_Manager_Controller {
      *
      */
     public XML_Manager_Controller() {
+
         racine = new Element(LABEL_ROOT);
+
     }
 
     /**
@@ -354,6 +356,7 @@ public class XML_Manager_Controller {
      * @param GNode
      */
     public void saveToXML(String fileName, HashMap<Integer, Wire_Model> GAretes, HashMap<Integer, Probe_Start_Model> GSProbe, HashMap<Integer, Probe_End_Model> GEProbe, HashMap<Integer, Node_Model_Abstract> GNode) {
+        System.out.println("Starting to save to xml");
         Element root = new Element(LABEL_ROOT);
         Document doc = new Document(root);
         saveWire(root, GAretes);
@@ -361,7 +364,7 @@ public class XML_Manager_Controller {
         saveNode(root, GNode);
         try {
             XMLOutputter sortie = new XMLOutputter(Format.getPrettyFormat());
-            sortie.output(document, new FileOutputStream(fileName));
+            sortie.output(doc, new FileOutputStream(fileName));
         } catch (java.io.IOException e) {
         }
     }
@@ -381,6 +384,7 @@ public class XML_Manager_Controller {
             tempElement = new Element(LABEL_WIRE);
             element = (Map.Entry) it.next();
             tempWire = (Wire_Model) element.getValue();
+
             set_basic_attributes(tempWire, tempElement);
             add_io_ellements(tempWire, tempElement);
             root.addContent(tempElement);
@@ -475,10 +479,11 @@ public class XML_Manager_Controller {
      * @param motherelem
      */
     private void add_io_ellements(Wire_Model wire, Element motherelem) {
+
         boolean[] data = wire.getData();
         for (boolean b : data) {
             Element io_elem = new Element(LABEL_IO);
-            if (b) {
+            if (b == true) {
                 io_elem.setText("1");
             } else {
                 io_elem.setText("0");

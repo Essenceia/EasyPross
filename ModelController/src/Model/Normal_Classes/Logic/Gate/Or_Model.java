@@ -3,6 +3,8 @@ package Model.Normal_Classes.Logic.Gate;
 import Controller.Helper_Controller;
 import Model.Abstract_Classes.Logic_Model_Abstract;
 import Model.Normal_Classes.Wire.Wire_Model;
+
+import java.util.Arrays;
 import java.util.Vector;
 
 public class Or_Model extends Logic_Model_Abstract {
@@ -31,19 +33,7 @@ public class Or_Model extends Logic_Model_Abstract {
         putOutputingData();
     }
 
-    /**
-     *
-     * @param d
-     * @param index
-
-    @Override
-    public void putDataAtIndex(boolean d, int index) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 
 
-    @Override
-    public void resetValues() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }*/
+
 }

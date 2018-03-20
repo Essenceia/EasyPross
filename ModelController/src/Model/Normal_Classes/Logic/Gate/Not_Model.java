@@ -24,24 +24,15 @@ public class Not_Model extends Logic_Model_Abstract {
     public void action() {
         int count = 0;
         getIncomingData();
-        for (boolean bool : dataIn) {
-            dataOut[count] = !bool;
+        for (boolean bool : this.dataIn) {
+            if(count < this.dataOut.length)this.dataOut[count] = !bool;
             count++;
         }
         putOutputingData();
     }
 
-    /**
-     *
-     * @param d
-     * @param index
-     *
-    @Override
-    public void putDataAtIndex(boolean d, int index) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
     @Override
     public void resetValues() {
         throw new UnsupportedOperationException("Not supported yet.");
-    }*/
+    }
 }

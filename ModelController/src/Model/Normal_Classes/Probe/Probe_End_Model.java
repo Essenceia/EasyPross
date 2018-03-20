@@ -46,13 +46,5 @@ public class Probe_End_Model extends Probe_Model_Abstract {
         this.wireOut = wireOut;
     }
 
-    /**
-     *
-     * @param d
-     * @param index
 
-    @Override
-    public void putDataAtIndex(boolean d, int index) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }*/
 }

@@ -31,6 +31,7 @@ public abstract class Node_Model_Abstract extends Object_Model_Abstract implemen
         dataOut = new boolean[dataOutSize];
         input = wireInput;
         output = wireOutput;
+        System.out.println("Node_Model_Abstract:: creating node of input size "+dataInSize+" output size "+dataOutSize);
     }
 
     /**

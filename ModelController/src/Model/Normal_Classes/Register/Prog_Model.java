@@ -1,6 +1,7 @@
 package Model.Normal_Classes.Register;
 
 import Controller.Helper_Controller;
+import Interface.Object_Interface;
 import Model.Abstract_Classes.Register_Model_Abstract;
 import Model.Normal_Classes.Wire.Wire_Model;
 import java.lang.reflect.Array;
@@ -56,14 +57,10 @@ public class Prog_Model extends Register_Model_Abstract {
             }
         }
     }
-/*
-    @Override
-    public void putDataAtIndex(boolean d, int index) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+
 
     @Override
     public void resetValues() {
         throw new UnsupportedOperationException("Not supported yet.");
-    }*/
+    }
 }

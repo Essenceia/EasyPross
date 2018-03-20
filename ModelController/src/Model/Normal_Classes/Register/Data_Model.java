@@ -39,18 +39,12 @@ public class Data_Model extends Register_Model_Abstract {
      */
     @Override
     public void action() {
-
-    }
-
-    /**
-     *
-    @Override
-    public void putDataAtIndex(boolean d, int index) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void resetValues() {
         throw new UnsupportedOperationException("Not supported yet.");
-    }*/
+    }
+
 }

@@ -20,6 +20,7 @@ public class Probe_Start_Model extends Probe_Model_Abstract {
         this.wireOut = wireOut;
     }
 
+
     /**
      *
      */

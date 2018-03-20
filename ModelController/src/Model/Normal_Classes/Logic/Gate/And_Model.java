@@ -32,15 +32,6 @@ public class And_Model extends Logic_Model_Abstract implements Object_Interface{
         putOutputingData();
     }
 
-    /**
-     *
-     * @param d
-     * @param index
-     */
-    @Override
-    public void putDataAtIndex(boolean d, int index) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 
     /**
      *

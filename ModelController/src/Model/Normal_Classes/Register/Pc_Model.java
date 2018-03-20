@@ -3,6 +3,8 @@ package Model.Normal_Classes.Register;
 import Controller.Helper_Controller;
 import Model.Abstract_Classes.Register_Model_Abstract;
 import Model.Normal_Classes.Wire.Wire_Model;
+
+import java.util.Arrays;
 import java.util.Vector;
 
 public class Pc_Model extends Register_Model_Abstract {
@@ -55,12 +57,13 @@ public class Pc_Model extends Register_Model_Abstract {
 
             //if read
             if (read_commande == IN_COMMANDE_READ_WIRE) {
-                boolean[] value = this.input.get(IN_DATA_WIRE).getData();
-                new_data = value.clone();
+                System.arraycopy(this.input.get(IN_DATA_WIRE).getData(),0,this.dataIn,0,
+                this.dataIn.length);
                 //check if diffrent
-                if (new_data.equals(readFile(PC_VALUE_FILE_INDEX)) == false) {
+                if (this.dataIn.equals(readFile(PC_VALUE_FILE_INDEX)) == false) {
                     //write change to file
-                    writeToFile(PC_VALUE_FILE_INDEX, value);
+
+                    writeToFile(PC_VALUE_FILE_INDEX, this.dataIn);
                 }
             }
 
@@ -72,16 +75,13 @@ public class Pc_Model extends Register_Model_Abstract {
             }
         }
     }
-    /**
-     *
-
-    @Override
-    public void putDataAtIndex(boolean d, int index) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 
     @Override
     public void resetValues() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }*/
+        Arrays.fill(this.dataIn,false);
+        Arrays.fill(this.dataOut,false);
+        writeToFile(PC_VALUE_FILE_INDEX,this.dataIn);
+        System.out.println("Pc_Model:: data has been reset to zero");
+    }
+
 }

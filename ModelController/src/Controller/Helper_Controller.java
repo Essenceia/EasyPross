@@ -22,6 +22,7 @@ public class Helper_Controller implements Interface.Helper_Interface {
         for (Wire_Model aTarget : target) {
             count += aTarget.getSizeBus();
         }
+        System.out.println("Helper_Controller::countWireSize size found :"+count);
         return count;
     }
 
@@ -92,5 +93,11 @@ public class Helper_Controller implements Interface.Helper_Interface {
             ret[i] = value;
         }
         return ret;
+    }
+    public static void debugMessage(String msg){
+        System.out.println("\033[0;32m"+msg+"\033[0m");
+    }
+    public static void errorMessage(String msg){
+        System.out.println("\033[0;31m"+msg+"\033[0m");
     }
 }

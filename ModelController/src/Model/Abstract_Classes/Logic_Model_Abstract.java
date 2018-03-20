@@ -1,9 +1,12 @@
 package Model.Abstract_Classes;
 
+import Interface.Object_Interface;
 import Model.Normal_Classes.Wire.Wire_Model;
+
+import java.util.Arrays;
 import java.util.Vector;
 
-public abstract class Logic_Model_Abstract extends Node_Model_Abstract {
+public abstract class Logic_Model_Abstract extends Node_Model_Abstract implements Object_Interface {
 
     /**
      *
@@ -18,5 +21,10 @@ public abstract class Logic_Model_Abstract extends Node_Model_Abstract {
        /* if (dataOut.length > 1) {
             System.out.println("Error in value of logic wire, cannot be > 1 bit");
         }*/
+    }
+    @Override
+    public void resetValues() {
+        Arrays.fill(this.dataIn,false);
+        Arrays.fill(this.dataOut,false);
     }
 }

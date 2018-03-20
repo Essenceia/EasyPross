@@ -1,5 +1,6 @@
 package Model.Abstract_Classes;
 
+import Interface.Object_Interface;
 import Model.Normal_Classes.Wire.Wire_Model;
 
 import java.io.BufferedReader;
@@ -25,7 +26,7 @@ import java.util.List;
 import java.util.Vector;
 import java.util.stream.Stream;
 
-public abstract class Register_Model_Abstract extends Node_Model_Abstract {
+public abstract class Register_Model_Abstract extends Node_Model_Abstract implements Object_Interface {
 
     public static final String FILE_SEPARATOR = System.getProperty("file.separator");
     public static final String WORKING_FILE_FOLDER_PATH = ".." + FILE_SEPARATOR + "Model_CPU" + FILE_SEPARATOR;
@@ -109,7 +110,9 @@ public abstract class Register_Model_Abstract extends Node_Model_Abstract {
             lines = Files.lines(Paths.get(fpath));
             line = lines.skip(blockNumber).findFirst().get();
         } catch (ExportException ex) {
-        } catch (IOException e) {
+            ex.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
         return StringToBool(line);
     }
@@ -133,6 +136,7 @@ public abstract class Register_Model_Abstract extends Node_Model_Abstract {
                 }
             }
         } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -218,8 +222,10 @@ public abstract class Register_Model_Abstract extends Node_Model_Abstract {
                 in.close();
                 out.close();
             } catch (IOException ex) {
-            }
+            ex.printStackTrace();
+        }
         } catch (IOException ex) {
+            ex.printStackTrace();
         }
     }
 
