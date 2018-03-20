@@ -28,14 +28,14 @@ public class GraphManagerController implements easypross.Interface.GraphManagerI
     /// Override methods \\\
     /// Delete execption thrown! \\\
     /**
-     * Override of tick from GraphManagerInterface
+     * Override of tick from Graph_Manager_Interface
      */
     @Override
     public void tick() { // Call action() of every Node stored
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     /**
-     * Override of documentManager from GraphManagerInterface
+     * Override of documentManager from Graph_Manager_Interface
      */
     @Override
     public void documentManager() {// create DocumentManager instance -> To call in class constructor ? 
@@ -43,14 +43,14 @@ public class GraphManagerController implements easypross.Interface.GraphManagerI
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     /**
-     * Override of creategraph from GraphManagerInterface
+     * Override of creategraph from Graph_Manager_Interface
      */
     @Override
     public void createGraph() { // Create graph
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     /**
-     * Override of callAPI from GraphManagerInterface
+     * Override of callAPI from Graph_Manager_Interface
      */
     @Override
     public void callAPI() { // Communication with API

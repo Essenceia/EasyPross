@@ -16,9 +16,9 @@ public class NOTModel extends LogicGateModel_Abstract {
         description +=" OU ";
         type = 3;
     }
-    //Override of interface methods of NodeInterface
+    //Override of interface methods of Node_Interface
     /**
-     * Override action from NodeInterface
+     * Override action from Node_Interface
      */
     @Override
     public void action(){

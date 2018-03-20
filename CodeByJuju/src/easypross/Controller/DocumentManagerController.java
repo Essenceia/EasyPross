@@ -17,7 +17,7 @@ public final class DocumentManagerController implements easypross.Interface.Docu
     private DocumentManagerController() {
     }
     /**
-     * Override of open method from DocumentManagerInterface
+     * Override of open method from Document_Manager_Interface
      * @param fileName 
      */
     //@Override
@@ -34,7 +34,7 @@ public final class DocumentManagerController implements easypross.Interface.Docu
         }
     }
     /**
-     * Override of close from DocumentManagerInterface
+     * Override of close from Document_Manager_Interface
      * @param fileName
      * @return succes or fail
      */

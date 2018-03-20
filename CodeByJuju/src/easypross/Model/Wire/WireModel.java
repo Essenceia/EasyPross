@@ -93,7 +93,7 @@ public class WireModel extends ObjectModel_Abstract implements easypross.Interfa
     }
     @Override
     public void reset_values() {
-        //super.reset_values();
+        //super.resetValues();
         for(int i=0; i < sizeBus ; i++){
             data[0] = false;
         }

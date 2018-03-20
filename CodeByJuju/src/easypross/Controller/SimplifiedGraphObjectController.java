@@ -10,7 +10,7 @@ import java.io.ObjectOutputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
-//import easypross.Model.AbstractClasses.ObjectModel_Abstract;
+//import easypross.Model.AbstractClasses.Object_Model_Abstract;
 
 public class SimplifiedGraphObjectController {
     private HashMap<Integer,SimplifiedGraphController> Msimp;

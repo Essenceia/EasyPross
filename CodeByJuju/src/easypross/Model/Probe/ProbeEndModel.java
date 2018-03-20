@@ -20,7 +20,7 @@ public class ProbeEndModel extends ProbeModel_Abstract{
     }
     //@Override
     public void reset_values() {
-        //super.reset_values();
+        //super.resetValues();
         //get data from wire
        HelperController.put_wire_data_in_buffer(this.wire,this.data);
     }

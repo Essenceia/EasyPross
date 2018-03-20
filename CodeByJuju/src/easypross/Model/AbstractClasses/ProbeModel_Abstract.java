@@ -6,7 +6,7 @@ import easypross.Model.Wire.WireModel;
 import java.util.Vector;
 
 /**
- * \class ProbeModel_Abstract ProbeModel_Abstract.java "Model/AbstractClasses/ProbeModel_Abstract.java"
+ * \class Probe_Model_Abstract Probe_Model_Abstract.java "Model/AbstractClasses/Probe_Model_Abstract.java"
  * \brief Direct child of ObjectModel_Absract and asbtract class from which prob classes inherite.
  * <p>
  * \details Probes are the the inputs and outputs at the expremities of the graph, they are the points
@@ -84,7 +84,7 @@ public abstract class ProbeModel_Abstract extends ObjectModel_Abstract {
     }
 
     /**
-     * \fn reset_values
+     * \fn resetValues
      * <p>
      * \note does noting here, needs to be overriden by child classes
      */

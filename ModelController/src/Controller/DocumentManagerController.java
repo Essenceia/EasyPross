@@ -18,7 +18,7 @@ public final class DocumentManagerController implements Interface.DocumentManage
     }
 
     /**
-     * Override of open method from DocumentManagerInterface
+     * Override of open method from Document_Manager_Interface
      *
      * @param fileName
      */
@@ -37,7 +37,7 @@ public final class DocumentManagerController implements Interface.DocumentManage
     }
 
     /**
-     * Override of close from DocumentManagerInterface
+     * Override of close from Document_Manager_Interface
      *
      * @param fileName
      * @return succes or fail
