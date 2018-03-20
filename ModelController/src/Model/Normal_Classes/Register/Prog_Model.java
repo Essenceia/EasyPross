@@ -66,4 +66,137 @@ public class Prog_Model extends Register_Model_Abstract {
     public void resetValues() {
         throw new UnsupportedOperationException("Not supported yet.");
     }*/
+    void decodeur()
+    {   
+        boolean [] tab = new boolean[14];
+        tab = this.input.get(IN_COMMANDE_READ_WIRE).getData();
+        boolean [] opcode = new boolean[3];
+        boolean [] ctrlDM = new boolean[2];
+        boolean [] ctrlALU = new boolean[3];
+        boolean [] adopA = new boolean[3];
+        boolean [] adopB = new boolean[3];
+        boolean [] cst = new boolean[8];
+        for (int i =0; i<3;i++)
+        {
+            opcode[i]=tab[i];
+        }
+        
+        /// si l'opcode est égale à 110 veut dire alu(A,B) -> A
+        if(opcode[0]== true && opcode[1]== true && opcode[2]== false)
+        {
+           for (int i =3; i<6;i++)
+            {
+                adopA[i]=tab[i];
+            }
+           for (int i =6; i<9;i++)
+            {
+                adopB[i]=tab[i];
+            }
+           for (int i =9; i<12;i++)
+            {
+                ctrlALU[i]=tab[i];
+            }
+           for (int i =0; i<8;i++)
+            {
+                cst[i]=tab[i];
+            }
+           ctrlDM[0] = opcode[0]; // si 1 alors vers reg si 0 vers pc
+           ctrlDM[1] = true; // pour active sinon false
+           
+        }
+        /// si l'opcode est égale à 001 veut dire cst -> pc bra
+        if(opcode[0]== false && opcode[1]== false && opcode[2]== true )
+        {
+           for (int i =6; i<14;i++)
+            {
+                cst[i]=tab[i];
+            }
+           for (int i =0; i<3;i++)
+            {
+                adopA[i]=false;
+            }
+           for (int i =0; i<3;i++)
+            {
+                adopB[i]=false;
+            }
+           for (int i =0; i<3;i++)
+            {
+                ctrlALU[i]=opcode[i];
+            }
+           ctrlDM[0] = opcode[0]; // si 1 alors vers reg si 0 vers pc
+           ctrlDM[1] = true; // pour active sinon false
+        }
+        
+        /// si opcode est égale à 010, veut dire jump pc+cst -> pc
+        if(opcode[0]== false && opcode[1]== true && opcode[2]== false)
+        {
+           for (int i =3; i<6;i++)
+            {
+                ctrlALU[i]=tab[i];
+            }
+           for (int i =6; i<14;i++)
+            {
+                cst[i]=tab[i];
+            }
+           for (int i =0; i<3;i++)
+            {
+                adopA[i]=false;
+            }
+           for (int i =0; i<3;i++)
+            {
+                adopB[i]=false;
+            }
+           ctrlDM[0] = opcode[0]; // si 1 alors vers reg si 0 vers pc
+           ctrlDM[1] = true; // pour active sinon false
+        }
+        
+        /// si opcode est égale à 011, veut dire bnz si z == 0 pc+cst -> pc sinon pc +1 ->pc
+        if(opcode[0]== false && opcode[1]== true && opcode[2]== true)
+        {
+           for (int i =6; i<14;i++)
+            {
+                cst[i]=tab[i];
+            }
+           for (int i =0; i<3;i++)
+            {
+                adopA[i]=false;
+            }
+           for (int i =0; i<3;i++)
+            {
+                adopB[i]=false;
+            }
+           for (int i =0; i<3;i++)
+            {
+                ctrlALU[i]=opcode[i];
+            }
+           ctrlDM[0] = opcode[0]; // si 1 alors vers reg si 0 vers pc
+           ctrlDM[1] = true; // pour active sinon false
+        }
+        
+        /// si opcode est égae à 100, veut dire alu(A, cst) -> A
+        if(opcode[0]== true && opcode[1]== false && opcode[2]== false)
+        {
+           for (int i =3; i<6;i++)
+            {
+                adopA[i]=tab[i];
+            }
+           for (int i =6; i<14;i++)
+            {
+                cst[i]=tab[i];
+            }
+           for (int i =0; i<3;i++)
+            {
+                adopB[i]=false;
+            }
+           for (int i =0; i<3;i++)
+            {
+                ctrlALU[i]=opcode[i];
+            }
+           ctrlDM[0] = opcode[0]; // si 1 alors vers reg si 0 vers pc
+           ctrlDM[1] = true; // pour active sinon false
+        }
+       
+        //// put this data in different wire 
+        
+    }
 }
