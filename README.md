@@ -1,4 +1,4 @@
-## Chose a faire dans la semaine 
+﻿## Chose a faire dans la semaine 
 
 +	Creer graphe a partir d'un document texte (code) Julia 
 +	Serialiser l'objet, le deserialiser et reconstruire un graphe avec ce fichier (code) Nico et Mat
@@ -8,4 +8,4 @@
 +	Petite image sur le rapport, chemin classique et notre voie, un complement du cours des profs Julie
 +	Voir si hierarchique ou non hierarchique (pas important) personne 
 +	Diagramme de classe dans le rapport Julie
-+modifier trame de communication(commentaires)
++modifier trame de communication(commentaires) ;)
