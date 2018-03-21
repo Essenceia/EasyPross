@@ -166,19 +166,20 @@ public abstract class Register_Model_Abstract extends Node_Model_Abstract implem
         Helper_Controller.debugMessage2("Register_Model_Abstract::initDefault calling to creat file "+file+" block size "+
         this.blockSize+" block count "+this.blockCount);
         String line_data;
-        List<String> buffer;
         line_data = new String();
-        buffer = new ArrayList<>();
+        this.bufferFile = new ArrayList<>();
         try {
 
             //init our line data that must be writen to our file
             for (int b = 0; b < this.blockSize; b++) {
-                line_data += "0.";
+                if(b!= 0 )line_data+=".";
+                line_data += "0";
             }
             for (int i = 0; i < this.blockCount; i++) {
-                buffer.add( line_data + "\n");
+                this.bufferFile.add( line_data );
             }
-            writeToFileAccordingToBuffer(file, buffer);
+            Helper_Controller.debugMessage0("Buffer "+this.bufferFile.toString());
+            writeToFileAccordingToBuffer(file);
 
         } catch (Exception e) {
             // if any error occurs
@@ -284,14 +285,15 @@ public abstract class Register_Model_Abstract extends Node_Model_Abstract implem
             to_write = input.clone();
         }
         for (boolean val : to_write) {
-            if(i!= 0)nv_string+=".";
+            if(i!= 0 & i!= (to_write.length ))nv_string+=".";
             if (!val) {
                 nv_string += "0";
             } else {
                 nv_string += "1";
             }
             i++;
-        }
+
+        }//nv_string+="\n";
         return nv_string;
     }
 
@@ -322,17 +324,16 @@ public abstract class Register_Model_Abstract extends Node_Model_Abstract implem
 
     /**
      * @param fdest
-     * @param data
      */
-    private void writeToFileAccordingToBuffer(String fdest, List<String> data) {
-        Helper_Controller.debugMessage0("Register_Model_Abstract::writeToFileAccordingToBuffer startint write");
+    private void writeToFileAccordingToBuffer(String fdest) {
+        Helper_Controller.debugMessage0("Register_Model_Abstract::writeToFileAccordingToBuffer startint write\n data "+this.bufferFile.toString());
         Writer writer;
         try {
             writer = new BufferedWriter(new OutputStreamWriter(
                     new FileOutputStream(fdest), "utf-8"));
-            for (String towrite : data) {
-                writer.write(towrite);
-                Helper_Controller.debugMessage0("writing :: "+towrite);
+            for (String towrite : this.bufferFile) {
+                writer.write(towrite+"\n");
+                Helper_Controller.debugMessage0("writing ::"+towrite+";");
             }
             try {
                 writer.close();
@@ -367,7 +368,7 @@ public abstract class Register_Model_Abstract extends Node_Model_Abstract implem
                 //we write the diffrence to our file
                 if(update_file_on_change){
                     //time stamp will be automaticaly set
-                    writeToFileAccordingToBuffer(this.absFilePath + this.fileName, this.bufferFile);
+                    writeToFileAccordingToBuffer(this.absFilePath + this.fileName);
                 }
 
             }
@@ -385,7 +386,8 @@ public abstract class Register_Model_Abstract extends Node_Model_Abstract implem
             try {
                 Helper_Controller.debugMessage2("Register_Model_Abstract::reloadFileBuffer modifing internal values");
                 this.last_modified_t = this.our_file.lastModified(); //unpading saved timestamp on file
-                bufferFile = new ArrayList<>(Files.readAllLines(this.path_to_file, StandardCharsets.UTF_8));
+                this.bufferFile = new ArrayList<>(Files.readAllLines(this.path_to_file, StandardCharsets.UTF_8));
+                Helper_Controller.debugMessage0("Buffer read from file "+this.bufferFile.toString());
 
             } catch (IOException e) {
                 System.out.println("Can't creat read buffer on file");

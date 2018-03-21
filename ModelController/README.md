@@ -10,6 +10,17 @@
 
 - [x] <del>test PC file modifications from write wire</del>
 - [ ] test PC file modification on timestamp out-off-data
-- [ ] add decoder to xml
+- [x] <del>add decoder to xml</del>
 - [ ] add file interaction on all register models
+    - [ ] data memory read 
+    - [x] <del>data memory write</del>
+    - [ ] prog memory read 
+    - [ ] prog memory write
 
+#Testing list
+
+- [ ] Mux
+- [ ] Demux
+- [ ] Alu
+- [ ] writring to probe start
+- [ ] reading from probe end

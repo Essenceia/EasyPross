@@ -9,9 +9,9 @@ public class Data_Model extends Register_Model_Abstract {
 
     private static final int IN_COMMANDE_WRITE_WIRE = 0;
     private static final int IN_COMMANDE_READ_WIRE = 1;
-    private static final int IN_ADDRESS_OP1 = 3;
-    private static final int IN_ADDRESS_OP2 = 4;
-    private static final int IN_DATA_WRITE = 5;
+    private static final int IN_ADDRESS_OP1 = 2;
+    private static final int IN_ADDRESS_OP2 = 3;
+    private static final int IN_DATA_WRITE = 4;
 
     private static final int OUT_DATA_OP1 = 0;
     private static final int OUT_DATA_OP2 = 1;
@@ -29,7 +29,7 @@ public class Data_Model extends Register_Model_Abstract {
     public Data_Model(int id, Vector<Wire_Model> wireInput, Vector<Wire_Model> wireOutput,
                       String absPath, String fileName, int blockSize, int blockNumber) {
         super(id, TYPE_REG_DATA, wireInput, wireOutput, " Data ", absPath, fileName, blockNumber, blockSize);
-        checkWireNumber(wireInput.size(), wireOutput.size(), 6, 2);
+        checkWireNumber(wireInput.size(), wireOutput.size(), 5, 2);
     }
 
     /**
@@ -44,13 +44,16 @@ public class Data_Model extends Register_Model_Abstract {
         int write_commande = boolArrayToInt(this.input.get(IN_COMMANDE_WRITE_WIRE).getData());
         this.output.get(OUT_DATA_OP1).setActive(false);
         this.output.get(OUT_DATA_OP2).setActive(false);
+        Helper_Controller.debugMessage3("Data_Model::action start read commande "+read_commande+" write commande "+write_commande);
+
         //if write is enabled get data at addresses op1 & op2 and write them onto output wires
         if(write_commande!= 0){
+
             op1 = boolArrayToInt(this.input.get(IN_ADDRESS_OP1).getData());
             op2 = boolArrayToInt(this.input.get(IN_ADDRESS_OP2).getData());
-            Helper_Controller.debugMessage2("Data_Model::action write from address op1 : "+op1+" op2 : "+op2);
             memoryOp1 = readFile(op1);
             memoryOp2 = readFile(op2);
+            Helper_Controller.debugMessage3("Data_Model::action start write op1 "+op1+" data "+this.boolArrayToInt(memoryOp1) +" op2 "+op2+ " data " + this.boolArrayToInt(memoryOp2));
             //write to ourput wire
             this.output.get(OUT_DATA_OP1).setActive(true);
             this.output.get(OUT_DATA_OP2).setActive(true);
@@ -65,6 +68,8 @@ public class Data_Model extends Register_Model_Abstract {
                 writeToFile(op1,memoryOp1);
             }
         }
+        Helper_Controller.debugMessage3("Data_Model::action end");
+
 
     }
 

@@ -14,108 +14,38 @@
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="true" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.4834488">
+    <splitter split-orientation="horizontal" split-proportion="0.14322692">
       <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="Node_Model_Abstract.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/Model/Abstract_Classes/Node_Model_Abstract.java">
+        <leaf>
+          <file leaf-file-name="Global_Defines_Abstract.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/Model/Abstract_Classes/Global_Defines_Abstract.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="299">
-                  <caret line="130" column="18" lean-forward="true" selection-start-line="130" selection-start-column="18" selection-end-line="130" selection-end-column="18" />
+                <state relative-caret-position="180">
+                  <caret line="10" column="17" lean-forward="false" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="test_2.xml" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/test_2.xml">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="108">
-                  <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-                  <folding>
-                    <element signature="n#probe#0;n#graph#0;n#!!top" expanded="false" />
-                    <element signature="n#probe#3;n#graph#0;n#!!top" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="save.xml" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/save.xml">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="198">
-                  <caret line="11" column="14" lean-forward="true" selection-start-line="11" selection-start-column="14" selection-end-line="11" selection-end-column="14" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/README.md">
-              <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-                <state split_layout="SPLIT">
-                  <first_editor relative-caret-position="54">
-                    <caret line="3" column="44" lean-forward="true" selection-start-line="3" selection-start-column="44" selection-end-line="3" selection-end-column="44" />
-                    <folding />
-                  </first_editor>
-                  <second_editor />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Data_Model.java" pinned="false" current-in-tab="false">
+          <file leaf-file-name="Data_Model.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/Model/Normal_Classes/Register/Data_Model.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="337">
-                  <caret line="60" column="8" lean-forward="false" selection-start-line="60" selection-start-column="8" selection-end-line="60" selection-end-column="8" />
+                <state relative-caret-position="490">
+                  <caret line="60" column="91" lean-forward="true" selection-start-line="60" selection-start-column="91" selection-end-line="60" selection-end-column="91" />
                   <folding>
-                    <element signature="e#2923#2924#0" expanded="true" />
-                    <element signature="e#3000#3001#0" expanded="true" />
+                    <element signature="e#3198#3199#0" expanded="true" />
+                    <element signature="e#3275#3276#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Pc_Model.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/Model/Normal_Classes/Register/Pc_Model.java">
+          <file leaf-file-name="XML_Manager_Controller.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/Controller/XML_Manager_Controller.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-155">
-                  <caret line="83" column="35" lean-forward="true" selection-start-line="83" selection-start-column="35" selection-end-line="83" selection-end-column="35" />
+                <state relative-caret-position="310">
+                  <caret line="63" column="87" lean-forward="false" selection-start-line="63" selection-start-column="68" selection-end-line="63" selection-end-column="87" />
                   <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Helper_Controller.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/Controller/Helper_Controller.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="251">
-                  <caret line="83" column="40" lean-forward="true" selection-start-line="83" selection-start-column="40" selection-end-line="83" selection-end-column="40" />
-                  <folding>
-                    <element signature="e#3304#3305#0" expanded="true" />
-                    <element signature="e#3366#3367#0" expanded="true" />
-                    <element signature="e#3416#3417#0" expanded="true" />
-                    <element signature="e#3478#3479#0" expanded="true" />
-                    <element signature="e#3528#3529#0" expanded="true" />
-                    <element signature="e#3590#3591#0" expanded="true" />
-                    <element signature="e#3640#3641#0" expanded="true" />
-                    <element signature="e#3702#3703#0" expanded="true" />
-                    <element signature="e#3751#3752#0" expanded="true" />
-                    <element signature="e#3813#3814#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="testxml.xml" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/testxml.xml">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="324">
-                  <caret line="21" column="11" lean-forward="true" selection-start-line="21" selection-start-column="11" selection-end-line="21" selection-end-column="11" />
-                  <folding>
-                    <element signature="n#wire_in#0;n#node#0;n#graph#0;n#!!top" expanded="false" />
-                    <element signature="n#wire_out#0;n#node#0;n#graph#0;n#!!top" expanded="false" />
-                  </folding>
                 </state>
               </provider>
             </entry>
@@ -124,14 +54,33 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="Data_Model.java" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/Model/Normal_Classes/Register/Data_Model.java">
+          <file leaf-file-name="test_datamemory.xml" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/test_datamemory.xml">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="306">
-                  <caret line="55" column="56" lean-forward="false" selection-start-line="55" selection-start-column="56" selection-end-line="55" selection-end-column="56" />
+                <state relative-caret-position="36">
+                  <caret line="9" column="23" lean-forward="true" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Main_Controller.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/Controller/Main_Controller.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="360">
+                  <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Register_Model_Abstract.java" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/Model/Abstract_Classes/Register_Model_Abstract.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="179">
+                  <caret line="178" column="47" lean-forward="false" selection-start-line="178" selection-start-column="47" selection-end-line="178" selection-end-column="47" />
                   <folding>
-                    <element signature="e#2923#2924#0" expanded="true" />
-                    <element signature="e#3000#3001#0" expanded="true" />
+                    <element signature="method#transfertData#0;class#Register_Model_Abstract#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -171,6 +120,10 @@
       <find>Error : unexpected lenght</find>
       <find>Error</find>
       <find>writeToFile</find>
+      <find>&quot;\n</find>
+      <find>List&lt;S</find>
+      <find>&quot; &quot;</find>
+      <find>&quot;</find>
     </findStrings>
     <replaceStrings>
       <replace>Node_Model_Abstract</replace>
@@ -184,9 +137,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/Model/AbstractClasses/LogicModel_Abstract.java" />
-        <option value="$PROJECT_DIR$/src/Controller/mainController.java" />
-        <option value="$PROJECT_DIR$/src/Controller/XMLManager.java" />
         <option value="$PROJECT_DIR$/src/Interface/NodeInterface.java" />
         <option value="$PROJECT_DIR$/src/Model/AbstractClasses/NodeModel_Abstract.java" />
         <option value="$PROJECT_DIR$/src/Model/AbstractClasses/RegisterModel_Abstract.java" />
@@ -225,16 +175,19 @@
         <option value="$PROJECT_DIR$/testxml.xml" />
         <option value="$PROJECT_DIR$/src/Controller/XML_Manager_Controller.java" />
         <option value="$PROJECT_DIR$/save.xml" />
-        <option value="$PROJECT_DIR$/src/Controller/Main_Controller.java" />
         <option value="$PROJECT_DIR$/src/Model/Normal_Classes/Probe/Probe_Start_Model.java" />
         <option value="$PROJECT_DIR$/src/Controller/Graph_Manager_Controller.java" />
         <option value="$PROJECT_DIR$/src/Model/Abstract_Classes/Node_Model_Abstract.java" />
-        <option value="$PROJECT_DIR$/test_2.xml" />
         <option value="$PROJECT_DIR$/src/Controller/Helper_Controller.java" />
-        <option value="$PROJECT_DIR$/src/Model/Abstract_Classes/Register_Model_Abstract.java" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/Model/Normal_Classes/Register/Pc_Model.java" />
+        <option value="$PROJECT_DIR$/.gitinore" />
+        <option value="$PROJECT_DIR$/test_2.xml" />
         <option value="$PROJECT_DIR$/src/Model/Normal_Classes/Register/Data_Model.java" />
+        <option value="$PROJECT_DIR$/save_datamemory.xml" />
+        <option value="$PROJECT_DIR$/src/Controller/Main_Controller.java" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/test_datamemory.xml" />
+        <option value="$PROJECT_DIR$/src/Model/Abstract_Classes/Register_Model_Abstract.java" />
       </list>
     </option>
   </component>
@@ -510,12 +463,12 @@
       <workItem from="1519920088362" duration="1357000" />
       <workItem from="1521451916605" duration="15219000" />
       <workItem from="1521545893606" duration="37740000" />
-      <workItem from="1521621068402" duration="15953000" />
+      <workItem from="1521621068402" duration="21939000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="105170000" />
+    <option name="totallyTimeSpent" value="111156000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -539,13 +492,13 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.8723077" sideWeight="0.51319647" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16267942" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.98724085" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34130782" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1828528" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.119878605" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33652312" sideWeight="0.48680353" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23444976" sideWeight="0.48680353" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -580,8 +533,14 @@
           <properties />
           <option name="timeStamp" value="5" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-field">
+          <url>file://$PROJECT_DIR$/src/Model/Abstract_Classes/Register_Model_Abstract.java</url>
+          <line>33</line>
+          <properties field="absFilePath" class="Model.Abstract_Classes.Register_Model_Abstract" />
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="6" />
+      <option name="time" value="7" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -590,11 +549,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../../../EasyPross/mathieu20/Model_Controller/src/Model/Normal_Classes/Logic/Gate/Or_Model.java" />
-    <entry file="file://$PROJECT_DIR$/../../../EasyPross/mathieu20/Model_Controller/src/Model/Normal_Classes/Logic/Unit/Alu_Model.java" />
-    <entry file="file://$PROJECT_DIR$/../../../EasyPross/mathieu20/Model_Controller/src/Model/Normal_Classes/Logic/Unit/Demux_Model.java" />
-    <entry file="file://$PROJECT_DIR$/../../../EasyPross/mathieu20/Model_Controller/src/Model/Normal_Classes/Logic/Unit/Mux_Model.java" />
-    <entry file="file://$PROJECT_DIR$/../../../EasyPross/mathieu20/Model_Controller/src/Model/Normal_Classes/Probe/Probe_End_Model.java" />
     <entry file="file://$PROJECT_DIR$/../../../EasyPross/mathieu20/Model_Controller/src/Model/Normal_Classes/Probe/Probe_Start_Model.java" />
     <entry file="file://$PROJECT_DIR$/../../../EasyPross/mathieu20/Model_Controller/src/Model/Normal_Classes/Register/Data_Model.java" />
     <entry file="file://$PROJECT_DIR$/../../../EasyPross/mathieu20/Model_Controller/src/Model/Normal_Classes/Register/Prog_Model.java" />
@@ -686,13 +640,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitinore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///usr/lib/jvm/default-runtime/lib/src.zip!/java.base/java/util/Map.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="182">
@@ -735,16 +682,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/XML_Manager_Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="192" column="63" lean-forward="false" selection-start-line="192" selection-start-column="63" selection-end-line="192" selection-end-column="63" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Model/Normal_Classes/Probe/Probe_Start_Model.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="386">
@@ -761,14 +698,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/Abstract_Classes/Global_Defines_Abstract.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="12" column="32" lean-forward="true" selection-start-line="12" selection-start-column="32" selection-end-line="12" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/Graph_Manager_Controller.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="234">
@@ -781,14 +710,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="232">
           <caret line="56" column="19" lean-forward="false" selection-start-line="56" selection-start-column="19" selection-end-line="56" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/Main_Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="3" lean-forward="true" selection-start-line="24" selection-start-column="3" selection-end-line="24" selection-end-column="3" />
           <folding />
         </state>
       </provider>
@@ -849,16 +770,16 @@
         <state relative-caret-position="251">
           <caret line="83" column="40" lean-forward="true" selection-start-line="83" selection-start-column="40" selection-end-line="83" selection-end-column="40" />
           <folding>
-            <element signature="e#3304#3305#0" expanded="true" />
-            <element signature="e#3366#3367#0" expanded="true" />
-            <element signature="e#3416#3417#0" expanded="true" />
-            <element signature="e#3478#3479#0" expanded="true" />
-            <element signature="e#3528#3529#0" expanded="true" />
-            <element signature="e#3590#3591#0" expanded="true" />
-            <element signature="e#3640#3641#0" expanded="true" />
-            <element signature="e#3702#3703#0" expanded="true" />
-            <element signature="e#3751#3752#0" expanded="true" />
-            <element signature="e#3813#3814#0" expanded="true" />
+            <element signature="e#3304#3305#0" expanded="false" />
+            <element signature="e#3366#3367#0" expanded="false" />
+            <element signature="e#3416#3417#0" expanded="false" />
+            <element signature="e#3478#3479#0" expanded="false" />
+            <element signature="e#3528#3529#0" expanded="false" />
+            <element signature="e#3590#3591#0" expanded="false" />
+            <element signature="e#3640#3641#0" expanded="false" />
+            <element signature="e#3702#3703#0" expanded="false" />
+            <element signature="e#3751#3752#0" expanded="false" />
+            <element signature="e#3813#3814#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -871,49 +792,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/Abstract_Classes/Register_Model_Abstract.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="344">
-          <caret line="77" column="7" lean-forward="true" selection-start-line="77" selection-start-column="7" selection-end-line="77" selection-end-column="7" />
-          <folding>
-            <element signature="e#2665#2666#0" expanded="true" />
-            <element signature="e#2696#2697#0" expanded="true" />
-            <element signature="e#2730#2731#0" expanded="true" />
-            <element signature="e#2769#2770#0" expanded="true" />
-            <element signature="e#2838#2839#0" expanded="true" />
-            <element signature="e#2872#2873#0" expanded="true" />
-            <element signature="e#2959#2960#0" expanded="true" />
-            <element signature="e#2999#3000#0" expanded="true" />
-            <element signature="e#13938#13939#0" expanded="true" />
-            <element signature="e#13976#13977#0" expanded="true" />
-            <element signature="e#14007#14008#0" expanded="true" />
-            <element signature="e#14044#14045#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="54">
-            <caret line="3" column="44" lean-forward="true" selection-start-line="3" selection-start-column="44" selection-end-line="3" selection-end-column="44" />
-            <folding />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/Normal_Classes/Register/Data_Model.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="337">
-          <caret line="60" column="8" lean-forward="false" selection-start-line="60" selection-start-column="8" selection-end-line="60" selection-end-column="8" />
-          <folding>
-            <element signature="e#2923#2924#0" expanded="true" />
-            <element signature="e#3000#3001#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Model/Normal_Classes/Register/Pc_Model.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-155">
@@ -922,22 +800,123 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test_2.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-          <folding>
-            <element signature="n#probe#0;n#graph#0;n#!!top" expanded="false" />
-            <element signature="n#probe#3;n#graph#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/save.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
           <caret line="11" column="14" lean-forward="true" selection-start-line="11" selection-start-column="14" selection-end-line="11" selection-end-column="14" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manifest.mf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitinore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="12" lean-forward="true" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/Normal_Classes/Logic/Unit/Decoder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="24" column="16" lean-forward="false" selection-start-line="24" selection-start-column="16" selection-end-line="24" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/Abstract_Classes/Global_Defines_Abstract.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="10" column="17" lean-forward="false" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_2.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="11" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/XML_Manager_Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="310">
+          <caret line="63" column="87" lean-forward="false" selection-start-line="63" selection-start-column="68" selection-end-line="63" selection-end-column="87" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/save_testdecode.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="79" column="22" lean-forward="true" selection-start-line="79" selection-start-column="22" selection-end-line="79" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/Main_Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="407">
+            <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/save_datamemory.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="666">
+          <caret line="37" column="9" lean-forward="true" selection-start-line="37" selection-start-column="9" selection-end-line="37" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/Normal_Classes/Register/Data_Model.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="490">
+          <caret line="60" column="91" lean-forward="true" selection-start-line="60" selection-start-column="91" selection-end-line="60" selection-end-column="91" />
+          <folding>
+            <element signature="e#3198#3199#0" expanded="true" />
+            <element signature="e#3275#3276#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_datamemory.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="9" column="23" lean-forward="true" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/Abstract_Classes/Register_Model_Abstract.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="178" column="47" lean-forward="false" selection-start-line="178" selection-start-column="47" selection-end-line="178" selection-end-column="47" />
+          <folding>
+            <element signature="method#transfertData#0;class#Register_Model_Abstract#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
