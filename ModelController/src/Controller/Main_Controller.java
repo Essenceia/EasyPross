@@ -16,7 +16,7 @@ public class Main_Controller {
         //XML_Manager_Controller manager = new XML_Manager_Controller();
        // manager.openFile("testxml.xml");
         Graph_Manager_Controller Graph = new Graph_Manager_Controller();
-        Graph.load_new_module("testdecoder.xml");
+        Graph.load_new_module("testmux.xml");
         Graph.tick(); //appelle de tick avec la fonction action de not
         
 }
