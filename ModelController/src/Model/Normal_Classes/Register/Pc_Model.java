@@ -61,7 +61,7 @@ public class Pc_Model extends Register_Model_Abstract {
     @Override
     public void action() {
         //ressources
-        Helper_Controller.debugMessage2("Pc_Model::action called");
+        Helper_Controller.debugMessage0("Pc_Model::action called");
         String debugMessag ="Pc_Model::Pc_Modelthis.input " ;
         for ( Wire_Model w_in : this.input){
             debugMessag+=" ["+w_in.getId()+"] ";
@@ -83,12 +83,21 @@ public class Pc_Model extends Register_Model_Abstract {
 
             //if read
             if (read_commande != 0) {
-                Helper_Controller.putWireDataInBuffer(this.input.get(IN_DATA_WIRE), this.dataIn);
+                //Helper_Controller.putWireDataInBuffer(this.input.get(IN_DATA_WIRE), this.dataIn);
+                this.dataIn=this.input.get(IN_DATA_WIRE).getData();
                 //check if diffrent
                 if (this.dataIn.equals(readFile(PC_VALUE_FILE_INDEX)) == false) {
                     //write change to file
-
+                    Helper_Controller.debugMessage3("Pc_Model::action value is not equal between internal buffer and wire in  going to be rewriten");
+                    debugMessag ="Pc_Model::action on dataIn("+this.dataIn.length+")";
+                    for(boolean debugBool : this.dataIn){
+                        debugMessag+= debugBool+" ";
+                    }
+                    Helper_Controller.debugMessage3(debugMessag);
                     writeToFile(PC_VALUE_FILE_INDEX, this.dataIn);
+                }else{
+                    Helper_Controller.debugMessage3("Pc_Model::action value is equal between internal buffer and wire no need to be rewriten");
+
                 }
             }
 
@@ -97,11 +106,12 @@ public class Pc_Model extends Register_Model_Abstract {
                 //write out data to the exit wire
                 this.output.get(OUT_DATA_WIRE).setActive(true);
                 this.dataOut = readFile(PC_VALUE_FILE_INDEX);
-                Helper_Controller.putWireDataInBuffer(this.output, this.dataOut);
+                Helper_Controller.putBufferDataInWire(this.output.get(OUT_DATA_WIRE), this.dataOut);
+                //Helper_Controller.putWireDataInBuffer(this.output, this.dataOut);
             }
         }
 
-        Helper_Controller.debugMessage2("Pc_Model::action finised read commande "+read_commande+"" +
+        Helper_Controller.debugMessage0("Pc_Model::action finised read commande "+read_commande+"" +
                 "write commande "+write_commande);
     }
 
@@ -110,7 +120,7 @@ public class Pc_Model extends Register_Model_Abstract {
         Arrays.fill(this.dataIn,false);
         Arrays.fill(this.dataOut,false);
         writeToFile(PC_VALUE_FILE_INDEX,this.dataIn);
-        System.out.println("Pc_Model:: data has been reset to zero");
+        Helper_Controller.debugMessage0("Pc_Model:: data has been reset to zero");
     }
 
 }

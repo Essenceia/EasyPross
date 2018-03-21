@@ -37,7 +37,7 @@ public abstract class Register_Model_Abstract extends Node_Model_Abstract implem
     protected int blockSize;
     protected int blockCount;
     protected List<String> bufferFile;
-    protected boolean update_file_on_change = false;
+    protected boolean update_file_on_change = true;
     protected Path path_to_file;
     private long last_modified_t = 0;
     protected File our_file = null;
@@ -71,8 +71,6 @@ public abstract class Register_Model_Abstract extends Node_Model_Abstract implem
         path_to_file = Paths.get(fpath);
         if (!our_file.isFile()) {
             createFile();
-        }else {
-            initDefault(fpath); //todo remove for testing only
         }
         createTmpFile();
     }
@@ -278,19 +276,21 @@ public abstract class Register_Model_Abstract extends Node_Model_Abstract implem
         String nv_string = "";
         boolean to_write[] = new boolean[this.blockSize];
         if (input.length != this.blockSize) {
-            System.err.println("Error : unexpected lenght of sting, block "
+            Helper_Controller.errorMessage("Error : unexpected lenght of sting, block "
                     + "size should be " + this.blockSize + " but length of boolean gotten"
-                    + "is only " + input.length);
+                    + " is " + input.length);
             Arrays.fill(input, false);
         } else {
             to_write = input.clone();
         }
         for (boolean val : to_write) {
+            if(i!= 0)nv_string+=".";
             if (!val) {
-                nv_string = "0.";
+                nv_string += "0";
             } else {
-                nv_string = "1.";
+                nv_string += "1";
             }
+            i++;
         }
         return nv_string;
     }
@@ -300,6 +300,7 @@ public abstract class Register_Model_Abstract extends Node_Model_Abstract implem
      * @return
      */
     protected boolean[] readFile(int line_index) {
+        Helper_Controller.debugMessage3("Register_Model_Abstract::readFile read line at index "+line_index);
         boolean return_value[] = new boolean[this.blockSize];
         String line;
         line_index = checkLineValide(line_index);
@@ -311,6 +312,11 @@ public abstract class Register_Model_Abstract extends Node_Model_Abstract implem
             return_value = StringToBool(line);
 
         }
+        String debugMessag = "Register_Model_Abstract::readFile return boolean values : ";
+        for(boolean debugBool : return_value){
+            debugMessag += debugBool+" ";
+        }
+        Helper_Controller.debugMessage3(debugMessag);
         return return_value;
     }
 
@@ -319,12 +325,14 @@ public abstract class Register_Model_Abstract extends Node_Model_Abstract implem
      * @param data
      */
     private void writeToFileAccordingToBuffer(String fdest, List<String> data) {
+        Helper_Controller.debugMessage0("Register_Model_Abstract::writeToFileAccordingToBuffer startint write");
         Writer writer;
         try {
             writer = new BufferedWriter(new OutputStreamWriter(
                     new FileOutputStream(fdest), "utf-8"));
             for (String towrite : data) {
                 writer.write(towrite);
+                Helper_Controller.debugMessage0("writing :: "+towrite);
             }
             try {
                 writer.close();
@@ -336,9 +344,12 @@ public abstract class Register_Model_Abstract extends Node_Model_Abstract implem
             // if any error occurs
             ex.printStackTrace();
         }
+        Helper_Controller.debugMessage0("Register_Model_Abstract::writeToFileAccordingToBuffer finished");
+
     }
 
     protected void writeToFile(int line_index,boolean[] value){
+        Helper_Controller.debugMessage0("Register_Model_Abstract::writeToFile called");
         int return_value = 0;
         String line;
         line = boolToString(value);
@@ -351,6 +362,7 @@ public abstract class Register_Model_Abstract extends Node_Model_Abstract implem
             //check if it is diffrent
             if(!this.bufferFile.get(line_index).equals(line)) {
                 //we found a diffrence so we update our buffer value
+                Helper_Controller.debugMessage0("Register_Model_Abstract::writeToFile update buffer value line "+line );
                 this.bufferFile.set(line_index, line);
                 //we write the diffrence to our file
                 if(update_file_on_change){
@@ -360,18 +372,19 @@ public abstract class Register_Model_Abstract extends Node_Model_Abstract implem
 
             }
         }
+        Helper_Controller.debugMessage2("Register_Model_Abstract::writeToFile end");
+
     }
 
     /**
      *
      */
     protected void reloadFileBuffer() {
-        Helper_Controller.debugMessage2("Register_Model_Abstract::reloadFileBuffer called");
+        Helper_Controller.debugMessage0("Register_Model_Abstract::reloadFileBuffer called");
         if (this.last_modified_t != this.our_file.lastModified()) {
             try {
                 Helper_Controller.debugMessage2("Register_Model_Abstract::reloadFileBuffer modifing internal values");
-                this.last_modified_t = this.our_file.lastModified();
-                String fname = this.absFilePath + this.fileName;
+                this.last_modified_t = this.our_file.lastModified(); //unpading saved timestamp on file
                 bufferFile = new ArrayList<>(Files.readAllLines(this.path_to_file, StandardCharsets.UTF_8));
 
             } catch (IOException e) {
@@ -379,6 +392,8 @@ public abstract class Register_Model_Abstract extends Node_Model_Abstract implem
                 e.printStackTrace();
             }
         }
+        Helper_Controller.debugMessage0("Register_Model_Abstract::reloadFileBuffer finised");
+
     }
 
     /**

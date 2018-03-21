@@ -48,12 +48,14 @@ public class Helper_Controller implements Interface.Helper_Interface {
 
     public static void  putWireDataInBuffer(Wire_Model data, boolean[] buffer) {
         int i = 0;
+        String debugMessag = "Helper_Controller::putWireDataInBuffer data("+data.getSizeBus()+")";
         boolean wireBufferValues[] = new boolean[data.getSizeBus()];
-        Helper_Controller.debugMessage("Helper_Controller::putWireDataInBuffer");
             wireBufferValues = data.getData();
             for (int j = 0; j < data.getSizeBus(); j++) {
                 buffer[i++] = wireBufferValues[j];
+                debugMessag+= buffer[j]+" ";
             }
+            Helper_Controller.debugMessage3(debugMessag);
 
     }
 
@@ -80,7 +82,7 @@ public class Helper_Controller implements Interface.Helper_Interface {
         for (Wire_Model w : data) {
             for (int i = 0; i < w.getSizeBus(); i++) {
                 if (g < buffer.length) {
-                    w.putDataAtIndex(buffer[g], g);
+                    w.putDataAtIndex(buffer[g], i);
                     g++;
                 }
             }
@@ -118,6 +120,9 @@ public class Helper_Controller implements Interface.Helper_Interface {
     }
     public static void debugMessage3(String msg){
         System.out.println("\033[0;34m"+msg+"\033[0m");
+    }
+    public static void debugMessage0(String msg){
+        System.out.println("\033[0;36m"+msg+"\033[0m");
     }
     public static void errorMessage(String msg){
         System.out.println("\033[0;31m"+msg+"\033[0m");
