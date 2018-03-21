@@ -47,19 +47,19 @@ public  class Decoder extends Logic_Model_Abstract {
         {
            for (int i =3; i<6;i++)
             {
-                adopA[i]=tab[i];
+                adopA[i-3]=tab[i];
             }
            for (int i =6; i<9;i++)
             {
-                adopB[i]=tab[i];
+                adopB[i-6]=tab[i];
             }
            for (int i =9; i<12;i++)
             {
-                ctrlALU[i]=tab[i];
+                ctrlALU[i-9]=tab[i];
             }
            for (int i =0; i<8;i++)
             {
-                cst[i]=tab[i];
+                cst[i]= false;
             }
            ctrlDM_RW[0] = opcode[0]; // si 1 alors vers reg si 0 vers pc
            ctrlDM_AF[0] = true; // pour active sinon false
@@ -70,7 +70,7 @@ public  class Decoder extends Logic_Model_Abstract {
         {
            for (int i =6; i<14;i++)
             {
-                cst[i]=tab[i];
+                cst[i-6]=tab[i];
             }
            for (int i =0; i<3;i++)
             {
@@ -93,11 +93,11 @@ public  class Decoder extends Logic_Model_Abstract {
         {
            for (int i =3; i<6;i++)
             {
-                ctrlALU[i]=tab[i];
+                ctrlALU[i-3]=tab[i];
             }
            for (int i =6; i<14;i++)
             {
-                cst[i]=tab[i];
+                cst[i-6]=tab[i];
             }
            for (int i =0; i<3;i++)
             {
@@ -116,7 +116,7 @@ public  class Decoder extends Logic_Model_Abstract {
         {
            for (int i =6; i<14;i++)
             {
-                cst[i]=tab[i];
+                cst[i-6]=tab[i];
             }
            for (int i =0; i<3;i++)
             {
@@ -139,11 +139,11 @@ public  class Decoder extends Logic_Model_Abstract {
         {
            for (int i =3; i<6;i++)
             {
-                adopA[i]=tab[i];
+                adopA[i-3]=tab[i];
             }
            for (int i =6; i<14;i++)
             {
-                cst[i]=tab[i];
+                cst[i-6]=tab[i];
             }
            for (int i =0; i<3;i++)
             {
@@ -157,18 +157,18 @@ public  class Decoder extends Logic_Model_Abstract {
            ctrlDM_AF[0] = true; // pour active sinon false
         }
         this.dataOut = opcode;
-        Helper_Controller.putWireDataInBuffer(this.output.get(OUT_OPCODE_DECODER_WIRE), dataOut);
+        Helper_Controller.putBufferDataInWire(this.output.get(OUT_OPCODE_DECODER_WIRE), dataOut);
         this.dataOut = adopA;
-        Helper_Controller.putWireDataInBuffer(this.output.get(OUT_OPA_DECODER_WIRE), dataOut);
+        Helper_Controller.putBufferDataInWire(this.output.get(OUT_OPA_DECODER_WIRE), dataOut);
         this.dataOut = adopB;
-        Helper_Controller.putWireDataInBuffer(this.output.get(OUT_OPB_DECODER_WIRE), dataOut);
+        Helper_Controller.putBufferDataInWire(this.output.get(OUT_OPB_DECODER_WIRE), dataOut);
         this.dataOut = cst;
-        Helper_Controller.putWireDataInBuffer(this.output.get(OUT_CST_DECODER_WIRE), dataOut);
+        Helper_Controller.putBufferDataInWire(this.output.get(OUT_CST_DECODER_WIRE), dataOut);
         this.dataOut = ctrlALU;
-        Helper_Controller.putWireDataInBuffer(this.output.get(OUT_CTRLALU_DECODER_WIRE), dataOut);
+        Helper_Controller.putBufferDataInWire(this.output.get(OUT_CTRLALU_DECODER_WIRE), dataOut);
         this.dataOut = ctrlDM_RW;
-        Helper_Controller.putWireDataInBuffer(this.output.get(OUT_CTRLDM_RW_DECODER_WIRE), dataOut);
+        Helper_Controller.putBufferDataInWire(this.output.get(OUT_CTRLDM_RW_DECODER_WIRE), dataOut);
         this.dataOut = ctrlDM_AF;
-        Helper_Controller.putWireDataInBuffer(this.output.get(OUT_CTRLDM_AF_DECODER_WIRE), dataOut);
+        Helper_Controller.putBufferDataInWire(this.output.get(OUT_CTRLDM_AF_DECODER_WIRE), dataOut);
     }
 }
