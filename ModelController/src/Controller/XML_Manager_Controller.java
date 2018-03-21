@@ -250,7 +250,7 @@ public class XML_Manager_Controller {
                     newNode = new Demux_Model(id,"", wireIn, wireOut);
                     break;
                 case Global_Defines_Abstract.TYPE_LOGIC_MUX:
-                    //controlBitNum = myGetAttribute(current, ATTRIBUTE_CONTROL_BIT_SIZE);
+                    controlBitNum = myGetAttribute(current, ATTRIBUTE_CONTROL_BIT_SIZE);
                     newNode = new Mux_Model(id,"", wireIn, wireOut);
                     break;
                 case Global_Defines_Abstract.TYPE_REG_DATA:
