@@ -1,13 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controller;
 
 /**
  *
- * @author Utilisateur
+ * @author rick from rick and morty ^w^
  */
 public class Main_Controller {
 
@@ -16,7 +11,9 @@ public class Main_Controller {
         //XML_Manager_Controller manager = new XML_Manager_Controller();
        // manager.openFile("testxml.xml");
         Graph_Manager_Controller Graph = new Graph_Manager_Controller();
+
         Graph.load_new_module("test_datamemory.xml");
+
         Graph.tick(); //appelle de tick avec la fonction action de not
         Graph.save_module("save_datamemory.xml");
 }
