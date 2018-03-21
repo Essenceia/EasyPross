@@ -73,17 +73,13 @@ public class Pc_Model extends Register_Model_Abstract {
         Helper_Controller.debugMessage(debugMessag);
         int read_commande = boolArrayToInt(this.input.get(IN_COMMANDE_READ_WIRE).getData());
         int write_commande = boolArrayToInt(this.input.get(IN_COMMANDE_WRITE_WIRE).getData());
-        boolean new_data[] ;
-
-        //todo implement
         //blindage
         this.output.get(OUT_DATA_WIRE).setActive(false);
         if (read_commande + write_commande > PC_CODE_SLEEP) {
             //set output wire as active
 
-            //if read
+            //read from wire and write to node
             if (read_commande != 0) {
-                //Helper_Controller.putWireDataInBuffer(this.input.get(IN_DATA_WIRE), this.dataIn);
                 this.dataIn=this.input.get(IN_DATA_WIRE).getData();
                 //check if diffrent
                 if (this.dataIn.equals(readFile(PC_VALUE_FILE_INDEX)) == false) {
