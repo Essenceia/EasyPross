@@ -270,21 +270,6 @@ public abstract class Register_Model_Abstract extends Node_Model_Abstract implem
     }
 
     /**
-     * @param nmninw
-     * @param nmboutw
-     * @param expected_in_wire
-     * @param expected_out_wire
-     */
-    protected void checkWireNumber(int nmninw, int nmboutw, int expected_in_wire, int expected_out_wire) {
-        if (nmninw != expected_in_wire) {
-            System.err.println("Error on id[" + this.id + "] unexpected number of in wires, " + expected_in_wire + " expected and got " + nmninw);
-        }
-        if (nmboutw != expected_out_wire) {
-            System.err.println("Error on id[" + this.id + "] unexpected number of out wires, " + expected_out_wire + " expected and got " + nmninw);
-        }
-    }
-
-    /**
      * @param input
      * @return
      */
