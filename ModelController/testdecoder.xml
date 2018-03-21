@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graph>
+    <wire id="1" type="1" size="14" desc="PM to decoder">
+        <io>0</io>
+        <io>0</io>
+        <io>1</io>
+        <io>1</io>
+        <io>0</io>
+        <io>1</io>
+        <io>0</io>
+        <io>1</io>
+        <io>1</io>
+        <io>1</io>
+        <io>1</io>
+        <io>0</io>
+        <io>1</io>
+        <io>1</io>
+    </wire>
+    <wire id="2" type="1" size="3" desc="Opcode">
+    </wire>
+    <wire id="3" type="1" size="3" desc="OpA">
+    </wire>
+    <wire id="4" type="1" size="3" desc="OpB">
+    </wire>
+    <wire id="5" type="1" size="3" desc="CTRLALU">
+    </wire>
+    <wire id="6" type="1" size="1" desc="CTRLDM_AF">
+    </wire>
+    <wire id="7" type="1" size="1" desc="CTRLDM_RW">
+    </wire>
+    <wire id="8" type="1" size="8" desc="CST">
+    </wire>
+    <probe id="9" type="2" desc="control probe PM">
+        <wire id="1" />
+    </probe>
+    <probe id="10" type="3" desc="opcode probe end">
+        <wire id="2" />
+    </probe>
+    <probe id="11" type="3" desc="opa probe end">
+        <wire id="3" />
+    </probe>
+    <probe id="12" type="3" desc="opb probe end">
+        <wire id="4" />
+    </probe>
+    <probe id="13" type="3" desc="ctlralu probe end">
+        <wire id="5" />
+    </probe>
+    <probe id="14" type="3" desc="CTRLDM_AF probe end">
+        <wire id="6" />
+    </probe>
+    <probe id="15" type="3" desc="CTRLDM_RW probe end">
+        <wire id="7" />
+    </probe>
+    <probe id="16" type="3" desc="CST probe end">
+        <wire id="8" />
+    </probe>
+    <node id="17" type="13" desc="decoder">
+        <wire_in id="1" desc="read commande"/>
+        <wire_out id="2" desc="opcode data"/>
+        <wire_out id="3" desc="opa data"/>
+        <wire_out id="4" desc="opb data"/>
+        <wire_out id="5" desc="ctlralu data"/>
+        <wire_out id="6" desc="CTRLDM_AF data"/>
+        <wire_out id="7" desc="CTRLDM_RW data"/>
+        <wire_out id="8" desc="CST data"/>
+    </node>
+</graph>

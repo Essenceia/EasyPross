@@ -10,6 +10,7 @@ import Model.Normal_Classes.Logic.Gate.And_Model;
 import Model.Normal_Classes.Logic.Gate.Not_Model;
 import Model.Normal_Classes.Logic.Gate.Or_Model;
 import Model.Normal_Classes.Logic.Unit.Alu_Model;
+import Model.Normal_Classes.Logic.Unit.Decoder;
 import Model.Normal_Classes.Logic.Unit.Demux_Model;
 import Model.Normal_Classes.Logic.Unit.Mux_Model;
 import Model.Normal_Classes.Probe.Probe_End_Model;
@@ -272,6 +273,9 @@ public class XML_Manager_Controller {
                     blockSize = myGetAttribute(current, ATTRIBUTE_MEMORY_BLOCK_SIZE);
                     numBlock = myGetAttribute(current, ATTRIBUTE_NUMBER_MEMORY_BLOCKS);
                     newNode = new Prog_Model(id, wireIn, wireOut, path, fname, blockSize,numBlock);
+                    break;
+                case Global_Defines_Abstract.TYPE_LOGIC_DECODER:
+                    newNode = new Decoder(id,"" ,wireIn, wireOut);
                     break;
                 default:
                     System.out.println("Error , unknown probe type : " + type.toString());
