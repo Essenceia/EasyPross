@@ -27,7 +27,7 @@ public class Probe_Start_Model extends Probe_Model_Abstract {
     @Override
     public final void resetValues() {
         super.resetValues();
-        Helper_Controller.putBufferDataInWire(wire, data);
+       // Helper_Controller.putBufferDataInWire(wire, data);! don't want to flush values on wires
     }
 
     /**

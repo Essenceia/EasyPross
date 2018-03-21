@@ -34,21 +34,27 @@ public class Helper_Controller implements Interface.Helper_Interface {
      */
     public static boolean[] putWireDataInBuffer(Vector<Wire_Model> data, boolean[] buffer) {
         int i = 0;
-        String debugString = new String();
-        System.out.println("We put wire the data in buffer");
+        boolean wireBufferValues[];
+        Helper_Controller.debugMessage("Helper_Controller::putWireDataInBuffer");
         for (Wire_Model tmp : data) {
+            wireBufferValues = tmp.getData();
             for (int j = 0; j < tmp.getSizeBus(); j++) {
-                debugString += tmp.getData()[j];
-                buffer[i++] = tmp.getData()[j];
+                buffer[i++] = wireBufferValues[j];
             }
         }
-        System.out.println(debugString);
-        debugString = "";
-        for (boolean aBuffer : buffer) {
-            debugString += aBuffer;
-        }
-        System.out.println(debugString);
+
         return buffer;
+    }
+
+    public static void  putWireDataInBuffer(Wire_Model data, boolean[] buffer) {
+        int i = 0;
+        boolean wireBufferValues[] = new boolean[data.getSizeBus()];
+        Helper_Controller.debugMessage("Helper_Controller::putWireDataInBuffer");
+            wireBufferValues = data.getData();
+            for (int j = 0; j < data.getSizeBus(); j++) {
+                buffer[i++] = wireBufferValues[j];
+            }
+
     }
 
     /**
@@ -80,6 +86,16 @@ public class Helper_Controller implements Interface.Helper_Interface {
             }
         }
     }
+    public static void putBufferDataInWire(Wire_Model data, boolean[] buffer) {
+        int g = 0;
+            for (int i = 0; i < data.getSizeBus(); i++) {
+                if (g < buffer.length) {
+                    data.putDataAtIndex(buffer[g], g);
+                    g++;
+                }
+
+        }
+    }
 
     /**
      *
@@ -96,6 +112,12 @@ public class Helper_Controller implements Interface.Helper_Interface {
     }
     public static void debugMessage(String msg){
         System.out.println("\033[0;32m"+msg+"\033[0m");
+    }
+    public static void debugMessage2(String msg){
+        System.out.println("\033[0;33m"+msg+"\033[0m");
+    }
+    public static void debugMessage3(String msg){
+        System.out.println("\033[0;34m"+msg+"\033[0m");
     }
     public static void errorMessage(String msg){
         System.out.println("\033[0;31m"+msg+"\033[0m");

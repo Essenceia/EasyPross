@@ -121,11 +121,14 @@ public abstract class Node_Model_Abstract extends Object_Model_Abstract implemen
      */
     protected int boolArrayToInt(boolean[] array) {
         int retval = 0;
+        Helper_Controller.debugMessage3("Helper_Controller::boolArrayInt start" );
         for (int i = 0; i < array.length; i++) {
             if (array[i]) {
+                Helper_Controller.debugMessage2("Helper_Controller::boolArrayInt true on index "+i);
                 retval += Math.pow(2, i);
             }
         }
+        Helper_Controller.debugMessage3("Helper_Controller::boolArrayInt value counted "+retval);
         return retval;
     }
 

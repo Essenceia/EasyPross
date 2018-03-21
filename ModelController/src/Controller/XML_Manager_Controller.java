@@ -1,5 +1,5 @@
 package Controller;
-//todo add pc support
+//todo add size on wire for save
 import Model.Abstract_Classes.Global_Defines_Abstract;
 import Model.Abstract_Classes.Logic_Model_Abstract;
 import Model.Abstract_Classes.Node_Model_Abstract;
@@ -16,9 +16,11 @@ import Model.Normal_Classes.Probe.Probe_End_Model;
 import Model.Normal_Classes.Probe.Probe_Start_Model;
 import Model.Normal_Classes.Register.Data_Model;
 import Model.Normal_Classes.Register.Pc_Model;
+import Model.Normal_Classes.Register.Prog_Model;
 import Model.Normal_Classes.Wire.Wire_Model;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -33,6 +35,8 @@ import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
 import org.jdom2.Element;
 
+import javax.print.Doc;
+
 
 public class XML_Manager_Controller {
 
@@ -41,6 +45,7 @@ public class XML_Manager_Controller {
     private List wire;
     private List node;
     private List probe;
+
     protected static final String LABEL_ROOT = "graph";
     protected static final String LABEL_NODE = "node";
     protected static final String LABEL_WIRE = "wire";
@@ -166,7 +171,8 @@ public class XML_Manager_Controller {
     }
 
     /**
-     *
+     *XMLOutputter xmlOutputter = new XMLOutputter(Format.getPrettyFormat());
+     xmlOutputter.output(document, System.out);
      * @param GSProbe
      * @param GEProbe
      * @param GAretes
@@ -218,8 +224,11 @@ public class XML_Manager_Controller {
             type = myGetAttribute(current, ATTRIBUTE_TYPE);
             childList = current.getChildren(LABEL_WIRE_IN);
             wireIn = listWires(childList, GAretes);
+            System.out.println("Child in number of items "+wireIn.size());
             childList = current.getChildren(LABEL_WIRE_OUT);
             wireOut = listWires(childList, GAretes);
+            System.out.println("Child in number of items "+wireOut.size());
+
             newNode = null;
             switch (type) {
                 case Global_Defines_Abstract.TYPE_LOGIC_ALU:
@@ -254,6 +263,7 @@ public class XML_Manager_Controller {
                     path = getTextAttributes(current, ATTRIBUTE_FILE_PATH);
                     fname = getTextAttributes(current, ATTRIBUTE_FILE_NAME);
                     blockSize = myGetAttribute(current, ATTRIBUTE_MEMORY_BLOCK_SIZE);
+                    Helper_Controller.debugMessage("Creating pc node");
                     newNode = new Pc_Model(id, wireIn, wireOut, path, fname, blockSize);
                     break;
                 case Global_Defines_Abstract.TYPE_REG_TEXT:
@@ -261,7 +271,7 @@ public class XML_Manager_Controller {
                     fname = getTextAttributes(current, ATTRIBUTE_FILE_NAME);
                     blockSize = myGetAttribute(current, ATTRIBUTE_MEMORY_BLOCK_SIZE);
                     numBlock = myGetAttribute(current, ATTRIBUTE_NUMBER_MEMORY_BLOCKS);
-                    newNode = new Pc_Model(id, wireIn, wireOut, path, fname, blockSize);
+                    newNode = new Prog_Model(id, wireIn, wireOut, path, fname, blockSize,numBlock);
                     break;
                 default:
                     System.out.println("Error , unknown probe type : " + type.toString());
@@ -319,7 +329,8 @@ public class XML_Manager_Controller {
         Attribute attribute;
         String newString;
         attribute = object.getAttribute(attributeName);
-        newString = attribute.toString();
+        newString = attribute.getValue();
+        System.out.println("getTextAttributes:: attribute:"+attributeName+" value:"+newString);
         return newString;
     }
 
@@ -338,12 +349,15 @@ public class XML_Manager_Controller {
         for (int index = 0; index < size; index++) {
             if (i.hasNext()) {
                 nextElement = (Element) i.next();
-                bVal = (nextElement.getValue() == "1");//set to true or false
+                bVal = (nextElement.getValue().contains("1"));//set to true or false
+                Helper_Controller.debugMessage("IO value found "+bVal);
+
             } else {
                 bVal = false;
             }
             retVector[index] = bVal;
         }
+
         return retVector;
     }
 
@@ -387,6 +401,7 @@ public class XML_Manager_Controller {
 
             set_basic_attributes(tempWire, tempElement);
             add_io_ellements(tempWire, tempElement);
+            tempElement.setAttribute(ATTRIBUTE_SIZE,String.valueOf(tempWire.getSizeBus()));
             root.addContent(tempElement);
         }
     }
@@ -416,6 +431,7 @@ public class XML_Manager_Controller {
             }
             set_basic_attributes(probe, tempElement);
             //set connected wires
+            Helper_Controller.debugMessage("Listing Probe connected wire");
             connectedWire(LABEL_WIRE, probe.getWire(), tempElement);
             root.addContent(tempElement);
         }
@@ -427,7 +443,7 @@ public class XML_Manager_Controller {
      * @param GNode
      */
     private void saveNode(Element root, HashMap<Integer, Node_Model_Abstract> GNode) {
-        Element tempElement;
+        Element tempElement, wireInElement, wireOutElement;
         Node_Model_Abstract node;
         Set entrySet = GNode.entrySet();
         Map.Entry ellem;
@@ -437,7 +453,9 @@ public class XML_Manager_Controller {
             ellem = (Map.Entry) it.next();
             node = (Node_Model_Abstract) ellem.getValue();
             set_basic_attributes((Object_Model_Abstract) node, tempElement);
+            System.out.println("Listing wires in size "+node.getInput().size());
             connectedWire(LABEL_WIRE_IN, node.getInput(), tempElement);
+            System.out.println("Listing wires out"+node.getOutput().size());
             connectedWire(LABEL_WIRE_OUT, node.getOutput(), tempElement);
             switch (node.getType()) {
                 case Global_Defines_Abstract.TYPE_LOGIC_ALU:
@@ -449,6 +467,8 @@ public class XML_Manager_Controller {
                 case Global_Defines_Abstract.TYPE_REG_DATA:
                 case Global_Defines_Abstract.TYPE_REG_TEXT:
                     Register_Model_Abstract register = (Register_Model_Abstract) node;
+                    System.out.println("file path "+register.getFilePath());
+                    System.out.println("file name "+register.getFileName());
                     tempElement.setAttribute(ATTRIBUTE_FILE_PATH, register.getFilePath());
                     tempElement.setAttribute(ATTRIBUTE_FILE_NAME, register.getFileName());
                     tempElement.setAttribute(ATTRIBUTE_MEMORY_BLOCK_SIZE, String.valueOf(register.getBlockCount()));
@@ -469,7 +489,20 @@ public class XML_Manager_Controller {
         for (Wire_Model wire : connected) {
             tmpelem = new Element(lable);
             tmpelem.setAttribute(ATTRIBUTE_ID, String.valueOf(wire.getId()));
-            motherelem.setContent(tmpelem);
+            //add content to mother node
+            motherelem.addContent(tmpelem);
+            /*debug
+            Element testroot = new Element("debug");
+            Document nvdoc = new Document(testroot);
+            testroot.setContent(tmpelem);
+            XMLOutputter xmlOutputter = new XMLOutputter(Format.getPrettyFormat());
+            try {
+                xmlOutputter.output(nvdoc, System.out);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            System.out.println("found connected wire["+wire.getId()+"]"+" type "+lable+" size "+wire.getSizeBus());
+        */
         }
     }
 

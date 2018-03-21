@@ -49,13 +49,13 @@ public class Graph_Manager_Controller implements Interface.Graph_Manager_Interfa
 
         //Debug read all nodes
         System.out.println("Read of our graph objects : ");
-        System.out.println("Wires");
+        Helper_Controller.debugMessage3("Wires");
         Print_info(GArrettes);
         System.out.println("Probe debut");
         Print_info((HashMap<Integer, ? extends Object_Model_Abstract>) GDebut);
         System.out.println("Probe fin");
         Print_info((HashMap<Integer, ? extends Object_Model_Abstract>) GFin);
-        System.out.println("Nodes");
+        Helper_Controller.debugMessage3("Nodes");
         Print_info((HashMap<Integer, ? extends Object_Model_Abstract>) GNoeuds);
         //Call action on all nodes
         for (Map.Entry<Integer, ? extends Node_Model_Abstract> entry : GNoeuds.entrySet()) {

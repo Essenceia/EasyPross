@@ -36,6 +36,23 @@ public class Pc_Model extends Register_Model_Abstract {
                     String absPath, String fileName, int blockSize) {
         super(id, TYPE_REG_PC, wireInput, wireOutput, "PC ", absPath, fileName, 1, blockSize);
         checkWireNumber(wireInput.size(), wireOutput.size(), 3, 1);
+        /*String debugMessag ="Pc_Model::Pc_Model wire input " ;
+        for ( Wire_Model w_in : wireInput){
+            debugMessag+=" ["+w_in.getId()+"] ";
+        }
+        debugMessag +=" this.input " ;
+        for ( Wire_Model w_in : this.input){
+            debugMessag+=" ["+w_in.getId()+"] ";
+        }
+        debugMessag+= " wire output ";
+        for ( Wire_Model w_out : wireOutput){
+            debugMessag+=" ["+w_out.getId()+"] ";
+        }
+        debugMessag +=" this.output " ;
+        for ( Wire_Model w_in : this.output){
+            debugMessag+=" ["+w_in.getId()+"] ";
+        }
+        Helper_Controller.debugMessage(debugMessag);*/
     }
 
     /**
@@ -44,8 +61,18 @@ public class Pc_Model extends Register_Model_Abstract {
     @Override
     public void action() {
         //ressources
+        Helper_Controller.debugMessage2("Pc_Model::action called");
+        String debugMessag ="Pc_Model::Pc_Modelthis.input " ;
+        for ( Wire_Model w_in : this.input){
+            debugMessag+=" ["+w_in.getId()+"] ";
+        }
+        debugMessag +=" this.output " ;
+        for ( Wire_Model w_in : this.output){
+            debugMessag+=" ["+w_in.getId()+"] ";
+        }
+        Helper_Controller.debugMessage(debugMessag);
         int read_commande = boolArrayToInt(this.input.get(IN_COMMANDE_READ_WIRE).getData());
-        int write_commande = boolArrayToInt(this.input.get(IN_COMMANDE_READ_WIRE).getData());
+        int write_commande = boolArrayToInt(this.input.get(IN_COMMANDE_WRITE_WIRE).getData());
         boolean new_data[] ;
 
         //todo implement
@@ -53,12 +80,10 @@ public class Pc_Model extends Register_Model_Abstract {
         this.output.get(OUT_DATA_WIRE).setActive(false);
         if (read_commande + write_commande > PC_CODE_SLEEP) {
             //set output wire as active
-            this.output.get(OUT_DATA_WIRE).setActive(true);
 
             //if read
-            if (read_commande == IN_COMMANDE_READ_WIRE) {
-                System.arraycopy(this.input.get(IN_DATA_WIRE).getData(),0,this.dataIn,0,
-                this.dataIn.length);
+            if (read_commande != 0) {
+                Helper_Controller.putWireDataInBuffer(this.input.get(IN_DATA_WIRE), this.dataIn);
                 //check if diffrent
                 if (this.dataIn.equals(readFile(PC_VALUE_FILE_INDEX)) == false) {
                     //write change to file
@@ -68,12 +93,16 @@ public class Pc_Model extends Register_Model_Abstract {
             }
 
             //if write to output wire
-            if (write_commande == IN_COMMANDE_WRITE_WIRE) {
+            if (write_commande!= 0) {
                 //write out data to the exit wire
+                this.output.get(OUT_DATA_WIRE).setActive(true);
                 this.dataOut = readFile(PC_VALUE_FILE_INDEX);
                 Helper_Controller.putWireDataInBuffer(this.output, this.dataOut);
             }
         }
+
+        Helper_Controller.debugMessage2("Pc_Model::action finised read commande "+read_commande+"" +
+                "write commande "+write_commande);
     }
 
     @Override

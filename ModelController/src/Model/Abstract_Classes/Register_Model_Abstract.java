@@ -1,5 +1,6 @@
 package Model.Abstract_Classes;
 
+import Controller.Helper_Controller;
 import Interface.Object_Interface;
 import Model.Normal_Classes.Wire.Wire_Model;
 
@@ -70,6 +71,8 @@ public abstract class Register_Model_Abstract extends Node_Model_Abstract implem
         path_to_file = Paths.get(fpath);
         if (!our_file.isFile()) {
             createFile();
+        }else {
+            initDefault(fpath); //todo remove for testing only
         }
         createTmpFile();
     }
@@ -162,6 +165,8 @@ public abstract class Register_Model_Abstract extends Node_Model_Abstract implem
      * @param file
      */
     private void initDefault(String file) {
+        Helper_Controller.debugMessage2("Register_Model_Abstract::initDefault calling to creat file "+file+" block size "+
+        this.blockSize+" block count "+this.blockCount);
         String line_data;
         List<String> buffer;
         line_data = new String();
@@ -192,7 +197,7 @@ public abstract class Register_Model_Abstract extends Node_Model_Abstract implem
             tmpFile = File.createTempFile(this.absFilePath, ".txt");
             this.tmpFileName = tmpFile.getAbsolutePath();
             System.out.println(this.tmpFileName + " File Created");
-            transfertData(new File(this.absFilePath + this.fileName), tmpFile);
+           // transfertData(new File(this.absFilePath + this.fileName), tmpFile);
 
         } catch (IOException e) {
             System.out.println("File " + this.tmpFileName + " has an creation error");
@@ -225,6 +230,7 @@ public abstract class Register_Model_Abstract extends Node_Model_Abstract implem
             ex.printStackTrace();
         }
         } catch (IOException ex) {
+            Helper_Controller.errorMessage("File not found");
             ex.printStackTrace();
         }
     }
@@ -237,10 +243,10 @@ public abstract class Register_Model_Abstract extends Node_Model_Abstract implem
      */
     private boolean[] StringToBool(String input) {
         int i = 0;
-        String[] splited = input.split("\\s+");
+        String[] splited = input.split("\\.");
         boolean[] retarray = new boolean[this.blockSize];
         if (splited.length < this.blockSize) {
-            System.err.println("Error : unexpected lenght of sting, block "
+            Helper_Controller.errorMessage("Error : unexpected lenght of sting, block "
                     + "size should be " + this.blockSize + " but length of string gotten"
                     + "is only " + splited.length);
             Arrays.fill(retarray, false);
@@ -271,10 +277,10 @@ public abstract class Register_Model_Abstract extends Node_Model_Abstract implem
      */
     protected void checkWireNumber(int nmninw, int nmboutw, int expected_in_wire, int expected_out_wire) {
         if (nmninw != expected_in_wire) {
-            System.err.println("Error on id" + this.id + ", unexpected number of in wires, " + expected_in_wire + " expected and got " + nmninw);
+            System.err.println("Error on id[" + this.id + "] unexpected number of in wires, " + expected_in_wire + " expected and got " + nmninw);
         }
-        if (nmninw != expected_out_wire) {
-            System.err.println("Error on id" + this.id + ", unexpected number of out wires, " + expected_out_wire + " expected and got " + nmninw);
+        if (nmboutw != expected_out_wire) {
+            System.err.println("Error on id[" + this.id + "] unexpected number of out wires, " + expected_out_wire + " expected and got " + nmninw);
         }
     }
 
@@ -375,8 +381,10 @@ public abstract class Register_Model_Abstract extends Node_Model_Abstract implem
      *
      */
     protected void reloadFileBuffer() {
+        Helper_Controller.debugMessage2("Register_Model_Abstract::reloadFileBuffer called");
         if (this.last_modified_t != this.our_file.lastModified()) {
             try {
+                Helper_Controller.debugMessage2("Register_Model_Abstract::reloadFileBuffer modifing internal values");
                 this.last_modified_t = this.our_file.lastModified();
                 String fname = this.absFilePath + this.fileName;
                 bufferFile = new ArrayList<>(Files.readAllLines(this.path_to_file, StandardCharsets.UTF_8));
