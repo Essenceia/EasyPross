@@ -17,8 +17,8 @@
 
 #Testing list#
 
-- [ ] Mux
-- [ ] Demux
+- [x] Mux
+- [x] Demux
 - [ ] Alu
 - [ ] writring to probe start
 - [ ] reading from probe end

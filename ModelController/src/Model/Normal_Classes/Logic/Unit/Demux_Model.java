@@ -40,49 +40,49 @@ public class Demux_Model extends Logic_Model_Abstract {
         switch (nbBitDemux) {
             case 2:
                 if (instruct[0] == false) {
-                    output.get(0).setData(input.get(1).getData());
+                    output.get(0).setData(input.get(0).getData());
                 } else {
-                    output.get(1).setData(input.get(1).getData());
+                    output.get(1).setData(input.get(0).getData());
                 }
                 break;
             case 4:
                 if (instruct[0] == false && instruct[1] == false) {
-                    output.get(0).setData(input.get(1).getData());
+                    output.get(0).setData(input.get(0).getData());
                 }
                 if (instruct[0] == true && instruct[1] == false) {
-                    output.get(1).setData(input.get(1).getData());
+                    output.get(1).setData(input.get(0).getData());
                 }
                 if (instruct[0] == false && instruct[1] == true) {
-                    output.get(2).setData(input.get(1).getData());
+                    output.get(2).setData(input.get(0).getData());
                 }
                 if (instruct[0] == true && instruct[1] == true) {
-                    output.get(3).setData(input.get(1).getData());
+                    output.get(3).setData(input.get(0).getData());
                 }
                 break;
             case 8:
                 if (instruct[0] == false && instruct[1] == false && instruct[2] == false) {
-                    output.get(0).setData(input.get(1).getData());
+                    output.get(0).setData(input.get(0).getData());
                 }
                 if (instruct[0] == true && instruct[1] == false && instruct[2] == false) {
-                    output.get(1).setData(input.get(1).getData());
+                    output.get(1).setData(input.get(0).getData());
                 }
                 if (instruct[0] == false && instruct[1] == true && instruct[2] == false) {
-                    output.get(2).setData(input.get(1).getData());
+                    output.get(2).setData(input.get(0).getData());
                 }
                 if (instruct[0] == true && instruct[1] == true && instruct[2] == false) {
-                    output.get(3).setData(input.get(1).getData());
+                    output.get(3).setData(input.get(0).getData());
                 }
                 if (instruct[0] == false && instruct[1] == false && instruct[2] == true) {
-                    output.get(4).setData(input.get(1).getData());
+                    output.get(4).setData(input.get(0).getData());
                 }
                 if (instruct[0] == true && instruct[1] == false && instruct[2] == true) {
-                    output.get(5).setData(input.get(1).getData());
+                    output.get(5).setData(input.get(0).getData());
                 }
                 if (instruct[0] == false && instruct[1] == true && instruct[2] == true) {
-                    output.get(6).setData(input.get(1).getData());
+                    output.get(6).setData(input.get(0).getData());
                 }
                 if (instruct[0] == true && instruct[1] == true && instruct[2] == true) {
-                    output.get(7).setData(input.get(1).getData());
+                    output.get(7).setData(input.get(0).getData());
                 }
                 break;
             default:
