@@ -6,7 +6,7 @@
 - [x] <del>correct for uncorrect values on wires save</del>
 
 
-#TODO on 21&22 mars#
+#TODO on 21 mars#
 
 - [x] <del>test PC file modifications from write wire</del>
 - [x] <del>add decoder to xml</del>
@@ -27,6 +27,10 @@
 
 - [ ] Connect API
 - [ ] test PC file modification on timestamp out-off-data
-- [ ] add file interaction on all register models
-    - [ ] prog memory read 
-    - [ ] prog memory write
+- [x] add file interaction on all register models
+    - <del>[ ] prog memory read </del> doesn't exist in this model(genius) :octocat: 
+    - [x] prog memory write
+- [ ] Start building more complex modules to start heading towards the easy pross diagrame 
+    - [ ] Mux*2 + Alu 
+    - [ ] Pc + Prog + Decode
+    - [ ] Decode + Data + Mux*2 + Pc 
