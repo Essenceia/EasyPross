@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graph>
+	<wire id="1" type="1" size="2" desc="WireInOne">
+		<io>0</io>
+		<io>1</io>
+    </wire>
+	<wire id="2" type="1" size="2" desc="WireOutOne">
+    </wire>
+	<wire id="3" type="1" size="2" desc="WireOutTwo">
+    </wire>
+	<probe id="4" type="2" desc="probeStart">
+        <wire id="1" />
+    </probe>
+    <probe id="5" type="3" desc="probeEnd">
+		<wire id="2" />
+    </probe>
+	<probe id="6" type="3" desc="probeEnd">
+        <wire id="3" />
+    </probe>
+	<node id="7" type="8" desc="mux" control_bits="1">
+        <wire_in id="1" desc="in data"/>
+        <wire_out id="2" desc="out data one"/>
+        <wire_out id="3" desc="out data two"/>
+    </node>
+</graph>
