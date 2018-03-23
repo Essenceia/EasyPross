@@ -205,11 +205,11 @@ public abstract class Register_Model_Abstract extends Node_Model_Abstract implem
 
     /**
      * @param source
-     * @param dest
      */
-    private void transfertData(File source, File dest) {
+    public void transfertData(File source) {
         BufferedReader in;
         BufferedWriter out;
+        String dest = this.absFilePath + this.fileName;
         try {
             FileInputStream fis = new FileInputStream(source);
             in = new BufferedReader(new InputStreamReader(fis));
@@ -380,7 +380,7 @@ public abstract class Register_Model_Abstract extends Node_Model_Abstract implem
     /**
      *
      */
-    protected void reloadFileBuffer() {
+    public void reloadFileBuffer() {
         Helper_Controller.debugMessage0("Register_Model_Abstract::reloadFileBuffer called");
         if (this.last_modified_t != this.our_file.lastModified()) {
             try {

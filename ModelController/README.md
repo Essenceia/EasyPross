@@ -19,7 +19,7 @@
 
 - [x] Mux
 - [x] Demux
-- [x] <del> Alu ( control codes)</del>
+- [x] Alu ( control codes)
     -[x] 000
     -[x] 001
     -[x] 010
@@ -31,14 +31,19 @@
 - [x] writring to probe start
 - [x] reading from probe end
 
-# TODO on 22 mars #
+# TODO on 23 mars #
 
 - [ ] Connect API
+    - [ ] Reset 
+    - [x] <del> evrything else </del>
+- [ ] test API
 - [ ] test PC file modification on timestamp out-off-data
 - [x] add file interaction on all register models
-    - <del>[ ] prog memory read </del> doesn't exist in this model(genius) :octocat: 
+    - <del>[x] prog memory read </del> doesn't exist in this model(genius) :octocat: 
     - [x] prog memory write
 - [ ] Start building more complex modules to start heading towards the easy pross diagrame 
-    - [ ] Mux*2 + Alu _Julia_
+    - [ ] Mux*2 + Alu 
     - [ ] Pc + Prog + Decode
     - [ ] Decode + Data + Mux*2 + Pc 
+    
+ 

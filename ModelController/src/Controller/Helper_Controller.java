@@ -1,6 +1,8 @@
 package Controller;
 
 import Model.Normal_Classes.Wire.Wire_Model;
+
+import java.util.Arrays;
 import java.util.Vector;
 
 public class Helper_Controller implements Interface.Helper_Interface {
@@ -112,6 +114,64 @@ public class Helper_Controller implements Interface.Helper_Interface {
         }
         return ret;
     }
+    /**
+     *helperStringToBool
+     *
+     *Prefix "helper" to not get mixed up with the similar function in Register_Model_Abstract
+     *
+     * @param input
+     * @return
+     */
+    public static boolean[] helperStringToBool(String input) {
+        int i = 0;
+        String[] splited = input.split("\\.");
+        boolean buff[]= new boolean[input.length()];
+        boolean retarray[];
+        for (String val : splited) {
+            switch (val) {
+                case "0":
+                    buff[i] = false;
+                    break;
+                case "1":
+                    buff[i] = true;
+                    break;
+                default:
+                    System.err.println("Unexpected string value " + val);
+                    buff[i] = false;
+                    break;
+            }
+            i++;
+        }
+        retarray = new boolean[i];
+        //copy value from buffer to return array
+        System.arraycopy(buff, 0, retarray, 0, i);
+        return retarray;
+    }
+
+    /**
+     * helperBoolToString
+     *
+     * Prefix "helper" to not get mixed up with the similar function in Register_Model_Abstract
+     *
+     * @param input
+     * @return
+     */
+    public  static String helperBoolToString(boolean[] input) {
+        int i = 0;
+        String nv_string = "";
+        boolean to_write[] = new boolean[input.length];
+        for (boolean val : to_write) {
+            if(i!= 0 & i!= (to_write.length ))nv_string+=".";
+            if (!val) {
+                nv_string += "0";
+            } else {
+                nv_string += "1";
+            }
+            i++;
+        }
+        return nv_string;
+    }
+
     public static void debugMessage(String msg){
         System.out.println("\033[0;32m"+msg+"\033[0m");
     }
@@ -124,6 +184,10 @@ public class Helper_Controller implements Interface.Helper_Interface {
     public static void debugMessage0(String msg){
         System.out.println("\033[0;36m"+msg+"\033[0m");
     }
+    public static void debugMessage4(String msg){
+        System.out.println("\033[0;37m"+msg+"\033[0m");
+    }
+
     public static void errorMessage(String msg){
         System.out.println("\033[0;31m"+msg+"\033[0m");
     }

@@ -3,13 +3,15 @@ package Controller;
 
 import Model.Abstract_Classes.Node_Model_Abstract;
 import Model.Abstract_Classes.Object_Model_Abstract;
+import Model.Abstract_Classes.Register_Model_Abstract;
 import Model.Normal_Classes.Probe.Probe_End_Model;
 import Model.Normal_Classes.Probe.Probe_Start_Model;
 import Model.Normal_Classes.Wire.Wire_Model;
 
+import java.io.File;
 import java.util.*;
 
-public class Graph_Manager_Controller implements Interface.Graph_Manager_Interface{
+public class Graph_Manager_Controller implements Interface.Graph_Manager_Interface {
 
 
     private HashMap<Integer, Wire_Model> GArrettes;
@@ -123,4 +125,90 @@ public class Graph_Manager_Controller implements Interface.Graph_Manager_Interfa
     public Map<Integer, Probe_End_Model> getFin() {
         return GFin;
     }
+
+    /**
+     * Search all probes & wires fot the value howms id
+     * is of val id and get it's data
+     *
+     * @param id
+     * @return data on item
+     */
+    public boolean[] GetDataOnId(int id) {
+        boolean[] dataOnObject;
+        //search probes
+        if (this.GDebut.containsKey(id)) {
+            dataOnObject = this.GDebut.get(id).getData();
+        } else {
+            if (this.GFin.containsKey(id)) {
+                dataOnObject = this.GFin.get(id).getData();
+            } else {
+                if (this.GArrettes.containsKey(id)) {
+                    dataOnObject = this.GArrettes.get(id).getData();
+                } else {
+                    //fill with default values
+                    dataOnObject = new boolean[1];
+                    Helper_Controller.errorMessage("Graph_Manager_Controller::GetDataOnId unknown id");
+                    Helper_Controller.debugMessage4("Graph_Manager_Controller::GetDataOnId no data to be read at id " + id);
+                }
+            }
+        }
+        return dataOnObject;
+    }
+
+    /**
+     * SetDataOnId
+     * <p>
+     * Write the data on the object with key=id
+     *
+     * @param id
+     * @param data
+     * @return
+     */
+    public boolean SetDataOnId(int id, boolean[] data) {
+        boolean status = true;
+        //search probes
+        if (this.GDebut.containsKey(id)) {
+            this.GDebut.get(id).setData(data);
+        } else {
+            if (this.GFin.containsKey(id)) {
+                this.GFin.get(id).setData(data);
+            } else {
+                if (this.GArrettes.containsKey(id)) {
+                    this.GArrettes.get(id).setData(data);
+                } else {
+                    status = false;
+                    //fill with default values
+                    Helper_Controller.errorMessage("Graph_Manager_Controller::SetDataOnId unknown id");
+                    Helper_Controller.debugMessage4("Graph_Manager_Controller::SetDataOnId no data to be read at id " + id);
+                }
+            }
+        }
+        return status;
+    }
+
+    public boolean LoadDataOnNode(int Id, String path) {
+        boolean retVal = false;
+        File newData = new File(path);
+        Register_Model_Abstract objectRegister;
+        if (newData.exists() && newData.isDirectory()) {
+            if (GNoeuds.containsKey(Id)) {
+                objectRegister = (Register_Model_Abstract) GNoeuds.get(Id);
+                objectRegister.transfertData(newData);
+                //TODO add checks to verify the data
+                objectRegister.reloadFileBuffer();
+            }
+
+        }return retVal;
+    }
+    public String GetFileDataOnNode(int Id) {
+        String retVal = "";
+        Register_Model_Abstract objectRegister;
+            if (GNoeuds.containsKey(Id)) {
+                objectRegister = (Register_Model_Abstract) GNoeuds.get(Id);
+                retVal = objectRegister.getFilePath();
+                retVal+= objectRegister.getFileName();
+            }
+
+        return retVal;}
+
 }
