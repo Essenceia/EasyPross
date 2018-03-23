@@ -123,5 +123,4 @@ public class Graph_Manager_Controller implements Interface.Graph_Manager_Interfa
     public Map<Integer, Probe_End_Model> getFin() {
         return GFin;
     }
-
 }
