@@ -19,9 +19,17 @@
 
 - [x] Mux
 - [x] Demux
-- [ ] Alu
-- [ ] writring to probe start
-- [ ] reading from probe end
+- [x] <del> Alu ( control codes)</del>
+    -[x] 000
+    -[x] 001
+    -[x] 010
+    -[x] 011
+    -[x] 100
+    -[x] 101
+    -[x] 110
+    -[x] 111
+- [x] writring to probe start
+- [x] reading from probe end
 
 # TODO on 22 mars #
 

@@ -4,6 +4,7 @@ import Controller.Helper_Controller;
 import Interface.Node_Interface;
 import Model.Normal_Classes.Wire.Wire_Model;
 import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.Vector;
 
 public abstract class Node_Model_Abstract extends Object_Model_Abstract implements Node_Interface {
@@ -139,17 +140,22 @@ public abstract class Node_Model_Abstract extends Object_Model_Abstract implemen
      * @return
      */
     protected boolean[] intToBoolArray(int data, int boolSize) {
-        int div;
-        int asize = Math.max(((int) (Math.log(data) + 1)), boolSize);
-        boolean[] retval = new boolean[asize];
-        Array.setBoolean(retval, retval.length, false);
-        for (int i = asize; i > -1; i++) {
-            div = (int) (data / Math.pow(2, i));
-            if (div >= 1) {
-                data -= div * Math.pow(2, i);
-                retval[i] = true;
+        String debigString="";
+        Helper_Controller.debugMessage0("Node_Model_Abstract::intToBoolArray int data : "+data+" boolean size "+boolSize);
+
+        boolean[] retval = new boolean[boolSize];
+        for (int i = 0; i < boolSize; i++) {
+            if(data % 2== 0){
+                debigString +=".0";
+                retval[i]=false;
+            }else {
+                retval[i]=true;
+                debigString +=".1";
             }
+            Helper_Controller.debugMessage0("i "+i +" data "+data+" value "+retval[i]);
+            data/=2;
         }
+        Helper_Controller.debugMessage0("Node_Model_Abstract::intToBoolArray result "+debigString);
         return retval;
     }
     

@@ -53,7 +53,8 @@ public class Alu_Model extends Logic_Model_Abstract {
             Helper_Controller.errorMessage("Alu_Model::Alu_Model expected a commande wire of size : "+COMMANDE_SIZE+" found : "+this.nbreBitsAlu);
         }
         int outDataLength = this.output.get(OUT_DATA).getSizeBus();
-        this.maxValue = Math.max(2,outDataLength+1)-1;
+        double power = outDataLength;//convert to double
+        this.maxValue = (int)Math.pow(2,power)-1; // get the maximum value that can be represented on n bits , n beeing the width of the output wire
     }
     /**
      * @param nbreBitsAlu
@@ -82,6 +83,7 @@ public class Alu_Model extends Logic_Model_Abstract {
         int dataOP2 = boolArrayToInt(this.input.get(IN_DATA_OP2).getData());
         int result=0;
 
+        Helper_Controller.debugMessage0("Alu_Model::action commande "+control+" op1 : "+dataOP1+" op2 "+dataOP2);
         //act accorfing to control
         if(this.nbreBitsAlu >= 1 && control < 2 ){
             switch (control){
@@ -98,7 +100,7 @@ public class Alu_Model extends Logic_Model_Abstract {
             if(this.nbreBitsAlu >= 2 && control < 4 ){
                 switch (control){
                     case COMMANDE_CODE_SUB://case 2
-                        result = dataOP1 + dataOP2;
+                        result = dataOP1 - dataOP2;
                         break;
                     case COMMANDE_CHECK_Z: //case 3 : if Z is false we wright op1+1 else op1+op2 this is used to creat conditional jumps with pc
                         if(this.Z){
@@ -113,7 +115,7 @@ public class Alu_Model extends Logic_Model_Abstract {
                 if(this.nbreBitsAlu >= 3  ){
                     switch (control){
                         case COMMANDE_CODE_COPY_OP2://case 4
-                            result = dataOP1 + dataOP2;
+                            result =  dataOP2;
                             break;
                         case COMMANDE_CODE_EQUAL: //case 5 : if Z is false we wright op1+1 else op1+op2 this is used to creat conditional jumps with pc
                             if(dataOP1==dataOP2){
@@ -150,6 +152,7 @@ public class Alu_Model extends Logic_Model_Abstract {
         this.output.get(OUT_DATA).setActive(true);
         Helper_Controller.putBufferDataInWire(this.output.get(OUT_DATA), this.dataOut);
 
+        Helper_Controller.debugMessage0("Alu_Model::action result "+result+" Z : "+Z+" O "+O);
 
     }
     private int aluNot(){

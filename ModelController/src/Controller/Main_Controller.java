@@ -12,10 +12,10 @@ public class Main_Controller {
        // manager.openFile("testxml.xml");
         Graph_Manager_Controller Graph = new Graph_Manager_Controller();
 
-        Graph.load_new_module("test_progmemory.xml");
+        Graph.load_new_module("XML_tests/test_alu.xml");
 
         Graph.tick(); //appelle de tick avec la fonction action de not
-        Graph.save_module("save_progmemory.xml");
+        Graph.save_module("XML_tests/save_alu.xml");
 }
    
 }
