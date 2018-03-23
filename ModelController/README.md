@@ -40,6 +40,6 @@
     - [x] prog memory write
 - [ ] Start building more complex modules to start heading towards the easy pross diagrame 
     - [x] <del>Mux*2 + Alu</del>
-    - [x] Mux*2 + ALU + Decode _Nico_
+    - [ ] Mux*2 + ALU + Decode _Nico_
     - [ ] Pc + Prog + Decode
     - [ ] Decode + Data + Mux*2 + Pc 
