@@ -38,7 +38,8 @@ public class Mux_Model extends Logic_Model_Abstract implements Object_Interface{
     @Override
     public void action() {
         getIncomingData();
-        switch (nbBitMux) {
+        instruct = this.input.get(0).getData();
+        switch ((int)Math.pow(2, nbBitMux)) {
             case 2:
                 if (instruct[0] == false) {
                     output.get(0).setData(input.get(1).getData());

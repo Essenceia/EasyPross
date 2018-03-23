@@ -12,12 +12,12 @@ public class Main_Controller {
         //XML_Manager_Controller manager = new XML_Manager_Controller();
        // manager.openFile("testxml.xml");
         Graph_Manager_Controller Graph = new Graph_Manager_Controller();
-        Graph.load_new_module("XML_tests/test_alu.xml");
+        Graph.load_new_module("XML_tests/testmux.xml");
 
 
         Graph.tick(); //appelle de tick avec la fonction action de AND
         
-        Map<Integer, Probe_End_Model> fin;
+        /*Map<Integer, Probe_End_Model> fin;
         fin = Graph.getFin();
         Probe_End_Model sortie;
         sortie = fin.get(6);
@@ -63,7 +63,7 @@ public class Main_Controller {
         for(int i=0; i<sortie.getData().length;i++)
         {
             System.out.println(sort[i]);
-        }
+        }*/
         //Graph.save_module("save_progmemory.xml");
 }
    
