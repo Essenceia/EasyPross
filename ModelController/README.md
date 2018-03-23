@@ -39,6 +39,7 @@
     - <del>[ ] prog memory read </del> doesn't exist in this model(genius) :octocat: 
     - [x] prog memory write
 - [ ] Start building more complex modules to start heading towards the easy pross diagrame 
-    - [ ] Mux*2 + Alu _Julia_
+    - [x] <del>Mux*2 + Alu</del>
+    - [x] Mux*2 + ALU + Decode _Nico_
     - [ ] Pc + Prog + Decode
     - [ ] Decode + Data + Mux*2 + Pc 
