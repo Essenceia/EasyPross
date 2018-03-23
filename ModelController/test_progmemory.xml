@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graph>
+    <probe id="6" type="2" desc="control write probe">
+        <wire id="1" />
+    </probe>
+    <probe id="8" type="2" desc="data in addr probe">
+        <wire id="3" />
+    </probe>
+    <probe id="9" type="3" desc="data out instruction probe end">
+        <wire id="4" />
+    </probe>
+
+
+    <wire id="1" type="1" size="1" desc="control writre">
+        <io>1</io>
+    </wire>
+    <wire id="3" type="1" size="3" desc="data in addr of instruction">
+        <io>1</io>
+        <io>1</io>
+        <io>1</io>
+    </wire>
+    <wire id="4" type="1" size="14" desc="data out instruction">
+        <io>0</io>
+        <io>0</io>
+        <io>0</io>
+        <io>0</io>
+        <io>0</io>
+        <io>0</io>
+        <io>0</io>
+        <io>0</io>
+        <io>0</io>
+        <io>0</io>
+        <io>0</io>
+        <io>0</io>
+        <io>0</io>
+    </wire>
+
+
+    <node id="10" type="6" desc="prog memory" path="/home/rick/Documents/code/PPE/EasyPross_new/" file_name="prog.txt" memory_block_size="14" memory_number_block="8">
+        <wire_in id="1" desc="write commande"/>
+        <wire_in id="3" desc="address"/>
+        <wire_out id="4" desc="out data"/>
+    </node>
+</graph>
