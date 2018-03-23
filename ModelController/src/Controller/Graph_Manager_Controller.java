@@ -116,11 +116,14 @@ public class Graph_Manager_Controller implements Interface.Graph_Manager_Interfa
         return GNoeuds;
     }
 
-    public Map<Integer, Probe_Start_Model> getDebut() {
+    public HashMap<Integer, Probe_Start_Model> getDebut() {
         return GDebut;
     }
 
     public Map<Integer, Probe_End_Model> getFin() {
         return GFin;
+    }
+    public void setDebut(HashMap<Integer, Probe_Start_Model> debut) {
+        GDebut=debut;
     }
 }
