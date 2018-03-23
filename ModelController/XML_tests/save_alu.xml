@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graph>
+  <wire id="1" type="1" size="3">
+    <io>0</io>
+    <io>1</io>
+    <io>1</io>
+  </wire>
+  <wire id="2" type="1" size="8">
+    <io>1</io>
+    <io>1</io>
+    <io>1</io>
+    <io>1</io>
+    <io>1</io>
+    <io>1</io>
+    <io>1</io>
+    <io>0</io>
+  </wire>
+  <wire id="3" type="1" size="8">
+    <io>1</io>
+    <io>0</io>
+    <io>1</io>
+    <io>0</io>
+    <io>1</io>
+    <io>0</io>
+    <io>1</io>
+    <io>0</io>
+  </wire>
+  <wire id="4" type="1" size="8">
+    <io>0</io>
+    <io>0</io>
+    <io>0</io>
+    <io>0</io>
+    <io>0</io>
+    <io>0</io>
+    <io>0</io>
+    <io>1</io>
+  </wire>
+  <probe id="5" type="2">
+    <wire id="1" />
+  </probe>
+  <probe id="6" type="2">
+    <wire id="2" />
+  </probe>
+  <probe id="7" type="2">
+    <wire id="3" />
+  </probe>
+  <probe id="9" type="3">
+    <wire id="4" />
+  </probe>
+  <node id="17" type="9">
+    <wire_in id="1" />
+    <wire_in id="2" />
+    <wire_in id="3" />
+    <wire_out id="4" />
+  </node>
+</graph>

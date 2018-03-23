@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graph>
+    <probe id="5" type="2" desc="alu control">
+        <wire id="1"/>
+    </probe>
+    <probe id="6" type="2" desc="input op1 ">
+        <wire id="2"/>
+    </probe>
+    <probe id="7" type="2" desc="input op2 ">
+        <wire id="3"/>
+    </probe>
+
+    <probe id="9" type="3" desc="data result out">
+        <wire id="4"/>
+    </probe>
+
+
+    <wire id="1" type="1" size="3" desc="alu commande">
+        <io>0</io>
+        <io>1</io>
+        <io>1</io>
+    </wire>
+    <wire id="2" type="1" size="8" desc="data op1">
+        <io>1</io>
+        <io>1</io>
+        <io>1</io>
+        <io>1</io>
+        <io>1</io>
+        <io>1</io>
+        <io>1</io>
+        <io>0</io>
+    </wire>
+    <wire id="3" type="1" size="8" desc="data op2">
+        <io>1</io>
+        <io>0</io>
+        <io>1</io>
+        <io>0</io>
+        <io>1</io>
+        <io>0</io>
+        <io>1</io>
+        <io>0</io>
+    </wire>
+    <wire id="4" type="1" size="8"  desc="data out alu">
+        <io>0</io>
+        <io>0</io>
+        <io>0</io>
+        <io>0</io>
+        <io>0</io>
+        <io>0</io>
+        <io>0</io>
+        <io>0</io>
+    </wire>
+    <node id="17" type="9" desc="ALU" control_bits="3">
+        <wire_in id="1" desc="alu commande"/>
+        <wire_in id="2" desc="op1"/>
+        <wire_in id="3" desc="op2"/>
+        <wire_out id="4" desc="out result"/>
+
+    </node>
+
+
+</graph>

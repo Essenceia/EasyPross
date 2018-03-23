@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graph>
+    <probe id="5" type="2" desc="input 1">
+        <wire id="1" />
+    </probe>
+    <probe id="6" type="2" desc="input 2 ">
+        <wire id="2" />
+    </probe>
+    <probe id="7" type="2" desc="input 3 ">
+        <wire id="3" />
+    </probe>
+
+    <probe id="9" type="3" desc="data result out">
+        <wire id="4" />
+    </probe>
+
+
+    <wire id="1" type="1" size="1" desc="data in 1">
+        <io>1</io>
+    </wire>
+    <wire id="2" type="1" size="1" desc="data in 2">
+        <io>1</io>
+    </wire>
+    <wire id="3" type="1" size="1" desc="data in 3">
+        <io>1</io>
+    </wire>
+    <wire id="4" type="1" size="14" desc="data out instruction">
+        <io>0</io>
+        <io>0</io>
+        <io>0</io>
+        <io>0</io>
+        <io>0</io>
+        <io>0</io>
+        <io>0</io>
+        <io>0</io>
+        <io>0</io>
+        <io>0</io>
+        <io>0</io>
+        <io>0</io>
+        <io>0</io>
+    </wire>
+
+
+</graph>

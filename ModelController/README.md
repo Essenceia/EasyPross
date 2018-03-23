@@ -1,4 +1,4 @@
-#TODO for 21 mars#
+# TODO for 21 mars #
 
 - [x] <del>test XML construction strill works</del>
 - [x] <del>add pc node creation to xml graph manager </del>
@@ -6,7 +6,7 @@
 - [x] <del>correct for uncorrect values on wires save</del>
 
 
-#TODO on 21 mars#
+# TODO on 21 mars #
 
 - [x] <del>test PC file modifications from write wire</del>
 - [x] <del>add decoder to xml</del>
@@ -15,13 +15,21 @@
     - [x] <del>data memory write</del>
 
 
-#Testing list#
+# Testing list #
 
 - [x] Mux
 - [x] Demux
-- [ ] Alu
-- [ ] writring to probe start
-- [ ] reading from probe end
+- [x] <del> Alu ( control codes)</del>
+    -[x] 000
+    -[x] 001
+    -[x] 010
+    -[x] 011
+    -[x] 100
+    -[x] 101
+    -[x] 110
+    -[x] 111
+- [x] writring to probe start
+- [x] reading from probe end
 
 # TODO on 22 mars #
 
@@ -31,6 +39,6 @@
     - <del>[ ] prog memory read </del> doesn't exist in this model(genius) :octocat: 
     - [x] prog memory write
 - [ ] Start building more complex modules to start heading towards the easy pross diagrame 
-    - [ ] Mux*2 + Alu 
+    - [ ] Mux*2 + Alu _Julia_
     - [ ] Pc + Prog + Decode
     - [ ] Decode + Data + Mux*2 + Pc 
