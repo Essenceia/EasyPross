@@ -4,6 +4,8 @@ import Controller.Helper_Controller;
 import Interface.Object_Interface;
 import Model.Abstract_Classes.Logic_Model_Abstract;
 import Model.Normal_Classes.Wire.Wire_Model;
+
+import java.util.Arrays;
 import java.util.Vector;
 
 public class And_Model extends Logic_Model_Abstract implements Object_Interface{
@@ -23,12 +25,13 @@ public class And_Model extends Logic_Model_Abstract implements Object_Interface{
      */
     @Override
     public void action() {
-        boolean b = false;
+        Helper_Controller.putWireDataInBuffer(this.input,this.dataIn);
+        boolean returnValue = true;
         getIncomingData();
         for (boolean bool : dataIn) {
-            b &= bool;
+            returnValue &= bool;
         }
-        dataOut = Helper_Controller.setAllTo(b, dataOut.length);
+        Arrays.fill(this.dataOut,returnValue );
         putOutputingData();
     }
 
