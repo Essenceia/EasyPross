@@ -44,6 +44,9 @@
         <io>1</io>
     </wire>
     <wire id="12" type="1" size="3">
+        <io>1</io>
+        <io>1</io>
+        <io>1</io>
     </wire>
     <node id="13" type="10" control_bits="3">
         <wire_in id="7"></wire_in>

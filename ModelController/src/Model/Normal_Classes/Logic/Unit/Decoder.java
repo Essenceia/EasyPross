@@ -10,13 +10,14 @@ public  class Decoder extends Logic_Model_Abstract {
     
     private static final int IN_READ_DECODER_WIRE = 0;
     
-    private static final int OUT_OPCODE_DECODER_WIRE = 0;
-    private static final int OUT_OPA_DECODER_WIRE = 1;
-    private static final int OUT_OPB_DECODER_WIRE = 2;
-    private static final int OUT_CTRLALU_DECODER_WIRE = 3;
-    private static final int OUT_CTRLDM_AF_DECODER_WIRE = 4;
-    private static final int OUT_CTRLDM_RW_DECODER_WIRE = 5;
-    private static final int OUT_CST_DECODER_WIRE = 6;
+    private static final int OUT_CTRLMUX1_DECODER_WIRE = 0;
+    private static final int OUT_CTRLMUX2_DECODER_WIRE = 1;
+    private static final int OUT_OPA_DECODER_WIRE = 2;
+    private static final int OUT_OPB_DECODER_WIRE = 3;
+    private static final int OUT_CTRLALU_DECODER_WIRE = 4;
+    private static final int OUT_CTRLDM_AF_DECODER_WIRE = 5;
+    private static final int OUT_CTRLDM_RW_DECODER_WIRE = 6;
+    private static final int OUT_CST_DECODER_WIRE = 7;
     
     
     
@@ -31,6 +32,8 @@ public  class Decoder extends Logic_Model_Abstract {
         boolean [] tab = new boolean[14];
         tab = this.input.get(IN_READ_DECODER_WIRE).getData();
         boolean [] opcode = new boolean[3];
+        boolean [] ctrlMUX1 =  new boolean[1];
+        boolean [] ctrlMUX2 =  new boolean[1];
         boolean [] ctrlDM_RW =  new boolean[1];
         boolean [] ctrlDM_AF =  new boolean[1];
         boolean [] ctrlALU = new boolean[3];
@@ -63,6 +66,8 @@ public  class Decoder extends Logic_Model_Abstract {
             }
            ctrlDM_RW[0] = opcode[0]; // si 1 alors vers reg si 0 vers pc
            ctrlDM_AF[0] = true; // pour active sinon false
+           ctrlMUX1[0]=opcode[0];
+           ctrlMUX2[0]=opcode[1];
            
         }
         /// si l'opcode est égale à 001 veut dire cst -> pc bra
@@ -86,6 +91,8 @@ public  class Decoder extends Logic_Model_Abstract {
             }
            ctrlDM_RW[0] = opcode[0]; // si 1 alors vers reg si 0 vers pc
            ctrlDM_AF[0] = true; // pour active sinon false
+           ctrlMUX1[0]=opcode[0];
+           ctrlMUX2[0]=opcode[1];
         }
         
         /// si opcode est égale à 010, veut dire jump pc+cst -> pc
@@ -109,6 +116,8 @@ public  class Decoder extends Logic_Model_Abstract {
             }
            ctrlDM_RW[0] = opcode[0]; // si 1 alors vers reg si 0 vers pc
            ctrlDM_AF[0] = true; // pour active sinon false
+           ctrlMUX1[0]=opcode[0];
+           ctrlMUX2[0]=opcode[1];
         }
         
         /// si opcode est égale à 011, veut dire bnz si z == 0 pc+cst -> pc sinon pc +1 ->pc
@@ -132,6 +141,8 @@ public  class Decoder extends Logic_Model_Abstract {
             }
            ctrlDM_RW[0] = opcode[0]; // si 1 alors vers reg si 0 vers pc
            ctrlDM_AF[0] = true; // pour active sinon false
+           ctrlMUX1[0]=opcode[0];
+           ctrlMUX2[0]=opcode[1];
         }
         
         /// si opcode est égae à 100, veut dire alu(A, cst) -> A
@@ -155,9 +166,13 @@ public  class Decoder extends Logic_Model_Abstract {
             }
            ctrlDM_RW[0] = opcode[0]; // si 1 alors vers reg si 0 vers pc
            ctrlDM_AF[0] = true; // pour active sinon false
+           ctrlMUX1[0]=opcode[0];
+           ctrlMUX2[0]=opcode[1];
         }
-        this.dataOut = opcode;
-        Helper_Controller.putBufferDataInWire(this.output.get(OUT_OPCODE_DECODER_WIRE), dataOut);
+        this.dataOut = ctrlMUX1;
+        Helper_Controller.putBufferDataInWire(this.output.get(OUT_CTRLMUX1_DECODER_WIRE), dataOut);
+        this.dataOut = ctrlMUX2;
+        Helper_Controller.putBufferDataInWire(this.output.get(OUT_CTRLMUX2_DECODER_WIRE), dataOut);
         this.dataOut = adopA;
         Helper_Controller.putBufferDataInWire(this.output.get(OUT_OPA_DECODER_WIRE), dataOut);
         this.dataOut = adopB;

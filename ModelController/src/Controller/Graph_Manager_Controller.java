@@ -118,13 +118,14 @@ public class Graph_Manager_Controller implements Interface.Graph_Manager_Interfa
         return GNoeuds;
     }
 
-    public Map<Integer, Probe_Start_Model> getDebut() {
+    public HashMap<Integer, Probe_Start_Model> getDebut() {
         return GDebut;
     }
 
     public Map<Integer, Probe_End_Model> getFin() {
         return GFin;
     }
+<<<<<<< HEAD
 
     /**
      * Search all probes & wires fot the value howms id
@@ -211,4 +212,9 @@ public class Graph_Manager_Controller implements Interface.Graph_Manager_Interfa
 
         return retVal;}
 
+=======
+    public void setDebut(HashMap<Integer, Probe_Start_Model> debut) {
+        GDebut=debut;
+    }
+>>>>>>> 441c6de5ec8f41b0db343d2071bfaa701830ce7e
 }

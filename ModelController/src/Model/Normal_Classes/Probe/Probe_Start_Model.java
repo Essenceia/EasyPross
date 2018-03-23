@@ -38,9 +38,14 @@ public class Probe_Start_Model extends Probe_Model_Abstract {
     public void setData(boolean[] newData) {
         if (newData.length == data.length) {
             data = newData;
+            for(int i=0;i<data.length;i++)
+            {
+              System.out.println(data[i]);  
+            }
         } else {
             System.out.println("Error incompatible lengths");
         }
+        set_outputing_data();
     }
 
     /**
@@ -57,6 +62,11 @@ public class Probe_Start_Model extends Probe_Model_Abstract {
      */
     public void setWire(Vector<Wire_Model> wireOut) {
         this.wireOut = wireOut;
+    }
+    
+    public void set_outputing_data() {
+        //mettre les données dans les wires en sortie
+        Helper_Controller.putBufferDataInWire(this.wireOut,this.data);
     }
 
     /**
