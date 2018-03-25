@@ -8,14 +8,14 @@
 	</probe>
 
 	<wire id="30" type="1" size="8" desc="PC in new value ">
-		<io> 0 </io>
-		<io> 0 </io>
-		<io> 0 </io>
-		<io> 0 </io>
-		<io> 0 </io>
-		<io> 0 </io>
-		<io> 0 </io>
 		<io> 1 </io>
+		<io> 1 </io>
+		<io> 0 </io>
+		<io> 0 </io>
+		<io> 0 </io>
+		<io> 0 </io>
+		<io> 0 </io>
+		<io> 0 </io>
 	</wire>
 	<wire id="31" type="1" size="1" desc="PC read commande ">
 		<io>0</io>

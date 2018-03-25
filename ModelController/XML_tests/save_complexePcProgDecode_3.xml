@@ -4,27 +4,27 @@
     <io>1</io>
   </wire>
   <wire id="1" type="1" size="8">
-    <io>0</io>
-    <io>0</io>
-    <io>0</io>
-    <io>0</io>
-    <io>0</io>
-    <io>0</io>
-    <io>0</io>
     <io>1</io>
+    <io>1</io>
+    <io>0</io>
+    <io>0</io>
+    <io>0</io>
+    <io>0</io>
+    <io>0</io>
+    <io>0</io>
   </wire>
   <wire id="33" type="1" size="1">
     <io>1</io>
   </wire>
   <wire id="34" type="1" size="14">
+    <io>1</io>
+    <io>1</io>
     <io>0</io>
     <io>0</io>
+    <io>1</io>
     <io>0</io>
     <io>0</io>
-    <io>0</io>
-    <io>0</io>
-    <io>0</io>
-    <io>0</io>
+    <io>1</io>
     <io>0</io>
     <io>0</io>
     <io>0</io>
@@ -33,23 +33,23 @@
     <io>0</io>
   </wire>
   <wire id="3" type="1" size="1">
-    <io>0</io>
+    <io>1</io>
   </wire>
   <wire id="35" type="1" size="1">
-    <io>0</io>
+    <io>1</io>
   </wire>
   <wire id="4" type="1" size="3">
     <io>0</io>
-    <io>0</io>
+    <io>1</io>
     <io>0</io>
   </wire>
   <wire id="36" type="1" size="3">
     <io>0</io>
-    <io>0</io>
+    <io>1</io>
     <io>0</io>
   </wire>
   <wire id="5" type="1" size="1">
-    <io>0</io>
+    <io>1</io>
   </wire>
   <wire id="6" type="1" size="8">
     <io>0</io>
@@ -67,17 +67,17 @@
     <io>0</io>
   </wire>
   <wire id="40" type="1" size="1">
-    <io>0</io>
+    <io>1</io>
   </wire>
   <wire id="30" type="1" size="8">
-    <io>0</io>
-    <io>0</io>
-    <io>0</io>
-    <io>0</io>
-    <io>0</io>
-    <io>0</io>
-    <io>0</io>
     <io>1</io>
+    <io>1</io>
+    <io>0</io>
+    <io>0</io>
+    <io>0</io>
+    <io>0</io>
+    <io>0</io>
+    <io>0</io>
   </wire>
   <wire id="31" type="1" size="1">
     <io>1</io>
