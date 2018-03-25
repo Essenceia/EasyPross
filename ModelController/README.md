@@ -45,4 +45,5 @@
     - [x] <del>Mux*2 + Alu</del>
     - [ ] Mux*2 + ALU + Decode _Nico_
     - [ ] Pc + Prog + Decode
+        - [ ] debug -> not working
     - [ ] Decode + Data + Mux*2 + Pc 

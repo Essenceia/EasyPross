@@ -24,7 +24,7 @@ public  class Decoder extends Logic_Model_Abstract {
     public Decoder(int id, String description, Vector<Wire_Model> wireInput, Vector<Wire_Model> wireOutput)
     {
       super(id, TYPE_LOGIC_DECODER, description, wireInput, wireOutput);
-      checkWireNumber(wireInput.size(), wireOutput.size(), 1, 7);
+      checkWireNumber(wireInput.size(), wireOutput.size(), 1, 8);
     }
 
     @Override

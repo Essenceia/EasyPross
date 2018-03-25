@@ -8,63 +8,29 @@ import java.util.Scanner;
 public class Main_Controller {
 
     public static void main(String[] args) {
+        boolean nv[] = new boolean[1];
+        nv[0] = true;
         //test register model
         //XML_Manager_Controller manager = new XML_Manager_Controller();
        // manager.openFile("testxml.xml");
         Graph_Manager_Controller Graph = new Graph_Manager_Controller();
-        Graph.load_new_module("XML_tests/testmux.xml");
+        Graph.load_new_module("XML_tests/testcomplexePcProgDecode.xml");
 
-
-        Graph.tick(); //appelle de tick avec la fonction action de AND
-        
-        /*Map<Integer, Probe_End_Model> fin;
-        fin = Graph.getFin();
-        Probe_End_Model sortie;
-        sortie = fin.get(6);
-        boolean [] sort;
-        sort = sortie.getData();
-        for(int i=0; i<sortie.getData().length;i++)
-        {
-            System.out.println(sort[i]);
-        }
-        HashMap<Integer, Probe_Start_Model> debut;
-        debut = Graph.getDebut();
-        boolean [] entr = new boolean [debut.get(1).getWireSize()]; 
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Veuillez saisir la valeur de l'entrée(true ou false) que vous souhaitez :");
-        String str = sc.nextLine();
-        if("false".equals(str)) 
-        {
-            for(int i=0;i<debut.get(1).getWireSize();i++)
-            {
-              entr[i]=false;  
-            }
-                
-        }
-        else
-            if("true".equals(str))
-            {
-                for(int i=0;i<debut.get(1).getWireSize();i++)
-                {
-                    entr[i]=true;  
-                }
-            }
-        Probe_Start_Model entree;
-        for(int i=1;i<=debut.size();i=i+2)
-        {
-            entree = debut.get(i);
-            entree.setData(entr);
-            debut.put(i, entree); 
-        }
-        Graph.setDebut(debut);
         Graph.tick();
-        sortie = fin.get(6);
-        sort = sortie.getData();
-        for(int i=0; i<sortie.getData().length;i++)
-        {
-            System.out.println(sort[i]);
-        }*/
-        //Graph.save_module("save_progmemory.xml");
-}
+        Graph.save_module("XML_tests/save_complexePcProgDecode_0.xml");
+
+        Graph.getDebut().get(40).setData(nv);//setting pc to read data
+        Graph.tick();
+        Graph.save_module("XML_tests/save_complexePcProgDecode_1.xml");
+        Graph.getDebut().get(42).setData(nv);//setting pc to write data
+        Graph.tick();
+        Graph.save_module("XML_tests/save_complexePcProgDecode_2.xml");
+        Graph.tick();
+        Graph.save_module("XML_tests/save_complexePcProgDecode_3.xml");
+        Graph.tick();
+        Graph.save_module("XML_tests/save_complexePcProgDecode_4.xml");
+
+
+    }
    
 }

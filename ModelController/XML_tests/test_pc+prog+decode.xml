@@ -50,10 +50,10 @@
         <io>0</io>
     </wire>
 
-    <node id="17" type="9" desc="ALU" control_bits="3">
-        <wire_in id="1" desc="alu commande"/>
-        <wire_in id="2" desc="op1"/>
-        <wire_in id="3" desc="op2"/>
+    <node id="17" type="5" desc="PC" memory_block_size="8" >
+        <wire_in id="1" desc="in commande read wire"/>
+        <wire_in id="2" desc="in commande write wire"/>
+        <wire_in id="3" desc="in data wire"/>
         <wire_out id="4" desc="out result"/>
     </node>
 </graph>
