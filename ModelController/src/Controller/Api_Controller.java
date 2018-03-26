@@ -25,6 +25,9 @@ public class Api_Controller {
 	public Api_Controller(){
 		//constructor initialise graph
 		Graph_Manager_Controller Graph = new Graph_Manager_Controller();
+		//for debug
+		Graph.load_new_module("XML_tests/testcomplexePcProgDecode.xml");
+
 	}
 
 	//TODO a remplacer la ou il faut
@@ -63,8 +66,9 @@ public class Api_Controller {
 		return retVal;
 	}
 	
-	static Boolean reset()
+	private Boolean reset()
 	{
+		this.Graph.resetGraphValues();
 		return true;
 	}
 	

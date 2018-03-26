@@ -31,8 +31,4 @@ public class Not_Model extends Logic_Model_Abstract {
         putOutputingData();
     }
 
-    @Override
-    public void resetValues() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-}
+  }

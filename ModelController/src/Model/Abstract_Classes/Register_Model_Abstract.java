@@ -421,4 +421,18 @@ public abstract class Register_Model_Abstract extends Node_Model_Abstract implem
     public int getBlockSize(){
         return this.blockSize;
     }
+
+    /**
+     * resterValues
+     *
+     * Will not be resetting the values in the files only the currently buffered data and will be
+     * forcing a re-reading of all data in the files.
+     */
+    @Override
+    public void resetValues() {
+        //invalude timestamp
+        last_modified_t = 0;
+        //force update of internal buffer
+        reloadFileBuffer();
+    }
 }

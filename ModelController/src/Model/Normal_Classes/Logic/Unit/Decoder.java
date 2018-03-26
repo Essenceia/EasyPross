@@ -71,6 +71,8 @@ public  class Decoder extends Logic_Model_Abstract {
            
         }
         /// si l'opcode est égale à 001 veut dire cst -> pc bra
+       /*
+        Todo : Nicolas Mathieu est-ce une erreur de merge ici : duplication de code
         if(opcode[0]== false && opcode[1]== false && opcode[2]== true )
         {
            for (int i =6; i<14;i++)
@@ -93,7 +95,7 @@ public  class Decoder extends Logic_Model_Abstract {
            ctrlDM_AF[0] = true; // pour active sinon false
            ctrlMUX1[0]=opcode[0];
            ctrlMUX2[0]=opcode[1];
-        }
+        }*/
         
         /// si opcode est égale à 010, veut dire jump pc+cst -> pc
         if(opcode[0]== false && opcode[1]== true && opcode[2]== false)

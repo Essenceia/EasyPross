@@ -1,5 +1,7 @@
 package Model.Abstract_Classes;
 
+import Interface.Object_Interface;
+
 /**
  * \class Object_Model_Abstract Object_Model_Abstract.java
  * "Model/AbstractClasses/Object_Model_Abstract.java" \brief This is the basis
@@ -9,7 +11,7 @@ package Model.Abstract_Classes;
  * processor simulator for it to function correctly this includes : id, type and
  * a descritption.
  */
-public abstract class Object_Model_Abstract extends Global_Defines_Abstract {
+public abstract class Object_Model_Abstract extends Global_Defines_Abstract implements Object_Interface {
 
     /**
      * Attibutes : id, type, description

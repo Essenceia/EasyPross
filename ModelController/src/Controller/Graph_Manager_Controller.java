@@ -1,6 +1,7 @@
 package Controller;
 
 
+import Interface.Object_Interface;
 import Model.Abstract_Classes.Node_Model_Abstract;
 import Model.Abstract_Classes.Object_Model_Abstract;
 import Model.Abstract_Classes.Register_Model_Abstract;
@@ -213,5 +214,19 @@ public class Graph_Manager_Controller implements Interface.Graph_Manager_Interfa
 
     public void setDebut(HashMap<Integer, Probe_Start_Model> debut) {
         GDebut=debut;
+    }
+
+    public void resetGraphValues(){
+        for(Object_Model_Abstract object: GNoeuds.values()){
+            object.resetValues();
+        }
+        for (Object_Model_Abstract object : GArrettes.values()){
+            object.resetValues();
+        }
+        for (Object_Model_Abstract object : GFin.values()){
+            object.resetValues();
+        }for (Object_Model_Abstract object : GDebut.values()){
+            object.resetValues();
+        }
     }
 }

@@ -6,7 +6,7 @@ import Model.Normal_Classes.Wire.Wire_Model;
 import java.util.Arrays;
 import java.util.Vector;
 
-public abstract class Probe_Model_Abstract extends Object_Model_Abstract implements Object_Interface{
+public abstract class Probe_Model_Abstract extends Object_Model_Abstract {
 
     protected Integer wireSize;
     protected Vector<Wire_Model> wire;

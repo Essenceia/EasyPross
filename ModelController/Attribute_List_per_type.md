@@ -62,15 +62,15 @@ Attribute list :
 
 example:
 ```xml
-<node id="8" type="4" desc="data memory" path="/path/to/folder/" file_name="uniquename.txt" memory_block_size="14" memory_number_block="8">
-        <wire_in id="1" /><!--write commande-->
-                <wire_in id="2" /><!--read commande-->
-                <wire_in id="13" /><!--address op1-->
-                <wire_in id="15" /><!--address op2-->
-                <wire_in id="3" /><!--in data-->
-                <wire_out id="4" /><!--out data op1-->
-                <wire_out id="11" /><!--out data op2-->
-            </node>
+<node id="8" type="4" path="/path/to/folder/" file_name="uniquename.txt" memory_block_size="14" memory_number_block="8"><!-- data memory node -->
+        <wire_in id="1" /><!--write commande wire-->
+        <wire_in id="2" /><!--read commande wire-->
+        <wire_in id="13" /><!--address of op1-->
+        <wire_in id="15" /><!--address of op2-->
+        <wire_in id="3" /><!--input data-->
+        <wire_out id="4" /><!--output data at address op1-->
+        <wire_out id="11" /><!--out data at address op2-->
+</node>
 ```
 
 + 5  _PC_

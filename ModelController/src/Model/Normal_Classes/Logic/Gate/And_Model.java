@@ -1,13 +1,11 @@
 package Model.Normal_Classes.Logic.Gate;
 
-import Controller.Helper_Controller;
-import Interface.Object_Interface;
 import Model.Abstract_Classes.Logic_Model_Abstract;
 import Model.Normal_Classes.Wire.Wire_Model;
 import java.util.Arrays;
 import java.util.Vector;
 
-public class And_Model extends Logic_Model_Abstract implements Object_Interface{
+public class And_Model extends Logic_Model_Abstract{
 
     private static final int IN_NBBITS_AND = 0;
     private int nbBit;
@@ -54,14 +52,5 @@ public class And_Model extends Logic_Model_Abstract implements Object_Interface{
         }
         dataOut=resultat;
         putOutputingData();
-    }
-
-
-    /**
-     *
-     */
-    @Override
-    public void resetValues() {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

@@ -73,9 +73,6 @@ public class Data_Model extends Register_Model_Abstract {
 
     }
 
-    @Override
-    public void resetValues() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+
 
 }
