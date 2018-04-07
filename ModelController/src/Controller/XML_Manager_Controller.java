@@ -111,16 +111,23 @@ public class XML_Manager_Controller {
      * @param fileName
      */
     public void openFile(String fileName) {
+        Helper_Controller.debugMessage0("Opening file XML");
+        Helper_Controller.debugMessage0("Building sax");
         SAXBuilder sxb = new SAXBuilder();
+
         try {
+            Helper_Controller.debugMessage0("file to be opened "+fileName);
+
             document = sxb.build(new File(fileName));
         } catch (Exception e) {
+            e.printStackTrace();
         }
+        Helper_Controller.debugMessage0("Getting root ellement");
         racine = document.getRootElement();
+        Helper_Controller.debugMessage0("openFile finished");
     }
 
     /**
-     *
      * @param GAretes
      * @param GSProbe
      * @param GEProbe

@@ -31,11 +31,14 @@
 - [x] writring to probe start
 - [x] reading from probe end
 
-# TODO on 23 mars #
+# TODO #
 
 - [ ] Connect API
     - [ ] Reset 
     - [x] <del> evrything else </del>
+        - [ ] re-write api :
+            - [ ] load module
+            
 - [ ] test API
 - [ ] test PC file modification on timestamp out-off-data
 - [x] add file interaction on all register models

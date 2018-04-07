@@ -1,6 +1,8 @@
 package Controller;
 
 import Model.Abstract_Classes.Global_Defines_Abstract;
+import sun.misc.IOUtils;
+import sun.nio.ch.IOUtil;
 
 import java.io.*;
 import java.net.*;
@@ -11,12 +13,15 @@ import java.util.concurrent.TimeUnit;
 import java.nio.file.Path;
 
 public class Api_Controller {
+	/**
+	 * todo : replace all outputs with the buffered writer
+	 */
 
-
-	public static ServerSocket s;//server socket
-	public static java.net.Socket c;//client socket
-	public static DataInputStream in;//socket input
-	public static DataOutputStream out;//socket output
+	java.net.Socket c;//client socket
+	DataInputStream in;//socket input
+	BufferedReader inputLine;
+	DataOutputStream out;//socket output
+	BufferedWriter outputLine;
 
 	//Graph
 	private Graph_Manager_Controller Graph;
@@ -24,10 +29,26 @@ public class Api_Controller {
 
 	public Api_Controller(){
 		//constructor initialise graph
-		Graph_Manager_Controller Graph = new Graph_Manager_Controller();
+		this.Graph = new Graph_Manager_Controller();
 		//for debug
-		Graph.load_new_module("XML_tests/testcomplexePcProgDecode.xml");
+		//Graph.load_new_module("XML_tests/testcomplexePcProgDecode.xml");
 
+		try{
+			//s= new ServerSocket(Config_Api.SERVER_PORT);
+			c = new java.net.Socket(InetAddress.getLocalHost(),Config_Api.CLIENT_PORT);
+			Helper_Controller.debugMessage4("Communication port opened with API "+c.toString());
+			out = new DataOutputStream(c.getOutputStream());
+
+			in = new DataInputStream(c.getInputStream());
+			inputLine = new BufferedReader(new InputStreamReader(in));
+			outputLine = new BufferedWriter(new OutputStreamWriter(out, "UTF-8"));
+
+
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		}catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	//TODO a remplacer la ou il faut
@@ -104,16 +125,8 @@ public class Api_Controller {
 	void sendLoadModule(int Opcode,String pathToModule)
 	{
 		try {
-			c = new java.net.Socket(InetAddress.getLocalHost(),84);
-			
-			out = new DataOutputStream(c.getOutputStream());
-			out.writeInt(Opcode);
-			out.flush();
-			
-			out.writeUTF(pathToModule);
-			out.flush();
-			
-			c.close();			
+			outputLine.write(Opcode+" "+pathToModule);
+			outputLine.newLine();
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -134,16 +147,13 @@ public class Api_Controller {
 	void sendSimul(int Opcode,Boolean check)
 	{
 		try {
-			c = new java.net.Socket(InetAddress.getLocalHost(),84);
-			
-			out = new DataOutputStream(c.getOutputStream());
+
 			out.writeInt(Opcode);
-			out.flush();
+			//out.flush();
 			
 			out.writeInt((check) ? 1 : 0);
-			out.flush();
+			//out.flush();
 			
-			c.close();			
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -165,24 +175,20 @@ public class Api_Controller {
 	void sendGetDataItem(int Opcode,int Id, Vector<Boolean>wireData)
 	{
 		try {
-			c = new java.net.Socket(InetAddress.getLocalHost(),84);
-			
-			out = new DataOutputStream(c.getOutputStream());
 			out.writeInt(Opcode);
-			out.flush();
+			//out.flush();
 			
 			out.writeInt(Id);
-			out.flush();
+			//out.flush();
 			
 			for(int i=0;i<wireData.size();i++)
 			{
 				out.writeInt((wireData.get(i)) ? 1 : 0);
-				out.flush();
+				//out.flush();
 			}
 			out.writeInt(5);
-			out.flush();
+			//out.flush();
 			
-			c.close();			
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -202,16 +208,12 @@ public class Api_Controller {
 	void sendChangeDataItem(int Opcode, Boolean check)
 	{
 		try {
-			c = new java.net.Socket(InetAddress.getLocalHost(),84);
-			
-			out = new DataOutputStream(c.getOutputStream());
 			out.writeInt(Opcode);
-			out.flush();
+			//out.flush();
 			
 			out.writeInt((check) ? 1 : 0);
-			out.flush();
-			
-			c.close();			
+			//out.flush();
+
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -231,16 +233,12 @@ public class Api_Controller {
 	void sendReset(int Opcode, Boolean check)
 	{
 		try {
-			c = new java.net.Socket(InetAddress.getLocalHost(),84);
-			
-			out = new DataOutputStream(c.getOutputStream());
 			out.writeInt(Opcode);
-			out.flush();
+			//out.flush();
 			
 			out.writeInt((check) ? 1 : 0);
-			out.flush();
-			
-			c.close();			
+			//out.flush();
+
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -260,16 +258,12 @@ public class Api_Controller {
 	void sendGetDataRegister(int Opcode, String pathToRegister)
 	{
 		try {
-			c = new java.net.Socket(InetAddress.getLocalHost(),84);
-			
-			out = new DataOutputStream(c.getOutputStream());
 			out.writeInt(Opcode);
-			out.flush();
+			//out.flush();
 			
 			out.writeUTF(pathToRegister);
-			out.flush();
+			//out.flush();
 			
-			c.close();			
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -290,19 +284,15 @@ public class Api_Controller {
 	void sendChangeDataRegister(int Opcode, int Id, Boolean check)
 	{
 		try {
-			c = new java.net.Socket(InetAddress.getLocalHost(),84);
-			
-			out = new DataOutputStream(c.getOutputStream());
+
 			out.writeInt(Opcode);
-			out.flush();
+			//out.flush();
 			
 			out.writeInt(Id);
-			out.flush();
+			//out.flush();
 			
 			out.writeInt((check) ? 1 : 0);
-			out.flush();
-			
-			c.close();			
+
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -322,48 +312,35 @@ public class Api_Controller {
 	public void ApiReceiver()
 	{
 		try {
-			s = new ServerSocket(81);
-			c = s.accept();
-			
-			in = new DataInputStream(c.getInputStream());
-			int Opcode=in.readInt();
-			System.out.println(Opcode);
+
+			out.flush();
+			Helper_Controller.debugMessage4("Api called to recive message on ");
+			String recivedMessage = inputLine.readLine();
+			Helper_Controller.debugMessage4("Recived "+recivedMessage);
+			String message[] = recivedMessage.split(" ");
+			int Opcode=Integer.parseInt(message[Config_Api.INDEX_OPCODE]);
+			Helper_Controller.debugMessage4("Opcode recived "+Opcode);
 			
 			switch(Opcode)
 			{
-			case 1:		String ModuleName=in.readUTF();
-						System.out.println(ModuleName);
-						c.close();
-						s.close();
-						try {
-							TimeUnit.MILLISECONDS.sleep(500);
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
+			case 1:		String ModuleName=message[Config_Api.INDEX_MODULE_NAME];
+						Helper_Controller.debugMessage4("module name recived "+ModuleName);
+
+
 						String path=loadModule(ModuleName);
 						sendLoadModule(Opcode,path);
 						break;
 			
-			case 2:		c.close();
-						s.close();
-						try {
-							TimeUnit.MILLISECONDS.sleep(500);
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
+			case 2:
+
 						Boolean check=simul();
 						sendSimul(Opcode,check);
 						break;
 			
 			case 3:		int Id=in.readInt();
 						Helper_Controller.debugMessage4("PULLID #"+Id);
-						c.close();
-						s.close();
-						try {
-							TimeUnit.MILLISECONDS.sleep(500);
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
+
+
 						Vector<Boolean> wireData=getDataItem(Id);
 						sendGetDataItem(Opcode,Id,wireData);
 						break;
@@ -374,24 +351,13 @@ public class Api_Controller {
 						String changes = "0.0.0.0.1.1.1.1";
 						//String changes = revicedDataFromUI();
 
-						c.close();
-						s.close();
-						try {
-							TimeUnit.MILLISECONDS.sleep(500);
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
+
 						check=changeDataItem(Id, changes);
 						sendChangeDataItem(Opcode, check);
 						break;
 
-			case 5:		c.close();
-						s.close();
-						try {
-							TimeUnit.MILLISECONDS.sleep(500);
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
+			case 5:
+
 						check=reset();
 						sendReset(Opcode, check);
 						break;
@@ -399,13 +365,7 @@ public class Api_Controller {
 			case 6:		//ask for data
 						Id=in.readInt();
 						Helper_Controller.debugMessage4("ASKFILEDATA ID"+Id);
-						c.close();
-						s.close();
-						try {
-							TimeUnit.MILLISECONDS.sleep(500);
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
+
 						path=getDataRegister(Id);
 						sendGetDataRegister(Opcode, path);
 						break;
@@ -417,13 +377,8 @@ public class Api_Controller {
 						System.out.println(AbsolutePath);
 						Id=in.readInt();
 						Helper_Controller.debugMessage4("Load data file mondule "+ModuleName+ " path "+ AbsolutePath+" to Id "+ Id);
-						c.close();
-						s.close();
-						try {
-							TimeUnit.MILLISECONDS.sleep(500);
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
+
+
 						check=changeDataRegister(ModuleName, AbsolutePath, Id);
 						sendChangeDataRegister(Opcode, Id, check);
 						break;
@@ -434,6 +389,15 @@ public class Api_Controller {
 		} catch (IOException e) {
 			
 			e.printStackTrace();
+		}
+	}
+	protected void finalize() throws Throwable {
+		try {
+			in.close();
+			out.close();
+			c.close();       // close sokets files
+		} finally {
+			super.finalize();
 		}
 	}
 	

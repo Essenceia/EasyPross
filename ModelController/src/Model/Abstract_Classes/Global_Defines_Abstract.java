@@ -24,13 +24,20 @@ public class Global_Defines_Abstract {
     public static final int TYPE_LOGIC_NOT = 12;
     public static final int TYPE_LOGIC_OR = 11;
     public static final int TYPE_LOGIC_DECODER = 13;
-    /*
-    Paths to files
+    /**
+     * OS dependant parameters
      */
-    public static final String SIMULATION_MODULE_XML_LOCATIONS = "modules_simulator";
+    public static final String OS_SEPARATOR = "/";
+    /**
+     *Paths to files
+     */
+    public static final String SIMULATION_MODULE_XML_LOCATIONS = OS_SEPARATOR+"XML"+OS_SEPARATOR;
     public static final String SIMULATION_MODULE_TYPE = ".xml";
 
 
 
 
+
+///home/rick/Documents/code/PPE/EasyPross_new/EasyPross/ModelController/XML/test_2.xml
+///home/rick/Documents/code/PPE/EasyPross_new/EasyPross/ModelController/XML
 }

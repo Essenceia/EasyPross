@@ -1,0 +1,27 @@
+package Controller;
+
+public class Config_Api {
+        /**
+         * Ports to send recivce data on sockets : conncection to the API
+         */
+        public static final int CLIENT_PORT = 2014;
+        public  static final String SOCKET_NAME = "Simulator_Client";
+
+        /**
+         * Opcodes of commande used when communicating between UI <--> Simulator with the API
+         *
+         *      UI < -- > API < -- > Simulator
+         */
+        public static final int OPCODE_LOADMODULE = 1;
+        public static final int OPCODE_SIMU = 2;
+        public static final int OPCODE_PULLID = 3;
+        public static final int OPCODE_COMMITID = 4;
+        public static final int OPCODE_RESET = 5;
+        public static final int OPCODE_ASKDATA = 6;
+        public static final int OPCODE_LOADDATA = 7;
+        /**
+         * Message format
+         */
+        public  static final int INDEX_OPCODE = 0 ;
+        public static final int INDEX_MODULE_NAME = 1;
+}
