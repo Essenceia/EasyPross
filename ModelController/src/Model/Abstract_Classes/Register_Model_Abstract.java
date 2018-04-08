@@ -71,8 +71,10 @@ public abstract class Register_Model_Abstract extends Node_Model_Abstract implem
         path_to_file = Paths.get(fpath);
         if (!our_file.isFile()) {
             createFile();
+        }else{
+            //reload buffer form file
         }
-        createTmpFile();
+        //createTmpFile();
     }
 
     /**
@@ -206,32 +208,44 @@ public abstract class Register_Model_Abstract extends Node_Model_Abstract implem
     /**
      * @param source
      */
-    public void transfertData(File source) {
+    public boolean transfertData(File source) {
+        boolean result = true;
         BufferedReader in;
         BufferedWriter out;
         String dest = this.absFilePath + this.fileName;
-        try {
-            FileInputStream fis = new FileInputStream(source);
-            in = new BufferedReader(new InputStreamReader(fis));
+        //check if file is diffrent to the currently loaded file
+        if(!source.getAbsolutePath().equals(dest)) {
 
-            FileWriter fstream = new FileWriter(dest, true);
-            out = new BufferedWriter(fstream);
-
-            String aLine;
-            while ((aLine = in.readLine()) != null) {
-                out.write(aLine);
-                out.newLine();
-            }
+            Helper_Controller.debugMessage3("Register_Model_Abstract::transfertData transfering data" +
+                    "from source "+source.getAbsolutePath()+" to "+dest);
             try {
-                in.close();
-                out.close();
+                FileInputStream fis = new FileInputStream(source);
+                in = new BufferedReader(new InputStreamReader(fis));
+
+                FileWriter fstream = new FileWriter(dest, false);
+                out = new BufferedWriter(fstream);
+
+                String aLine;
+                Helper_Controller.debugMessage3("Writing to file :");
+                while ((aLine = in.readLine()) != null) {
+                    Helper_Controller.debugMessage3(aLine);
+                    out.write(aLine);
+                    out.newLine();
+                }
+                try {
+                    in.close();
+                    out.close();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                    result = false;
+                }
             } catch (IOException ex) {
-            ex.printStackTrace();
+                Helper_Controller.errorMessage("File not found");
+                ex.printStackTrace();
+                result = false;
+            }
         }
-        } catch (IOException ex) {
-            Helper_Controller.errorMessage("File not found");
-            ex.printStackTrace();
-        }
+        return result;
     }
 
 

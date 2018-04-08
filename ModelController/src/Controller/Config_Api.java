@@ -4,8 +4,8 @@ public class Config_Api {
         /**
          * Ports to send recivce data on sockets : conncection to the API
          */
-        public static final int CLIENT_PORT_READ = 2014;
-        public static final int CLIENT_PORT_WRITE = 2015;
+        public static final int CLIENT_PORT_READ = 2016;
+        public static final int CLIENT_PORT_WRITE = 2017;
         public  static final String SOCKET_NAME = "Simulator_Client";
 
         /**

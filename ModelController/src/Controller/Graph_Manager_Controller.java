@@ -192,6 +192,8 @@ public class Graph_Manager_Controller implements Interface.Graph_Manager_Interfa
                 objectRegister.transfertData(newData);
                 //TODO add checks to verify the data
                 objectRegister.reloadFileBuffer();
+            }else{
+                retVal = false;
             }
 
         }return retVal;

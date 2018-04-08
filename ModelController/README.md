@@ -38,8 +38,9 @@
     - [x] simulate tick
     - [x] get data on id
     - [x] set data on id
-    - [ ] reset
-    - [ ] get file abs path
+    - [x] reset
+    - [x] get file abs path
+    - [ ] reload the data file on said node id
 - [ ] check out error on test_2 when reset is called
 - [ ] test PC file modification on timestamp out-off-data
 - [x] add file interaction on all register models
@@ -48,9 +49,10 @@
 - [ ] Start building more complex modules to start heading towards the easy pross diagrame 
     - [x] <del>Mux*2 + Alu</del>
     - [ ] Mux*2 + ALU + Decode _Nico_
-    - [ ] Pc + Prog + Decode
+    - [x] Pc + Prog + Decode
         - [x] debug -> not working
         - [ ] verify test correctness
     - [ ] Decode + Data + Mux*2 + Pc
     
-    
+_PS: Nico , Mathieu pour faire les testes une interface de commande pour l'API peut etre trouver :
+[Interface de Commande](https://github.com/Essenceia/EasyPross_Consol_Commande_Interface)_

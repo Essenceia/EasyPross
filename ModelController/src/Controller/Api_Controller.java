@@ -92,8 +92,8 @@ public class Api_Controller {
         return this.Graph.GetFileDataOnNode(Id);
     }
 
-    private Boolean changeDataRegister(String ModuleName, String AbsolutePath, int Id) {
-        //todo is module name the file name ?
+    private Boolean changeDataRegister( String AbsolutePath, int Id) {
+
         return this.Graph.LoadDataOnNode(Id, AbsolutePath);
 
     }
