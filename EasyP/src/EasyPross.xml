@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemas id="11" name="EasyPross Module" height="448" width="500" pos_x="0" pos_y="0">
+  <PM id="1" name="Program Memory" height="50" width="50" pos_x="10" pos_y="50">
+  	<!-- Input (ids 1XX) -->
+	<register id="11" name="Intput Program Memory - Value of PC" height="50" width="50" pos_x="10" pos_y="50"></register>
+	<!-- Output (ids 2XX) -->
+	<register id="12" name="Output Program Memory" height="50" width="50" pos_x="10" pos_y="50"></register>
+	<!-- Control (ids 3XX) -->
+	<register id="13" name="Control Line" height="50" width="50" pos_x="10" pos_y="50"></register>
+  </PM>
+  
+  <Decoder id="2" name="Decoder">
+  	<!-- Input (ids 1XX) -->
+	<register id="21" name="Line to Decode" height="20" width="20" pos_x="50" pos_y="50"></register>
+	<!-- Output (ids 2XX) -->
+	<register id="221" name="id Opcode" height="20" width="20" pos_x="50" pos_y="50"></register>
+	<register id="222" name="Control Data Memory" height="20" width="20" pos_x="50" pos_y="50"></register>
+	<register id="223" name="Control ALU" height="20" width="20" pos_x="50" pos_y="50"></register>
+	<register id="224" name="Address op1" height="20" width="20" pos_x="50" pos_y="50"></register>
+	<register id="225" name="Address op2" height="20" width="20" pos_x="50" pos_y="50"></register>
+	<register id="226" name="Constant" height="20" width="20" pos_x="50" pos_y="50"></register>
+  </Decoder>
+  
+  <DM id="3" name="Data Memory" height="25" width="30" pos_x="10" pos_y="150">
+  	<!-- Input (ids 1XX) -->
+  	<register id="33" name="Control Data Memory" height="25" width="30" pos_x="10" pos_y="150"></register>
+  	<register id="311" name="Address op1" height="25" width="30" pos_x="10" pos_y="150"></register>
+  	<register id="312" name="Address op2" height="25" width="30" pos_x="10" pos_y="150"></register>
+  	<register id="313" name="Result" height="25" width="30" pos_x="10" pos_y="150"></register>
+  	<!-- Output (ids 2XX) -->
+  	<register id="321" name="op1" height="25" width="30" pos_x="10" pos_y="150"></register>
+  	<register id="322" name="op2" height="25" width="30" pos_x="10" pos_y="150"></register>
+  </DM>
+  
+  <MUX1 id="4" name="Multiplexer 1">
+  	<!-- Input (ids 1XX) -->
+  	<register id="411" name="op1" height="70" width="50" pos_x="100" pos_y="30"></register>
+  	<register id="412" name="PCShift" height="70" width="50" pos_x="100" pos_y="30"></register>
+  	<register id="413" name="op0" height="70" width="50" pos_x="100" pos_y="30"></register>
+  	<!-- Output (ids 2XX) -->
+  	<register id="42" name="opcode" height="70" width="50" pos_x="100" pos_y="30"></register>
+  </MUX1>
+  
+  <MUX2 id="5" name="Multiplexer 2">
+  	<!-- Input (ids 1XX) -->
+  	<register id="511" name="op2" height="150" width="100" pos_x="10" pos_y="50"></register>
+  	<register id="512" name="Constant" height="150" width="100" pos_x="10" pos_y="50"></register>
+  	<!-- Output (ids 2XX) -->
+  	<register id="52" name="opcode" height="150" width="100" pos_x="10" pos_y="50"></register>
+  </MUX2>
+  
+  <ALU id="6" name="Algorithmic Logic Unit">
+  	<!-- Input (ids 1XX) -->
+  	<register id="611" name="ALU Entry 1" height="150" width="100" pos_x="10" pos_y="50"></register>
+  	<register id="612" name="ALU Entry 2" height="150" width="100" pos_x="10" pos_y="50"></register>
+  	<!-- Output (ids 2XX) -->
+  	<register id="62" name="Result" height="150" width="100" pos_x="10" pos_y="50"></register>
+  	<!-- ZN ALU (ids 4XX) -->
+  	<register id="641" name="Z" height="150" width="100" pos_x="10" pos_y="50"></register>
+  	<register id="642" name="N" height="150" width="100" pos_x="10" pos_y="50"></register>
+  	
+  </ALU>
+  
+  <Mux3 id="7" name="Multiplexer 3">
+  <!-- Input (ids 1XX) -->
+  <register id="711" name="PC Added" height="150" width="100" pos_x="10" pos_y="50"></register>
+  <register id="712" name="Result" height="150" width="100" pos_x="10" pos_y="50"></register>
+  <!-- Output (ids 2XX) -->
+  <register id="72" name="MuX Output" height="150" width="100" pos_x="10" pos_y="50"></register>
+  <!-- Control (ids 3XX) -->
+  <register id="73" name="Control Mux3" height="150" width="100" pos_x="10" pos_y="50"></register>
+  </Mux3>
+  
+  <PC id="8" name="Program Counter">
+  <!-- Input (ids 1XX) -->
+  <register id="81" name="Entry PC" height="150" width="100" pos_x="10" pos_y="50"></register>
+  <!-- Output (ids 2XX) -->
+  <register id="82" name="Output PC" height="150" width="100" pos_x="10" pos_y="50"></register>
+  <!-- Control (ids 3XX) -->
+  <register id="831" name="PC read" height="150" width="100" pos_x="10" pos_y="50"></register>
+  <register id="832" name="PC write" height="150" width="100" pos_x="10" pos_y="50"></register>
+  </PC>
+  
+  <Shift id="10" name="Shifter">
+ 	<!-- Input (ids 1XX) -->
+  	<register id="1011" name="Entry 1 shift (PC)" height="150" width="100" pos_x="10" pos_y="50"></register>
+  	<register id="1012" name="Entry 2 shift (0s)" height="150" width="100" pos_x="10" pos_y="50"></register>
+  	<!-- Output (ids 2XX) -->
+  	<register id="102" name="Output shift (PC shifted)" height="150" width="100" pos_x="10" pos_y="50"></register>
+  </Shift>
+  
+  <Adder id="11" name="+1 Adder">
+  	<!-- Input (ids 1XX) -->
+  	<register id="1111" name="Entry 1 Adder (PC)" height="150" width="100" pos_x="10" pos_y="50"></register>
+  	<register id="1112" name="Entry 2 Adder (1)" height="150" width="100" pos_x="10" pos_y="50"></register>
+  	<!-- Output (ids 2XX) -->
+  	<register id="112" name="Output Adder" height="150" width="100" pos_x="10" pos_y="50"></register>
+  </Adder>
+</schemas>
