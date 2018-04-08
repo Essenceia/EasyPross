@@ -17,173 +17,188 @@
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="true" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Config_Api.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Controller/Config_Api.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="7" column="56" lean-forward="false" selection-start-line="7" selection-start-column="56" selection-end-line="7" selection-end-column="56" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Api_Controller.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Controller/Api_Controller.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="468">
-              <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
-              <folding>
-                <element signature="e#3106#3107#0" expanded="true" />
-                <element signature="e#3161#3162#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test_2.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/XML/test_2.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Data_Tuple.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Controller/Data_Tuple.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
-              <caret line="61" column="26" lean-forward="false" selection-start-line="61" selection-start-column="26" selection-end-line="61" selection-end-column="26" />
-              <folding>
-                <element signature="e#1568#1569#0" expanded="true" />
-                <element signature="e#1601#1602#0" expanded="true" />
-                <element signature="e#1871#1872#0" expanded="true" />
-                <element signature="e#1896#1897#0" expanded="true" />
-                <element signature="e#1935#1936#0" expanded="true" />
-                <element signature="e#1970#1971#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Register_Model_Abstract.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Model/Abstract_Classes/Register_Model_Abstract.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2826">
-              <caret line="317" column="30" lean-forward="false" selection-start-line="317" selection-start-column="30" selection-end-line="317" selection-end-column="30" />
-              <folding>
-                <element signature="docComment;method#Register_Model_Abstract#0;class#Register_Model_Abstract#0" expanded="false" />
-                <element signature="docComment;method#getFileName#0;class#Register_Model_Abstract#0" expanded="false" />
-                <element signature="docComment;method#getTmpFileName#0;class#Register_Model_Abstract#0" expanded="false" />
-                <element signature="docComment;method#setFileName#0;class#Register_Model_Abstract#0" expanded="false" />
-                <element signature="docComment;method#readBlock#0;class#Register_Model_Abstract#0" expanded="false" />
-                <element signature="method#readBlock#0;class#Register_Model_Abstract#0" expanded="false" />
-                <element signature="docComment;method#writeBlock#0;class#Register_Model_Abstract#0" expanded="false" />
-                <element signature="method#writeBlock#0;class#Register_Model_Abstract#0" expanded="false" />
-                <element signature="docComment;method#createFile#0;class#Register_Model_Abstract#0" expanded="false" />
-                <element signature="docComment;method#initDefault#0;class#Register_Model_Abstract#0" expanded="false" />
-                <element signature="docComment;method#createTmpFile#0;class#Register_Model_Abstract#0" expanded="false" />
-                <element signature="method#createTmpFile#0;class#Register_Model_Abstract#0" expanded="false" />
-                <element signature="docComment;method#StringToBool#0;class#Register_Model_Abstract#0" expanded="false" />
-                <element signature="method#StringToBool#0;class#Register_Model_Abstract#0" expanded="false" />
-                <element signature="docComment;method#boolToString#0;class#Register_Model_Abstract#0" expanded="false" />
-                <element signature="method#boolToString#0;class#Register_Model_Abstract#0" expanded="false" />
-                <element signature="docComment;method#readFile#0;class#Register_Model_Abstract#0" expanded="false" />
-                <element signature="docComment;method#writeToFileAccordingToBuffer#0;class#Register_Model_Abstract#0" expanded="false" />
-                <element signature="method#writeToFile#0;class#Register_Model_Abstract#0" expanded="false" />
-                <element signature="e#12051#12078#0" expanded="false" />
-                <element signature="docComment;method#reloadFileBuffer#0;class#Register_Model_Abstract#0" expanded="false" />
-                <element signature="method#reloadFileBuffer#0;class#Register_Model_Abstract#0" expanded="false" />
-                <element signature="docComment;method#checkLineValide#0;class#Register_Model_Abstract#0" expanded="false" />
-                <element signature="method#checkLineValide#0;class#Register_Model_Abstract#0" expanded="false" />
-                <element signature="method#writeChangesToFile#0;class#Register_Model_Abstract#0" expanded="false" />
-                <element signature="e#14277#14278#0" expanded="true" />
-                <element signature="e#14315#14316#0" expanded="true" />
-                <element signature="e#14346#14347#0" expanded="true" />
-                <element signature="e#14383#14384#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="439">
-                <caret line="57" column="90" lean-forward="false" selection-start-line="57" selection-start-column="90" selection-end-line="57" selection-end-column="90" />
-                <folding />
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Document_Manager_Controller.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Controller/Document_Manager_Controller.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="28" column="20" lean-forward="false" selection-start-line="28" selection-start-column="20" selection-end-line="28" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Helper_Controller.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Controller/Helper_Controller.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3132">
-              <caret line="191" column="38" lean-forward="true" selection-start-line="191" selection-start-column="28" selection-end-line="191" selection-end-column="38" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Global_Defines_Abstract.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Model/Abstract_Classes/Global_Defines_Abstract.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="738">
-              <caret line="41" column="75" lean-forward="false" selection-start-line="41" selection-start-column="75" selection-end-line="41" selection-end-column="75" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Graph_Manager_Controller.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Controller/Graph_Manager_Controller.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="179">
-              <caret line="191" column="36" lean-forward="false" selection-start-line="191" selection-start-column="36" selection-end-line="191" selection-end-column="36" />
-              <folding>
-                <element signature="docComment;method#Graph_Manager_Controller#0;class#Graph_Manager_Controller#0" expanded="false" />
-                <element signature="method#Graph_Manager_Controller#0;class#Graph_Manager_Controller#0" expanded="false" />
-                <element signature="method#Print_info#0;class#Graph_Manager_Controller#0" expanded="false" />
-                <element signature="e#1351#1375#0" expanded="false" />
-                <element signature="docComment;method#tick#0;class#Graph_Manager_Controller#0" expanded="false" />
-                <element signature="method#tick#0;class#Graph_Manager_Controller#0" expanded="false" />
-                <element signature="docComment;method#createGraph#0;class#Graph_Manager_Controller#0" expanded="false" />
-                <element signature="docComment;method#callAPI#0;class#Graph_Manager_Controller#0" expanded="false" />
-                <element signature="method#callAPI#0;class#Graph_Manager_Controller#0" expanded="false" />
-                <element signature="method#load_new_module#0;class#Graph_Manager_Controller#0" expanded="false" />
-                <element signature="method#readGNoeuds#0;class#Graph_Manager_Controller#0" expanded="false" />
-                <element signature="e#2682#2777#0" expanded="false" />
-                <element signature="method#readProbs#0;class#Graph_Manager_Controller#0" expanded="false" />
-                <element signature="e#2896#2991#0" expanded="false" />
-                <element signature="e#3068#3163#0" expanded="false" />
-                <element signature="docComment;method#GetDataOnId#0;class#Graph_Manager_Controller#0" expanded="false" />
-                <element signature="method#GetDataOnId#0;class#Graph_Manager_Controller#0" expanded="false" />
-                <element signature="docComment;method#SetDataOnId#0;class#Graph_Manager_Controller#0" expanded="false" />
-                <element signature="method#SetDataOnId#0;class#Graph_Manager_Controller#0" expanded="false" />
-                <element signature="method#GetFileDataOnNode#0;class#Graph_Manager_Controller#0" expanded="false" />
-                <element signature="method#resetGraphValues#0;class#Graph_Manager_Controller#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.71415097">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file leaf-file-name="Config_Api.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/Controller/Config_Api.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="216">
+                  <caret line="30" column="55" lean-forward="false" selection-start-line="30" selection-start-column="55" selection-end-line="30" selection-end-column="55" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Api_Controller.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/Controller/Api_Controller.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="342">
+                  <caret line="345" column="57" lean-forward="false" selection-start-line="345" selection-start-column="57" selection-end-line="345" selection-end-column="57" />
+                  <folding>
+                    <element signature="e#3040#3041#0" expanded="true" />
+                    <element signature="e#3095#3096#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="test_2.xml" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/XML/test_2.xml">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-431">
+                  <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Register_Model_Abstract.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/Model/Abstract_Classes/Register_Model_Abstract.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="256">
+                  <caret line="248" column="0" lean-forward="false" selection-start-line="248" selection-start-column="0" selection-end-line="248" selection-end-column="0" />
+                  <folding>
+                    <element signature="docComment;method#Register_Model_Abstract#0;class#Register_Model_Abstract#0" expanded="false" />
+                    <element signature="docComment;method#getFileName#0;class#Register_Model_Abstract#0" expanded="false" />
+                    <element signature="docComment;method#getTmpFileName#0;class#Register_Model_Abstract#0" expanded="false" />
+                    <element signature="docComment;method#setFileName#0;class#Register_Model_Abstract#0" expanded="false" />
+                    <element signature="docComment;method#readBlock#0;class#Register_Model_Abstract#0" expanded="false" />
+                    <element signature="method#readBlock#0;class#Register_Model_Abstract#0" expanded="false" />
+                    <element signature="docComment;method#writeBlock#0;class#Register_Model_Abstract#0" expanded="false" />
+                    <element signature="method#writeBlock#0;class#Register_Model_Abstract#0" expanded="false" />
+                    <element signature="docComment;method#createFile#0;class#Register_Model_Abstract#0" expanded="false" />
+                    <element signature="docComment;method#initDefault#0;class#Register_Model_Abstract#0" expanded="false" />
+                    <element signature="docComment;method#createTmpFile#0;class#Register_Model_Abstract#0" expanded="false" />
+                    <element signature="method#createTmpFile#0;class#Register_Model_Abstract#0" expanded="false" />
+                    <element signature="docComment;method#StringToBool#0;class#Register_Model_Abstract#0" expanded="false" />
+                    <element signature="method#StringToBool#0;class#Register_Model_Abstract#0" expanded="false" />
+                    <element signature="docComment;method#boolToString#0;class#Register_Model_Abstract#0" expanded="false" />
+                    <element signature="method#boolToString#0;class#Register_Model_Abstract#0" expanded="false" />
+                    <element signature="docComment;method#readFile#0;class#Register_Model_Abstract#0" expanded="false" />
+                    <element signature="docComment;method#writeToFileAccordingToBuffer#0;class#Register_Model_Abstract#0" expanded="false" />
+                    <element signature="method#writeToFile#0;class#Register_Model_Abstract#0" expanded="false" />
+                    <element signature="e#12048#12075#0" expanded="false" />
+                    <element signature="docComment;method#reloadFileBuffer#0;class#Register_Model_Abstract#0" expanded="false" />
+                    <element signature="docComment;method#checkLineValide#0;class#Register_Model_Abstract#0" expanded="false" />
+                    <element signature="method#checkLineValide#0;class#Register_Model_Abstract#0" expanded="false" />
+                    <element signature="method#writeChangesToFile#0;class#Register_Model_Abstract#0" expanded="false" />
+                    <element signature="e#14274#14275#0" expanded="true" />
+                    <element signature="e#14312#14313#0" expanded="true" />
+                    <element signature="e#14343#14344#0" expanded="true" />
+                    <element signature="e#14380#14381#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/README.md">
+              <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+                <state split_layout="SPLIT">
+                  <first_editor relative-caret-position="225">
+                    <caret line="44" column="37" lean-forward="false" selection-start-line="44" selection-start-column="37" selection-end-line="44" selection-end-column="37" />
+                    <folding />
+                  </first_editor>
+                  <second_editor />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Document_Manager_Controller.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/Controller/Document_Manager_Controller.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="18">
+                  <caret line="28" column="20" lean-forward="false" selection-start-line="28" selection-start-column="20" selection-end-line="28" selection-end-column="20" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Helper_Controller.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/Controller/Helper_Controller.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="188">
+                  <caret line="184" column="37" lean-forward="true" selection-start-line="184" selection-start-column="28" selection-end-line="184" selection-end-column="37" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Global_Defines_Abstract.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/Model/Abstract_Classes/Global_Defines_Abstract.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="301">
+                  <caret line="41" column="75" lean-forward="false" selection-start-line="41" selection-start-column="75" selection-end-line="41" selection-end-column="75" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Graph_Manager_Controller.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/Controller/Graph_Manager_Controller.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="185">
+                  <caret line="83" column="20" lean-forward="false" selection-start-line="83" selection-start-column="20" selection-end-line="83" selection-end-column="20" />
+                  <folding>
+                    <element signature="docComment;method#Graph_Manager_Controller#0;class#Graph_Manager_Controller#0" expanded="false" />
+                    <element signature="method#Graph_Manager_Controller#0;class#Graph_Manager_Controller#0" expanded="false" />
+                    <element signature="method#Print_info#0;class#Graph_Manager_Controller#0" expanded="false" />
+                    <element signature="e#1351#1375#0" expanded="false" />
+                    <element signature="docComment;method#tick#0;class#Graph_Manager_Controller#0" expanded="false" />
+                    <element signature="method#tick#0;class#Graph_Manager_Controller#0" expanded="false" />
+                    <element signature="docComment;method#createGraph#0;class#Graph_Manager_Controller#0" expanded="false" />
+                    <element signature="docComment;method#callAPI#0;class#Graph_Manager_Controller#0" expanded="false" />
+                    <element signature="method#callAPI#0;class#Graph_Manager_Controller#0" expanded="false" />
+                    <element signature="method#load_new_module#0;class#Graph_Manager_Controller#0" expanded="false" />
+                    <element signature="e#2531#2532#0" expanded="true" />
+                    <element signature="e#2611#2612#0" expanded="true" />
+                    <element signature="method#readGNoeuds#0;class#Graph_Manager_Controller#0" expanded="false" />
+                    <element signature="e#2682#2777#0" expanded="false" />
+                    <element signature="method#readProbs#0;class#Graph_Manager_Controller#0" expanded="false" />
+                    <element signature="e#2896#2991#0" expanded="false" />
+                    <element signature="e#3068#3163#0" expanded="false" />
+                    <element signature="docComment;method#GetDataOnId#0;class#Graph_Manager_Controller#0" expanded="false" />
+                    <element signature="method#GetDataOnId#0;class#Graph_Manager_Controller#0" expanded="false" />
+                    <element signature="docComment;method#SetDataOnId#0;class#Graph_Manager_Controller#0" expanded="false" />
+                    <element signature="method#SetDataOnId#0;class#Graph_Manager_Controller#0" expanded="false" />
+                    <element signature="method#GetFileDataOnNode#0;class#Graph_Manager_Controller#0" expanded="false" />
+                    <element signature="method#resetGraphValues#0;class#Graph_Manager_Controller#0" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="XML_Manager_Controller.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/Controller/XML_Manager_Controller.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="356">
+                  <caret line="392" column="74" lean-forward="false" selection-start-line="392" selection-start-column="74" selection-end-line="392" selection-end-column="74" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/README.md">
+              <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+                <state split_layout="SPLIT">
+                  <first_editor relative-caret-position="63">
+                    <caret line="35" column="76" lean-forward="false" selection-start-line="35" selection-start-column="76" selection-end-line="35" selection-end-column="76" />
+                    <folding />
+                  </first_editor>
+                  <second_editor />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -280,14 +295,14 @@
         <option value="$PROJECT_DIR$/src/Model/Abstract_Classes/Object_Model_Abstract.java" />
         <option value="$PROJECT_DIR$/src/Controller/Main_Controller.java" />
         <option value="$PROJECT_DIR$/src/Model/Abstract_Classes/Global_Defines_Abstract.java" />
-        <option value="$PROJECT_DIR$/src/Controller/XML_Manager_Controller.java" />
         <option value="$PROJECT_DIR$/src/Controller/Helper_Data_Handler.java" />
         <option value="$PROJECT_DIR$/src/Controller/Data_Tuple.java" />
         <option value="$PROJECT_DIR$/src/Controller/Graph_Manager_Controller.java" />
-        <option value="$PROJECT_DIR$/src/Controller/Api_Controller.java" />
         <option value="$PROJECT_DIR$/src/Model/Abstract_Classes/Register_Model_Abstract.java" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/Controller/Config_Api.java" />
+        <option value="$PROJECT_DIR$/src/Controller/Api_Controller.java" />
+        <option value="$PROJECT_DIR$/src/Controller/XML_Manager_Controller.java" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -359,7 +374,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Documentation/Trame_de_comm_API_Simulateur.pdf" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -518,12 +533,12 @@
       <workItem from="1521916207887" duration="3813000" />
       <workItem from="1521996829539" duration="9566000" />
       <workItem from="1522062098625" duration="265000" />
-      <workItem from="1523177947628" duration="4521000" />
+      <workItem from="1523177947628" duration="9350000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="200210000" />
+    <option name="totallyTimeSpent" value="205039000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -536,6 +551,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1" y="41" width="1364" height="726" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32695374" sideWeight="0.4969605" order="6" side_tool="false" content_ui="tabs" />
@@ -546,13 +562,13 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.8723077" sideWeight="0.51319647" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.7049442" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34130782" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5295056" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3492823" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19575115" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37639552" sideWeight="0.48680353" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5103668" sideWeight="0.48680353" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -658,6 +674,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
           <caret line="6" column="14" lean-forward="false" selection-start-line="6" selection-start-column="14" selection-end-line="6" selection-end-column="14" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -695,6 +712,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -702,6 +720,17 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
           <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding>
+            <element signature="n#probe#0;n#graph#0;n#!!top" expanded="false" />
+            <element signature="n#probe#1;n#graph#0;n#!!top" expanded="false" />
+            <element signature="n#probe#2;n#graph#0;n#!!top" expanded="false" />
+            <element signature="n#probe#3;n#graph#0;n#!!top" expanded="false" />
+            <element signature="n#wire#0;n#graph#0;n#!!top" expanded="false" />
+            <element signature="n#wire#1;n#graph#0;n#!!top" expanded="false" />
+            <element signature="n#wire#2;n#graph#0;n#!!top" expanded="false" />
+            <element signature="n#wire#3;n#graph#0;n#!!top" expanded="false" />
+            <element signature="n#node#0;n#graph#0;n#!!top" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -719,6 +748,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="234">
           <caret line="13" column="14" lean-forward="true" selection-start-line="12" selection-start-column="14" selection-end-line="13" selection-end-column="14" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -744,6 +774,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -761,6 +792,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-253">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -778,6 +810,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-213">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -799,6 +832,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
           <caret line="8" column="22" lean-forward="false" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1037,34 +1071,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/XML_Manager_Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="126" column="58" lean-forward="false" selection-start-line="126" selection-start-column="58" selection-end-line="126" selection-end-column="58" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/Main_Controller.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="504">
           <caret line="32" column="22" lean-forward="false" selection-start-line="32" selection-start-column="22" selection-end-line="32" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/Abstract_Classes/Global_Defines_Abstract.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="738">
-          <caret line="41" column="75" lean-forward="false" selection-start-line="41" selection-start-column="75" selection-end-line="41" selection-end-column="75" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/Document_Manager_Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="28" column="20" lean-forward="false" selection-start-line="28" selection-start-column="20" selection-end-line="28" selection-end-column="20" />
           <folding />
         </state>
       </provider>
@@ -1077,56 +1087,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/XML/test_2.xml">
+    <entry file="file://$PROJECT_DIR$/src/Controller/Data_Tuple.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/Graph_Manager_Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="191" column="36" lean-forward="false" selection-start-line="191" selection-start-column="36" selection-end-line="191" selection-end-column="36" />
+        <state relative-caret-position="224">
+          <caret line="61" column="26" lean-forward="false" selection-start-line="61" selection-start-column="26" selection-end-line="61" selection-end-column="26" />
           <folding>
-            <element signature="docComment;method#Graph_Manager_Controller#0;class#Graph_Manager_Controller#0" expanded="false" />
-            <element signature="method#Graph_Manager_Controller#0;class#Graph_Manager_Controller#0" expanded="false" />
-            <element signature="method#Print_info#0;class#Graph_Manager_Controller#0" expanded="false" />
-            <element signature="e#1351#1375#0" expanded="false" />
-            <element signature="docComment;method#tick#0;class#Graph_Manager_Controller#0" expanded="false" />
-            <element signature="method#tick#0;class#Graph_Manager_Controller#0" expanded="false" />
-            <element signature="docComment;method#createGraph#0;class#Graph_Manager_Controller#0" expanded="false" />
-            <element signature="docComment;method#callAPI#0;class#Graph_Manager_Controller#0" expanded="false" />
-            <element signature="method#callAPI#0;class#Graph_Manager_Controller#0" expanded="false" />
-            <element signature="method#load_new_module#0;class#Graph_Manager_Controller#0" expanded="false" />
-            <element signature="method#readGNoeuds#0;class#Graph_Manager_Controller#0" expanded="false" />
-            <element signature="e#2682#2777#0" expanded="false" />
-            <element signature="method#readProbs#0;class#Graph_Manager_Controller#0" expanded="false" />
-            <element signature="e#2896#2991#0" expanded="false" />
-            <element signature="e#3068#3163#0" expanded="false" />
-            <element signature="docComment;method#GetDataOnId#0;class#Graph_Manager_Controller#0" expanded="false" />
-            <element signature="method#GetDataOnId#0;class#Graph_Manager_Controller#0" expanded="false" />
-            <element signature="docComment;method#SetDataOnId#0;class#Graph_Manager_Controller#0" expanded="false" />
-            <element signature="method#SetDataOnId#0;class#Graph_Manager_Controller#0" expanded="false" />
-            <element signature="method#GetFileDataOnNode#0;class#Graph_Manager_Controller#0" expanded="false" />
-            <element signature="method#resetGraphValues#0;class#Graph_Manager_Controller#0" expanded="false" />
+            <element signature="e#1568#1569#0" expanded="true" />
+            <element signature="e#1601#1602#0" expanded="true" />
+            <element signature="e#1871#1872#0" expanded="true" />
+            <element signature="e#1896#1897#0" expanded="true" />
+            <element signature="e#1935#1936#0" expanded="true" />
+            <element signature="e#1970#1971#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/Helper_Controller.java">
+    <entry file="file://$PROJECT_DIR$/src/Model/Abstract_Classes/Global_Defines_Abstract.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3132">
-          <caret line="191" column="38" lean-forward="true" selection-start-line="191" selection-start-column="28" selection-end-line="191" selection-end-column="38" />
+        <state relative-caret-position="301">
+          <caret line="41" column="75" lean-forward="false" selection-start-line="41" selection-start-column="75" selection-end-line="41" selection-end-column="75" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Model/Abstract_Classes/Register_Model_Abstract.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2826">
-          <caret line="317" column="30" lean-forward="false" selection-start-line="317" selection-start-column="30" selection-end-line="317" selection-end-column="30" />
+        <state relative-caret-position="256">
+          <caret line="248" column="0" lean-forward="false" selection-start-line="248" selection-start-column="0" selection-end-line="248" selection-end-column="0" />
           <folding>
             <element signature="docComment;method#Register_Model_Abstract#0;class#Register_Model_Abstract#0" expanded="false" />
             <element signature="docComment;method#getFileName#0;class#Register_Model_Abstract#0" expanded="false" />
@@ -1147,50 +1134,98 @@
             <element signature="docComment;method#readFile#0;class#Register_Model_Abstract#0" expanded="false" />
             <element signature="docComment;method#writeToFileAccordingToBuffer#0;class#Register_Model_Abstract#0" expanded="false" />
             <element signature="method#writeToFile#0;class#Register_Model_Abstract#0" expanded="false" />
-            <element signature="e#12051#12078#0" expanded="false" />
+            <element signature="e#12048#12075#0" expanded="false" />
             <element signature="docComment;method#reloadFileBuffer#0;class#Register_Model_Abstract#0" expanded="false" />
-            <element signature="method#reloadFileBuffer#0;class#Register_Model_Abstract#0" expanded="false" />
             <element signature="docComment;method#checkLineValide#0;class#Register_Model_Abstract#0" expanded="false" />
             <element signature="method#checkLineValide#0;class#Register_Model_Abstract#0" expanded="false" />
             <element signature="method#writeChangesToFile#0;class#Register_Model_Abstract#0" expanded="false" />
-            <element signature="e#14277#14278#0" expanded="true" />
-            <element signature="e#14315#14316#0" expanded="true" />
-            <element signature="e#14346#14347#0" expanded="true" />
-            <element signature="e#14383#14384#0" expanded="true" />
+            <element signature="e#14274#14275#0" expanded="true" />
+            <element signature="e#14312#14313#0" expanded="true" />
+            <element signature="e#14343#14344#0" expanded="true" />
+            <element signature="e#14380#14381#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/Data_Tuple.java">
+    <entry file="file://$PROJECT_DIR$/src/Controller/Document_Manager_Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="61" column="26" lean-forward="false" selection-start-line="61" selection-start-column="26" selection-end-line="61" selection-end-column="26" />
-          <folding>
-            <element signature="e#1568#1569#0" expanded="true" />
-            <element signature="e#1601#1602#0" expanded="true" />
-            <element signature="e#1871#1872#0" expanded="true" />
-            <element signature="e#1896#1897#0" expanded="true" />
-            <element signature="e#1935#1936#0" expanded="true" />
-            <element signature="e#1970#1971#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="18">
+          <caret line="28" column="20" lean-forward="false" selection-start-line="28" selection-start-column="20" selection-end-line="28" selection-end-column="20" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/Api_Controller.java">
+    <entry file="file://$PROJECT_DIR$/src/Controller/Helper_Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
-          <folding>
-            <element signature="e#3106#3107#0" expanded="true" />
-            <element signature="e#3161#3162#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="188">
+          <caret line="184" column="37" lean-forward="true" selection-start-line="184" selection-start-column="28" selection-end-line="184" selection-end-column="37" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/Config_Api.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="56" lean-forward="false" selection-start-line="7" selection-start-column="56" selection-end-line="7" selection-end-column="56" />
+        <state relative-caret-position="216">
+          <caret line="30" column="55" lean-forward="false" selection-start-line="30" selection-start-column="55" selection-end-line="30" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/Graph_Manager_Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="83" column="20" lean-forward="false" selection-start-line="83" selection-start-column="20" selection-end-line="83" selection-end-column="20" />
+          <folding>
+            <element signature="docComment;method#Graph_Manager_Controller#0;class#Graph_Manager_Controller#0" expanded="false" />
+            <element signature="method#Graph_Manager_Controller#0;class#Graph_Manager_Controller#0" expanded="false" />
+            <element signature="method#Print_info#0;class#Graph_Manager_Controller#0" expanded="false" />
+            <element signature="e#1351#1375#0" expanded="false" />
+            <element signature="docComment;method#tick#0;class#Graph_Manager_Controller#0" expanded="false" />
+            <element signature="method#tick#0;class#Graph_Manager_Controller#0" expanded="false" />
+            <element signature="docComment;method#createGraph#0;class#Graph_Manager_Controller#0" expanded="false" />
+            <element signature="docComment;method#callAPI#0;class#Graph_Manager_Controller#0" expanded="false" />
+            <element signature="method#callAPI#0;class#Graph_Manager_Controller#0" expanded="false" />
+            <element signature="method#load_new_module#0;class#Graph_Manager_Controller#0" expanded="false" />
+            <element signature="e#2531#2532#0" expanded="true" />
+            <element signature="e#2611#2612#0" expanded="true" />
+            <element signature="method#readGNoeuds#0;class#Graph_Manager_Controller#0" expanded="false" />
+            <element signature="e#2682#2777#0" expanded="false" />
+            <element signature="method#readProbs#0;class#Graph_Manager_Controller#0" expanded="false" />
+            <element signature="e#2896#2991#0" expanded="false" />
+            <element signature="e#3068#3163#0" expanded="false" />
+            <element signature="docComment;method#GetDataOnId#0;class#Graph_Manager_Controller#0" expanded="false" />
+            <element signature="method#GetDataOnId#0;class#Graph_Manager_Controller#0" expanded="false" />
+            <element signature="docComment;method#SetDataOnId#0;class#Graph_Manager_Controller#0" expanded="false" />
+            <element signature="method#SetDataOnId#0;class#Graph_Manager_Controller#0" expanded="false" />
+            <element signature="method#GetFileDataOnNode#0;class#Graph_Manager_Controller#0" expanded="false" />
+            <element signature="method#resetGraphValues#0;class#Graph_Manager_Controller#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/XML_Manager_Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="356">
+          <caret line="392" column="74" lean-forward="false" selection-start-line="392" selection-start-column="74" selection-end-line="392" selection-end-column="74" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/Api_Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="345" column="57" lean-forward="false" selection-start-line="345" selection-start-column="57" selection-end-line="345" selection-end-column="57" />
+          <folding>
+            <element signature="e#3040#3041#0" expanded="true" />
+            <element signature="e#3095#3096#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/XML/test_2.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-431">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1198,8 +1233,8 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="439">
-            <caret line="57" column="90" lean-forward="false" selection-start-line="57" selection-start-column="90" selection-end-line="57" selection-end-column="90" />
+          <first_editor relative-caret-position="225">
+            <caret line="44" column="37" lean-forward="false" selection-start-line="44" selection-start-column="37" selection-end-line="44" selection-end-column="37" />
             <folding />
           </first_editor>
           <second_editor />

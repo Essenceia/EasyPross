@@ -2,11 +2,9 @@ package Controller;
 
 import Model.Abstract_Classes.Global_Defines_Abstract;
 
-import javax.swing.text.html.HTMLWriter;
 import java.io.*;
 import java.net.*;
 import java.nio.file.Paths;
-import java.util.Arrays;
 import java.util.Vector;
 import java.nio.file.Path;
 
@@ -186,8 +184,23 @@ public class Api_Controller {
     void sendChangeDataItem(int Opcode, Boolean check) {
         try {
             String msg = Opcode+" ";
-           if(check)msg+="1";
-           else msg+="0";
+            if(check)msg+="1";
+            else msg+="0";
+            outputLine.write(msg+"\n");
+            outputLine.flush();
+
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    void sendChangeDataFile(int Opcode, Boolean check, String path , int objectId) {
+        try {
+            String msg = Opcode+" "+objectId+" "+path+" ";
+
+            if(check)msg+="1";
+            else msg+="0";
             outputLine.write(msg+"\n");
             outputLine.flush();
 
@@ -233,7 +246,7 @@ public class Api_Controller {
     /**                                                                                                                                    */
     /************************************************************************************************************************************/
 
-    void sendGetDataRegister(int Opcode, String pathToRegister) {
+    void sendGetDataPath(int Opcode, String pathToRegister) {
 
         try {
             String msg="";
@@ -247,7 +260,6 @@ public class Api_Controller {
             e.printStackTrace();
         }
     }
-
     /************************************************************************************************************************************/
     /**                                                                                                                                    */
     /**    this function gets the data sent from the HMI and sends it to the appropriate function according to the operation identifier	*/
@@ -261,6 +273,7 @@ public class Api_Controller {
 
             Boolean check;
             String path;
+            Integer Id;
             String recivedMessage = inputLine.readLine();
             Helper_Controller.debugMessage4("Recived ::" + recivedMessage);
             String message[] = recivedMessage.split(" ");
@@ -293,9 +306,9 @@ public class Api_Controller {
                    Vector<Integer> ids =
                            Helper_Data_Handler.parseIdString(message[Config_Api.INDEX_NODE_ID]);
                     Helper_Controller.debugMessage4("PULLID #" + ids.toString());
-                    for (Integer Id: ids
+                    for (Integer thisId: ids
                          ) {
-                        vecdata.add(new Data_Tuple(Id,getDataItem(Id)));
+                        vecdata.add(new Data_Tuple(thisId,getDataItem(thisId)));
                     }
                     sendGetDataItem(Opcode, vecdata);
                     break;
@@ -317,12 +330,24 @@ public class Api_Controller {
                     break;
 
                case 6:        //ask for data
-                    Integer Id = Integer.parseInt(message[Config_Api.INDEX_NODE_ID]);
+                    Id = Integer.parseInt(message[Config_Api.INDEX_NODE_ID]);
                     Helper_Controller.debugMessage4("ASKFILEDATA ID#" + Id);
 
                     path = getDataRegister(Id);
-                    sendGetDataRegister(Opcode, path);
+                    sendGetDataPath(Opcode, path);
                     break;
+                case 7: //load data from file to id
+                    Id = Integer.parseInt(message[Config_Api.INDEX_NODE_ID]);
+                    path = message[Config_Api.INDEX_NEW_DATA_FILE];
+                    check =changeDataRegister(path,Id);
+                    sendChangeDataFile(7,check,path,Id);
+                    break;
+                case 8:  //debug save current grpah to xml
+                    path = message[Config_Api.INDEX_XML_SAVE_PATH];
+                    Graph.save_module(path);
+                    sendGetDataPath(Opcode,path);
+                    break;
+
 
 
                 default:Helper_Controller.errorMessage("Unexpected opcode recived "+Opcode);

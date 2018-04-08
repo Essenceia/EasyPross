@@ -390,7 +390,9 @@ public class XML_Manager_Controller {
         try {
             XMLOutputter sortie = new XMLOutputter(Format.getPrettyFormat());
             sortie.output(doc, new FileOutputStream(fileName));
+            Helper_Controller.debugMessage0("XML saved to path :"+fileName);
         } catch (java.io.IOException e) {
+            e.printStackTrace();
         }
     }
 

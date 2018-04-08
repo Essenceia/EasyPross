@@ -235,7 +235,8 @@ public abstract class Register_Model_Abstract extends Node_Model_Abstract implem
                 try {
                     in.close();
                     out.close();
-                } catch (IOException ex) {
+
+            } catch (IOException ex) {
                     ex.printStackTrace();
                     result = false;
                 }

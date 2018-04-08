@@ -33,6 +33,7 @@
 
 # TODO #
 - [ ] Update communication protocol : remove "," between opcode and beging of datamessage
+- [ ] Update communication protocol : 7 : id path / response : id path check" 
 - [ ] re-write api :
     - [x] load module
     - [x] simulate tick
@@ -41,6 +42,7 @@
     - [x] reset
     - [x] get file abs path
     - [ ] reload the data file on said node id
+    - [ ] debug option to save to xml
 - [ ] check out error on test_2 when reset is called
 - [ ] test PC file modification on timestamp out-off-data
 - [x] add file interaction on all register models
