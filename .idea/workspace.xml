@@ -2,53 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="07a051dc-e496-484f-82ee-29bed922d873" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/CodeByJuju/src/easypross/Controller/DocumentManagerController.java" afterPath="$PROJECT_DIR$/CodeByJuju/src/easypross/Controller/DocumentManagerController.java" />
-      <change beforePath="$PROJECT_DIR$/CodeByJuju/src/easypross/Controller/GraphManagerController.java" afterPath="$PROJECT_DIR$/CodeByJuju/src/easypross/Controller/GraphManagerController.java" />
-      <change beforePath="$PROJECT_DIR$/CodeByJuju/src/easypross/Controller/SimplifiedGraphObjectController.java" afterPath="$PROJECT_DIR$/CodeByJuju/src/easypross/Controller/SimplifiedGraphObjectController.java" />
-      <change beforePath="$PROJECT_DIR$/CodeByJuju/src/easypross/Model/AbstractClasses/ObjectModel_Abstract.java" afterPath="$PROJECT_DIR$/CodeByJuju/src/easypross/Model/AbstractClasses/ObjectModel_Abstract.java" />
-      <change beforePath="$PROJECT_DIR$/CodeByJuju/src/easypross/Model/AbstractClasses/ProbeModel_Abstract.java" afterPath="$PROJECT_DIR$/CodeByJuju/src/easypross/Model/AbstractClasses/ProbeModel_Abstract.java" />
-      <change beforePath="$PROJECT_DIR$/CodeByJuju/src/easypross/Model/AbstractClasses/RegisterModel_Abstract.java" afterPath="$PROJECT_DIR$/CodeByJuju/src/easypross/Model/AbstractClasses/RegisterModel_Abstract.java" />
-      <change beforePath="$PROJECT_DIR$/CodeByJuju/src/easypross/Model/Logic/Gate/ANDModel.java" afterPath="$PROJECT_DIR$/CodeByJuju/src/easypross/Model/Logic/Gate/ANDModel.java" />
-      <change beforePath="$PROJECT_DIR$/CodeByJuju/src/easypross/Model/Logic/Gate/NOTModel.java" afterPath="$PROJECT_DIR$/CodeByJuju/src/easypross/Model/Logic/Gate/NOTModel.java" />
-      <change beforePath="$PROJECT_DIR$/CodeByJuju/src/easypross/Model/Logic/Gate/ORModel.java" afterPath="$PROJECT_DIR$/CodeByJuju/src/easypross/Model/Logic/Gate/ORModel.java" />
-      <change beforePath="$PROJECT_DIR$/CodeByJuju/src/easypross/Model/Logic/Unit/ALUModel.java" afterPath="$PROJECT_DIR$/CodeByJuju/src/easypross/Model/Logic/Unit/ALUModel.java" />
-      <change beforePath="$PROJECT_DIR$/CodeByJuju/src/easypross/Model/Logic/Unit/DEMUXModel.java" afterPath="$PROJECT_DIR$/CodeByJuju/src/easypross/Model/Logic/Unit/DEMUXModel.java" />
-      <change beforePath="$PROJECT_DIR$/CodeByJuju/src/easypross/Model/Logic/Unit/MUXModel.java" afterPath="$PROJECT_DIR$/CodeByJuju/src/easypross/Model/Logic/Unit/MUXModel.java" />
-      <change beforePath="$PROJECT_DIR$/CodeByJuju/src/easypross/Model/Probe/ProbeEndModel.java" afterPath="$PROJECT_DIR$/CodeByJuju/src/easypross/Model/Probe/ProbeEndModel.java" />
-      <change beforePath="$PROJECT_DIR$/CodeByJuju/src/easypross/Model/Register/PCModel.java" afterPath="$PROJECT_DIR$/CodeByJuju/src/easypross/Model/Register/PCModel.java" />
-      <change beforePath="$PROJECT_DIR$/CodeByJuju/src/easypross/Model/Wire/WireModel.java" afterPath="$PROJECT_DIR$/CodeByJuju/src/easypross/Model/Wire/WireModel.java" />
-      <change beforePath="$PROJECT_DIR$/ModelController/src/Controller/DocumentManagerController.java" afterPath="$PROJECT_DIR$/ModelController/src/Controller/DocumentManagerController.java" />
-      <change beforePath="$PROJECT_DIR$/ModelController/src/Controller/GraphManagerController.java" afterPath="$PROJECT_DIR$/ModelController/src/Controller/GraphManagerController.java" />
-      <change beforePath="$PROJECT_DIR$/ModelController/src/Controller/HelperController.java" afterPath="$PROJECT_DIR$/ModelController/src/Controller/Helper_Controller.java" />
-      <change beforePath="$PROJECT_DIR$/ModelController/src/Controller/SimplifiedGraphController.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/ModelController/src/Controller/SimplifiedGraphObjectController.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/ModelController/src/Controller/XMLManager.java" afterPath="$PROJECT_DIR$/ModelController/src/Controller/XML_Manager.java" />
-      <change beforePath="$PROJECT_DIR$/ModelController/src/Controller/mainController.java" afterPath="$PROJECT_DIR$/ModelController/src/Controller/Main_Controller.java" />
-      <change beforePath="$PROJECT_DIR$/ModelController/src/Interface/DocumentManagerInterface.java" afterPath="$PROJECT_DIR$/ModelController/src/Interface/Document_Manager_Interface.java" />
-      <change beforePath="$PROJECT_DIR$/ModelController/src/Interface/GraphManagerInterface.java" afterPath="$PROJECT_DIR$/ModelController/src/Interface/Graph_Manager_Interface.java" />
-      <change beforePath="$PROJECT_DIR$/ModelController/src/Interface/HelperInterface.java" afterPath="$PROJECT_DIR$/ModelController/src/Interface/Helper_Interface.java" />
-      <change beforePath="$PROJECT_DIR$/ModelController/src/Interface/NodeInterface.java" afterPath="$PROJECT_DIR$/ModelController/src/Interface/Node_Interface.java" />
-      <change beforePath="$PROJECT_DIR$/ModelController/src/Interface/ObjectInterface.java" afterPath="$PROJECT_DIR$/ModelController/src/Interface/Object_Interface.java" />
-      <change beforePath="$PROJECT_DIR$/ModelController/src/Model/AbstractClasses/LogicGateModel_Abstract.java" afterPath="$PROJECT_DIR$/ModelController/src/Model/Abstract_Classes/Logic_Gate_Model_Abstract.java" />
-      <change beforePath="$PROJECT_DIR$/ModelController/src/Model/AbstractClasses/LogicModel_Abstract.java" afterPath="$PROJECT_DIR$/ModelController/src/Model/Abstract_Classes/Logic_Model_Abstract.java" />
-      <change beforePath="$PROJECT_DIR$/ModelController/src/Model/AbstractClasses/LogicUnitModel_Abstract.java" afterPath="$PROJECT_DIR$/ModelController/src/Model/Abstract_Classes/Logic_Unit_Model_Abstract.java" />
-      <change beforePath="$PROJECT_DIR$/ModelController/src/Model/AbstractClasses/NodeModel_Abstract.java" afterPath="$PROJECT_DIR$/ModelController/src/Model/Abstract_Classes/Node_Model_Abstract.java" />
-      <change beforePath="$PROJECT_DIR$/ModelController/src/Model/AbstractClasses/ObjectModel_Abstract.java" afterPath="$PROJECT_DIR$/ModelController/src/Model/Abstract_Classes/Object_Model_Abstract.java" />
-      <change beforePath="$PROJECT_DIR$/ModelController/src/Model/AbstractClasses/ProbeModel_Abstract.java" afterPath="$PROJECT_DIR$/ModelController/src/Model/Abstract_Classes/Probe_Model_Abstract.java" />
-      <change beforePath="$PROJECT_DIR$/ModelController/src/Model/AbstractClasses/RegisterModel_Abstract.java" afterPath="$PROJECT_DIR$/ModelController/src/Model/Abstract_Classes/Register_Model_Abstract.java" />
-      <change beforePath="$PROJECT_DIR$/ModelController/src/Model/GlobalDefines.java" afterPath="$PROJECT_DIR$/ModelController/src/Model/Global_Defines.java" />
-      <change beforePath="$PROJECT_DIR$/ModelController/src/Model/Logic/Gate/ANDModel.java" afterPath="$PROJECT_DIR$/ModelController/src/Model/Normal_Classes/Logic/Gate/ANDModel.java" />
-      <change beforePath="$PROJECT_DIR$/ModelController/src/Model/Logic/Gate/NOTModel.java" afterPath="$PROJECT_DIR$/ModelController/src/Model/Normal_Classes/Logic/Gate/NOTModel.java" />
-      <change beforePath="$PROJECT_DIR$/ModelController/src/Model/Logic/Gate/ORModel.java" afterPath="$PROJECT_DIR$/ModelController/src/Model/Normal_Classes/Logic/Gate/ORModel.java" />
-      <change beforePath="$PROJECT_DIR$/ModelController/src/Model/Logic/Unit/ALUModel.java" afterPath="$PROJECT_DIR$/ModelController/src/Model/Normal_Classes/Logic/Unit/ALUModel.java" />
-      <change beforePath="$PROJECT_DIR$/ModelController/src/Model/Logic/Unit/DEMUXModel.java" afterPath="$PROJECT_DIR$/ModelController/src/Model/Normal_Classes/Logic/Unit/DEMUXModel.java" />
-      <change beforePath="$PROJECT_DIR$/ModelController/src/Model/Logic/Unit/MUXModel.java" afterPath="$PROJECT_DIR$/ModelController/src/Model/Normal_Classes/Logic/Unit/MUXModel.java" />
-      <change beforePath="$PROJECT_DIR$/ModelController/src/Model/Probe/ProbeEndModel.java" afterPath="$PROJECT_DIR$/ModelController/src/Model/Normal_Classes/Probe/Probe_End_Model.java" />
-      <change beforePath="$PROJECT_DIR$/ModelController/src/Model/Probe/ProbeStartModel.java" afterPath="$PROJECT_DIR$/ModelController/src/Model/Normal_Classes/Probe/Probe_Start_Model.java" />
-      <change beforePath="$PROJECT_DIR$/ModelController/src/Model/Register/DATAModel.java" afterPath="$PROJECT_DIR$/ModelController/src/Model/Normal_Classes/Register/DATA_Model.java" />
-      <change beforePath="$PROJECT_DIR$/ModelController/src/Model/Register/PCModel.java" afterPath="$PROJECT_DIR$/ModelController/src/Model/Normal_Classes/Register/PC_Model.java" />
-      <change beforePath="$PROJECT_DIR$/ModelController/src/Model/Register/TEXTModel.java" afterPath="$PROJECT_DIR$/ModelController/src/Model/Normal_Classes/Register/TEXT_Model.java" />
-      <change beforePath="$PROJECT_DIR$/ModelController/src/Model/Wire/WireModel.java" afterPath="$PROJECT_DIR$/ModelController/src/Model/Normal_Classes/Wire/WireModel.java" />
+      <change beforePath="$PROJECT_DIR$/ModelController/.idea/workspace.xml" afterPath="$PROJECT_DIR$/ModelController/.idea/workspace.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -59,17 +13,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Logic_Unit_Model_Abstract.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ModelController/src/Model/Abstract_Classes/Logic_Unit_Model_Abstract.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="18" column="30" lean-forward="false" selection-start-line="18" selection-start-column="30" selection-end-line="18" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Node_Model_Abstract.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Node_Model_Abstract.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ModelController/src/Model/Abstract_Classes/Node_Model_Abstract.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="72">
@@ -102,28 +46,8 @@
       <file leaf-file-name="Register_Model_Abstract.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ModelController/src/Model/Abstract_Classes/Register_Model_Abstract.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1584">
-              <caret line="102" column="32" lean-forward="false" selection-start-line="102" selection-start-column="32" selection-end-line="102" selection-end-column="32" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Global_Defines.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ModelController/src/Model/Global_Defines.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="18" column="41" lean-forward="false" selection-start-line="18" selection-start-column="41" selection-end-line="18" selection-end-column="41" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PC_Model.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ModelController/src/Model/Normal_Classes/Register/PC_Model.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="756">
-              <caret line="50" column="3" lean-forward="false" selection-start-line="50" selection-start-column="3" selection-end-line="50" selection-end-column="3" />
+            <state relative-caret-position="1242">
+              <caret line="102" column="25" lean-forward="false" selection-start-line="102" selection-start-column="25" selection-end-line="102" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -132,7 +56,7 @@
       <file leaf-file-name="Helper_Controller.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ModelController/src/Controller/Helper_Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
+            <state relative-caret-position="234">
               <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
               <folding />
             </state>
@@ -144,21 +68,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="324">
               <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#407#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="XML_Manager.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/ModelController/src/Controller/XML_Manager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="18">
-              <caret line="60" column="2" lean-forward="false" selection-start-line="60" selection-start-column="2" selection-end-line="60" selection-end-column="2" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -230,7 +140,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="20" />
+    <option name="x" value="1" />
+    <option name="y" value="41" />
     <option name="width" value="1364" />
     <option name="height" value="726" />
   </component>
@@ -249,9 +160,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="AndroidView" />
+      <pane id="PackagesPane" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -313,6 +223,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -438,14 +349,15 @@
       <workItem from="1521543757064" duration="82000" />
       <workItem from="1521543861009" duration="1978000" />
       <workItem from="1521545866926" duration="23000" />
+      <workItem from="1523177925356" duration="19000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2083000" />
+    <option name="totallyTimeSpent" value="2102000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="20" width="1364" height="726" extended-state="0" />
+    <frame x="1" y="41" width="1364" height="726" extended-state="0" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -454,19 +366,19 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35630497" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17754173" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -487,14 +399,55 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/ModelController/src/Model/Abstract_Classes/Logic_Unit_Model_Abstract.java">
+    <entry file="file://$PROJECT_DIR$/ModelController/src/Model/Abstract_Classes/Node_Model_Abstract.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="30" lean-forward="false" selection-start-line="18" selection-start-column="30" selection-end-line="18" selection-end-column="30" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/ModelController/src/Model/Abstract_Classes/Object_Model_Abstract.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="18" column="12" lean-forward="false" selection-start-line="18" selection-start-column="12" selection-end-line="18" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ModelController/src/Model/Abstract_Classes/Probe_Model_Abstract.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="522">
+          <caret line="33" column="12" lean-forward="false" selection-start-line="33" selection-start-column="12" selection-end-line="34" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ModelController/src/Model/Abstract_Classes/Register_Model_Abstract.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1242">
+          <caret line="102" column="25" lean-forward="true" selection-start-line="102" selection-start-column="25" selection-end-line="102" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ModelController/src/Controller/Helper_Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ModelController/src/Controller/Main_Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ModelController/src/Model/Abstract_Classes/Logic_Unit_Model_Abstract.java" />
     <entry file="file://$PROJECT_DIR$/ModelController/src/Model/Abstract_Classes/Node_Model_Abstract.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
@@ -527,22 +480,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ModelController/src/Model/Global_Defines.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="18" column="41" lean-forward="false" selection-start-line="18" selection-start-column="41" selection-end-line="18" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ModelController/src/Model/Normal_Classes/Register/PC_Model.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="756">
-          <caret line="50" column="3" lean-forward="false" selection-start-line="50" selection-start-column="3" selection-end-line="50" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/ModelController/src/Model/Global_Defines.java" />
+    <entry file="file://$PROJECT_DIR$/ModelController/src/Model/Normal_Classes/Register/PC_Model.java" />
     <entry file="file://$PROJECT_DIR$/ModelController/src/Controller/Helper_Controller.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
@@ -555,22 +494,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="324">
           <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#407#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ModelController/src/Controller/XML_Manager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1080">
-          <caret line="60" column="2" lean-forward="true" selection-start-line="60" selection-start-column="2" selection-end-line="60" selection-end-column="2" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/ModelController/src/Controller/XML_Manager.java" />
     <entry file="file://$PROJECT_DIR$/ModelController/src/Controller/SimplifiedGraphObjectController.java" />
     <entry file="file://$PROJECT_DIR$/ModelController/src/Interface/Object_Interface.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -593,27 +521,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ModelController/src/Model/Normal_Classes/Register/DATA_Model.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="25" column="17" lean-forward="false" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ModelController/src/Controller/DocumentManagerController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="65" column="32" lean-forward="false" selection-start-line="65" selection-start-column="32" selection-end-line="65" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ModelController/src/Model/Normal_Classes/Register/TEXT_Model.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/ModelController/src/Model/Normal_Classes/Register/DATA_Model.java" />
+    <entry file="file://$PROJECT_DIR$/ModelController/src/Controller/DocumentManagerController.java" />
+    <entry file="file://$PROJECT_DIR$/ModelController/src/Model/Normal_Classes/Register/TEXT_Model.java" />
     <entry file="file://$PROJECT_DIR$/ModelController/src/Model/Normal_Classes/Probe/Probe_Start_Model.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
@@ -628,13 +538,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ModelController/src/Controller/GraphManagerController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2124">
-          <caret line="137" column="1" lean-forward="true" selection-start-line="137" selection-start-column="1" selection-end-line="137" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/ModelController/src/Controller/GraphManagerController.java" />
     <entry file="file://$PROJECT_DIR$/ModelController/src/Controller/SimplifiedGraphController.java" />
     <entry file="file://$PROJECT_DIR$/ModelController/src/Controller/SimplifiedGraphObjectController.java" />
     <entry file="file://$PROJECT_DIR$/ModelController/src/Interface/Document_Manager_Interface.java">
@@ -651,13 +555,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ModelController/src/Model/Abstract_Classes/Logic_Gate_Model_Abstract.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="17" lean-forward="true" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/ModelController/src/Model/Abstract_Classes/Logic_Gate_Model_Abstract.java" />
     <entry file="file://$PROJECT_DIR$/ModelController/src/Model/Abstract_Classes/Logic_Model_Abstract.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
@@ -665,14 +563,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ModelController/src/Model/Abstract_Classes/Logic_Unit_Model_Abstract.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="30" lean-forward="false" selection-start-line="18" selection-start-column="30" selection-end-line="18" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/ModelController/src/Model/Abstract_Classes/Logic_Unit_Model_Abstract.java" />
     <entry file="file://$PROJECT_DIR$/ModelController/src/Model/Abstract_Classes/Node_Model_Abstract.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
@@ -699,31 +590,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ModelController/src/Model/Abstract_Classes/Register_Model_Abstract.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1584">
-          <caret line="102" column="32" lean-forward="false" selection-start-line="102" selection-start-column="32" selection-end-line="102" selection-end-column="32" />
+        <state relative-caret-position="1242">
+          <caret line="102" column="25" lean-forward="false" selection-start-line="102" selection-start-column="25" selection-end-line="102" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ModelController/src/Model/Global_Defines.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="18" column="41" lean-forward="false" selection-start-line="18" selection-start-column="41" selection-end-line="18" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ModelController/src/Model/Normal_Classes/Register/PC_Model.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="756">
-          <caret line="50" column="3" lean-forward="false" selection-start-line="50" selection-start-column="3" selection-end-line="50" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/ModelController/src/Model/Global_Defines.java" />
+    <entry file="file://$PROJECT_DIR$/ModelController/src/Model/Normal_Classes/Register/PC_Model.java" />
     <entry file="file://$PROJECT_DIR$/ModelController/src/Controller/Helper_Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
+        <state relative-caret-position="234">
           <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
           <folding />
         </state>
@@ -733,22 +610,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="324">
           <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#407#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ModelController/src/Controller/XML_Manager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="60" column="2" lean-forward="false" selection-start-line="60" selection-start-column="2" selection-end-line="60" selection-end-column="2" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/ModelController/src/Controller/XML_Manager.java" />
   </component>
   <component name="masterDetails">
     <states>
