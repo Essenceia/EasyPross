@@ -1,405 +1,350 @@
 package Controller;
 
 import Model.Abstract_Classes.Global_Defines_Abstract;
-import sun.misc.IOUtils;
-import sun.nio.ch.IOUtil;
 
+import javax.swing.text.html.HTMLWriter;
 import java.io.*;
 import java.net.*;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Vector;
-import java.util.concurrent.TimeUnit;
 import java.nio.file.Path;
 
 public class Api_Controller {
-	/**
-	 * todo : replace all outputs with the buffered writer
-	 */
-
-	java.net.Socket c;//client socket
-	DataInputStream in;//socket input
-	BufferedReader inputLine;
-	DataOutputStream out;//socket output
-	BufferedWriter outputLine;
-
-	//Graph
-	private Graph_Manager_Controller Graph;
 
 
-	public Api_Controller(){
-		//constructor initialise graph
-		this.Graph = new Graph_Manager_Controller();
-		//for debug
-		//Graph.load_new_module("XML_tests/testcomplexePcProgDecode.xml");
+    java.net.Socket c_read;//client socket
+    java.net.Socket c_write;//client socket
+    DataInputStream in;//socket input
+    BufferedReader inputLine;
+    DataOutputStream out;//socket output
+    BufferedWriter outputLine;
 
-		try{
-			//s= new ServerSocket(Config_Api.SERVER_PORT);
-			c = new java.net.Socket(InetAddress.getLocalHost(),Config_Api.CLIENT_PORT);
-			Helper_Controller.debugMessage4("Communication port opened with API "+c.toString());
-			out = new DataOutputStream(c.getOutputStream());
-
-			in = new DataInputStream(c.getInputStream());
-			inputLine = new BufferedReader(new InputStreamReader(in));
-			outputLine = new BufferedWriter(new OutputStreamWriter(out, "UTF-8"));
+    //Graph
+    private Graph_Manager_Controller Graph;
 
 
-		} catch (UnknownHostException e) {
-			e.printStackTrace();
-		}catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+    public Api_Controller() {
+        //constructor initialise graph
+        this.Graph = new Graph_Manager_Controller();
+        //for debug
+        //Graph.load_new_module("XML_tests/testcomplexePcProgDecode.xml");
 
-	//TODO a remplacer la ou il faut
-	
-	private String loadModule(String ModuleName)
-	{
-		String modulePath = "";
-		Path currentRelativePath = Paths.get("");
-		String currentAbsPath = currentRelativePath.toAbsolutePath().toString();
-		modulePath = currentAbsPath+ Global_Defines_Abstract.SIMULATION_MODULE_XML_LOCATIONS+ModuleName+Global_Defines_Abstract.SIMULATION_MODULE_TYPE;
-		Helper_Controller.debugMessage4("Api_Controller::loadModules module to be loaded path "+modulePath);
-		this.Graph.load_new_module(modulePath);
-		return modulePath;
-	}
-	
-	private Boolean simul()
-	{
-		this.Graph.tick();
-		//send ack when tick finished the function will exit
-		return true;
-	}
-	
-	private Vector<Boolean> getDataItem(int Id)
-	{
-		Vector<Boolean> dataAtID = new Vector(Arrays.asList(Graph.GetDataOnId(Id)));
-		return dataAtID;
-	}
-	
-	private Boolean changeDataItem(int Id, String changes)
-	{
-		boolean retVal;
-		//parse string
-		Helper_Controller.debugMessage4("Api_Controller::changeDataItem change string recived "+changes);
-		boolean data[] = Helper_Controller.helperStringToBool(changes);
-		retVal= this.Graph.SetDataOnId(Id,data);
-		return retVal;
-	}
-	
-	private Boolean reset()
-	{
-		this.Graph.resetGraphValues();
-		return true;
-	}
-	
-	public String getDataRegister(int Id)
-	{
-		return this.Graph.GetFileDataOnNode(Id);
-	}
-	
-	private Boolean changeDataRegister(String ModuleName, String AbsolutePath, int Id)
-	{
-		//todo is module name the file name ?
-		return this.Graph.LoadDataOnNode(Id, AbsolutePath);
+        try {
+            //s= new ServerSocket(Config_Api.SERVER_PORT);
+            c_read = new java.net.Socket(InetAddress.getLocalHost(), Config_Api.CLIENT_PORT_READ);
+            c_write = new java.net.Socket(InetAddress.getLocalHost(), Config_Api.CLIENT_PORT_WRITE);
+            Helper_Controller.debugMessage4("Communication port opened with API read " + c_read.toString() +
+                    " write " + c_write.toString());
+            out = new DataOutputStream(c_write.getOutputStream());
 
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	/************************************************************************************************************************************/
-	/**																																	*/
-	/**								this function sends the return of the LoadModule function to the HMI								*/
-	/**											initialization of the communication interface											*/
-	/**the identifier of the operation to be performed and the absolute path to the file containing the module are sent over the channel*/
-	/**																																	*/
-	/************************************************************************************************************************************/
-	
-	void sendLoadModule(int Opcode,String pathToModule)
-	{
-		try {
-			outputLine.write(Opcode+" "+pathToModule);
-			outputLine.newLine();
-		} catch (UnknownHostException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
-
-	/************************************************************************************************************************************/
-	/**																																	*/
-	/**									this function sends the return of the Simul function to the HMI									*/
-	/**											initialization of the communication interface											*/
-	/**				the identifier of the operation to be performed and the success or failure are sent over the channel				*/
-	/**																																	*/
-	/************************************************************************************************************************************/
-	
-	
-	void sendSimul(int Opcode,Boolean check)
-	{
-		try {
-
-			out.writeInt(Opcode);
-			//out.flush();
-			
-			out.writeInt((check) ? 1 : 0);
-			//out.flush();
-			
-		} catch (UnknownHostException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	
-	/************************************************************************************************************************************/
-	/**																																	*/
-	/**								this function sends the return of the GetDataItem function to the HMI								*/
-	/**											initialization of the communication interface											*/
-	/**							the identifier of the operation to be performed, the identifier of the wire								*/
-	/**							and the value of the bits of data running through the wire are sent to the HMI							*/
-	/**																																	*/
-	/************************************************************************************************************************************/
-	
-	
-	void sendGetDataItem(int Opcode,int Id, Vector<Boolean>wireData)
-	{
-		try {
-			out.writeInt(Opcode);
-			//out.flush();
-			
-			out.writeInt(Id);
-			//out.flush();
-			
-			for(int i=0;i<wireData.size();i++)
-			{
-				out.writeInt((wireData.get(i)) ? 1 : 0);
-				//out.flush();
-			}
-			out.writeInt(5);
-			//out.flush();
-			
-		} catch (UnknownHostException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	/************************************************************************************************************************************/
-	/**																																	*/
-	/**							this function sends the return of the ChangeDataItem function to the HMI								*/
-	/**											initialization of the communication interface											*/
-	/**					the identifier of the operation to be performed and the success or failure are sent to the HMI					*/
-	/**																																	*/
-	/************************************************************************************************************************************/
-	
-	
-	void sendChangeDataItem(int Opcode, Boolean check)
-	{
-		try {
-			out.writeInt(Opcode);
-			//out.flush();
-			
-			out.writeInt((check) ? 1 : 0);
-			//out.flush();
-
-		} catch (UnknownHostException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	/************************************************************************************************************************************/
-	/**																																	*/
-	/**									this function sends the return of the Reset function to the HMI									*/
-	/**											initialization of the communication interface											*/
-	/**					the identifier of the operation to be performed and the success or failure are sent to the HMI					*/
-	/**																																	*/
-	/************************************************************************************************************************************/
-	
-	
-	void sendReset(int Opcode, Boolean check)
-	{
-		try {
-			out.writeInt(Opcode);
-			//out.flush();
-			
-			out.writeInt((check) ? 1 : 0);
-			//out.flush();
-
-		} catch (UnknownHostException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	
-	/************************************************************************************************************************************/
-	/**																		   		  	 												*/
-	/**							this function sends the return of the GetDataRegister function to the HMI								*/
-	/**											initialization of the communication interface											*/
-	/**			the identifier of the operation to be performed and the absolute path to the register file are sent to the HMI			*/
-	/**																				 			      	 								*/
-	/************************************************************************************************************************************/
-	
-	void sendGetDataRegister(int Opcode, String pathToRegister)
-	{
-		try {
-			out.writeInt(Opcode);
-			//out.flush();
-			
-			out.writeUTF(pathToRegister);
-			//out.flush();
-			
-		} catch (UnknownHostException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	
-	/************************************************************************************************************************************/
-	/**																																	*/
-	/**							this function sends the return of the ChangeDataRegister function to the HMI							*/
-	/**											initialization of the communication interface											*/
-	/**	the identifier of the operation to be performed, the identifier of the register and the success or failure are sent to the HMI	*/
-	/**																																	*/
-	/************************************************************************************************************************************/
-	
-	
-	void sendChangeDataRegister(int Opcode, int Id, Boolean check)
-	{
-		try {
-
-			out.writeInt(Opcode);
-			//out.flush();
-			
-			out.writeInt(Id);
-			//out.flush();
-			
-			out.writeInt((check) ? 1 : 0);
-
-		} catch (UnknownHostException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	
-	/************************************************************************************************************************************/
-	/**																																	*/
-	/**	this function gets the data sent from the HMI and sends it to the appropriate function according to the operation identifier	*/
-	/**											initialization of the communication interface											*/
-	/**			according to the value of the operation identifier, the corresponding function is called with the right attributes		*/
-	/**																																	*/
-	/************************************************************************************************************************************/
-	
-	public void ApiReceiver()
-	{
-		try {
-
-			out.flush();
-			Helper_Controller.debugMessage4("Api called to recive message on ");
-			String recivedMessage = inputLine.readLine();
-			Helper_Controller.debugMessage4("Recived "+recivedMessage);
-			String message[] = recivedMessage.split(" ");
-			int Opcode=Integer.parseInt(message[Config_Api.INDEX_OPCODE]);
-			Helper_Controller.debugMessage4("Opcode recived "+Opcode);
-			
-			switch(Opcode)
-			{
-			case 1:		String ModuleName=message[Config_Api.INDEX_MODULE_NAME];
-						Helper_Controller.debugMessage4("module name recived "+ModuleName);
+            in = new DataInputStream(c_read.getInputStream());
+            inputLine = new BufferedReader(new InputStreamReader(in));
+            outputLine = new BufferedWriter(new OutputStreamWriter(out, "UTF-8"));
 
 
-						String path=loadModule(ModuleName);
-						sendLoadModule(Opcode,path);
-						break;
-			
-			case 2:
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
-						Boolean check=simul();
-						sendSimul(Opcode,check);
-						break;
-			
-			case 3:		int Id=in.readInt();
-						Helper_Controller.debugMessage4("PULLID #"+Id);
+    private String loadModule(String ModuleName) {
+        String modulePath = "";
+        Path currentRelativePath = Paths.get("");
+        String currentAbsPath = currentRelativePath.toAbsolutePath().toString();
+        modulePath = currentAbsPath + Global_Defines_Abstract.SIMULATION_MODULE_XML_LOCATIONS + ModuleName + Global_Defines_Abstract.SIMULATION_MODULE_TYPE;
+        Helper_Controller.debugMessage4("Api_Controller::loadModules module to be loaded path " + modulePath);
+        this.Graph.load_new_module(modulePath);
+        return modulePath;
+    }
+
+    private Boolean simul() {
+        this.Graph.tick();
+        //send ack when tick finished the function will exit
+        return true;
+    }
+
+    private Vector<Boolean> getDataItem(int Id) {
+        Vector<Boolean> dataAtID =Graph.GetDataOnId(Id);
+        return dataAtID;
+    }
+
+    private Boolean changeDataItem(Vector<Data_Tuple> newData) {
+        boolean retVal=true;
+        //parse string
+        Helper_Controller.debugMessage4("Api_Controller::changeDataItem change string recived :");
+        Helper_Data_Handler.printDataTupleArray(newData);
+        for (Data_Tuple data:newData
+             ) {
+            this.Graph.SetDataOnId(data.getId(),data.getboolValues());
+        }
+        return retVal;
+    }
+
+    private Boolean reset() {
+        this.Graph.resetGraphValues();
+        return true;
+    }
+
+    public String getDataRegister(int Id) {
+        return this.Graph.GetFileDataOnNode(Id);
+    }
+
+    private Boolean changeDataRegister(String ModuleName, String AbsolutePath, int Id) {
+        //todo is module name the file name ?
+        return this.Graph.LoadDataOnNode(Id, AbsolutePath);
+
+    }
 
 
-						Vector<Boolean> wireData=getDataItem(Id);
-						sendGetDataItem(Opcode,Id,wireData);
-						break;
-			
-			case 4:		//TODO to compleat with a string of booleans
-						Id=in.readInt();
-						Helper_Controller.debugMessage4("COMMITID #"+Id);
-						String changes = "0.0.0.0.1.1.1.1";
-						//String changes = revicedDataFromUI();
+    /************************************************************************************************************************************/
+    /**                                                                                                                                    */
+    /**                                this function sends the return of the LoadModule function to the HMI								*/
+    /**                                            initialization of the communication interface											*/
+    /**the identifier of the operation to be performed and the absolute path to the file containing the module are sent over the channel*/
+    /**                                                                                                                                    */
+    /************************************************************************************************************************************/
+
+    void sendLoadModule(int Opcode, String pathToModule) {
+        try {
+
+            outputLine.write(Opcode + " " + pathToModule);
+            outputLine.newLine();
+            outputLine.flush();
+
+            Helper_Controller.debugMessage4("test ::" + (outputLine.toString()));
+            Helper_Controller.debugMessage4("Send module load finished to ui");
+
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 
-						check=changeDataItem(Id, changes);
-						sendChangeDataItem(Opcode, check);
-						break;
-
-			case 5:
-
-						check=reset();
-						sendReset(Opcode, check);
-						break;
-
-			case 6:		//ask for data
-						Id=in.readInt();
-						Helper_Controller.debugMessage4("ASKFILEDATA ID"+Id);
-
-						path=getDataRegister(Id);
-						sendGetDataRegister(Opcode, path);
-						break;
-
-			case 7:		//load data file
-						ModuleName=in.readUTF();
-						System.out.println(ModuleName);
-						String AbsolutePath=in.readUTF();
-						System.out.println(AbsolutePath);
-						Id=in.readInt();
-						Helper_Controller.debugMessage4("Load data file mondule "+ModuleName+ " path "+ AbsolutePath+" to Id "+ Id);
+    /************************************************************************************************************************************/
+    /**                                                                                                                                    */
+    /**                                    this function sends the return of the Simul function to the HMI									*/
+    /**                                            initialization of the communication interface											*/
+    /**                the identifier of the operation to be performed and the success or failure are sent over the channel				*/
+    /**                                                                                                                                    */
+    /************************************************************************************************************************************/
 
 
-						check=changeDataRegister(ModuleName, AbsolutePath, Id);
-						sendChangeDataRegister(Opcode, Id, check);
-						break;
-			
-			default:	break;
-			}
-			
-		} catch (IOException e) {
-			
-			e.printStackTrace();
-		}
-	}
-	protected void finalize() throws Throwable {
-		try {
-			in.close();
-			out.close();
-			c.close();       // close sokets files
-		} finally {
-			super.finalize();
-		}
-	}
-	
+    void sendSimul(int Opcode, Boolean check) {
+        try {
+            Integer i = (check) ? 1 : 0;
+            outputLine.write(Opcode+" "+i.toString()+"\n");
+            outputLine.flush();
+            Helper_Controller.debugMessage4("Send simulation finished status "+i.toString());
+
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    /************************************************************************************************************************************/
+    /**                                                                                                                                    */
+    /**                                this function sends the return of the GetDataItem function to the HMI								*/
+    /**                                            initialization of the communication interface											*/
+    /**                            the identifier of the operation to be performed, the identifier of the wire								*/
+    /**                            and the value of the bits of data running through the wire are sent to the HMI							*/
+    /**                                                                                                                                    */
+    /************************************************************************************************************************************/
+
+
+    void sendGetDataItem(Integer Opcode, Vector<Data_Tuple> data) {
+        try {
+            String sendmsg = Opcode.toString()+" ";
+            sendmsg+= Helper_Data_Handler.Parse_to_String(data)+"\n";
+            outputLine.write(sendmsg);
+            System.out.println("SendDataItem sent to UI :"+sendmsg);
+            outputLine.flush();
+
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /************************************************************************************************************************************/
+    /**                                                                                                                                    */
+    /**                            this function sends the return of the ChangeDataItem function to the HMI								*/
+    /**                                            initialization of the communication interface											*/
+    /**                    the identifier of the operation to be performed and the success or failure are sent to the HMI					*/
+    /**                                                                                                                                    */
+    /************************************************************************************************************************************/
+
+
+    void sendChangeDataItem(int Opcode, Boolean check) {
+        try {
+            String msg = Opcode+" ";
+           if(check)msg+="1";
+           else msg+="0";
+            outputLine.write(msg+"\n");
+            outputLine.flush();
+
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /************************************************************************************************************************************/
+    /**                                                                                                                                    */
+    /**                                    this function sends the return of the Reset function to the HMI									*/
+    /**                                            initialization of the communication interface											*/
+    /**                    the identifier of the operation to be performed and the success or failure are sent to the HMI					*/
+    /**                                                                                                                                    */
+    /************************************************************************************************************************************/
+
+
+    void sendReset(int Opcode, Boolean check) {
+        try {
+            String msg= Opcode+" ";
+            if(check)msg+="1";
+            else msg+="0";
+            outputLine.write(msg+"\n");
+            outputLine.flush();
+            System.out.println("Reset sent with status "+check+" message "+msg);
+
+
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    /************************************************************************************************************************************/
+    /**                                                                                                                                    */
+    /**                            this function sends the return of the GetDataRegister function to the HMI								*/
+    /**                                            initialization of the communication interface											*/
+    /**            the identifier of the operation to be performed and the absolute path to the register file are sent to the HMI			*/
+    /**                                                                                                                                    */
+    /************************************************************************************************************************************/
+
+    void sendGetDataRegister(int Opcode, String pathToRegister) {
+
+        try {
+            String msg="";
+            msg+=Opcode+" "+pathToRegister+"\n";
+            outputLine.write(msg);
+            outputLine.flush();
+
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /************************************************************************************************************************************/
+    /**                                                                                                                                    */
+    /**    this function gets the data sent from the HMI and sends it to the appropriate function according to the operation identifier	*/
+    /**                                            initialization of the communication interface											*/
+    /**            according to the value of the operation identifier, the corresponding function is called with the right attributes		*/
+    /**                                                                                                                                    */
+    /************************************************************************************************************************************/
+
+    public void ApiReceiver() {
+        try {
+
+            Boolean check;
+            String path;
+            String recivedMessage = inputLine.readLine();
+            Helper_Controller.debugMessage4("Recived ::" + recivedMessage);
+            String message[] = recivedMessage.split(" ");
+            int Opcode = Integer.parseInt(message[Config_Api.INDEX_OPCODE]);
+
+            switch (Opcode) {
+
+                case 1:
+                    if(message.length==2) {
+                        String ModuleName = message[Config_Api.INDEX_MODULE_NAME];
+                        Helper_Controller.debugMessage4("module name recived " + ModuleName);
+
+
+                        path = loadModule(ModuleName);
+                        sendLoadModule(Opcode, path);
+                    }else{
+                        Helper_Controller.errorMessage("Unexpecte length on opcode 1 gottent "+message.length);
+                    }
+                    break;
+
+                case 2:
+                    Helper_Controller.debugMessage4("Simulation commande recived");
+                    check = simul();
+                    sendSimul(Opcode, check);
+                    break;
+
+                case 3:
+                    Vector<Data_Tuple> vecdata = new Vector<>();
+
+                   Vector<Integer> ids =
+                           Helper_Data_Handler.parseIdString(message[Config_Api.INDEX_NODE_ID]);
+                    Helper_Controller.debugMessage4("PULLID #" + ids.toString());
+                    for (Integer Id: ids
+                         ) {
+                        vecdata.add(new Data_Tuple(Id,getDataItem(Id)));
+                    }
+                    sendGetDataItem(Opcode, vecdata);
+                    break;
+
+                case 4:
+                    Vector<Data_Tuple> newData = Helper_Data_Handler.parseIdAndDataFromString(
+                            message[Config_Api.INDEX_NEW_VALUES_DATA]);
+
+                    Helper_Controller.debugMessage4("COMMITID #" + message[Config_Api.INDEX_NEW_VALUES_DATA]);
+
+                    check = changeDataItem(newData);
+                    sendChangeDataItem(Opcode, check);
+                    break;
+
+              case 5:
+
+                    check = reset();
+                    sendReset(Opcode, check);
+                    break;
+
+               case 6:        //ask for data
+                    Integer Id = Integer.parseInt(message[Config_Api.INDEX_NODE_ID]);
+                    Helper_Controller.debugMessage4("ASKFILEDATA ID#" + Id);
+
+                    path = getDataRegister(Id);
+                    sendGetDataRegister(Opcode, path);
+                    break;
+
+
+                default:Helper_Controller.errorMessage("Unexpected opcode recived "+Opcode);
+                    break;
+            }
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+        }
+    }
+
+    protected void finalize() throws Throwable {
+        try {
+            in.close();
+            out.close();
+            c_read.close();       // close sokets files
+            c_write.close();       // close sokets files
+        } finally {
+            super.finalize();
+        }
+    }
+
 }
 

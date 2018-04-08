@@ -50,16 +50,6 @@ public class Graph_Manager_Controller implements Interface.Graph_Manager_Interfa
     @Override
     public void tick() {
 
-        //Debug read all nodes
-        System.out.println("Read of our graph objects : ");
-        Helper_Controller.debugMessage3("Wires");
-        Print_info(GArrettes);
-        System.out.println("Probe debut");
-        Print_info((HashMap<Integer, ? extends Object_Model_Abstract>) GDebut);
-        System.out.println("Probe fin");
-        Print_info((HashMap<Integer, ? extends Object_Model_Abstract>) GFin);
-        Helper_Controller.debugMessage3("Nodes");
-        Print_info((HashMap<Integer, ? extends Object_Model_Abstract>) GNoeuds);
         //Call action on all nodes
         for (Map.Entry<Integer, ? extends Node_Model_Abstract> entry : GNoeuds.entrySet()) {
             entry.getValue().action();
@@ -134,7 +124,8 @@ public class Graph_Manager_Controller implements Interface.Graph_Manager_Interfa
      * @param id
      * @return data on item
      */
-    public boolean[] GetDataOnId(int id) {
+    public Vector<Boolean> GetDataOnId(int id) {
+        Vector<Boolean> retVal= new Vector<>();
         boolean[] dataOnObject;
         //search probes
         if (this.GDebut.containsKey(id)) {
@@ -153,7 +144,11 @@ public class Graph_Manager_Controller implements Interface.Graph_Manager_Interfa
                 }
             }
         }
-        return dataOnObject;
+        for (boolean b:dataOnObject
+             ) {
+            retVal.add(new Boolean(b));
+        }
+        return retVal;
     }
 
     /**

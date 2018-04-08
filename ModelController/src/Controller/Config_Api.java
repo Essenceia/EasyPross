@@ -4,7 +4,8 @@ public class Config_Api {
         /**
          * Ports to send recivce data on sockets : conncection to the API
          */
-        public static final int CLIENT_PORT = 2014;
+        public static final int CLIENT_PORT_READ = 2014;
+        public static final int CLIENT_PORT_WRITE = 2015;
         public  static final String SOCKET_NAME = "Simulator_Client";
 
         /**
@@ -24,4 +25,7 @@ public class Config_Api {
          */
         public  static final int INDEX_OPCODE = 0 ;
         public static final int INDEX_MODULE_NAME = 1;
+        public static final int INDEX_NODE_ID = 1;
+        public static final int INDEX_NEW_VALUES_DATA = 1;
+
 }

@@ -32,14 +32,15 @@
 - [x] reading from probe end
 
 # TODO #
-
-- [ ] Connect API
-    - [ ] Reset 
-    - [x] <del> evrything else </del>
-        - [ ] re-write api :
-            - [ ] load module
-            
-- [ ] test API
+- [ ] Update communication protocol : remove "," between opcode and beging of datamessage
+- [ ] re-write api :
+    - [x] load module
+    - [x] simulate tick
+    - [x] get data on id
+    - [x] set data on id
+    - [ ] reset
+    - [ ] get file abs path
+- [ ] check out error on test_2 when reset is called
 - [ ] test PC file modification on timestamp out-off-data
 - [x] add file interaction on all register models
     - <del>[x] prog memory read </del> doesn't exist in this model(genius) :octocat: 
