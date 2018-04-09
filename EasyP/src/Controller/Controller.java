@@ -34,8 +34,7 @@ public class Controller {
 	private XMLtoGraph graph;
 	private boolean moduleSelected;
 	private String fileMod;
-	private String PATH_FILE= System.getProperty("user.dir") + System.getProperty("file.separator") + "src\\";
-	
+
 	private boolean play=false;
 	private boolean pause=false;
 	private boolean stop=false;
@@ -54,7 +53,7 @@ public class Controller {
 		labelDescription = new Label();
 		labelASM = new Label();
 		listView = new ListView<String>();
-		FileReader f= new FileReader(PATH_FILE+"modules.txt");
+		FileReader f= new FileReader(Config.PATH_FILE+"modules.txt");
 		listViewFile= f.readFile();
 		
 	}
@@ -181,19 +180,21 @@ public class Controller {
 	 */
 	public void loadModuleDescription(String file) {
 		FileReader fileDescriptionModule;
-		fileDescriptionModule = new FileReader(PATH_FILE+file+".txt");
+		fileDescriptionModule = new FileReader(Config.PATH_FILE+file+".txt");
 		String[] content = fileDescriptionModule.readFile();
 		String str ="";
 		str= String.join("\n", content);
 		if(labelDescription!=null) {
 			labelDescription.setText(str);
-			graph = new XMLtoGraph(PATH_FILE+file);
+			graph = new XMLtoGraph(Config.PATH_FILE+file);
 			displayImage(file);
 		}
 		 /*****************/
 		/***Ask Modu API**/
 	   /*****************/
-		String p ="C:\\Users\\julie\\Desktop\\EasyP\\fichier.txt";// askModule(file,"S");
+	   //todo have to unify descriptions of modules
+		loadModule(file);
+		String p =Config.PATH_BASE+"fichier.txt";// "C:\\Users\\julie\\Desktop\\EasyP\\fichier.txt";// askModule(file,"S");
 		/*****************/
 		 /***	END		 **/
 		/***Ask Modu API**/
@@ -208,12 +209,14 @@ public class Controller {
 		}
 	}
 	public String getPATH_FILE() {
-		return PATH_FILE;
+		return Config.PATH_FILE;
 	}
 
+	/*
+	Mis en commentaire car tu ne l'utiliser pas et que sa permetaient de mettre des configs en dure
 	public void setPATH_FILE(String pATH_FILE) {
-		PATH_FILE = pATH_FILE;
-	}
+		Config.PATH_FILE = pATH_FILE;
+	}*/
 	/**
 	 * method to display the module circuit on the imageView 
 	 * @param file
@@ -282,6 +285,10 @@ public class Controller {
 						g.getNode().getStage().close();
 					}
 				}
+
+				/** Call reset on api **/
+				askReset();
+
 		}
 		if(stage!=null) {
 			stage.close();
@@ -322,9 +329,11 @@ public class Controller {
 	 */
 	public void tick()
 	{
-		int check = 1;//askTick();
+		int check = askTick();
 		String path="";
-		
+		Vector<Integer> wireGetData = new Vector<>();
+		Vector<Data_Tuple> newData = new Vector<>();
+
 		if(check==1)
 		{
 			if(graph !=null) {
@@ -337,7 +346,7 @@ public class Controller {
 					   /*****************/
 						System.out.println(g.getNode().getId());
 						path=askDataRegister(g.getNode().getId());
-						//path="C:\\Users\\julie\\Desktop\\EasyP\\fichier.txt";
+						//path=Config.PATH_FILE+" fichier.txt";
 						  /*****************/
 						 /***	END		 **/
 						/***Ask Regi API**/
@@ -348,14 +357,29 @@ public class Controller {
 						 /*****************/
 						/***Ask Wire API**/
 					   /*****************/
-						Vector<Boolean> ve=new Vector<Boolean>();
+						/*Vector<Boolean> ve=new Vector<Boolean>();
 						ve.add(new Boolean(true));
-						ve.add(new Boolean(false));
+						ve.add(new Boolean(false));*/
+						/**
+						 * Call for wire data should be done at the end to win in efficency
+						 * Ideally should only have one unique call to simulator
+						 */
+						wireGetData.removeAllElements();
+						wireGetData.add(g.getNode().getId());
+						//send call to api for wires
+						newData = askDataItem(wireGetData);
+						if(check!= 0 && newData.size() == 1) {
+							//load data gotten on node
+							g.getNode().getValue().add(newData.get(0).getStringValues());
+							System.out.println("Set on id#"+g.getNode().getId()+ " data "+newData.get(0).getStringValues());
+						}else{
+							System.out.println("Oops something went wrong when getting data info from simulator");
+						}
 						  /*****************/
 						 /***	END		 **/
 						/***Ask Wire API**/
 					   /*****************/
-						for(Boolean b: ve) {
+						/*for(Boolean b: ve) {
 							String boo = "";
 							if(b.equals(true)) {
 								boo="1";
@@ -363,9 +387,10 @@ public class Controller {
 								
 							value+= boo;
 						}
-						g.getNode().getValue().add(value);
+						g.getNode().getValue().add(value);*/
 					}
 				}
+
 			}
 		}
 		/***Display All data in one window**/
@@ -398,20 +423,18 @@ public class Controller {
 	
 	/****************************************************************************/
 	/**																			*/
-	/**		function asking the simulator to send a path to the module file		*/
+	/**		function asking the simulator to load a module to simulator 		*/
+	/**     current available modules can be found under the XML file path		*/
+	/**      the ModuelController/XML/*.xml										*/
 	/**																			*/
 	/****************************************************************************/
 	
-	public String askModule(String nameModule,String target)
+	public String loadModule(String nameModule)
 	{
-		//System.out.println("coucou askModule avant");
-		int Objcode=0;
-		String AbsolutePath="";
-		Vector<Boolean> NewValue = new Vector<Boolean>();
 		String path;
 		
-		api.APISender(1, target, Objcode, nameModule, AbsolutePath, NewValue);
-		//System.out.println("coucou askModule avant");
+		api.APISender(1, "s", 0, nameModule, null, null);
+
 		path=api.a.path;
 		return path;
 	}	
@@ -424,13 +447,8 @@ public class Controller {
 	
 	public int askTick()
 	{
-		int Objcode=0;
-		String nameModule="";
-		String AbsolutePath="";
-		Vector<Boolean> NewValue = new Vector<Boolean>();
-		String target="s";
 		int check;		
-		api.APISender(2, target, Objcode, nameModule, AbsolutePath, NewValue);
+		api.APISender(2, "s",0, "", null,null);
 		check=api.a.check;
 		return check;
 	}
@@ -438,37 +456,33 @@ public class Controller {
 	/****************************************************************************/
 	/**																			*/
 	/**	function asking the data contained in one item that is not a register	*/
-	/**				Appeler dans une boucle pour + d'1 objet					*/
+	/**				Not need to be called in a loop just enter					*/
+	/** 				all requested ids in the vector							*/
 	/****************************************************************************/
 	
-	public void askDataItem(int Objcode)
+	public Vector<Data_Tuple> askDataItem(Vector<Integer> requestedValuesId)
 	{
-		String nameModule="";
-		String AbsolutePath="";
-		Vector<Boolean> NewValue = new Vector<Boolean>();
-		String target="s";
 		int check;
-		api.APISender(3, target, Objcode, nameModule, AbsolutePath, NewValue);
+		api.APISender(3, "s",0,"", requestedValuesId,null);
 		check=api.a.check;
-		NewValue=api.a.changes;
+		return api.a.changes;
 		
 	}
 	
 	
 	/******************************************************************************/
 	/**																			  */
-	/**function passing the new data an item that is not a register should contain*/
+	/**Sending new data to be stored on wires
+	 * This doesn't apply for changing values on registers*/
 	/**																			  */
 	/******************************************************************************/
 	
 
-	public int askChangeDataItem(int Objcode, Vector<Boolean> NewValue)
+	public int askChangeDataItem(Vector<Data_Tuple> NewValue)
 	{
-		String nameModule="";
-		String AbsolutePath="";
-		String target="s";
+
 		int check;
-		api.APISender(4, target, Objcode, nameModule, AbsolutePath, NewValue);
+		api.APISender(4,"s", 0, "", null, NewValue);
 		check=api.a.check;
 		return check;
 	}
@@ -482,31 +496,26 @@ public class Controller {
 	
 	public int askReset()
 	{
-		int Objcode=0;
-		String nameModule="";
-		String AbsolutePath="";
-		Vector<Boolean> NewValue = new Vector<Boolean>();
-		String target="s";
+
 		int check;
-		api.APISender(5, target, Objcode, nameModule, AbsolutePath, NewValue);
+		api.APISender(5, "s", 0, "", null,null);
 		check=api.a.check;
 		return check;
 	}
 	
 	/****************************************************************************/
 	/**																			*/
-	/**		function asking the data contained in one item that is  a register	*/
+	/**		function asking the data contained in one item that is  a register
+	 * 			Will return the absolute path to it's file
+	 * 		! Make a copy of the data : don't  keep file opened 				*/
 	/**				Appeler dans une boucle pour + d'1 objet					*/
 	/****************************************************************************/
 	
 	public String askDataRegister(int Objcode)
 	{
-		String nameModule="";
-		String AbsolutePath="";
-		Vector<Boolean> NewValue = new Vector<Boolean>();
 		String target="s";
 		String path;
-		api.APISender(6, target, Objcode, nameModule, AbsolutePath, NewValue);
+		api.APISender(6,"s", Objcode, "", null,null);
 		path=api.a.path;
 		return path;
 	}
@@ -517,13 +526,16 @@ public class Controller {
 	/**																			*/
 	/****************************************************************************/
 	
-	public void askChangeDataRegister(int Objcode, String PathRegister, String AbsolutePath)
+	public void askChangeDataRegister(int Objcode,String AbsolutePath)
 	{
-		Vector<Boolean> NewValue = new Vector<Boolean>();
-		String target="s";
-		int check,id;
-		api.APISender(7, target, Objcode, PathRegister, AbsolutePath, NewValue);
+		int check;
+
+		System.out.println("Data set to register model with ID "+Objcode+" data to write contained in  "+api.a.path);
+
+		//trust me I know what i'm doing ^^        vvvvvvvvvvv   vvvvvvvvvvvvv
+		api.APISender(7, "s", Objcode, AbsolutePath, null,null);
 		check=api.a.check;
-		id=api.a.id;
+
+		//id=api.a.id; why objcode is alread id ?
 	}
 }
