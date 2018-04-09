@@ -42,7 +42,7 @@ public class Node<T> {
 	public Node(Element e, List<Attribute> l) {
 		this.path="";
 		this.value = new Vector<String>();
-		this.type = e.getName();
+		//this.type = e.getName();
 		try {
                     	for(Attribute a : l) {
 				switch(a.getName()) {
@@ -64,6 +64,10 @@ public class Node<T> {
 				case "pos_y":
 					this.pos_y= a.getIntValue();
 					break;
+				case "description":
+					this.type = a.getValue();
+					default:// Do nothing for any other attributes
+						break;
 				}
 			}
 		}

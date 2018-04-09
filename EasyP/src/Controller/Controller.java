@@ -75,9 +75,10 @@ public class Controller {
 			}
 		}
 		
-		listView.getSelectionModel().select(0); // select first item by default
-		String file = listView.getSelectionModel().getSelectedItem().toString();
+		listView.getSelectionModel().select(1); // select first item by default
 		if(moduleSelected==true) {
+			String file = listView.getSelectionModel().getSelectedItem().toString();
+			System.out.println(file);
 			loadModuleDescription(file);
 			moduleSelected=false;
 		}
@@ -346,8 +347,8 @@ public class Controller {
 						/***Ask Regi API**/
 					   /*****************/
 						System.out.println(g.getNode().getId());
-						path=askDataRegister(g.getNode().getId());
-						//path=Config.PATH_FILE+" fichier.txt";
+						//path=askDataRegister(g.getNode().getId());
+						path=Config.PATH_FILE+" fichier.txt";
 						  /*****************/
 						 /***	END		 **/
 						/***Ask Regi API**/
@@ -368,14 +369,14 @@ public class Controller {
 						wireGetData.removeAllElements();
 						wireGetData.add(g.getNode().getId());
 						//send call to api for wires
-						newData = askDataItem(wireGetData);
-						if(check!= 0 && newData.size() == 1) {
+						//newData = askDataItem(wireGetData);
+						/*if(check!= 0 && newData.size() == 1) {
 							//load data gotten on node
 							g.getNode().getValue().add(newData.get(0).getStringValues());
 							System.out.println("Set on id#"+g.getNode().getId()+ " data "+newData.get(0).getStringValues());
 						}else{
 							System.out.println("Oops something went wrong when getting data info from simulator");
-						}
+						}*/
 						  /*****************/
 						 /***	END		 **/
 						/***Ask Wire API**/

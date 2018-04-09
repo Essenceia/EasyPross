@@ -34,7 +34,7 @@ public class XMLtoGraph {
 			//create all children elements of the graph
 			this.goThroughGraph(this.root, list);
 			//Display the graph
-			//System.out.println(this.root.toString());
+			System.out.println(this.root.toString());
 
 		  } catch (IOException io) {
 			System.out.println(io.getMessage());
@@ -62,8 +62,32 @@ public class XMLtoGraph {
 		for(Element e : listElement) {
 			//Get its attributes
 			 List<Attribute> listAttributes = e.getAttributes();
+			 /**
+			  * After unifying the XML files between Simulator and Graphical User Interface
+			  */
+			 // Only consider the nodes that interest us (i.e. do not consider first part of XML
+			if(e.getName().equals("node") || e.getName().equals("wire_in") || e.getName().equals("wire_out")) {
+				 //Create a new node
+				 n = new Node(e, listAttributes);
+				 //Create a new graph out of it
+				 Graph newG = new Graph(n);
+				 // Add this graph to the root graph
+				 root.addChild(newG);
+				 //Get the children elements
+				 List<Element> listChild = e.getChildren();
+				
+				 if(!listChild.isEmpty()){	 
+					 // recursive call of the method
+					 g = goThroughGraph(newG, listChild);
+					 //add the graph to the previously created graph
+					 newG.addChild(g);
+				}
+			 }
+			 /**
+			  * Before unifying the XML files
+			  */
 			 // if they are inputs or outputs 
-			 if(e.getName().equals("input")|| e.getName().equals("output")) {
+			/* if(e.getName().equals("input")|| e.getName().equals("output")) {
 				 //Create a new node
 				 n= new Node(e, listAttributes);
 				 //transform the <io> children into vector of 0s &1s
@@ -89,7 +113,7 @@ public class XMLtoGraph {
 					 //add the graph to the previously created graph
 					 newG.addChild(g);
 				}
-			 }	 
+			 }	*/
 		}
 		return g;
 	}
