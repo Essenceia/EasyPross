@@ -334,7 +334,7 @@ public class Controller {
 		Vector<Integer> wireGetData = new Vector<>();
 		Vector<Data_Tuple> newData = new Vector<>();
 
-		if(check==1)
+		if(api.a.check==1)
 		{
 			if(graph !=null) {
 				/*** First Node is Schema ! Does not have a value !! ***/
@@ -346,14 +346,14 @@ public class Controller {
 					   /*****************/
 						System.out.println(g.getNode().getId());
 						path=askDataRegister(g.getNode().getId());
-						//path=Config.PATH_FILE+" fichier.txt";
 						  /*****************/
 						 /***	END		 **/
 						/***Ask Regi API**/
 					   /*****************/
-						g.getNode().setPath(path);
+					   if(api.a.check!= 0) {
+						   g.getNode().setPath(path);
+					   }
 					}else {
-						String value="";
 						 /*****************/
 						/***Ask Wire API**/
 					   /*****************/
@@ -368,7 +368,7 @@ public class Controller {
 						wireGetData.add(g.getNode().getId());
 						//send call to api for wires
 						newData = askDataItem(wireGetData);
-						if(check!= 0 && newData.size() == 1) {
+						if(api.a.check!=1 && newData.size() == 1) {
 							//load data gotten on node
 							g.getNode().getValue().add(newData.get(0).getStringValues());
 							System.out.println("Set on id#"+g.getNode().getId()+ " data "+newData.get(0).getStringValues());
@@ -379,15 +379,6 @@ public class Controller {
 						 /***	END		 **/
 						/***Ask Wire API**/
 					   /*****************/
-						/*for(Boolean b: ve) {
-							String boo = "";
-							if(b.equals(true)) {
-								boo="1";
-							}else boo="0";
-								
-							value+= boo;
-						}
-						g.getNode().getValue().add(value);*/
 					}
 				}
 
@@ -537,5 +528,16 @@ public class Controller {
 		check=api.a.check;
 
 		//id=api.a.id; why objcode is alread id ?
+	}
+
+	protected void finalize() throws Throwable {
+		try {
+			//call to close sockets
+			api.APISender(0,"",0,"",null,null);
+
+
+		} finally {
+			super.finalize();
+		}
 	}
 }

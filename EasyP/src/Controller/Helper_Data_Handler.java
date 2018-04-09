@@ -60,12 +60,13 @@ public class Helper_Data_Handler {
         }
         return retVec;
     }
-    public static String creatIdString(Vector<Integer> Idwire){
+    public static String createIdString(Vector<Integer> Idwire){
         String nvmsg="";
         for (int i = 0; i < Idwire.size(); i++) {
-            nvmsg+= Idwire.toString();
+            nvmsg+= Idwire.get(i).toString();
             if(i!= Idwire.size() - 1)nvmsg+=",";
         }
+        System.out.println("createIdString:: input "+Idwire.toString()+" result "+nvmsg);
         return nvmsg;
     }
     public static Vector<Integer> parseIdString(String idString) {

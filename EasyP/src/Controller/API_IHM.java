@@ -1,7 +1,5 @@
 package Controller;
 
-import jdk.internal.org.objectweb.asm.Opcodes;
-
 import java.io.*;
 import java.net.*;
 import java.util.Vector;
@@ -66,7 +64,6 @@ public class API_IHM {
     }
 
 
-
     /********************************************************************************************************************/
     /**                                                                                                                    */
     /**            this function gets the returns from the simulator and saves it in other classes' attributes				*/
@@ -83,46 +80,76 @@ public class API_IHM {
             System.out.println("Recived :: " + tmp);
             nvmsg = tmp.split(" ");
             int Opcode = Integer.parseInt(nvmsg[0]);
+            a.check = 0; /** By defult we have detected an error */
             switch (Opcode) {
                 case 1:
-                    String path = nvmsg[1];
-                    a.path = path;
-                    System.out.print(" loaded module " + path);
+                    if (nvmsg.length == Config.API_RESPONSE_LENGTH_1) {
+                        String path = nvmsg[1];
+                        a.path = path;
+                        System.out.print(" loaded module " + path);
+                    } else {
+                        System.out.println(Config.API_ERROR_RESPONSE_SIZE);
+                    }
                     break;
 
                 case 2:
                 case 4:
                 case 5:
-                    a.check = Integer.parseInt(nvmsg[1]);
-                    System.out.println("Opcode result " + Opcode + " " + a.check);
-
+                    if (nvmsg.length == Config.API_RESPONSE_LENGTH_2_4_5) {
+                        if (nvmsg[1].equals(Config.BOOLEAN_ERROR)) {
+                            System.out.println(Config.API_ERROR_BOOLEAN);
+                        }
+                        a.check = Integer.parseInt(nvmsg[1]);
+                        System.out.println("Opcode result " + Opcode + " " + a.check);
+                    } else {
+                        System.out.println(Config.API_ERROR_RESPONSE_SIZE);
+                    }
                     break;
                 case 3:
-                    //parse changed values
-                    a.changes= Helper_Data_Handler.parseIdAndDataFromString(nvmsg[1]);
-
+                    if(nvmsg.length == Config.API_RESPONSE_LENGTH_3) {
+                        if(nvmsg[2].equals(Config.BOOLEAN_VALIDE)) {
+                            //parse changed values
+                            a.check = 1;
+                            a.changes = Helper_Data_Handler.parseIdAndDataFromString(nvmsg[1]);
+                        }else{
+                            System.out.println(Config.API_ERROR_BOOLEAN);
+                        }
+                    }else{
+                        System.out.println(Config.API_ERROR_RESPONSE_SIZE);
+                    }
                     break;
 
                 case 6:
-                    path = nvmsg[1]; /** < Sa vas planter ici car le simulateur ne vas pas repondre par autres chose que un gros echeque
-                    Sur le module bateau charger id 1 n'est pas un registre mais un wire pour continuer les tests if faudrait un model
-                    plus simple et unifier. Bref, comportement tout a fait normale. En revanche la il est 3 tres tot donc
-                    je rajoute l'unification des donnees + style de xml a ma todo liste et je ne suis plus la ^^
-                    A demain */
-                    a.path = path;
-                    System.out.println("ASKFILEDTA path to file " + path);
-
+                    if (nvmsg.length != Config.API_RESPONSE_LENGTH_6) {
+                        //check boolean
+                        if (nvmsg[2].equals(Config.BOOLEAN_VALIDE)) {
+                            a.path = nvmsg[1];
+                            a.check = 1;
+                            System.out.println("ASKFILEDTA path to file " + a.path);
+                        } else {
+                            System.out.println(Config.API_ERROR_BOOLEAN);
+                        }
+                    } else {
+                        System.out.println(Config.API_ERROR_RESPONSE_SIZE);
+                    }
                     break;
 
                 case 7:
-                    System.out.println("LOADDARAFIEL #" + nvmsg[1] + " " + nvmsg[2] + " " + nvmsg[3]);
-                    a.path = nvmsg[2];
-                    a.id = Integer.parseInt(nvmsg[1]);
-                    a.check = Integer.parseInt((nvmsg[3]));
-
+                    if (nvmsg.length == Config.API_RESPONSE_LENGTH_7) {
+                        if (nvmsg[3].equals(Config.BOOLEAN_VALIDE)) {
+                            System.out.println("LOADDARAFIEL #" + nvmsg[1] + " " + nvmsg[2] + " " + nvmsg[3]);
+                            a.path = nvmsg[2];
+                            a.id = Integer.parseInt(nvmsg[1]);
+                            a.check = Integer.parseInt((nvmsg[3]));
+                        } else {
+                            System.out.println(Config.API_ERROR_BOOLEAN);
+                        }
+                    } else {
+                        System.out.println(Config.API_ERROR_RESPONSE_SIZE);
+                    }
                     break;
                 case 8:
-                    System.out.println("DEBUGXMLSAVE "+nvmsg[1]);
+                    System.out.println("DEBUGXMLSAVE " + nvmsg[1]);
                     a.path = nvmsg[1];
                     break;
                 default:
@@ -213,7 +240,7 @@ public class API_IHM {
     private void getDataItemSimul(Integer Opcode, Vector<Integer> Idwire) {
         try {
             String nvmsg = Opcode.toString() + " ";
-            nvmsg += Helper_Data_Handler.creatIdString(Idwire);
+            nvmsg += Helper_Data_Handler.createIdString(Idwire);
             System.out.println("Message sent to simulator ::" + nvmsg);
 
             outputLine.write(nvmsg + "\n");
@@ -305,25 +332,6 @@ public class API_IHM {
     /**the identifier of the operation to be performed and the identifier of the register are sent over the channel		*/
     /**                                                                                                                    */
     /********************************************************************************************************************/
-    /*public void getDataRegisterSimul(int Opcode, int IdRegister) {
-        try {
-            c = new Socket(InetAddress.getLocalHost(), RECIEVER_PORT);
-
-            out = new DataOutputStream(c.getOutputStream());
-            out.writeInt(Opcode);
-            out.flush();
-
-            out.writeInt(IdRegister);
-            out.flush();
-
-            c.close();
-            receive();
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }*/
     public void getDataRegisterSimul(int Opcode, int IdRegister) {
         try {
             String msg = Opcode + " " + IdRegister + "\n";
@@ -348,31 +356,6 @@ public class API_IHM {
     /**                                                                                                                    */
     /********************************************************************************************************************/
 
-   /* public void changeDataRegisterSimul(int Opcode, String BufferPath, String AbsolutePath, int IdRegister) {
-        try {
-            c = new Socket(InetAddress.getLocalHost(), RECIEVER_PORT);
-
-            out = new DataOutputStream(c.getOutputStream());
-            out.writeInt(Opcode);
-            out.flush();
-
-            out.writeUTF(BufferPath);
-            out.flush();
-
-            out.writeUTF(AbsolutePath);
-            out.flush();
-
-            out.writeInt(IdRegister);
-            out.flush();
-
-            c.close();
-            receive();
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }*/
     public void changeDataRegisterSimul(int Opcode, String NameOrPath, Integer Objcode) {
         try {
             String msg = Opcode + " " + Objcode.toString() + " " + NameOrPath + "\n";
@@ -401,21 +384,23 @@ public class API_IHM {
             e.printStackTrace();
         }
     }
-        public void debugSaveCurrentXML(int Opcode, String path) {
-            try {
-                String msg = Opcode + " " + path + "\n";
-                outputLine.write(msg);
-                outputLine.flush();
 
-                System.out.println("Debug save current xml to file message sent " + msg);
+    public void debugSaveCurrentXML(int Opcode, String path) {
+        try {
+            String msg = Opcode + " " + path + "\n";
+            outputLine.write(msg);
+            outputLine.flush();
 
-                receive();
-            } catch (UnknownHostException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            System.out.println("Debug save current xml to file message sent " + msg);
+
+            receive();
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+    }
+
 
     /********************************************************************************************************************/
     /**                                                                                                                    */
@@ -423,48 +408,11 @@ public class API_IHM {
     /**                    selection of the data to be sent according to the operation code sent in parameter				*/
     /**                    the arguments to be sent to the simulator are forwarded to the appropriate function				*/
     /**                                                                                                                    */
-    /********************************************************************************************************************/
 
-/*
-    public void APISender(int input, String target, int Objcode, String NameOrPath, String AbsolutePath, Vector<Boolean> NewValue) {
-        a = new answer();
-        switch (input) {
-            case 1:
-                if (target == "s") loadModuleSimul(input, NameOrPath);
-                break;
-
-            case 2:
-                if (target == "s") simulSimul(input);
-                break;
-
-            case 3:
-                if (target == "s") getDataItemSimul(input, Objcode);
-                break;
-
-            case 4:
-                if (target == "s") changeDataItemSimul(input, Objcode, NewValue);
-                break;
-
-            case 5:
-                if (target == "s") resetSimul(input);
-                break;
-
-            case 6:
-                if (target == "s") getDataRegisterSimul(input, Objcode);
-                break;
-
-            case 7:
-                if (target == "s") changeDataRegisterSimul(input, NameOrPath, AbsolutePath, Objcode);
-                break;
-
-            default:
-                break;
-        }
-    }*/
     public void APISender(int input, String target, int Objcode, String NameOrPath, Vector<Integer> NewValue, Vector<Data_Tuple> ToSet) {
         a = new answer();
         System.out.println("API sender called ");
-        if(target.equals("s")) {
+        if (target.equals("s")) {
             switch (input) {
                 case 0: //quit
                     sendShutdown(input);
@@ -504,7 +452,7 @@ public class API_IHM {
                 default:
                     break;
             }
-        }else{
+        } else {
             System.out.println("Error::unsupported target to sent commande to");
         }
     }
