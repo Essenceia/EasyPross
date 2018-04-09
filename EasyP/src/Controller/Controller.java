@@ -194,7 +194,7 @@ public class Controller {
 	   /*****************/
 	   //todo have to unify descriptions of modules
 		loadModule(file);
-		String p =Config.PATH_BASE+"fichier.txt";// "C:\\Users\\julie\\Desktop\\EasyP\\fichier.txt";// askModule(file,"S");
+		String p =Config.PATH_BASE+"fichier.txt";// askModule(file,"S");
 		/*****************/
 		 /***	END		 **/
 		/***Ask Modu API**/
@@ -296,7 +296,8 @@ public class Controller {
 	}
 	
 	/**
-	 * method Play called when play button clicked
+	 * method Play called when play button clicked 
+	 * -> disabled for now
 	 */
 	public void play()
 	{
