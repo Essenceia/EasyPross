@@ -149,6 +149,7 @@ public class XML_Manager_Controller {
      * @return
      */
     private Integer myGetAttribute(Element current, String attributeName) {
+        Helper_Controller.debugMessage2("XML::myGetAttribute attribute "+attributeName);
         Attribute attri = current.getAttribute(attributeName);
         Integer value = 0;
         try {

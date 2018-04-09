@@ -56,7 +56,7 @@
   <!-- for simulation AND graphical user interface => graphical informations -->
   <!-- description specifies what is the type number -->
   <!-- when description equals register, it means that the GUI will ask its value to the simulator -->
-  <node id="17" type="9" description ="ALU" name = "Algorithmic Logic Unit"
+  <node id="17" type="9" control_bits="3" description ="ALU" name = "Algorithmic Logic Unit"
   height="20" width="20" pos_x="50" pos_y="50" >
   
     <wire_in id="1" description="register" name="Input One ALU"

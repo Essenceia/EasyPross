@@ -29,5 +29,9 @@ public class Config_Api {
         public static final int INDEX_NEW_VALUES_DATA = 1;
         public static final int INDEX_NEW_DATA_FILE = 2;
         public static final int INDEX_XML_SAVE_PATH = 1;
+        /**
+         * Default values
+         */
+        public static final String DEFAULT_FILE_PATH = "error_in_querry";
 
 }

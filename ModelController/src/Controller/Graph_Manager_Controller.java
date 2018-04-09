@@ -124,18 +124,22 @@ public class Graph_Manager_Controller implements Interface.Graph_Manager_Interfa
      * @param id
      * @return data on item
      */
-    public Vector<Boolean> GetDataOnId(int id) {
-        Vector<Boolean> retVal= new Vector<>();
+    public boolean GetDataOnId(int id,Vector<Boolean> retVal) {
         boolean[] dataOnObject;
+        retVal = new Vector<>();
+        boolean check = false; /* error detection frag */
         //search probes
         if (this.GDebut.containsKey(id)) {
             dataOnObject = this.GDebut.get(id).getData();
+            check = true;
         } else {
             if (this.GFin.containsKey(id)) {
                 dataOnObject = this.GFin.get(id).getData();
+                check = true;
             } else {
                 if (this.GArrettes.containsKey(id)) {
                     dataOnObject = this.GArrettes.get(id).getData();
+                    check = true;
                 } else {
                     //fill with default values
                     dataOnObject = new boolean[1];
@@ -146,9 +150,9 @@ public class Graph_Manager_Controller implements Interface.Graph_Manager_Interfa
         }
         for (boolean b:dataOnObject
              ) {
-            retVal.add(new Boolean(b));
+            retVal.add(b);
         }
-        return retVal;
+        return check;
     }
 
     /**
@@ -183,28 +187,31 @@ public class Graph_Manager_Controller implements Interface.Graph_Manager_Interfa
     }
 
     public boolean LoadDataOnNode(int Id, String path) {
-        boolean retVal = false;
+        boolean retVal = true;
         File newData = new File(path);
         Register_Model_Abstract objectRegister;
-        if (newData.exists() && newData.isDirectory()) {
+        if (newData.exists() && (newData.isDirectory()==false)) {
             if (GNoeuds.containsKey(Id)) {
                 objectRegister = (Register_Model_Abstract) GNoeuds.get(Id);
-                objectRegister.transfertData(newData);
+                retVal &=objectRegister.transfertData(newData);
                 //TODO add checks to verify the data
                 objectRegister.reloadFileBuffer();
             }else{
                 retVal = false;
+                Helper_Controller.errorMessage("Graph_Manager_Controller::LoadDataOnNode no register found with id "+Id);
             }
 
         }return retVal;
     }
     public String GetFileDataOnNode(int Id) {
-        String retVal = "";
+        String retVal = Config_Api.DEFAULT_FILE_PATH;
         Register_Model_Abstract objectRegister;
             if (GNoeuds.containsKey(Id)) {
                 objectRegister = (Register_Model_Abstract) GNoeuds.get(Id);
                 retVal = objectRegister.getFilePath();
                 retVal+= objectRegister.getFileName();
+            }else{
+                Helper_Controller.errorMessage("Error :: No register file defined with id "+Id);
             }
 
         return retVal;}
