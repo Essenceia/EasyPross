@@ -3,9 +3,65 @@
 This file provides a list of all currently available ellemts that are supported
 by the simulator and can be created using an *.xml* graph.
 
+###Description of attirbutes ###
+
+*id* _integer_
+Represents the unique identifier of an object, eatch id should be unique. Ellements are
+addressed using there ids.
+
+*type* _integer_
+Integer value representing the unique type of an object, used by the simulator.
+
+*size* _integer_
+Used in wires, represents the width of a wire, in other words the number of distinct
+bits a wire can hold.
+
+*path* _text_
+Absolute path to the folder where the file is stored so it can be loaded by the simulator.
+
+*file\_name* _text_
+Name of the file containing the data of a node, data should be stored in binnary form with
+eatch bit seperated by a dot.
+Example :
+```
+1.1.1.1.0.0.0.0
+```
+Represents a binary 480.
+
+*description* _text_
+Equivalent of the _type_ field but used by the UI, see bellow for the corresponding descriptions
+for all the objects.
+
+*name* _text_
+Name by witch the object will be refered to in the UI, you are advised to make this field
+as precise as possible to prevent situations where an objects denomination becomes unclear.
+
+*height* _integer_
+Height of the representation of you objectm used in UI.
+
+*width* _integer_
+Weight of the representation of you objectm used in UI.
+
+*pos\_x* _integer_
+Position in x of the object in the UI.
+
+*pos\_y* _integer_
+Position in y of the object in the UI.
+
+_Note_ :
+Some ellements will only be exploited by the simulator and not by the user interface, this
+is the case for wires and probes. Nevertheless they are necessary if you want to allow your
+simulation to work correctly.
+
+
 ### Wire
 
-short desc
+Wires connecting the diffrent nodes in the simulation, this is where the wire values on
+startup are stored.
+
+_Note_
+This object is only used by the simulator
+so there is no need to specify here UI specific fields : name , description , position , height, width, ect ...
 
 Attribute list :
 - id _integer_
@@ -23,7 +79,12 @@ example:
 
 ### Probe Start
 
-short desc
+Object for setting values to a wire easily.
+
+_Note_
+This object is only used by the simulator
+so there is no need to specify here UI specific fields : name , description , position , height, width, ect ...
+
 
 Attribute list :
 - id _integer_
@@ -37,7 +98,12 @@ example:
 ```
 ### Probe End
 
-short desc
+Object for getting values from a wire easily.
+
+_Note_
+This object is only used by the simulator
+so there is no need to specify here UI specific fields : name , description , position , height, width, ect ...
+
 
 Attribute list :
 - id _integer_
@@ -52,13 +118,24 @@ example:
 
 ### Data
 
-short desc
+Data memory, also commenly refered to as "resisters", is where all of our working variable data is held.
+It's data is represented in the text file designated but _path_ + _file name_. It's
+capacity is of _memory block size_ * _memory number block_ with eatch value having a capacity of
+_memory block size_ bits and there beeing _memory number block_ variables all stored on an unique line.
 
 Attribute list :
 - id _integer_
 - type = **4** _integer_
 - path _text_
-- file_name _text_
+- file\_name _text_
+- memory\_block\_size _integer_
+- memory\_number\_block _integer_
+- description = **DM** _text_
+- name _text_
+- height _integer_
+- width _integer_
+- pos_x _integer_
+- pos_y _integer_
 
 example:
 ```xml
@@ -77,7 +154,41 @@ example:
 + 6  _Text_
 + 7  _MUX_
 + 8  _DEMUX_
-+ 9  _ALU_
+
+### ALU
+
+Arythmetic logical unit to perform binary mathermatical opperations.
+
+Attribute list :
+- id _integer_
+- type = **9** _integer_
+- description = **ALU** _text_
+- name _text_
+- height _integer_
+- width _integer_
+- pos_x _integer_
+- pos_y _integer_
+
+```xml
+<node id="17" type="9" control_bits="3" description ="ALU" name = "Algorithmic Logic Unit"
+height="20" width="20" pos_x="50" pos_y="50" >
+
+        <wire_in id="1" description="register" name="Input One ALU"
+        height="20" width="20" pos_x="50" pos_y="50"/>
+
+        <wire_in id="2" description="register" name="Input Two ALU"
+        height="20" width="20" pos_x="50" pos_y="50"/>
+
+        <wire_in id="3" description="register" name="Control ALU"
+        height="20" width="20" pos_x="50" pos_y="50"/>
+
+        <wire_out id="4" description="register" name="Output ALU"
+        height="20" width="20" pos_x="50" pos_y="50"/>
+
+</node>
+```
+
+
 + 10 _ANDGATE_
 + 11 _ORGATE_
 + 12 _NOTGATE_

@@ -341,6 +341,7 @@ public class XML_Manager_Controller {
         Attribute attribute;
         String newString;
         attribute = object.getAttribute(attributeName);
+        Helper_Controller.debugMessage2("getTextAttributes::attribure "+attributeName);
         newString = attribute.getValue();
         System.out.println("getTextAttributes:: attribute:"+attributeName+" value:"+newString);
         return newString;

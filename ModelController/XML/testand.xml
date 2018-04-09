@@ -17,9 +17,8 @@
 	<probe id="5" type="3" desc="probeEnd">
         <wire id="3" />
     </probe>
-	<node id="6" type="10" control_bits="2">
-        <wire_in id="1" desc="in data one"/>
-        <wire_in id="2" desc="in data two"/>
+	<node id="6" type="10" >
+        <wire_in id="1" desc="in data one"/>  <wire_in id="2" desc="in data two"/>
         <wire_out id="3" desc="out data"/>
     </node>
 </graph>

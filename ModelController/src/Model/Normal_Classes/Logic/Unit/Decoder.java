@@ -15,8 +15,8 @@ public  class Decoder extends Logic_Model_Abstract {
     private static final int OUT_OPA_DECODER_WIRE = 2;
     private static final int OUT_OPB_DECODER_WIRE = 3;
     private static final int OUT_CTRLALU_DECODER_WIRE = 4;
-    private static final int OUT_CTRLDM_AF_DECODER_WIRE = 5;
-    private static final int OUT_CTRLDM_RW_DECODER_WIRE = 6;
+    private static final int OUT_CTRLDM_AF_DECODER_WIRE = 5;//read
+    private static final int OUT_CTRLDM_RW_DECODER_WIRE = 6;//write TODO confirme
     private static final int OUT_CST_DECODER_WIRE = 7;
     
     

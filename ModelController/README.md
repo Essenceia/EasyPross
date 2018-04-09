@@ -1,17 +1,16 @@
-# TODO for 21 mars #
-
-- [x] <del>test XML construction strill works</del>
-- [x] <del>add pc node creation to xml graph manager </del>
-- [x] <del>correct for missing wire_in</del>
-- [x] <del>correct for uncorrect values on wires save</del>
-
-
 # TODO #
 
 ## Primary objectives ##
 
-- [ ] Unified XML
+- [x] Unified XML
 - [ ] Test communication with UI via API 
+    - [x] load module
+    - [x] tick
+    - [x] get data on wire
+    - [ ] load data to wire
+    - [ ] get abs path on register
+    - [ ] load data to register file
+    - [ ] close
 - [ ] EasyPross functional XML : currently a dummy 
 - [ ] Create artifact for project + integrate project structure with :
     - XML file + examples
@@ -32,7 +31,7 @@
         - [x] debug -> not working
         - [ ] verify test correctness
     - [ ] Decode + Data + Mux*2 + Pc
-
+- [ ] decoder : check AF and RW on DM controller
 
 _PS: Nico , Mathieu pour faire les testes une interface de commande pour l'API peut etre trouver :
 [Interface de Commande](https://github.com/Essenceia/EasyPross_Consol_Commande_Interface)_

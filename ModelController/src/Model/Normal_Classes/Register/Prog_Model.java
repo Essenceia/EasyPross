@@ -1,16 +1,16 @@
 package Model.Normal_Classes.Register;
 
 import Controller.Helper_Controller;
-import Interface.Object_Interface;
 import Model.Abstract_Classes.Register_Model_Abstract;
 import Model.Normal_Classes.Wire.Wire_Model;
 
-import java.lang.reflect.Array;
 import java.util.Vector;
 
 public class Prog_Model extends Register_Model_Abstract {
 
-    private static final int IN_COMMANDE_WRITE_WIRE = 0;
+    /** Control wire */
+    private static final int IN_COMMANDE_READ_WIRE = 0;
+    /** Input with instruction address */
     private static final int IN_DATA_INSTRUCTION_ADDR = 1;
 
     private static final int OUT_DATA_WIRE = 0;
@@ -37,7 +37,7 @@ public class Prog_Model extends Register_Model_Abstract {
     @Override
     public void action() {
         int instAddr;
-        int write_commande = boolArrayToInt(this.input.get(IN_COMMANDE_WRITE_WIRE).getData());
+        int write_commande = boolArrayToInt(this.input.get(IN_COMMANDE_READ_WIRE).getData());
         this.output.get(OUT_DATA_WIRE).setActive(false);
         if (write_commande > PROG_CODE_SLEEP) {
             instAddr = boolArrayToInt(this.input.get(IN_DATA_INSTRUCTION_ADDR).getData());

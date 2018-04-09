@@ -124,22 +124,17 @@ public class Graph_Manager_Controller implements Interface.Graph_Manager_Interfa
      * @param id
      * @return data on item
      */
-    public boolean GetDataOnId(int id,Vector<Boolean> retVal) {
+    public boolean[] GetDataOnId(int id) {
         boolean[] dataOnObject;
-        retVal = new Vector<>();
-        boolean check = false; /* error detection frag */
         //search probes
         if (this.GDebut.containsKey(id)) {
             dataOnObject = this.GDebut.get(id).getData();
-            check = true;
         } else {
             if (this.GFin.containsKey(id)) {
                 dataOnObject = this.GFin.get(id).getData();
-                check = true;
             } else {
                 if (this.GArrettes.containsKey(id)) {
                     dataOnObject = this.GArrettes.get(id).getData();
-                    check = true;
                 } else {
                     //fill with default values
                     dataOnObject = new boolean[1];
@@ -148,11 +143,7 @@ public class Graph_Manager_Controller implements Interface.Graph_Manager_Interfa
                 }
             }
         }
-        for (boolean b:dataOnObject
-             ) {
-            retVal.add(b);
-        }
-        return check;
+        return dataOnObject;
     }
 
     /**

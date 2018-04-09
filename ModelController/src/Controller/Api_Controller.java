@@ -68,8 +68,8 @@ public class Api_Controller {
         return true;
     }
 
-    private boolean getDataItem(int Id, Vector<Boolean> dataAtID) {
-        return Graph.GetDataOnId(Id,dataAtID);
+    private boolean[] getDataItem(int Id) {
+        return Graph.GetDataOnId(Id);
     }
 
     private Boolean changeDataItem(Vector<Data_Tuple> newData) {
@@ -315,14 +315,19 @@ public class Api_Controller {
 
                 case 3:
                     Vector<Data_Tuple> vecdata = new Vector<>();
-                    Vector<Boolean> boolvals = new Vector<>();
+                    boolean[] boolvals;
                    Vector<Integer> ids =
                            Helper_Data_Handler.parseIdString(message[Config_Api.INDEX_NODE_ID]);
                     Helper_Controller.debugMessage4("PULLID #" + ids.toString());
                     for (Integer thisId: ids
                          ) {
-                        check &= getDataItem(thisId, boolvals);
-                        vecdata.add(new Data_Tuple(thisId,boolvals));
+                        boolvals= getDataItem(thisId);
+                        if(boolvals.length!= 0) {
+                            vecdata.add(new Data_Tuple(thisId, boolvals));
+                        }else{
+                            Helper_Controller.errorMessage("Error in Id detected");
+                            check = false;
+                        }
                     }
                     sendGetDataItem(Opcode, vecdata,check);
                     break;

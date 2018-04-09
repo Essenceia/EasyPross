@@ -1,5 +1,6 @@
 package Controller;
 
+import java.util.Arrays;
 import java.util.Vector;
 
 public class Data_Tuple{
@@ -22,6 +23,15 @@ public class Data_Tuple{
         this.id = id;
         this.boolValues = newValue;
         boolVectorToString();
+    }
+    public Data_Tuple(Integer id, boolean[] newValue){
+        this.id= id;
+        boolValues = new Vector<>();
+        for(boolean b: newValue){
+            boolValues.add(b);
+        }
+        boolVectorToString();
+
     }
     private void boolVectorToString(){
         this.stringValues="";
