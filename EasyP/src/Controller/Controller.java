@@ -75,7 +75,8 @@ public class Controller {
 			}
 		}
 		
-		listView.getSelectionModel().select(1); // select first item by default
+		
+		//listView.getSelectionModel().select(1); // select first item by default
 		if(moduleSelected==true) {
 			String file = listView.getSelectionModel().getSelectedItem().toString();
 			System.out.println(file);
