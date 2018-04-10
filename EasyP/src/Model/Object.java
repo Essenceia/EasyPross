@@ -61,6 +61,12 @@ public class Object {
         }
     }
 
+    public Stage getStage(){
+        return stage;
+    }
+    public void setStage(Stage nv){
+        stage = nv;
+    }
     public Integer getId() {
         return id;
     }

@@ -73,6 +73,9 @@ public class XMLtoGraph {
         parseWire(xwire);
         parseNode(xnode);
 
+        //creat buffers on graph
+        this.root.initBufferedContent();
+
         return this.root;
     }
 
@@ -84,7 +87,7 @@ public class XMLtoGraph {
 
             Element current = (Element) i.next();
             newWire = new Wire(current.getAttributes());
-            newWire.setValue(getIOValues(current));
+            newWire.addValue(getIOValues(current));
             root.addWire(newWire);
             System.out.println("Added to graph :  : " + newWire.toString());
         }

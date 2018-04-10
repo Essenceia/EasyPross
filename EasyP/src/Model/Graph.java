@@ -5,7 +5,6 @@ import Controller.Data_Tuple;
 import java.util.*;
 
 public class Graph {
-    private Node parent;
 
 
     private HashMap<Integer, Wire> wires;
@@ -24,7 +23,8 @@ public class Graph {
         nodes = new HashMap<>();
         reg = new HashMap<>();
 
-        history = new ArrayList<ArrayList<String>>();
+        //history = new ArrayList<ArrayList<String>>();
+        regName = new ArrayList<>();
         idList = "";
         time = 0;
 
@@ -60,7 +60,7 @@ public class Graph {
 
     @Override
     public String toString() {
-        String s = parent.toString();
+        String s = "";
         for (Wire w : this.wires.values()) {
             s += w.toString();
         }
@@ -109,6 +109,10 @@ public class Graph {
         int i = 0;
         Wire tmp;
         System.out.println("Buffer size set to " + numWire);
+        this.history = new ArrayList<>();
+        for (int j = 0; j < numWire; j++) {
+            this.history.add(new ArrayList<>());
+        }
         this.history.ensureCapacity(numWire);
         Iterator iw = this.wires.values().iterator();
         while (iw.hasNext()) {
@@ -150,5 +154,9 @@ public class Graph {
 
     public ArrayList<ArrayList<String>> getHistory() {
         return history;
+    }
+
+    public String getIdList() {
+        return idList;
     }
 }

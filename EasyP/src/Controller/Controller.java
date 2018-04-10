@@ -2,6 +2,7 @@ package Controller;
 
 import java.awt.Frame;
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Vector;
 
@@ -9,6 +10,7 @@ import javax.swing.JOptionPane;
 
 import Model.Graph;
 import Model.Node;
+import Model.Register;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -136,16 +138,17 @@ public class Controller {
      * @return
      */
     public boolean goThroughGraph(Node n, double mousePosX, double mousePosY) {
+        /*
         double minx = n.getPos_x() * imageView.getFitWidth() / graph.getRoot().getNode().getWidth();
         double miny = n.getPos_y() * imageView.getFitHeight() / graph.getRoot().getNode().getHeight();
 
         double maxx = minx + n.getWidth() * imageView.getFitWidth() / graph.getRoot().getNode().getWidth();
         double maxy = miny + n.getHeight() * imageView.getFitHeight() / graph.getRoot().getNode().getHeight();
 		
-		/*double minx = n.getPos_x()*imageView.getFitHeight()/graph.getRoot().getNode().getHeight();
-		double miny = n.getPos_y()*imageView.getFitWidth()/graph.getRoot().getNode().getWidth();
-		double maxx = minx + n.getHeight()*imageView.getFitHeight()/graph.getRoot().getNode().getHeight();
-		double maxy = miny +n.getWidth()*imageView.getFitWidth()/graph.getRoot().getNode().getWidth();*/
+		//double minx = n.getPos_x()*imageView.getFitHeight()/graph.getRoot().getNode().getHeight();
+		//double miny = n.getPos_y()*imageView.getFitWidth()/graph.getRoot().getNode().getWidth();
+		//double maxx = minx + n.getHeight()*imageView.getFitHeight()/graph.getRoot().getNode().getHeight();
+		//double maxy = miny +n.getWidth()*imageView.getFitWidth()/graph.getRoot().getNode().getWidth();
 
         if (mousePosX < maxx && mousePosX > minx) {
             if (mousePosY < maxy && mousePosY > miny) {
@@ -199,6 +202,9 @@ public class Controller {
                 }
             }
         }
+        return false;
+        */
+        System.err.println("error never used");
         return false;
     }
 
@@ -268,7 +274,7 @@ public class Controller {
      */
     @FXML
     public void onMouseClicked(MouseEvent e) {
-        double mousePosX = e.getSceneX();
+       /* double mousePosX = e.getSceneX();
         double mousePosY = e.getScreenY();
         boolean end = false;
 
@@ -282,7 +288,8 @@ public class Controller {
                 if (end == true) break;
             }
             end = true;
-        } while (end == false);
+        } while (end == false);*/
+        System.err.println("error never used");
     }
 
     /**
@@ -292,6 +299,7 @@ public class Controller {
      */
     @FXML
     public void onClickListener(ActionEvent e) {
+
         Object o = e.getSource();
         if (o.equals(playButton)) {
             play();
@@ -306,6 +314,7 @@ public class Controller {
             pause = false;
             reset();
         }
+
     }
 
     /**
@@ -313,16 +322,24 @@ public class Controller {
      */
     public void reset() {
         if (graph != null) {
-            graph.getRoot().getNode().getValue().clear();
-            if (graph.getRoot().getNode().getStage() != null) {
-                graph.getRoot().getNode().getStage().close();
-            }
-            List<Graph> listGraphC = graph.getRoot().getChildren();
-            for (Graph g : listGraphC) {
-                g.getNode().getValue().clear();
-                if (g.getNode().getStage() != null) {
-                    g.getNode().getStage().close();
+            Node tmpn;
+            Register tmpr;
+            Iterator node = graph.getRoot().getNonRegisterNodes();
+            Iterator reg = graph.getRoot().getDataRegisterNodes();
+            //call on all nodes and registers
+            while (node.hasNext()) {
+                tmpn = (Node) node.next();
+                if (tmpn.getStage() != null) {
+                    tmpn.getStage().close();
                 }
+                node.remove();
+            }
+            while (reg.hasNext()) {
+                tmpr = (Register) reg.next();
+                if (tmpr.getStage() != null) {
+                    tmpr.getStage().close();
+                }
+                reg.remove();
             }
 
             /** Call reset on api **/
@@ -364,56 +381,45 @@ public class Controller {
     public void tick() {
         int check = askTick();
         String path = "";
-        Vector<Integer> wireGetData = new Vector<>();
-        Vector<Data_Tuple> newData = new Vector<>();
+        Vector<Data_Tuple> newData = askDataItem(graph.getRoot().getIdList());
+        if (api.a.check == 1) {
+            //load data gotten on node
+            graph.getRoot().tickUpdateBuffer(newData);
+        //upload data
+
+            //Display All data in one window
+            if(stage==null){
+                stage=new Stage();
+                Pane root;
+                try{
+                    FXMLLoader f=new FXMLLoader(getClass().getResource("third.fxml"));
+                    root=(Pane)f.load();
+                    stage.setScene(new Scene(root));
+                    stage.show();
+                    controllerMainFrame=f.getController();
+                    controllerMainFrame.setGraph(graph.getRoot());
+                    controllerMainFrame.setRoot(true);
+                    controllerMainFrame.update();
 
 
-        //
-        List<Graph> listGraphC = graph.getRoot().getChildren();
-        for (Graph g : listGraphC) {
-            if (g.getNode().getType().equals("PM") || g.getNode().getType().equals("DM")) {
-                /*****************/
-                /***Ask Regi API**/
-                /*****************/
-                System.out.println(g.getNode().getId());
-                path = "C:\\Users\\julie\\Documents\\GitHub\\EasyPross\\EasyP\\fichier.txt";
-                //path=askDataRegister(g.getNode().getId());
-                /*****************/
-                /***	END		 **/
-                /***Ask Regi API**/
-                /*****************/
-                if (api.a.check != 0) {
-                    g.getNode().setPath(path);
+                }catch(IOException eu){
+                    eu.printStackTrace();
                 }
-            } else {
-                /*****************/
-                /***Ask Wire API**/
-                /*****************/
-							/*Vector<Boolean> ve=new Vector<Boolean>();
-							ve.add(new Boolean(true));
-							ve.add(new Boolean(false));*/
-                /**
-                 * Call for wire data should be done at the end to win in efficency
-                 * Ideally should only have one unique call to simulator
-                 */
-                wireGetData.removeAllElements();
-                wireGetData.add(g.getNode().getId());
-                //send call to api for wires
-                newData = askDataItem(wireGetData);
-                if (api.a.check == 1 && newData.size() == 1) {
-                    //load data gotten on node
-                    g.getNode().getValue().add(newData.get(0).getStringValuesWithoutDot());
-                    System.out.println("Set on id#" + g.getNode().getId() + " data " + newData.get(0).getStringValues());
-                } else {
-                    System.out.println("Oops something went wrong when getting data info from simulator");
-                }
-                /*****************/
-                /***	END		 **/
-                /***Ask Wire API**/
-                /*****************/
             }
+            else{
+                controllerMainFrame.update();
+                stage.close();
+                stage.show();
+            }
+
+
+
+        } else {
+            System.out.println("Oops something went wrong when getting data info from simulator");
         }
     }
+
+    /*}
 				else
 
     {
@@ -421,35 +427,12 @@ public class Controller {
         JOptionPane.showMessageDialog(new Frame(), "Eggs are not supposed to be green.");
     }
 
-}
+
 		}
-                /***Display All data in one window**/
-                if(stage==null){
-                stage=new Stage();
-                Pane root;
-                try{
-                FXMLLoader f=new FXMLLoader(getClass().getResource("third.fxml"));
-                root=(Pane)f.load();
-                stage.setScene(new Scene(root));
-                stage.show();
-                controllerMainFrame=f.getController();
-                controllerMainFrame.setGraph(graph.getRoot());
-                controllerMainFrame.setRoot(true);
-                controllerMainFrame.update();
 
 
-                }catch(IOException eu){
-                eu.printStackTrace();
-                }
-                }
-                else{
-                controllerMainFrame.update();
-                stage.close();
-                stage.show();
-                }
+                }*/
 
-
-                }
 
 /****************************************************************************/
 /**                                                                            */
@@ -457,47 +440,44 @@ public class Controller {
 /**     current available modules can be found under the XML file path		*/
 /**      the ModuelController/XML/*.xml										*/
 /**                                                                            */
-/****************************************************************************/
+    /****************************************************************************/
 
-public String loadModule(String nameModule)
-        {
+    public String loadModule(String nameModule) {
         String path;
 
-        api.APISender(1,"s",0,nameModule,null,null);
+        api.APISender(1, "s", 0, nameModule, null, null);
 
-        path=api.a.path;
+        path = api.a.path;
         return path;
-        }
+    }
 
 /****************************************************************************/
 /**                                                                            */
 /**        function asking the simulator to forward the simulation one tick	*/
 /**                Appeler dans une boucle pour + d'1 tic						*/
-/****************************************************************************/
+    /****************************************************************************/
 
-public int askTick()
-        {
+    public int askTick() {
         int check;
-        api.APISender(2,"s",0,"",null,null);
-        check=api.a.check;
+        api.APISender(2, "s", 0, "", null, null);
+        check = api.a.check;
         return check;
-        }
+    }
 
 /****************************************************************************/
 /**                                                                            */
 /**    function asking the data contained in one item that is not a register	*/
 /**                Not need to be called in a loop just enter					*/
 /**                all requested ids in the vector							*/
-/****************************************************************************/
+    /****************************************************************************/
 
-public Vector<Data_Tuple> askDataItem(Vector<Integer> requestedValuesId)
-        {
+    public Vector<Data_Tuple> askDataItem(String requestedValuesId) {
         int check;
-        api.APISender(3,"s",0,"",requestedValuesId,null);
-        check=api.a.check;
+        api.APISender(3, "s", 0, "", requestedValuesId, null);
+        check = api.a.check;
         return api.a.changes;
 
-        }
+    }
 
 
 /******************************************************************************/
@@ -505,33 +485,31 @@ public Vector<Data_Tuple> askDataItem(Vector<Integer> requestedValuesId)
 /**Sending new data to be stored on wires
  * This doesn't apply for changing values on registers*/
 /**                                                                              */
-/******************************************************************************/
+    /******************************************************************************/
 
 
-public int askChangeDataItem(Vector<Data_Tuple> NewValue)
-        {
+    public int askChangeDataItem(Vector<Data_Tuple> NewValue) {
 
         int check;
-        api.APISender(4,"s",0,"",null,NewValue);
-        check=api.a.check;
+        api.APISender(4, "s", 0, "", null, NewValue);
+        check = api.a.check;
         return check;
-        }
+    }
 
 
 /****************************************************************************/
 /**                                                                            */
 /**            function asking the simulator to reset the simulation			*/
 /**                                                                            */
-/****************************************************************************/
+    /****************************************************************************/
 
-public int askReset()
-        {
+    public int askReset() {
 
         int check;
-        api.APISender(5,"s",0,"",null,null);
-        check=api.a.check;
+        api.APISender(5, "s", 0, "", null, null);
+        check = api.a.check;
         return check;
-        }
+    }
 
 /****************************************************************************/
 /**                                                                            */
@@ -539,43 +517,41 @@ public int askReset()
  * 			Will return the absolute path to it's file
  * 		! Make a copy of the data : don't  keep file opened 				*/
 /**                Appeler dans une boucle pour + d'1 objet					*/
-/****************************************************************************/
+    /****************************************************************************/
 
-public String askDataRegister(int Objcode)
-        {
-        String target="s";
+    public String askDataRegister(int Objcode) {
+        String target = "s";
         String path;
-        api.APISender(6,"s",Objcode,"",null,null);
-        path=api.a.path;
+        api.APISender(6, "s", Objcode, "", null, null);
+        path = api.a.path;
         return path;
-        }
+    }
 
 /****************************************************************************/
 /**                                                                            */
 /**    function passing the new data a node that is a register should contain	*/
 /**                                                                            */
-/****************************************************************************/
+    /****************************************************************************/
 
-public void askChangeDataRegister(int Objcode,String AbsolutePath)
-        {
+    public void askChangeDataRegister(int Objcode, String AbsolutePath) {
         int check;
 
-        System.out.println("Data set to register model with ID "+Objcode+" data to write contained in  "+api.a.path);
+        System.out.println("Data set to register model with ID " + Objcode + " data to write contained in  " + api.a.path);
 
         //trust me I know what i'm doing ^^        vvvvvvvvvvv   vvvvvvvvvvvvv
-        api.APISender(7,"s",Objcode,AbsolutePath,null,null);
-        check=api.a.check;
+        api.APISender(7, "s", Objcode, AbsolutePath, null, null);
+        check = api.a.check;
 
         //id=api.a.id; why objcode is alread id ?
-        }
+    }
 
-protected void finalize()throws Throwable{
-        try{
-        //call to close sockets
-        api.APISender(0,"",0,"",null,null);
+    protected void finalize() throws Throwable {
+        try {
+            //call to close sockets
+            api.APISender(0, "", 0, "", null, null);
 
-        }finally{
-        super.finalize();
+        } finally {
+            super.finalize();
         }
-        }
-        }
+    }
+}

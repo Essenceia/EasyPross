@@ -239,10 +239,10 @@ public class API_IHM {
             e.printStackTrace();
         }
     }*/
-    private void getDataItemSimul(Integer Opcode, Vector<Integer> Idwire) {
+    private void getDataItemSimul(Integer Opcode, String Idwire) {
         try {
             String nvmsg = Opcode.toString() + " ";
-            nvmsg += Helper_Data_Handler.createIdString(Idwire);
+            nvmsg += Idwire;
             System.out.println("Message sent to simulator ::" + nvmsg);
 
             outputLine.write(nvmsg + "\n");
@@ -411,7 +411,7 @@ public class API_IHM {
     /**                    the arguments to be sent to the simulator are forwarded to the appropriate function				*/
     /**                                                                                                                    */
 
-    public void APISender(int input, String target, int Objcode, String NameOrPath, Vector<Integer> NewValue, Vector<Data_Tuple> ToSet) {
+    public void APISender(int input, String target, int Objcode, String NameOrPath, String NewValue, Vector<Data_Tuple> ToSet) {
         a = new answer();
         System.out.println("API sender called ");
         if (target.equals("s")) {
