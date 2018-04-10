@@ -2,5 +2,7 @@
 .idea/**
 bin/**
 bin
+out
+out/**
 .classpath
 .project
