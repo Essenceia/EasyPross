@@ -1,5 +1,6 @@
 .idea/**
 .idea
 dir/**
+dir
 nbproject
 .nbproject/**

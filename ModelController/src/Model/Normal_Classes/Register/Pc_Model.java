@@ -113,9 +113,11 @@ public class Pc_Model extends Register_Model_Abstract {
 
     @Override
     public void resetValues() {
+        boolean reset[] = new boolean[this.blockSize];
+        Arrays.fill(reset,false);
         Arrays.fill(this.dataIn,false);
         Arrays.fill(this.dataOut,false);
-        writeToFile(PC_VALUE_FILE_INDEX,this.dataIn);
+        writeToFile(PC_VALUE_FILE_INDEX,reset);
         Helper_Controller.debugMessage0("Pc_Model:: data has been reset to zero");
     }
 

@@ -1,2 +1,5 @@
 EasyPross
+<<<<<<< Updated upstream
 testEasyPross
+=======
+>>>>>>> Stashed changes

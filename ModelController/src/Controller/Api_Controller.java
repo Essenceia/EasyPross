@@ -68,8 +68,13 @@ public class Api_Controller {
         return true;
     }
 
+<<<<<<< Updated upstream
     private boolean[] getDataItem(int Id) {
         return Graph.GetDataOnId(Id);
+=======
+    private boolean getDataItem(int Id, Vector<Boolean> dataAtID) {
+        return Graph.GetDataOnId(Id,dataAtID);
+>>>>>>> Stashed changes
     }
 
     private Boolean changeDataItem(Vector<Data_Tuple> newData) {
@@ -315,12 +320,17 @@ public class Api_Controller {
 
                 case 3:
                     Vector<Data_Tuple> vecdata = new Vector<>();
+<<<<<<< Updated upstream
                     boolean[] boolvals;
+=======
+                    Vector<Boolean> boolvals = new Vector<>();
+>>>>>>> Stashed changes
                    Vector<Integer> ids =
                            Helper_Data_Handler.parseIdString(message[Config_Api.INDEX_NODE_ID]);
                     Helper_Controller.debugMessage4("PULLID #" + ids.toString());
                     for (Integer thisId: ids
                          ) {
+<<<<<<< Updated upstream
                         boolvals= getDataItem(thisId);
                         if(boolvals.length!= 0) {
                             vecdata.add(new Data_Tuple(thisId, boolvals));
@@ -328,6 +338,10 @@ public class Api_Controller {
                             Helper_Controller.errorMessage("Error in Id detected");
                             check = false;
                         }
+=======
+                        check &= getDataItem(thisId, boolvals);
+                        vecdata.add(new Data_Tuple(thisId,boolvals));
+>>>>>>> Stashed changes
                     }
                     sendGetDataItem(Opcode, vecdata,check);
                     break;

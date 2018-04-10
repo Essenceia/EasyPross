@@ -127,6 +127,7 @@ Attribute list :
 - id _integer_
 - type = **4** _integer_
 - path _text_
+<<<<<<< Updated upstream
 - file\_name _text_
 - memory\_block\_size _integer_
 - memory\_number\_block _integer_
@@ -136,6 +137,11 @@ Attribute list :
 - width _integer_
 - pos_x _integer_
 - pos_y _integer_
+=======
+- file_name _text_
+- memory\_block\_size _integer_
+- memory\_number\_block _integer_
+>>>>>>> Stashed changes
 
 example:
 ```xml
@@ -149,8 +155,30 @@ example:
         <wire_out id="11" description="register" name="out data at address op2"/>
 </node>
 ```
+### PC
 
-+ 5  _PC_
+Represents the programme counter node. The data will be stored in a file named <file_name> at location specied
+by <path>.
+
+Attribute list :
+- id _integer_
+- type = *5** _integer_
+- path _text_
+- file_name _text_
+- memory\_block\_size _integer_
+
+example:
+```xml
+<node id="8" type="4" path="/path/to/folder/" file_name="uniquename.txt" memory_block_size="14" memory_number_block="8"><!-- data memory node -->
+        <wire_in id="1" /><!--write commande wire-->
+        <wire_in id="2" /><!--read commande wire-->
+        <wire_in id="13" /><!--address of op1-->
+        <wire_in id="15" /><!--address of op2-->
+        <wire_in id="3" /><!--input data-->
+        <wire_out id="4" /><!--output data at address op1-->
+        <wire_out id="11" /><!--out data at address op2-->
+</node>
+```
 + 6  _Text_
 + 7  _MUX_
 + 8  _DEMUX_

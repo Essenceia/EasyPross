@@ -102,7 +102,7 @@ public class Node<T> {
 		this.type = type;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 

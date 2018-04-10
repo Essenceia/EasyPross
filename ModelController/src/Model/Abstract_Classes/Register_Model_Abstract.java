@@ -161,6 +161,15 @@ public abstract class Register_Model_Abstract extends Node_Model_Abstract implem
         }
     }
 
+    private String defaultLine(){
+        String line_data = "";
+        //init our line data that must be writen to our file
+        for (int b = 0; b < this.blockSize; b++) {
+            if(b!= 0 )line_data+=".";
+            line_data += "0";
+        }
+        return line_data;
+    }
     /**
      * @param file
      */
@@ -172,11 +181,7 @@ public abstract class Register_Model_Abstract extends Node_Model_Abstract implem
         this.bufferFile = new ArrayList<>();
         try {
 
-            //init our line data that must be writen to our file
-            for (int b = 0; b < this.blockSize; b++) {
-                if(b!= 0 )line_data+=".";
-                line_data += "0";
-            }
+            line_data = defaultLine();
             for (int i = 0; i < this.blockCount; i++) {
                 this.bufferFile.add( line_data );
             }
@@ -212,6 +217,7 @@ public abstract class Register_Model_Abstract extends Node_Model_Abstract implem
         boolean result = true;
         BufferedReader in;
         BufferedWriter out;
+        int linenumber = 0;
         String dest = this.absFilePath + this.fileName;
         //check if file is diffrent to the currently loaded file
         if(!source.getAbsolutePath().equals(dest)) {
@@ -225,13 +231,30 @@ public abstract class Register_Model_Abstract extends Node_Model_Abstract implem
                 FileWriter fstream = new FileWriter(dest, false);
                 out = new BufferedWriter(fstream);
 
+                //check if both files hold the same block sizes and number of blocks
+
                 String aLine;
                 Helper_Controller.debugMessage3("Writing to file :");
-                while ((aLine = in.readLine()) != null) {
+                while (linenumber < this.blockCount) {
+                    if((aLine = in.readLine()) != null){
                     Helper_Controller.debugMessage3(aLine);
-                    out.write(aLine);
+                    //check block size
+                    if(aLine.length()==((this.blockSize*2)-1)) {
+                        out.write(aLine);
+                    }else{
+                        out.write(defaultLine());
+                        result = false;
+                        Helper_Controller.errorMessage("Incorrect size of line on recived file");
+                    }
+                    }else{
+                        out.write(defaultLine());
+                        result = false;
+                        Helper_Controller.errorMessage("Incorrect number of blocks on recived file expecting "+this.blockCount+" diffrent lines");
+                    }
                     out.newLine();
+                    linenumber++;
                 }
+
                 try {
                     in.close();
                     out.close();
@@ -262,7 +285,7 @@ public abstract class Register_Model_Abstract extends Node_Model_Abstract implem
         if (splited.length < this.blockSize) {
             Helper_Controller.errorMessage("Error : unexpected lenght of sting, block "
                     + "size should be " + this.blockSize + " but length of string gotten"
-                    + "is only " + splited.length);
+                    + "is only " + splited.length + " string "+input);
             Arrays.fill(retarray, false);
         }
         for (String val : splited) {
@@ -294,7 +317,10 @@ public abstract class Register_Model_Abstract extends Node_Model_Abstract implem
         if (input.length != this.blockSize) {
             Helper_Controller.errorMessage("Error : unexpected lenght of sting, block "
                     + "size should be " + this.blockSize + " but length of boolean gotten"
-                    + " is " + input.length);
+                    + " is " + input.length + " input :");
+            for(boolean b : input){
+                Helper_Controller.errorMessage(Boolean.toString(b));
+            }
             Arrays.fill(input, false);
         } else {
             to_write = input.clone();

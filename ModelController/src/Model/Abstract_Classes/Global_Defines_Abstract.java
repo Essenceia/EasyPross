@@ -1,5 +1,7 @@
 package Model.Abstract_Classes;
 
+import java.io.File;
+
 /**
  * Global_Defines_Abstract Global_Defines_Abstract.java Model/Global_Defines_Abstract.java
  *
@@ -27,7 +29,7 @@ public class Global_Defines_Abstract {
     /**
      * OS dependant parameters
      */
-    public static final String OS_SEPARATOR = "/";
+    public static final String OS_SEPARATOR = File.separator;
     /**
      *Paths to files
      */
@@ -35,9 +37,4 @@ public class Global_Defines_Abstract {
     public static final String SIMULATION_MODULE_TYPE = ".xml";
 
 
-
-
-
-///home/rick/Documents/code/PPE/EasyPross_new/EasyPross/ModelController/XML/test_2.xml
-///home/rick/Documents/code/PPE/EasyPross_new/EasyPross/ModelController/XML
 }
