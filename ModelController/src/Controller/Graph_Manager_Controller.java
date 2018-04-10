@@ -124,13 +124,10 @@ public class Graph_Manager_Controller implements Interface.Graph_Manager_Interfa
      * @param id
      * @return data on item
      */
-<<<<<<< Updated upstream
+
     public boolean[] GetDataOnId(int id) {
-=======
-    public boolean GetDataOnId(int id,Vector<Boolean> retVal) {
->>>>>>> Stashed changes
+
         boolean[] dataOnObject;
-        retVal = new Vector<>();
         boolean check = false; /* error detection frag */
         //search probes
         if (this.GDebut.containsKey(id)) {
@@ -152,15 +149,8 @@ public class Graph_Manager_Controller implements Interface.Graph_Manager_Interfa
                 }
             }
         }
-<<<<<<< Updated upstream
         return dataOnObject;
-=======
-        for (boolean b:dataOnObject
-             ) {
-            retVal.add(b);
-        }
-        return check;
->>>>>>> Stashed changes
+
     }
 
     /**
