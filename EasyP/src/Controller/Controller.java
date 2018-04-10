@@ -1,8 +1,12 @@
 package Controller;
 
+import java.awt.Frame;
 import java.io.IOException;
 import java.util.List;
 import java.util.Vector;
+
+import javax.swing.JOptionPane;
+
 import Model.Graph;
 import Model.Node;
 import javafx.event.ActionEvent;
@@ -49,6 +53,7 @@ public class Controller {
 	public Controller() {
 		api = new API_IHM();
 		stageSecond= new Stage();
+		buttonChooseModule = new Button();
 		imageView = new ImageView();
 		labelDescription = new Label();
 		labelASM = new Label();
@@ -75,7 +80,7 @@ public class Controller {
 			}
 		}
 		
-		//listView.getSelectionModel().select(0); // select first item by default
+		listView.getSelectionModel().select(0); // select first item by default
 		String file = listView.getSelectionModel().getSelectedItem().toString();
 		if(moduleSelected==true) {
 			loadModuleDescription(file);
@@ -343,51 +348,58 @@ public class Controller {
 		if(api.a.check==1)
 		{
 			if(graph !=null) {
-				/*** First Node is Schema ! Does not have a value !! ***/
-				List<Graph> listGraphC = graph.getRoot().getChildren();
-				for(Graph g : listGraphC) {
-					if(g.getNode().getType().equals("PM")||g.getNode().getType().equals("DM")) {
-						 /*****************/
-						/***Ask Regi API**/
-					   /*****************/
-						System.out.println(g.getNode().getId());
-						path=askDataRegister(g.getNode().getId());
-						  /*****************/
-						 /***	END		 **/
-						/***Ask Regi API**/
-					   /*****************/
-					   if(api.a.check!= 0) {
-						   g.getNode().setPath(path);
-					   }
-					}else {
-						 /*****************/
-						/***Ask Wire API**/
-					   /*****************/
-						/*Vector<Boolean> ve=new Vector<Boolean>();
-						ve.add(new Boolean(true));
-						ve.add(new Boolean(false));*/
-						/**
-						 * Call for wire data should be done at the end to win in efficency
-						 * Ideally should only have one unique call to simulator
-						 */
-						wireGetData.removeAllElements();
-						wireGetData.add(g.getNode().getId());
-						//send call to api for wires
-						newData = askDataItem(wireGetData);
-						if(api.a.check!=1 && newData.size() == 1) {
-							//load data gotten on node
-							g.getNode().getValue().add(newData.get(0).getStringValues());
-							System.out.println("Set on id#"+g.getNode().getId()+ " data "+newData.get(0).getStringValues());
-						}else{
-							System.out.println("Oops something went wrong when getting data info from simulator");
+				if(graph.getRoot()!=null) {
+					/*** First Node is Schema ! Does not have a value !! ***/
+					List<Graph> listGraphC = graph.getRoot().getChildren();
+					for(Graph g : listGraphC) {
+						if(g.getNode().getType().equals("PM")||g.getNode().getType().equals("DM")) {
+							 /*****************/
+							/***Ask Regi API**/
+						   /*****************/
+							System.out.println(g.getNode().getId());
+							path="C:\\Users\\julie\\Documents\\GitHub\\EasyPross\\EasyP\\fichier.txt";
+							//path=askDataRegister(g.getNode().getId());
+							  /*****************/
+							 /***	END		 **/
+							/***Ask Regi API**/
+						   /*****************/
+						   if(api.a.check!= 0) {
+							   g.getNode().setPath(path);
+						   }
+						}else {
+							 /*****************/
+							/***Ask Wire API**/
+						   /*****************/
+							/*Vector<Boolean> ve=new Vector<Boolean>();
+							ve.add(new Boolean(true));
+							ve.add(new Boolean(false));*/
+							/**
+							 * Call for wire data should be done at the end to win in efficency
+							 * Ideally should only have one unique call to simulator
+							 */
+							wireGetData.removeAllElements();
+							wireGetData.add(g.getNode().getId());
+							//send call to api for wires
+							newData = askDataItem(wireGetData);
+							if(api.a.check!=1 && newData.size() == 1) {
+								//load data gotten on node
+								g.getNode().getValue().add(newData.get(0).getStringValues());
+								System.out.println("Set on id#"+g.getNode().getId()+ " data "+newData.get(0).getStringValues());
+							}else{
+								System.out.println("Oops something went wrong when getting data info from simulator");
+							}
+							  /*****************/
+							 /***	END		 **/
+							/***Ask Wire API**/
+						   /*****************/
 						}
-						  /*****************/
-						 /***	END		 **/
-						/***Ask Wire API**/
-					   /*****************/
 					}
 				}
-
+				else {
+					System.out.println("load failed");
+					JOptionPane.showMessageDialog(new Frame(),"Eggs are not supposed to be green.");
+				}
+					    
 			}
 		}
 		/***Display All data in one window**/

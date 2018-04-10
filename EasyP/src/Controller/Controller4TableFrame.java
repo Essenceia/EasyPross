@@ -71,56 +71,58 @@ public class Controller4TableFrame {
 		tView.getItems().clear();
 		tView.getColumns().clear();
 		List<Node<T>> listRegisterNodes = new ArrayList<Node<T>>();
-		listRegisterNodes= graph.getRegisterNodes(listRegisterNodes);//getNode().getValue().size();
-		int sizeTick=1;
-		if(listRegisterNodes!=null) {
-			sizeTick = listRegisterNodes.get(0).getValue().size();
-		}
-		List<String> columnNames = new ArrayList<String>();
-		columnNames.add("Name register");
-		for(int i=1; i<sizeTick+1; i++) {
-			columnNames.add("t"+i);
-		}
-		for (int i = 0; i < columnNames.size(); i++) {
-            final int finalIdx = i;
-            TableColumn<ObservableList<String>, String> column = new TableColumn<>(
-                    columnNames.get(i)
-            );
-            column.setCellValueFactory(param ->
-                    new ReadOnlyObjectWrapper<>(param.getValue().get(finalIdx))
-            );
-            tView.getColumns().add(column);
-        }
-        // add data
-		for(Node<T> l : listRegisterNodes) {
-			if(root==true)
-			{
-				Vector<String> vect = new Vector();
-				vect.add(l.getName());
-				for (int i = 1; i < columnNames.size()+1; i++) {
-		            vect.add(l.getValueAtIndex(i-1));
-		        }
-				
-					List<String> row = new ArrayList(vect);
-					tView.getItems().add(
-		                    FXCollections.observableArrayList(
-		                    		row
-		                    )
-		            );
+		if(graph!=null) {
+			listRegisterNodes= graph.getRegisterNodes(listRegisterNodes);//getNode().getValue().size();
+			int sizeTick=1;
+			if(listRegisterNodes!=null) {
+				sizeTick = listRegisterNodes.get(0).getValue().size();
 			}
-			if(l.getPos_x()==pos_x && l.getPos_y()==pos_y && l.getWidth()==width && l.getHeight()==height) {
-				Vector<String> vect = new Vector();
-				vect.add(l.getName());
-				for (int i = 1; i < columnNames.size()+1; i++) {
-		            vect.add(l.getValueAtIndex(i-1));
-		        }
-				
-					List<String> row = new ArrayList(vect);
-					tView.getItems().add(
-		                    FXCollections.observableArrayList(
-		                    		row
-		                    )
-		            );
+			List<String> columnNames = new ArrayList<String>();
+			columnNames.add("Name register");
+			for(int i=1; i<sizeTick+1; i++) {
+				columnNames.add("t"+i);
+			}
+			for (int i = 0; i < columnNames.size(); i++) {
+	            final int finalIdx = i;
+	            TableColumn<ObservableList<String>, String> column = new TableColumn<>(
+	                    columnNames.get(i)
+	            );
+	            column.setCellValueFactory(param ->
+	                    new ReadOnlyObjectWrapper<>(param.getValue().get(finalIdx))
+	            );
+	            tView.getColumns().add(column);
+	        }
+	        // add data
+			for(Node<T> l : listRegisterNodes) {
+				if(root==true)
+				{
+					Vector<String> vect = new Vector();
+					vect.add(l.getName());
+					for (int i = 1; i < columnNames.size()+1; i++) {
+			            vect.add(l.getValueAtIndex(i-1));
+			        }
+					
+						List<String> row = new ArrayList(vect);
+						tView.getItems().add(
+			                    FXCollections.observableArrayList(
+			                    		row
+			                    )
+			            );
+				}
+				if(l.getPos_x()==pos_x && l.getPos_y()==pos_y && l.getWidth()==width && l.getHeight()==height) {
+					Vector<String> vect = new Vector();
+					vect.add(l.getName());
+					for (int i = 1; i < columnNames.size()+1; i++) {
+			            vect.add(l.getValueAtIndex(i-1));
+			        }
+					
+						List<String> row = new ArrayList(vect);
+						tView.getItems().add(
+			                    FXCollections.observableArrayList(
+			                    		row
+			                    )
+			            );
+				}
 			}
 		}
 	}

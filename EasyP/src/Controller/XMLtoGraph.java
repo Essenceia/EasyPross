@@ -34,7 +34,9 @@ public class XMLtoGraph {
 			//create all children elements of the graph
 			this.goThroughGraph(this.root, list);
 			//Display the graph
+			System.out.println("begin of display of the graph");
 			System.out.println(this.root.toString());
+			System.out.println("end of display of the graph");
 
 		  } catch (IOException io) {
 			System.out.println(io.getMessage());
