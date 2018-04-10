@@ -140,13 +140,13 @@ Attribute list :
 example:
 ```xml
 <node id="8" type="4" path="/path/to/folder/" file_name="uniquename.txt" memory_block_size="14" memory_number_block="8"><!-- data memory node -->
-        <wire_in id="1" /><!--write commande wire-->
-        <wire_in id="2" /><!--read commande wire-->
-        <wire_in id="13" /><!--address of op1-->
-        <wire_in id="15" /><!--address of op2-->
-        <wire_in id="3" /><!--input data-->
-        <wire_out id="4" /><!--output data at address op1-->
-        <wire_out id="11" /><!--out data at address op2-->
+        <wire_in id="1" description="register" name="write commande wire" />
+        <wire_in id="2" description="register" name="read commande wire" />
+        <wire_in id="13" description="register" name="address of op1"/>
+        <wire_in id="15" description="register" name="address of op2"/>
+        <wire_in id="3" description="register" name="input data"/>
+        <wire_out id="4" description="register" name="output data at address op1"/>
+        <wire_out id="11" description="register" name="out data at address op2"/>
 </node>
 ```
 

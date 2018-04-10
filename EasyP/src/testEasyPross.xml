@@ -58,15 +58,17 @@
   <!-- when description equals register, it means that the GUI will ask its value to the simulator -->
   <node id="17" type="9" control_bits="3" description ="ALU" name = "Algorithmic Logic Unit"
   height="20" width="20" pos_x="50" pos_y="50" >
-  
-    <wire_in id="1" description="register" name="Input One ALU"
-    height="20" width="20" pos_x="50" pos_y="50"/>
+
+      <wire_in id="1" description="register" name="Control ALU"
+               height="20" width="20" pos_x="50" pos_y="50"/>
+
+      <wire_in id="3" description="register" name="Input One ALU"
+               height="20" width="20" pos_x="50" pos_y="50"/>
     
     <wire_in id="2" description="register" name="Input Two ALU"
     height="20" width="20" pos_x="50" pos_y="50"/>
     
-    <wire_in id="3" description="register" name="Control ALU"
-    height="20" width="20" pos_x="50" pos_y="50"/>
+
     
     <wire_out id="4" description="register" name="Output ALU"
     height="20" width="20" pos_x="50" pos_y="50"/>

@@ -23,7 +23,10 @@
 - [ ] Documentation on new xml 
 - [ ] Documentation on classe types
 - [ ] test PC file modification on timestamp out-off-data
-
+- [ ] Name on xml
+- [ ] Tuto
+    - [ ] full adder
+    - [ ] easy pross
 - [ ] Start building more complex modules to start heading towards the easy pross diagrame 
     - [x] <del>Mux*2 + Alu</del>
     - [x] Mux*2 + ALU + Decode _Nico_
