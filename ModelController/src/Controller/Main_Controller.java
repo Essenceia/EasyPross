@@ -11,7 +11,7 @@ public class Main_Controller {
 
         Api_Controller api = new Api_Controller();
 
-        while(!api.shutdown){
+        while(!api.shutDown){
             api.ApiReceiver();
         }
 

@@ -156,8 +156,10 @@ public class Node<T> {
 	}
 	
 	public boolean isARegister() {
-		if(this.type.equals("register")) {
-			return true;
+		if(this.type!=null) {
+			if(this.type.equals("register")) {
+				return true;
+			}
 		}
 		return false;
 	}

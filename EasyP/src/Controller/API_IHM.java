@@ -88,7 +88,7 @@ public class API_IHM {
                         a.path = path;
                         System.out.print(" loaded module " + path);
                     } else {
-                        System.out.println(Config.API_ERROR_RESPONSE_SIZE);
+                        System.out.println("1:"+Config.API_ERROR_RESPONSE_SIZE);
                     }
                     break;
 
@@ -97,25 +97,27 @@ public class API_IHM {
                 case 5:
                     if (nvmsg.length == Config.API_RESPONSE_LENGTH_2_4_5) {
                         if (nvmsg[1].equals(Config.BOOLEAN_ERROR)) {
-                            System.out.println(Config.API_ERROR_BOOLEAN);
+                            System.out.println("2,4,5:"+Config.API_ERROR_BOOLEAN);
                         }
                         a.check = Integer.parseInt(nvmsg[1]);
                         System.out.println("Opcode result " + Opcode + " " + a.check);
                     } else {
-                        System.out.println(Config.API_ERROR_RESPONSE_SIZE);
+                        System.out.println("2,4,5:"+Config.API_ERROR_RESPONSE_SIZE);
                     }
                     break;
                 case 3:
                     if(nvmsg.length == Config.API_RESPONSE_LENGTH_3) {
+                        System.out.println("Comapring data flag '"+nvmsg[2]+"' expected '"+Config.BOOLEAN_VALIDE+"'"+" result of" +
+                                "equql is "+nvmsg[2].equals(Config.BOOLEAN_VALIDE));
                         if(nvmsg[2].equals(Config.BOOLEAN_VALIDE)) {
                             //parse changed values
                             a.check = 1;
                             a.changes = Helper_Data_Handler.parseIdAndDataFromString(nvmsg[1]);
                         }else{
-                            System.out.println(Config.API_ERROR_BOOLEAN);
+                            System.out.println("3:"+Config.API_ERROR_BOOLEAN);
                         }
                     }else{
-                        System.out.println(Config.API_ERROR_RESPONSE_SIZE);
+                        System.out.println("3:"+Config.API_ERROR_RESPONSE_SIZE);
                     }
                     break;
 
@@ -127,10 +129,10 @@ public class API_IHM {
                             a.check = 1;
                             System.out.println("ASKFILEDTA path to file " + a.path);
                         } else {
-                            System.out.println(Config.API_ERROR_BOOLEAN);
+                            System.out.println("6:"+Config.API_ERROR_BOOLEAN);
                         }
                     } else {
-                        System.out.println(Config.API_ERROR_RESPONSE_SIZE);
+                        System.out.println("6:"+Config.API_ERROR_RESPONSE_SIZE);
                     }
                     break;
 
@@ -142,10 +144,10 @@ public class API_IHM {
                             a.id = Integer.parseInt(nvmsg[1]);
                             a.check = Integer.parseInt((nvmsg[3]));
                         } else {
-                            System.out.println(Config.API_ERROR_BOOLEAN);
+                            System.out.println("7:"+Config.API_ERROR_BOOLEAN);
                         }
                     } else {
-                        System.out.println(Config.API_ERROR_RESPONSE_SIZE);
+                        System.out.println("7:"+Config.API_ERROR_RESPONSE_SIZE);
                     }
                     break;
                 case 8:

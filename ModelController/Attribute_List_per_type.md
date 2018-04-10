@@ -127,7 +127,6 @@ Attribute list :
 - id _integer_
 - type = **4** _integer_
 - path _text_
-<<<<<<< Updated upstream
 - file\_name _text_
 - memory\_block\_size _integer_
 - memory\_number\_block _integer_
@@ -137,11 +136,7 @@ Attribute list :
 - width _integer_
 - pos_x _integer_
 - pos_y _integer_
-=======
-- file_name _text_
-- memory\_block\_size _integer_
-- memory\_number\_block _integer_
->>>>>>> Stashed changes
+
 
 example:
 ```xml

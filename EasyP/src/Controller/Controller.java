@@ -1,8 +1,12 @@
 package Controller;
 
+import java.awt.Frame;
 import java.io.IOException;
 import java.util.List;
 import java.util.Vector;
+
+import javax.swing.JOptionPane;
+
 import Model.Graph;
 import Model.Node;
 import javafx.event.ActionEvent;
@@ -49,6 +53,7 @@ public class Controller {
 	public Controller() {
 		api = new API_IHM();
 		stageSecond= new Stage();
+		buttonChooseModule = new Button();
 		imageView = new ImageView();
 		labelDescription = new Label();
 		labelASM = new Label();
@@ -75,11 +80,9 @@ public class Controller {
 			}
 		}
 		
-		
-		//listView.getSelectionModel().select(1); // select first item by default
+		listView.getSelectionModel().select(0); // select first item by default
+		String file = listView.getSelectionModel().getSelectedItem().toString();
 		if(moduleSelected==true) {
-			String file = listView.getSelectionModel().getSelectedItem().toString();
-			System.out.println(file);
 			loadModuleDescription(file);
 			moduleSelected=false;
 		}
@@ -116,10 +119,16 @@ public class Controller {
 	 * @return
 	 */
 	public boolean goThroughGraph(Node n,double mousePosX, double mousePosY ) {
-		double minx = n.getPos_x()*imageView.getFitHeight()/graph.getRoot().getNode().getHeight();
+		double minx = n.getPos_x()*imageView.getFitWidth()/graph.getRoot().getNode().getWidth();
+		double miny = n.getPos_y()*imageView.getFitHeight()/graph.getRoot().getNode().getHeight();
+		
+		double maxx = minx + n.getWidth()*imageView.getFitWidth()/graph.getRoot().getNode().getWidth();
+		double maxy = miny +n.getHeight()*imageView.getFitHeight()/graph.getRoot().getNode().getHeight();
+		
+		/*double minx = n.getPos_x()*imageView.getFitHeight()/graph.getRoot().getNode().getHeight();
 		double miny = n.getPos_y()*imageView.getFitWidth()/graph.getRoot().getNode().getWidth();
 		double maxx = minx + n.getHeight()*imageView.getFitHeight()/graph.getRoot().getNode().getHeight();
-		double maxy = miny +n.getWidth()*imageView.getFitWidth()/graph.getRoot().getNode().getWidth();
+		double maxy = miny +n.getWidth()*imageView.getFitWidth()/graph.getRoot().getNode().getWidth();*/
 		
 		if(mousePosX <maxx && mousePosX > minx) {
 			if(mousePosY <maxy && mousePosY > miny) {
@@ -196,7 +205,7 @@ public class Controller {
 	   /*****************/
 	   //todo have to unify descriptions of modules
 		loadModule(file);
-		String p =Config.PATH_BASE+"fichier.txt";// askModule(file,"S");
+		String p =Config.PATH_BASE+"fichier.txt";// "C:\\Users\\julie\\Desktop\\EasyP\\fichier.txt";// askModule(file,"S");
 		/*****************/
 		 /***	END		 **/
 		/***Ask Modu API**/
@@ -298,8 +307,7 @@ public class Controller {
 	}
 	
 	/**
-	 * method Play called when play button clicked 
-	 * -> disabled for now
+	 * method Play called when play button clicked
 	 */
 	public void play()
 	{
@@ -337,62 +345,61 @@ public class Controller {
 		Vector<Integer> wireGetData = new Vector<>();
 		Vector<Data_Tuple> newData = new Vector<>();
 
-		if(check==1)
+		if(api.a.check==1)
 		{
 			if(graph !=null) {
-				/*** First Node is Schema ! Does not have a value !! ***/
-				List<Graph> listGraphC = graph.getRoot().getChildren();
-				for(Graph g : listGraphC) {
-					if(g.getNode().getType().equals("PM")||g.getNode().getType().equals("DM")) {
-						 /*****************/
-						/***Ask Regi API**/
-					   /*****************/
-						System.out.println(g.getNode().getId());
-						path=askDataRegister(g.getNode().getId());
-						//path=Config.PATH_FILE+" fichier.txt";
-						  /*****************/
-						 /***	END		 **/
-						/***Ask Regi API**/
-					   /*****************/
-						g.getNode().setPath(path);
-					}else {
-						 /*****************/
-						/***Ask Wire API**/
-					   /*****************/
-						/*Vector<Boolean> ve=new Vector<Boolean>();
-						ve.add(new Boolean(true));
-						ve.add(new Boolean(false));*/
-						/**
-						 * Call for wire data should be done at the end to win in efficency
-						 * Ideally should only have one unique call to simulator
-						 */
-						wireGetData.removeAllElements();
-						wireGetData.add(g.getNode().getId());
-						//send call to api for wires
-						newData = askDataItem(wireGetData);
-						if(check!= 0 && newData.size() == 1) {
-							//load data gotten on node
-							g.getNode().getValue().add(newData.get(0).getStringValues());
-							System.out.println("Set on id#"+g.getNode().getId()+ " data "+newData.get(0).getStringValues());
-						}else{
-							System.out.println("Oops something went wrong when getting data info from simulator");
+				if(graph.getRoot()!=null) {
+					/*** First Node is Schema ! Does not have a value !! ***/
+					List<Graph> listGraphC = graph.getRoot().getChildren();
+					for(Graph g : listGraphC) {
+						if(g.getNode().getType().equals("PM")||g.getNode().getType().equals("DM")) {
+							 /*****************/
+							/***Ask Regi API**/
+						   /*****************/
+							System.out.println(g.getNode().getId());
+							path="C:\\Users\\julie\\Documents\\GitHub\\EasyPross\\EasyP\\fichier.txt";
+							//path=askDataRegister(g.getNode().getId());
+							  /*****************/
+							 /***	END		 **/
+							/***Ask Regi API**/
+						   /*****************/
+						   if(api.a.check!= 0) {
+							   g.getNode().setPath(path);
+						   }
+						}else {
+							 /*****************/
+							/***Ask Wire API**/
+						   /*****************/
+							/*Vector<Boolean> ve=new Vector<Boolean>();
+							ve.add(new Boolean(true));
+							ve.add(new Boolean(false));*/
+							/**
+							 * Call for wire data should be done at the end to win in efficency
+							 * Ideally should only have one unique call to simulator
+							 */
+							wireGetData.removeAllElements();
+							wireGetData.add(g.getNode().getId());
+							//send call to api for wires
+							newData = askDataItem(wireGetData);
+							if(api.a.check==1 && newData.size() == 1) {
+								//load data gotten on node
+								g.getNode().getValue().add(newData.get(0).getStringValuesWithoutDot());
+								System.out.println("Set on id#"+g.getNode().getId()+ " data "+newData.get(0).getStringValues());
+							}else{
+								System.out.println("Oops something went wrong when getting data info from simulator");
+							}
+							  /*****************/
+							 /***	END		 **/
+							/***Ask Wire API**/
+						   /*****************/
 						}
-						  /*****************/
-						 /***	END		 **/
-						/***Ask Wire API**/
-					   /*****************/
-						/*for(Boolean b: ve) {
-							String boo = "";
-							if(b.equals(true)) {
-								boo="1";
-							}else boo="0";
-								
-							value+= boo;
-						}
-						g.getNode().getValue().add(value);*/
 					}
 				}
-
+				else {
+					System.out.println("load failed");
+					JOptionPane.showMessageDialog(new Frame(),"Eggs are not supposed to be green.");
+				}
+					    
 			}
 		}
 		/***Display All data in one window**/
@@ -539,5 +546,15 @@ public class Controller {
 		check=api.a.check;
 
 		//id=api.a.id; why objcode is alread id ?
+	}
+
+	protected void finalize() throws Throwable {
+		try {
+			//call to close sockets
+			api.APISender(0,"",0,"",null,null);
+
+		} finally {
+			super.finalize();
+		}
 	}
 }

@@ -129,18 +129,16 @@ public class Graph_Manager_Controller implements Interface.Graph_Manager_Interfa
 
         boolean[] dataOnObject;
         boolean check = false; /* error detection frag */
+
         //search probes
         if (this.GDebut.containsKey(id)) {
             dataOnObject = this.GDebut.get(id).getData();
-            check = true;
         } else {
             if (this.GFin.containsKey(id)) {
                 dataOnObject = this.GFin.get(id).getData();
-                check = true;
             } else {
                 if (this.GArrettes.containsKey(id)) {
                     dataOnObject = this.GArrettes.get(id).getData();
-                    check = true;
                 } else {
                     //fill with default values
                     dataOnObject = new boolean[1];
@@ -185,31 +183,28 @@ public class Graph_Manager_Controller implements Interface.Graph_Manager_Interfa
     }
 
     public boolean LoadDataOnNode(int Id, String path) {
-        boolean retVal = true;
+        boolean retVal = false;
         File newData = new File(path);
         Register_Model_Abstract objectRegister;
-        if (newData.exists() && (newData.isDirectory()==false)) {
+        if (newData.exists() && newData.isDirectory()) {
             if (GNoeuds.containsKey(Id)) {
                 objectRegister = (Register_Model_Abstract) GNoeuds.get(Id);
-                retVal &=objectRegister.transfertData(newData);
+                objectRegister.transfertData(newData);
                 //TODO add checks to verify the data
                 objectRegister.reloadFileBuffer();
             }else{
                 retVal = false;
-                Helper_Controller.errorMessage("Graph_Manager_Controller::LoadDataOnNode no register found with id "+Id);
             }
 
         }return retVal;
     }
     public String GetFileDataOnNode(int Id) {
-        String retVal = Config_Api.DEFAULT_FILE_PATH;
+        String retVal = "";
         Register_Model_Abstract objectRegister;
             if (GNoeuds.containsKey(Id)) {
                 objectRegister = (Register_Model_Abstract) GNoeuds.get(Id);
                 retVal = objectRegister.getFilePath();
                 retVal+= objectRegister.getFileName();
-            }else{
-                Helper_Controller.errorMessage("Error :: No register file defined with id "+Id);
             }
 
         return retVal;}

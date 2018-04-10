@@ -17,18 +17,16 @@ public class Api_Controller {
     BufferedReader inputLine;
     DataOutputStream out;//socket output
     BufferedWriter outputLine;
+    boolean shutDown;
 
     //Graph
     private Graph_Manager_Controller Graph;
 
-    //shutdown message has been recived
-    public boolean shutdown;
-
 
     public Api_Controller() {
-        this.shutdown = false;
         //constructor initialise graph
         this.Graph = new Graph_Manager_Controller();
+        this.shutDown = false;
         //for debug
         //Graph.load_new_module("XML_tests/testcomplexePcProgDecode.xml");
 
@@ -70,6 +68,7 @@ public class Api_Controller {
 
     private boolean[] getDataItem(int Id) {
         return Graph.GetDataOnId(Id);
+
 
     }
 
@@ -161,13 +160,13 @@ public class Api_Controller {
     /************************************************************************************************************************************/
 
 
-    private void sendGetDataItem(Integer Opcode, Vector<Data_Tuple> data, Boolean check) {
+    void sendGetDataItem(Integer Opcode, Vector<Data_Tuple> data, boolean check) {
         try {
             String sendmsg = Opcode.toString()+" ";
             sendmsg+= Helper_Data_Handler.Parse_to_String(data)+" ";
-            if(check.equals(Boolean.TRUE))sendmsg+="1";
-            else sendmsg+="0";
-            sendmsg+="\n";
+            if(check)sendmsg+= "1";
+            else sendmsg+= "0";
+            sendmsg +=" \n";
             outputLine.write(sendmsg);
             System.out.println("SendDataItem sent to UI :"+sendmsg);
             outputLine.flush();
@@ -257,9 +256,7 @@ public class Api_Controller {
 
         try {
             String msg="";
-            Integer check= 1;
-            if(pathToRegister.equals(Config_Api.DEFAULT_FILE_PATH))check = 0;
-            msg+=Opcode+" "+pathToRegister+" "+check.toString()+"\n";
+            msg+=Opcode+" "+pathToRegister+"\n";
             outputLine.write(msg);
             outputLine.flush();
 
@@ -280,19 +277,18 @@ public class Api_Controller {
     public void ApiReceiver() {
         try {
 
-            Boolean check=true;
+            Boolean check = true;
             String path;
             Integer Id;
+
             String recivedMessage = inputLine.readLine();
             Helper_Controller.debugMessage4("Recived ::" + recivedMessage);
             String message[] = recivedMessage.split(" ");
             int Opcode = Integer.parseInt(message[Config_Api.INDEX_OPCODE]);
 
             switch (Opcode) {
-                case 0 :
-                    //shutdown message recives
-                    this.shutdown = true;
-                    Helper_Controller.debugMessage2("Shutdown message recived");
+                case 0:
+                    this.shutDown = true;
                     break;
 
                 case 1:
@@ -318,6 +314,7 @@ public class Api_Controller {
                     Vector<Data_Tuple> vecdata = new Vector<>();
                     boolean[] boolvals;
 
+
                    Vector<Integer> ids =
                            Helper_Data_Handler.parseIdString(message[Config_Api.INDEX_NODE_ID]);
                     Helper_Controller.debugMessage4("PULLID #" + ids.toString());
@@ -331,8 +328,9 @@ public class Api_Controller {
                             check = false;
                         }
 
+
                     }
-                    sendGetDataItem(Opcode, vecdata,check);
+                    sendGetDataItem(Opcode, vecdata, check);
                     break;
 
                 case 4:

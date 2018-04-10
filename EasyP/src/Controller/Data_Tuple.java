@@ -17,27 +17,11 @@ public class Data_Tuple{
         this.stringValues = newValue;
         boolValues = new Vector<>();
         stringToBoolVector();
-        boolVectorToString();
     }
     public Data_Tuple(Integer id, Vector<Boolean> newValue){
         this.id = id;
         this.boolValues = newValue;
         boolVectorToString();
-    }
-    private void boolVectorToStringWithDot(){
-        this.stringValues="";
-        int boolsize = this.boolValues.size();
-        for (int i = 0; i <boolsize ; i++) {
-            if(this.boolValues.get(i) ==Boolean.TRUE){
-                this.stringValues+="1";
-            }else{
-                this.stringValues+="0";
-            }
-            if(i != boolsize -1 )this.stringValues+= ".";
-        }
-        System.out.println("boolVectorToStringWithDot value :"+this.stringValues);
-
-
     }
     private void boolVectorToString(){
         this.stringValues="";
@@ -48,8 +32,9 @@ public class Data_Tuple{
             }else{
                 this.stringValues+="0";
             }
+            if(i != boolsize -1 )this.stringValues+= ".";
         }
-        System.out.println("boolVectorToStringWithDot value :"+this.stringValues);
+        System.out.println("boolVectorToString value :"+this.stringValues);
 
 
     }
@@ -73,5 +58,17 @@ public class Data_Tuple{
 
     public String getStringValues() {
         return stringValues;
+    }
+    public String getStringValuesWithoutDot() {
+        String retVal = "";
+        for (Boolean b : this.boolValues) {
+            if(b==Boolean.TRUE){
+               retVal+="1";
+            }else{
+                retVal+="0";
+            }
+        }return retVal;
+
+
     }
 }
