@@ -1,148 +1,188 @@
 package Controller;
+
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Vector;
 
-import org.jdom2.Document;
-import org.jdom2.Element;
-import org.jdom2.Attribute;
-import org.jdom2.JDOMException;
+import Model.Register;
+import Model.Wire;
+import org.jdom2.*;
 import org.jdom2.input.SAXBuilder;
 
 import Model.Graph;
 import Model.Node;
 
 public class XMLtoGraph {
-	private Graph root;
-	
-	public XMLtoGraph(String file) {
-		//Create a SAXBuilder to use when reading xml file
-		SAXBuilder builder = new SAXBuilder();
-		// Create an instance of the xml file
-		File xmlFile = new File(file+".xml");
+    private Graph root;
+    private Element xmlroot;
 
-		  try {
-			//Use XML Java Builder to create elements and attributes  
-			Document document = (Document) builder.build(xmlFile);
-			// Get the first element of the xml file
-			Element rootNode = document.getRootElement();
-			// get all the children elements of the xml file
-			List<Element> list = rootNode.getChildren();
-			//Create the first element of the graph
-			this.root = new Graph(new Node(rootNode, rootNode.getAttributes()));
-			//create all children elements of the graph
-			this.goThroughGraph(this.root, list);
-			//Display the graph
-			System.out.println("begin of display of the graph");
-			System.out.println(this.root.toString());
-			System.out.println("end of display of the graph");
+    public XMLtoGraph(String file) {
+        //Create a SAXBuilder to use when reading xml file
+        SAXBuilder builder = new SAXBuilder();
+        // Create an instance of the xml file
+        File xmlFile = new File(file + ".xml");
 
-		  } catch (IOException io) {
-			System.out.println(io.getMessage());
-		  } catch (JDOMException jdomex) {
-			System.out.println(jdomex.getMessage());
-		  }
-	}
-	
-	public Graph getRoot() {
-		return root;
-	}
+        try {
+            //Use XML Java Builder to create elements and attributes
+            Document document = (Document) builder.build(xmlFile);
+            // Get the first element of the xml file
+            xmlroot = document.getRootElement();
+            // get all the children elements of the xml file
+            List<Element> list = xmlroot.getChildren();
+            //Create the first element of the graph
+            this.root = new Graph();
+            //create all children elements of the graph
+            this.goThroughGraph(list);
+            //Display the graph
+            System.out.println("begin of display of the graph");
+            System.out.println(this.root.toString());
+            System.out.println("end of display of the graph");
 
-	public void setRoot(Graph root) {
-		this.root = root;
-	}
-	/**
-	 * method to add the elements to the graph
-	 * @param g
-	 * @param listElement
-	 * @return
-	 */
-	public Graph goThroughGraph(Graph g, List<Element> listElement) {
-		Node n;
-		//For every element of the children list
-		for(Element e : listElement) {
-			//Get its attributes
-			 List<Attribute> listAttributes = e.getAttributes();
-			 /**
-			  * After unifying the XML files between Simulator and Graphical User Interface
-			  */
-			 // Only consider the nodes that interest us (i.e. do not consider first part of XML
-			if(e.getName().equals("node") || e.getName().equals("wire_in") || e.getName().equals("wire_out")) {
-				 //Create a new node
-				 n = new Node(e, listAttributes);
-				 //Create a new graph out of it
-				 Graph newG = new Graph(n);
-				 // Add this graph to the root graph
-				 root.addChild(newG);
-				 //Get the children elements
-				 List<Element> listChild = e.getChildren();
-				
-				 if(!listChild.isEmpty()){	 
-					 // recursive call of the method
-					 g = goThroughGraph(newG, listChild);
-					 //add the graph to the previously created graph
-					 newG.addChild(g);
-				}
-			 }
-			 /**
-			  * Before unifying the XML files
-			  */
-			 // if they are inputs or outputs 
-			/* if(e.getName().equals("input")|| e.getName().equals("output")) {
-				 //Create a new node
-				 n= new Node(e, listAttributes);
-				 //transform the <io> children into vector of 0s &1s
-				 //n.setValue(this.transformIOtoValue(e));
-				 //Create a new graph with root the node
-				 Graph newG = new Graph(n);
-				 // add this graph to the graph
-				 root.addChild(newG);
-			 }
-			 else {
-				 // If not create a new node
-				 n = new Node(e, listAttributes);
-				 //Create a new graph out of it
-				 Graph newG = new Graph(n);
-				 // Add this graph to the root graph
-				 root.addChild(newG);
-				 //Get the children elements
-				 List<Element> listChild = e.getChildren();
-				
-				 if(!listChild.isEmpty()){	 
-					 // recursive call of the method
-					 g = goThroughGraph(newG, listChild);
-					 //add the graph to the previously created graph
-					 newG.addChild(g);
-				}
-			 }	*/
-		}
-		return g;
-	}
-	/* Method to transform <io>true</io> or <io>false</io> into vector of 0s & 1s */
-	/*public Vector transformIOtoValue(Element e) {
-		Vector vect = new Vector<Integer>();
-		List<Element> listChild = e.getChildren();
-		if(!listChild.isEmpty()) {
-			for(Element eC : listChild) {
-				 String v = eC.getText();
-				if(v != null) {
-					 switch (v){
-					 case "true":
-					 case " true ":
-						 vect.add(1);
-						 break;
-					 case "false":
-					 case " false ":
-						 vect.add(0);
-						 break;
-					 }
-				 }
-				 
-			}
-		}
-		
-		return vect;
-		
-	}*/
+        } catch (IOException io) {
+            System.out.println(io.getMessage());
+        } catch (JDOMException jdomex) {
+            System.out.println(jdomex.getMessage());
+        }
+    }
+
+    public Graph getRoot() {
+        return root;
+    }
+
+
+    /**
+     * method to add the elements to the graph
+     *
+     * @param listElement - list of xml ellements
+     * @return
+     */
+    public Graph goThroughGraph(List<Element> listElement) {
+
+        List xnode;
+        List xwire;
+
+
+        //load all wires
+        xnode = this.xmlroot.getChildren("node");
+        xwire = this.xmlroot.getChildren("wire");
+
+
+        parseWire(xwire);
+        parseNode(xnode);
+
+        return this.root;
+    }
+
+
+    private void parseWire(List xwire) {
+        Iterator i = xwire.iterator();
+        Wire newWire;
+        while (i.hasNext()) {
+
+            Element current = (Element) i.next();
+            newWire = new Wire(current.getAttributes());
+            newWire.setValue(getIOValues(current));
+            root.addWire(newWire);
+            System.out.println("Added to graph :  : " + newWire.toString());
+        }
+    }
+
+    /**
+     * I am ashamed of this function ...
+     * @param xwire
+     */
+    private void parseNode(List xwire) {
+        HashMap<Integer, Wire> graph_wire = this.root.getWireMap();
+        Iterator i = xwire.iterator();
+        Node newNode;
+        Register newRegister;
+        Vector<Integer> connectedWires;
+        int type;
+        while (i.hasNext()) {
+
+            Element current = (Element) i.next();
+            try {
+                type = current.getAttribute("type").getIntValue();
+
+            } catch (DataConversionException e) {
+                e.printStackTrace();
+                type = 0;
+            }
+            if (type >= 4 && type <= 6) {
+                //this is a register
+                newRegister = new Register(current.getAttributes());
+                //attache wires
+                connectedWires = listConnected(current, "wire_in");
+                for (Integer id : connectedWires) {
+                    if (graph_wire.containsKey(id)) {
+                        newRegister.add(graph_wire.get(id));
+                    }
+
+                }
+                connectedWires = listConnected(current, "wire_out");
+                for (Integer id : connectedWires) {
+                    if (graph_wire.containsKey(id)) {
+                        newRegister.add(graph_wire.get(id));
+                    }
+
+                }
+                this.root.addReg(newRegister);
+            } else {
+                //normal node
+                newNode = new Node(current.getAttributes());
+                //attache wires
+                connectedWires = listConnected(current, "wire_in");
+                for (Integer id : connectedWires) {
+                    if (graph_wire.containsKey(id)) {
+                        newNode.add(graph_wire.get(id));
+                    }
+
+                }
+                connectedWires = listConnected(current, "wire_out");
+                for (Integer id : connectedWires) {
+                    if (graph_wire.containsKey(id)) {
+                        newNode.add(graph_wire.get(id));
+                    }
+
+                }
+                this.root.addNode(newNode);
+            }
+
+        }
+    }
+
+    private String getIOValues(Element object) {
+        String retVector = "";
+        Element nextElement;
+        List io_list = object.getChildren("io");
+        Iterator i = io_list.iterator();
+        while (i.hasNext()) {
+            nextElement = (Element) i.next();
+            retVector += nextElement.getValue();//set to true or false
+        }
+        return retVector;
+    }
+
+    private Vector<Integer> listConnected(Element object, String tag) {
+        Element nextElement;
+        Vector<Integer> idList = new Vector<>();
+        Integer id;
+        List list = object.getChildren(tag);
+        Iterator i = list.iterator();
+        while (i.hasNext()) {
+            nextElement = (Element) i.next();
+            try {
+                id = nextElement.getAttribute("id").getIntValue();// id of connected wire
+                idList.add(id);
+            } catch (DataConversionException e) {
+                e.printStackTrace();
+            }
+        }
+        return idList;
+    }
+
+
 }

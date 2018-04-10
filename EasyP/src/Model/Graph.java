@@ -1,66 +1,154 @@
 package Model;
 
-import java.util.ArrayList;
-import java.util.List;
+import Controller.Data_Tuple;
+
+import java.util.*;
 
 public class Graph {
-	private Node parent;
-	private List<Graph> children;
+    private Node parent;
 
-	public Graph(Node n) {
-		this.parent = n;
-		this.children = new ArrayList<Graph>();
-	}
-	public void setChildren(List<Graph> c) {
-		this.children = c;
-	}
-	public void addChild(Graph g) {
-		this.children.add(g);
-	}
-	public List<Graph> getChildren(){
-		return this.children;
-	}
-	public Node getNode() {
-		return parent;
-	}
-	@Override
-	public String toString() {
-		String s = parent.toString();
-		for(Graph g: children) {
-			s+= g.getNode().toString();
-		}
-		return s;
-	}
-	/**
-	 * Get the registers nodes of the graph (i.e. the "wires")
-	 * @param list
-	 * @return
-	 */
-	public <T> List<Node<T>> getRegisterNodes(List<Node<T>> list){
-		if(parent.isARegister()){
-			list.add(parent);
-		}
-		for(Graph g: children) {
-			if(g.getNode().isARegister()) {
-				list.add(g.getNode());
-			}
-		}
-		return list;
-	}
-	/**
-	 * Get the nodes that are not registers of the graph (i.e. the blocks like ProgramMemory, Program Counter, Muxs...)
-	 * @param list
-	 * @return
-	 */
-	public <T> List<Node<T>> getNonRegisterNodes(List<Node<T>> list){
-		if(parent.isNotARegister()){
-			list.add(parent);
-		}
-		for(Graph g: children) {
-			if(g.getNode().isNotARegister()) {
-				list.add(g.getNode());
-			}
-		}
-		return list;
-	}
+
+    private HashMap<Integer, Wire> wires;
+    private HashMap<Integer, Node> nodes;
+    private HashMap<Integer, Register> reg;
+
+    private ArrayList<ArrayList<String>> history;
+    private ArrayList<String> regName;
+    private String idList;
+    private Integer time;
+
+    public Graph() {
+
+
+        wires = new HashMap<>();
+        nodes = new HashMap<>();
+        reg = new HashMap<>();
+
+        history = new ArrayList<ArrayList<String>>();
+        idList = "";
+        time = 0;
+
+    }
+
+    public void addReg(Register g) {
+        if (!this.reg.containsKey(g.getId())) {
+            this.reg.put(g.getId(), g);
+        } else {
+            System.out.println("Duplicate ID on reg id " + g.getId());
+        }
+    }
+
+    public void addWire(Wire g) {
+        if (!this.wires.containsKey(g.getId())) {
+
+            this.wires.put(g.getId(), g);
+
+            idList += g.getId().toString();
+            if (this.wires.size() != 1) idList += ",";
+
+            regName.add(g.getName());
+        }
+    }
+
+    public void addNode(Node g) {
+        if (!this.nodes.containsKey(g.getId())) {
+            this.nodes.put(g.getId(), g);
+        } else {
+            System.out.println("Duplicate ID on node id " + g.getId());
+        }
+    }
+
+    @Override
+    public String toString() {
+        String s = parent.toString();
+        for (Wire w : this.wires.values()) {
+            s += w.toString();
+        }
+        for (Register w : this.reg.values()) {
+            s += w.toString();
+        }
+        for (Node n : this.nodes.values()) {
+            s += n.toString();
+        }
+        return s;
+    }
+
+    public Iterator getRegisterNodesID() {
+        return wires.keySet().iterator();
+    }
+
+    public ArrayList<String> getRegisterData(int id) {
+        if (this.wires.containsKey(id)) {
+            return this.wires.get(id).getValue();
+        } else {
+            return null;
+        }
+    }
+
+    public Iterator<Node> getNonRegisterNodes() {
+
+        return this.nodes.values().iterator();
+    }
+
+    public Iterator<Register> getDataRegisterNodes() {
+
+        return this.reg.values().iterator();
+    }
+
+    public HashMap<Integer, Wire> getWireMap() {
+        return wires;
+    }
+
+    public Iterator<Wire> getWire() {
+        return wires.values().iterator();
+    }
+
+    public void initBufferedContent() {
+
+        Integer numWire = this.wires.size();
+        int i = 0;
+        Wire tmp;
+        System.out.println("Buffer size set to " + numWire);
+        this.history.ensureCapacity(numWire);
+        Iterator iw = this.wires.values().iterator();
+        while (iw.hasNext()) {
+            tmp = (Wire) iw.next();
+
+            this.history.get(i).add(tmp.getLast());
+
+            i++;
+            iw.remove();
+        }
+
+
+    }
+
+    /**
+     * Add new wire ellements to buffer
+     */
+    public void tickUpdateBuffer(Vector<Data_Tuple> newData) {
+        int i = 0;
+        String nvString = "";
+
+        for (Data_Tuple data : newData) {
+
+            if (this.wires.containsKey(data.getId())) {
+
+                nvString = data.getStringValuesWithoutDot();
+                this.wires.get(data.getId()).addValue(nvString);
+                history.get(i).add(nvString);
+                i++;
+
+                System.out.println("Updated wire id#" + data.getId() + " value " + nvString);
+            }
+        }
+    }
+
+    public ArrayList<String> getRegName() {
+        return regName;
+    }
+
+    public ArrayList<ArrayList<String>> getHistory() {
+        return history;
+    }
 }
