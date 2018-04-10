@@ -27,6 +27,7 @@
 - [ ] Tuto
     - [ ] full adder
     - [ ] easy pross
+- [ ] Unified directory for xml
 - [ ] Start building more complex modules to start heading towards the easy pross diagrame 
     - [x] <del>Mux*2 + Alu</del>
     - [x] Mux*2 + ALU + Decode _Nico_
