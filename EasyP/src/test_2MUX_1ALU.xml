@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graph id="11" description ="schema" name="EasyPross Module" height="448" width="500" pos_x="0" pos_y="0">
+
+    <wire id="9" type="1" size="1" desc="WireIn_ctrlmux1">
+        <io>0</io>
+    </wire>
+    <wire id="10" type="1" size="1" desc="WireIn_ctrlmux2">
+        <io>1</io>
+    </wire>
+    <wire id="11" type="1" size="3" desc="WireIn_ctrlALU">
+        <io>0</io>
+        <io>0</io>
+        <io>0</io>
+    </wire>
+    <wire id="12" type="1" size="8" desc="WireIn_op1">
+        <io>0</io>
+        <io>0</io>
+        <io>0</io>
+        <io>0</io>
+        <io>0</io>
+        <io>1</io>
+        <io>1</io>
+        <io>1</io>
+    </wire>
+    <wire id="13" type="1" size="8" desc="WireIn_pc+0000">
+        <io>0</io>
+        <io>0</io>
+        <io>0</io>
+        <io>0</io>
+        <io>0</io>
+        <io>0</io>
+        <io>0</io>
+        <io>0</io>
+    </wire>
+    <wire id="14" type="1" size="8" desc="WireIn_cst">
+        <io>0</io>
+        <io>0</io>
+        <io>0</io>
+        <io>0</io>
+        <io>0</io>
+        <io>0</io>
+        <io>0</io>
+        <io>0</io>
+    </wire>
+    <wire id="15" type="1" size="8" desc="WireIn_op2">
+        <io>0</io>
+        <io>0</io>
+        <io>0</io>
+        <io>0</io>
+        <io>1</io>
+        <io>0</io>
+        <io>0</io>
+        <io>0</io>
+    </wire>
+    <wire id="16" type="1" size="8" desc="WireOut_mux1">
+    </wire>
+    <wire id="17" type="1" size="8" desc="WireOut_mux2">
+        <io>1</io>
+    </wire>
+    <wire id="18" type="1" size="8" desc="WireOut_ALU">
+    </wire>
+
+    <probe id="1" type="2" desc="probeStart_ctrlmux1">
+        <wire id="9" />
+    </probe>
+    <probe id="2" type="2" desc="probeStart_ctrlmux2">
+        <wire id="10" />
+    </probe>
+    <probe id="3" type="2" desc="probeStart_ctrlALU">
+        <wire id="11" />
+    </probe>
+    <probe id="4" type="2" desc="probeStart_op1">
+        <wire id="12" />
+    </probe>
+    <probe id="5" type="2" desc="probeStart_pc+0000">
+        <wire id="13" />
+    </probe>
+    <probe id="6" type="2" desc="probeStart_cst">
+        <wire id="14" />
+    </probe>
+    <probe id="7" type="2" desc="probeStart_op2">
+        <wire id="15" />
+    </probe>
+    <probe id="8" type="3" desc="probeEnd_result">
+        <wire id="18" />
+    </probe>
+    
+    <node id="19" type="7" name="MUX 1" description="mux1" control_bits="1"
+    height="129" width="106" pos_x="421" pos_y="311" >
+        <wire_in id="9" description="register" name="control MUX 1"
+        height="10" width="68" pos_x="416" pos_y="242"/>
+        <wire_in id="12" description="register" name="input MUX 1"
+        height="10" width="71" pos_x="349" pos_y="352"/>
+        <wire_in id="13" description="register" name="0000+pc"
+        height="10" width="63" pos_x="357" pos_y="393"/>
+        <wire_out id="16" description="register" name="output MUX 1"
+        height="10" width="43" pos_x="528" pos_y="378"/>
+    </node>
+    <node id="20" type="7" name="MUX 2" description="mux2" control_bits="1"
+    height="137" width="106" pos_x="421" pos_y="535" >
+        <wire_in id="10" description="register" name="control MUX 2"
+        height="77" width="10" pos_x="416" pos_y="457"/>
+        <wire_in id="14" description="register" name="constante"
+        height="10" width="100" pos_x="320" pos_y="553"/>
+        <wire_in id="15" description="register" name="input MUX 2"
+        height="10" width="143" pos_x="283" pos_y="605"/>
+        <wire_out id="17" description="register" name="output MUX 2"
+        height="10" width="43" pos_x="528" pos_y="596"/>
+    </node>
+    <node id="21" type="9" name="ALU" description="ALU" control_bits="1"
+    height="223" width="123" pos_x="572" pos_y="381" >
+        <wire_in id="11" description="register" name="control ALU"
+        height="76" width="10" pos_x="598" pos_y="304"/>
+        <wire_in id="16" description="register" name="input MUX 1"
+        height="10" width="43" pos_x="528" pos_y="378"/>
+        <wire_in id="17" description="register" name="input MUX 2"
+        height="10" width="43" pos_x="528" pos_y="596"/>
+        <wire_out id="18" description="register" name="output ALU"
+        height="25" width="76" pos_x="696" pos_y="481"/>
+    </node>
+</graph>
