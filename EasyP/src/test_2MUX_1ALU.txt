@@ -1,0 +1,34 @@
+Le module présenté ici est un processeur. Il a été créé afin d'être le plus facile possible à réaliser et à comprendre, 
+avec le moins de modules. Ce processeur est codé sur 8 bits. On peut retrouver une mémoire programme et une mémoire 
+donnée (architecture Harvard), deux ALUs (calculs), trois multiplexeurs (choix de donnée à passer), un décodeur 
+(décodant les instructions programme), un PC (trad. Program Counter) et enfin un "shift" qui ajoute des zéros au PC 
+pour que ce dernier ait le nombre de bits adéquats. 
+Voyons maintenant les modules un par un :
+--> Mémoire programme : Elle reçoit le PC qui lui indique la ligne à laquelle prendre l'instruction et la mémoire programme 
+renvoie donc la ligne d'instructions au décodeur.
+--> Mémoire donnée : La mémoire donnée reçoit le contrôleur de la mémoire donnée, 
+l'adresse de l'opérande 1 et de l'opérande 2 (@Op1, @Op2) ainsi que le résultat du calcul précédent. 
+Le rôle de de la mémoire donnée est comme son nom l'indique de stocker les données. 
+Le contrôle mémoire donnée va indiquer si on écrit ou non dans la mémoire donnée (pour le résultat). 
+En sortie, la mémoire donnée donne l'opérande 1 et l'opérande 2 (leur valeur, et non pas leur adresse).
+-->Décodeur : Le décodeur a pour rôle de décomposer la ligne d'instruction envoyée par la mémoire programme. 
+La ligne peut avoir deux opérandes (Op1 et Op2). Dans ce cas, le décodeur va envoyer leur adresse à la mémoire donnée 
+et il va envoyer le contrôleur de la mémoire donnée pour indique qu'il y a bien des opérandes à récupérer. 
+En effet, on peut se retrouver dans un cas où il n'y a pas d'opérande. Le décodeur va également envoyer un opérateur 
+qu'il va envoyer à l'ALU mais également au multiplexeur 2. Enfin, il y a la possibilité que la ligne d'instruction 
+contienne une constante, auquel cas, le décodeur envoie cette constante au multiplexeur 2.
+--> Multiplexeur 1 : Il reçoit l'opérande 1, le PC (sur 8 bits), des 0 sur 8 bits et l’Op Code équivalent à l'opérateur. 
+En fonction de ce dernier, le multiplexeur ou MUX sortira soit des 0, soit l'opérande 1 soit les 0. 
+--> Multiplexeur 2 : Il reçoit l'opérande 2, la constante et l'opérateur. Toujours en fonction de l'opérateur, 
+il ressort soit la constante, soit l'opérande 2. 
+--> ALU 1 : L'ALU reçoit deux nombres et l'opérateur. Il fait simplement l'opération. 
+Par exemple, si l'opérateur est + et les deux nombres sont respectivement 3 et 4, il ressortira 7. 
+En d'autres termes, la sortie de l'ALU n'est autre que le résultat de l'opération effectuée par 
+l'opérateur sur les deux opérandes reçus. L'ALU envoie le résultat à la mémoire donnée et au multiplexeur. 
+Si le contrôleur le permet, ce résultat est stocké dans la mémoire donnée. Sinon, il n'est pas stocké.
+-->Shift : Le PC est compté sur 4 bits mais le circuit est sur 8 bits. On rajoute donc 4 bits (des zéros ici) 
+à gauche des 4 bits du PC. Ainsi, on obtient un PC sur 8 bits, correspondant au nombre de bits du processeur. 
+--> ALU 2 : Cet ALU sert uniquement à additionner +1 au PC pour passer à l'instruction suivante 
+(en d'autres termes, la ligne suivante dans le programme).
+--> Multiplexeur 3 : Ce dernier reçoit PC + 1 et le résultat de l'ALU 1. 
+Selon la valeur du contrôleur, il choisit l'un ou l'autre de ses deux entrées à faire progresser vers le PC. 

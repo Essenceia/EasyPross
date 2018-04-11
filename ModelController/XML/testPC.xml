@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemas id="11" description ="schema" name="EasyPross Module" height="448" width="500" pos_x="0" pos_y="0">
+    <!-- Wires Definition -->
+    <!-- for simulation only -->
+    <wire id="1" type="1" size="8" desc="PC in new value ">
+    <io> 1 </io>
+    <io> 1 </io>
+    <io> 0 </io>
+    <io> 0 </io>
+    <io> 0 </io>
+    <io> 0 </io>
+    <io> 0 </io>
+    <io> 0 </io>
+  </wire>
+
+    <wire id="2" type="1" size="1" desc="read command">
+      <io>0</io>
+    </wire>
+
+    <wire id="3" type="1" size="1" desc="write commande">
+      <io>1</io>
+    </wire>
+
+  <wire id="4" type="1" size="8" desc="pc wire out">
+    <io> 0 </io>
+    <io> 0 </io>
+    <io> 1 </io>
+    <io> 0 </io>
+    <io> 0 </io>
+    <io> 0 </io>
+    <io> 0 </io>
+    <io> 0 </io>
+  </wire>
+  <!-- Probes definition -->
+  <!-- for simulation only -->
+  <probe id="5" type="2">
+    <wire id="1" />
+  </probe>
+  <probe id="6" type="3">
+    <wire id="4" />
+  </probe>
+  <!-- Nodes definition -->
+  <!-- for simulation AND graphical user interface => graphical informations -->
+  <!-- description specifies what is the type number -->
+  <!-- when description equals register, it means that the GUI will ask its value to the simulator -->
+  <node id="7" type="5" description ="PC" name = "Algorithmic Logic Unit" control_bits="2" memory_block_size="8" path="/tmp/" file_name="PC.txt"
+  height="47" width="107" pos_x="453" pos_y="321" >
+  
+    <wire_in id="1" description="register" name="PC in new value "
+    height="10" width="44" pos_x="408" pos_y="341"/>
+    <wire_in id="2" description="register" name="read command "
+    height="62" width="44" pos_x="516" pos_y="369"/>
+    <wire_in id="3" description="register" name="Pwrite commande "
+    height="62" width="60" pos_x="440" pos_y="369"/>
+
+    <wire_out id="4" description="register" name="pc wire out"
+    height="120" width="30" pos_x="561" pos_y="225"/>
+    
+  </node>
+</schemas>
