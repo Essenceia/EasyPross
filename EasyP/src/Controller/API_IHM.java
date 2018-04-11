@@ -122,7 +122,7 @@ public class API_IHM {
                     break;
 
                 case 6:
-                    if (nvmsg.length != Config.API_RESPONSE_LENGTH_6) {
+                    if (nvmsg.length == Config.API_RESPONSE_LENGTH_6) {
                         //check boolean
                         if (nvmsg[2].equals(Config.BOOLEAN_VALIDE)) {
                             a.path = nvmsg[1];

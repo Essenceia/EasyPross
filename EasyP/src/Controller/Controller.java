@@ -1,12 +1,9 @@
 package Controller;
 
-import java.awt.Frame;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Vector;
-
-import javax.swing.JOptionPane;
 
 import Model.Graph;
 import Model.Node;
@@ -132,52 +129,82 @@ public class Controller {
      * Method to go through the graph and look at the mouse coordinates
      * -> display new window with data if necessary
      *
-     * @param n
      * @param mousePosX
      * @param mousePosY
      * @return
      */
-    public boolean goThroughGraph(Node n, double mousePosX, double mousePosY) {
-        /*
-        double minx = n.getPos_x() * imageView.getFitWidth() / graph.getRoot().getNode().getWidth();
-        double miny = n.getPos_y() * imageView.getFitHeight() / graph.getRoot().getNode().getHeight();
+    public boolean goThroughGraph(double mousePosX, double mousePosY) {
+        boolean found = false;
 
-        double maxx = minx + n.getWidth() * imageView.getFitWidth() / graph.getRoot().getNode().getWidth();
-        double maxy = miny + n.getHeight() * imageView.getFitHeight() / graph.getRoot().getNode().getHeight();
-		
-		//double minx = n.getPos_x()*imageView.getFitHeight()/graph.getRoot().getNode().getHeight();
-		//double miny = n.getPos_y()*imageView.getFitWidth()/graph.getRoot().getNode().getWidth();
-		//double maxx = minx + n.getHeight()*imageView.getFitHeight()/graph.getRoot().getNode().getHeight();
-		//double maxy = miny +n.getWidth()*imageView.getFitWidth()/graph.getRoot().getNode().getWidth();
+        Iterator itNode = this.graph.getRoot().getNonRegisterNodes();
+        Iterator itReg = this.graph.getRoot().getDataRegisterNodes();
 
-        if (mousePosX < maxx && mousePosX > minx) {
-            if (mousePosY < maxy && mousePosY > miny) {
-                if (n.getType().equals("PM") || n.getType().equals("DM")) {
-                    if (!n.getPath().equals("")) {
-                        if (n.getStage() != null) {
-                            n.getStage().close();
-                            n.setStage(null);
-                        }
-                        Stage s = new Stage();
-                        Pane root;
-                        try {
-                            FXMLLoader f = new FXMLLoader(getClass().getResource("fourth.fxml"));
-                            root = (Pane) f.load();
-                            s.setScene(new Scene(root));
-                            s.show();
+        Register reg;
+        Node node;
 
-                            ControllerMemory controllerMemory = f.getController();
-                            controllerMemory.loadMemory(n.getPath(), n.getType());
+        //for registers
+        while (itReg.hasNext()){
+            reg = (Register)itReg.next();
 
-                        } catch (IOException eu) {
-                            eu.printStackTrace();
-                        }
-                        n.setStage(s);
+           /* double minx = reg.getPos_x() * imageView.getFitWidth() / reg.getWidth();
+            double miny = reg.getPos_y() * imageView.getFitHeight() / reg.getHeight();
+
+            double maxx = minx + reg.getWidth() * imageView.getFitWidth() / reg.getWidth();
+            double maxy = miny + reg.getHeight()*imageView.getFitHeight() / reg.getHeight();*/
+
+            double minx = reg.getPos_x() * imageView.getFitWidth() / reg.getWidth();
+            double miny = reg.getPos_y() * imageView.getFitHeight() / reg.getHeight();
+
+            double maxx = minx + reg.getWidth() * imageView.getFitWidth() / reg.getWidth();
+            double maxy = miny + reg.getHeight()*imageView.getFitHeight() / reg.getHeight();
+
+
+            if (reg.checkCursotFit(mousePosX,mousePosY)) {
+                    //ask for data on register
+                    api.getDataRegisterSimul(6,reg.getId());
+                    if(api.a.check==1){
+                            if (reg.getStage() != null) {
+                                reg.getStage().close();
+                                reg.setStage(null);
+                            }
+                            reg.setPath(api.a.path);
+                            Stage s = new Stage();
+                            Pane root;
+                            try {
+                                FXMLLoader f = new FXMLLoader(getClass().getResource("fourth.fxml"));
+                                root = (Pane) f.load();
+                                s.setScene(new Scene(root));
+                                s.show();
+
+                                ControllerMemory controllerMemory = f.getController();
+                                controllerMemory.loadMemory(reg.getPath(), reg.getType(),reg.getBlockLenght(),reg.getBlockSize());
+
+                            } catch (IOException eu) {
+                                eu.printStackTrace();
+                            }
+                            reg.setStage(s);
+
                     }
-                } else {
-                    if (n.getStage() != null) {
-                        n.getStage().close();
-                        n.setStage(null);
+                     return true;
+                }
+
+        }
+        
+        //for nodes
+        while (itNode.hasNext()) {
+            node = (Node) itNode.next();
+
+            double minx = node.getPos_x() * imageView.getFitWidth() / node.getWidth();
+            double miny = node.getPos_y() * imageView.getFitHeight() / node.getHeight();
+
+            double maxx = minx + node.getWidth() * imageView.getFitWidth() / node.getWidth();
+            double maxy = miny + node.getHeight() * imageView.getFitHeight() / node.getHeight();
+
+            if (node.checkCoordFit(minx,miny,maxx,maxy)) {
+                    //ask for data on nodeister
+                    if (node.getStage() != null) {
+                        node.getStage().close();
+                        node.setStage(null);
                     }
                     Stage s = new Stage();
                     Pane root;
@@ -188,24 +215,26 @@ public class Controller {
                         s.show();
                         Controller4TableFrame controller = f.getController();
                         controller.setGraph(graph.getRoot());
-                        controller.setPos_x(n.getPos_x());
-                        controller.setPos_y(n.getPos_y());
-                        controller.setWidth(n.getWidth());
-                        controller.setHeight(n.getHeight());
+                        controller.setPos_x(node.getPos_x());
+                        controller.setPos_y(node.getPos_y());
+                        controller.setWidth(node.getWidth());
+                        controller.setHeight(node.getHeight());
                         controller.update();
 
                     } catch (IOException eu) {
                         eu.printStackTrace();
                     }
-                    n.setStage(s);
+                    node.setStage(s);
                     return true;
-                }
+
             }
+
         }
+
+
+
         return false;
-        */
-        System.err.println("error never used");
-        return false;
+
     }
 
     /**
@@ -274,22 +303,32 @@ public class Controller {
      */
     @FXML
     public void onMouseClicked(MouseEvent e) {
-       /* double mousePosX = e.getSceneX();
-        double mousePosY = e.getScreenY();
+       double mousePosX = e.getSceneX();
+        double mousePosY = 0;
+        if(System.getProperty("os.name").toLowerCase().indexOf("win") >= 0){
+           System.out.println("IS WINDOWS");
+            mousePosY = e.getSceneY();
+        }else{
+            mousePosY = e.getSceneY() - Config.LINUX_MOUSE_OFFSET;
+        }
+        System.out.println("Mouse screen "+ e.getSceneX()+" "+e.getSceneY());
+        System.out.println("Mouse scean "+ e.getScreenX()+" "+e.getScreenY());
+        System.out.println("Mouse scean "+mousePosX % imageView.getLayoutX()+" "+mousePosY % imageView.getLayoutY());
         boolean end = false;
 
         if (graph != null) {
-            goThroughGraph(graph.getRoot().getNode(), mousePosX % imageView.getLayoutX(), mousePosY % imageView.getLayoutY());
+            //goThroughGraph(mousePosX % imageView.getLayoutX(), mousePosY % imageView.getLayoutY());
+            goThroughGraph(mousePosX , mousePosY);
         }
-        List<Graph> listGraphC = graph.getRoot().getChildren();
+       /* List<Graph> listGraphC = graph.getRoot().getChildren();
         do {
             for (Graph g : listGraphC) {
-                end = goThroughGraph(g.getNode(), mousePosX, mousePosY);
+                end = goThroughGraph(mousePosX, mousePosY);
                 if (end == true) break;
             }
             end = true;
         } while (end == false);*/
-        System.err.println("error never used");
+       // System.err.println("error never used");
     }
 
     /**

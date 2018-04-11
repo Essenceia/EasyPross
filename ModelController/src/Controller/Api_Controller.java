@@ -256,7 +256,10 @@ public class Api_Controller {
 
         try {
             String msg="";
-            msg+=Opcode+" "+pathToRegister+"\n";
+            msg+=Opcode+" "+pathToRegister+" ";
+            if(pathToRegister!= "")msg+="1";
+            else msg+="0";
+            msg+="\n";
             outputLine.write(msg);
             outputLine.flush();
 

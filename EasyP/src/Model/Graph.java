@@ -46,7 +46,8 @@ public class Graph {
             idList += g.getId().toString();
             if (this.wires.size() != 1) idList += ",";
 
-            regName.add(g.getName());
+            System.out.println("Wire :: added to graph :  : " + g.toString());
+
         }
     }
 
@@ -60,15 +61,17 @@ public class Graph {
 
     @Override
     public String toString() {
-        String s = "";
+        String s = "Wire ::\n";
         for (Wire w : this.wires.values()) {
-            s += w.toString();
+            s += w.toString()+"\n";
         }
+        s+="\nRegister :: \n";
         for (Register w : this.reg.values()) {
-            s += w.toString();
+            s += w.toString()+"\n";
         }
+        s+= "Node :: \n";
         for (Node n : this.nodes.values()) {
-            s += n.toString();
+            s += n.toString()+"\n";
         }
         return s;
     }
@@ -108,7 +111,6 @@ public class Graph {
         Integer numWire = this.wires.size();
         int i = 0;
         Wire tmp;
-        System.out.println("Buffer size set to " + numWire);
         this.history = new ArrayList<>();
         for (int j = 0; j < numWire; j++) {
             this.history.add(new ArrayList<>());
@@ -119,9 +121,8 @@ public class Graph {
             tmp = (Wire) iw.next();
 
             this.history.get(i).add(tmp.getLast());
-
+            this.regName.add(tmp.getName());
             i++;
-            iw.remove();
         }
 
 
@@ -143,7 +144,8 @@ public class Graph {
                 history.get(i).add(nvString);
                 i++;
 
-                System.out.println("Updated wire id#" + data.getId() + " value " + nvString);
+            }else{
+                System.err.println("Key "+data.getId()+" not contained ");
             }
         }
     }

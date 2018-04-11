@@ -18,6 +18,7 @@ import Model.Node;
 public class XMLtoGraph {
     private Graph root;
     private Element xmlroot;
+    private HashMap<Integer, Wire> graph_wire;
 
     public XMLtoGraph(String file) {
         //Create a SAXBuilder to use when reading xml file
@@ -88,8 +89,7 @@ public class XMLtoGraph {
             Element current = (Element) i.next();
             newWire = new Wire(current.getAttributes());
             newWire.addValue(getIOValues(current));
-            root.addWire(newWire);
-            System.out.println("Added to graph :  : " + newWire.toString());
+            this.root.addWire(newWire);
         }
     }
 
@@ -98,7 +98,7 @@ public class XMLtoGraph {
      * @param xwire
      */
     private void parseNode(List xwire) {
-        HashMap<Integer, Wire> graph_wire = this.root.getWireMap();
+        graph_wire = this.root.getWireMap();
         Iterator i = xwire.iterator();
         Node newNode;
         Register newRegister;
@@ -107,6 +107,7 @@ public class XMLtoGraph {
         while (i.hasNext()) {
 
             Element current = (Element) i.next();
+            //i.remove();
             try {
                 type = current.getAttribute("type").getIntValue();
 
@@ -164,7 +165,8 @@ public class XMLtoGraph {
         Iterator i = io_list.iterator();
         while (i.hasNext()) {
             nextElement = (Element) i.next();
-            retVector += nextElement.getValue();//set to true or false
+            if(nextElement.getValue().contains("1"))retVector+="1";
+            else retVector+="0";
         }
         return retVector;
     }
@@ -180,6 +182,11 @@ public class XMLtoGraph {
             try {
                 id = nextElement.getAttribute("id").getIntValue();// id of connected wire
                 idList.add(id);
+                if(graph_wire.containsKey(id)){
+                    graph_wire.get(id).updateAttributes(nextElement.getAttributes());
+                }else{
+                    System.err.println("Missing wire id "+id);
+                }
             } catch (DataConversionException e) {
                 e.printStackTrace();
             }

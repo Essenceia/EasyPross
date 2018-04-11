@@ -9,6 +9,7 @@ import Model.Graph;
 import Model.Node;
 import Model.Wire;
 import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -85,7 +86,7 @@ public class Controller4TableFrame {
         tView.getSelectionModel().selectedIndexProperty().addListener((obs, oldSelection, newSelection) -> {
             System.out.println("SUUUUUS");
             if (newSelection != null) {
-                System.out.println(newSelection);
+                System.out.println(obs.getValue()+"old "+oldSelection+"new selection "+newSelection);
             }
         });
         fileMod = "";
@@ -124,16 +125,22 @@ public class Controller4TableFrame {
         //Add the first column name;
         columnNames.add("Name register");
 
+
         //Add each tick's id;
         for (int i = 0; i < nbTicks; i++) {
             columnNames.add("t" + i);
+            System.out.println("Collon name "+"t" + i);
         }
 
+
         //Set the table's columns;
-        for (int i = 0; i < columnNames.size(); i++) {//NO FUCKING IDEA OF WHAT IT DOES...
+        for (int i = 0; i < columnNames.size()-1; i++) {//NO FUCKING IDEA OF WHAT IT DOES...
             final int finalIdx = i;
             TableColumn<ObservableList<String>, String> column = new TableColumn<>(columnNames.get(i));
-            column.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue().get(finalIdx)));
+            column.setCellValueFactory(param ->
+                    new ReadOnlyObjectWrapper<>(
+                            param.getValue().get(finalIdx)));
+
             tView.getColumns().add(column);
         }
 
@@ -153,6 +160,7 @@ public class Controller4TableFrame {
 
                 //Add the name of the component at index 0 (left column)
                 row.add(componentNames.get(componentId));
+                //System.out.println("Component name ::"+componentNames.get(componentId));
 
                 //Add all values of the history in the line;
                 row.addAll(histories.get(componentId));
@@ -230,4 +238,6 @@ public class Controller4TableFrame {
     public void setPATH_FILE(String pATH_FILE) {
         PATH_FILE = pATH_FILE;
     }
+
+
 }

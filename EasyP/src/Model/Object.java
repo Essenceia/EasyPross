@@ -115,7 +115,26 @@ public class Object {
     @Override
     public String toString() {
         return "Node [type=" + type + ", id=" + id + ", name=" + name + ", height=" + height
-                + ", width=" + width + ", pos_x=" + pos_x + ", pos_y=" + pos_y + "]\n";
+                + ", width=" + width + ", pos_x=" + pos_x + ", pos_y=" + pos_y + "]";
+    }
+
+    public boolean checkCoordFit(double minX, double minY, double maxX, double maxY){
+        System.out.println("Examining position of "+name+" "+minX+"<="+pos_x+"<="+maxX+"  "+
+        minY+"<="+pos_y+"<="+maxY);
+        return (pos_x >= minX)&&(pos_x<= maxX)&&(pos_y>= minY)&&(pos_y<= maxY);
+    }
+    public boolean checkCursotFit(double X, double Y){
+        double minX,minY,maxX,maxY;
+        minX = pos_x;
+        minY = pos_y;
+        maxX = pos_x + width;
+        maxY = pos_y + height;
+        System.out.println("Examining position of "+name+" "+minX+"<="+X+"<="+maxX+"  "+
+                minY+"<="+Y+"<="+maxY);
+        return (X >= minX)&&(X<= maxX)&&(Y>= minY)&&(Y<= maxY);
+    }
+    public String getType(){
+        return type;
     }
 
 }
