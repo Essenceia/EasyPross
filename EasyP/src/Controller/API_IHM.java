@@ -5,15 +5,15 @@ import java.net.*;
 import java.util.Vector;
 
 public class API_IHM {
-    final int SENDER_PORT = 2016;
-    final int RECIVER_PORT = 2017;
+    static final int SENDER_PORT = 2016;
+    static final int RECIVER_PORT = 2017;
 
     static java.net.Socket c_write;//client socket
     static java.net.Socket c_read;//client socket
     static BufferedWriter outputLine;//socket output
     static BufferedReader inputLine;
-    private ServerSocket s_write;
-    private ServerSocket s_read;
+    private static ServerSocket s_write;
+    private static ServerSocket s_read;
 
     answer a;
 
@@ -462,6 +462,7 @@ public class API_IHM {
     protected void finalize() throws Throwable {
         try {
             s_write.close();        // close soket
+            s_read.close();
         } finally {
             super.finalize();
         }

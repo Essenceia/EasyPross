@@ -177,7 +177,7 @@ public class Controller {
                                 s.show();
 
                                 ControllerMemory controllerMemory = f.getController();
-                                controllerMemory.loadMemory(reg.getPath(), reg.getType(),reg.getBlockLenght(),reg.getBlockSize());
+                                controllerMemory.loadMemory(reg.getPath(), reg.getType(),reg);
 
                             } catch (IOException eu) {
                                 eu.printStackTrace();
@@ -418,6 +418,17 @@ public class Controller {
      * method tick called when tick button clicked
      */
     public void tick() {
+        Register reg;
+        Iterator itReg = graph.getRoot().getDataRegisterNodes();
+
+        //check if no requests to modify data have to be sent
+        while (itReg.hasNext()){
+            reg = (Register)itReg.next();
+            if(reg.isDataChanged()){
+                //we have to send a request to modify values
+                askChangeDataRegister(reg.getId(),reg.getNewdatapath());
+            }
+        }
         int check = askTick();
         String path = "";
         Vector<Data_Tuple> newData = askDataItem(graph.getRoot().getIdList());
@@ -584,13 +595,11 @@ public class Controller {
         //id=api.a.id; why objcode is alread id ?
     }
 
-    protected void finalize() throws Throwable {
-        try {
-            //call to close sockets
-            api.APISender(0, "", 0, "", null, null);
+    @FXML
+    public void stop(){
+        api.APISender(0, "", 0, "", null, null);
 
-        } finally {
-            super.finalize();
-        }
     }
+
+
 }

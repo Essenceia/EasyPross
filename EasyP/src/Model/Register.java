@@ -14,13 +14,15 @@ import java.util.Vector;
 public class Register<T> extends Node {
 
     private String path;
-    private ArrayList<String> buffer;
+    private String newdatapath;
+    private boolean dataChanged;
 
 
     public Register(List<Attribute> l) {
         super(l);
         path = "";
-        buffer = new ArrayList<>();
+        newdatapath = "";
+        dataChanged = false;
     }
 
 
@@ -33,43 +35,22 @@ public class Register<T> extends Node {
         return true;
     }
 
-    public ArrayList<String> getBuffer() {
-        return buffer;
+    public String getNewdatapath() {
+        dataChanged = false;
+        return newdatapath;
     }
-
-    public boolean loadDataFromFile(String path) {
-        boolean sucess = false;
-        File file = new File(path);
-        this.path = path;
-        BufferedReader br;
-        String line = "";
-        buffer.clear();
-
-        if (file.exists() && !file.isDirectory()) {
-            file.setReadOnly();
-            try {
-                //todo not necessary
-                br = new BufferedReader(new FileReader(file));
-                while ((line = br.readLine()) != null) {
-                    buffer.add(line);
-                }
-                br.close();
-                sucess = true;
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-        }
-        return sucess;
-    }
-
-    public String getPath() {
-        return path;
+    public void setNewdatapath(String p){
+        newdatapath = p;
+        dataChanged = true;
     }
     public void setPath(String p){
         path = p;
+    }
+    public String getPath(){
+        return path;
+    }
+    public boolean isDataChanged(){
+        return dataChanged;
     }
 
     public Integer getBlockLenght() {

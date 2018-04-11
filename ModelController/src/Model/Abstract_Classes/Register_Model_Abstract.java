@@ -198,16 +198,24 @@ public abstract class Register_Model_Abstract extends Node_Model_Abstract implem
      *
      */
     private void createTmpFile() {
-        File tmpFile;
+        //create a temp file
         try {
-            tmpFile = File.createTempFile(this.absFilePath, ".txt");
-            this.tmpFileName = tmpFile.getAbsolutePath();
-            System.out.println(this.tmpFileName + " File Created");
-           // transfertData(new File(this.absFilePath + this.fileName), tmpFile);
+        File temp = File.createTempFile(Long.toString(System.currentTimeMillis()), ".tmp");
 
-        } catch (IOException e) {
-            System.out.println("File " + this.tmpFileName + " has an creation error");
-        }
+        System.out.println("Temp file : " + temp.getAbsolutePath());
+
+        //Get tempropary file path
+        String absolutePath = temp.getAbsolutePath();
+        String tempFilePath = absolutePath.
+                substring(0,absolutePath.lastIndexOf(File.separator));
+
+        System.out.println("Temp file path : " + tempFilePath);
+
+    }catch(IOException e){
+
+        e.printStackTrace();
+
+    }
     }
 
     /**

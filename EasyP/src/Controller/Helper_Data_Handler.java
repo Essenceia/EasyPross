@@ -1,5 +1,10 @@
 package Controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Vector;
 
 
@@ -84,5 +89,35 @@ public class Helper_Data_Handler {
              ) {
             val+= "id "+data.getId()+"::"+data.getStringValues()+" \n";
         }
+    }
+    public static String createTmpFile() {
+        String tempFilePath="";
+            //create a temp file
+            try {
+                File temp = File.createTempFile(Long.toString(System.currentTimeMillis()), ".tmp");
+
+                //Get tempropary file path
+                String absolutePath = temp.getAbsolutePath();
+                tempFilePath = absolutePath.
+                        substring(0,absolutePath.lastIndexOf(File.separator));
+
+            }catch(IOException e){
+
+                e.printStackTrace();
+
+        }
+        return tempFilePath;
+    }
+    public static String toWireWithDot(String in, Integer size){
+        String out="";
+        int i= 0;
+        for(char c : in.toCharArray()){
+            if(i>=size)break;
+            if(i!= 0)out+=".";
+            if(c=='1')out+="1";
+            else out += "0";
+            i++;
+        }
+        return out;
     }
 }
