@@ -467,6 +467,7 @@ public class Controller {
         } else {
             System.out.println("Oops something went wrong when getting data info from simulator");
         }
+        graph.getRoot().setTimePlus1();
     }
 
     /*}

@@ -1,9 +1,6 @@
 package Controller;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 import Model.Graph;
 import Model.Node;
@@ -13,10 +10,13 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.SubScene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.TextFieldTableCell;
+import sun.security.krb5.internal.rcache.AuthTimeWithHash;
 
 public class Controller4TableFrame {
 
@@ -106,14 +106,14 @@ public class Controller4TableFrame {
             return;
 
         //Cache its history;
-        ArrayList<ArrayList<String>> histories = graph.getHistory();
+        HashMap<Integer,ArrayList<String>> histories = graph.getHistory();
 
         //Cache component names;
-        ArrayList<String> componentNames = graph.getRegName();
+        HashMap<String,Integer> componentNames = graph.getRegName();
 
         //Determine the number of ticks, as the number of elements of a line;
-        int nbTicks = histories.get(0).size();
-
+        int nbTicks = graph.getTime()+1;
+        System.out.println("Time "+nbTicks);
 
         /*
          * First, let's build the first line that will contain column names;
@@ -127,48 +127,64 @@ public class Controller4TableFrame {
 
 
         //Add each tick's id;
-        for (int i = 0; i < nbTicks; i++) {
+        for (int i = 0; i <= nbTicks; i++) {
             columnNames.add("t" + i);
             System.out.println("Collon name "+"t" + i);
         }
 
-
+        System.out.println("Collum name size "+columnNames.size());
         //Set the table's columns;
-        for (int i = 0; i < columnNames.size()-1; i++) {//NO FUCKING IDEA OF WHAT IT DOES...
+        for (int i = 0; i < columnNames.size(); i++) {//NO FUCKING IDEA OF WHAT IT DOES...
             final int finalIdx = i;
+            //set le nom de la collone
+            System.out.println("Populating collum "+columnNames.get(i));
             TableColumn<ObservableList<String>, String> column = new TableColumn<>(columnNames.get(i));
             column.setCellValueFactory(param ->
                     new ReadOnlyObjectWrapper<>(
                             param.getValue().get(finalIdx)));
-
             tView.getColumns().add(column);
+            //ObservableList<String> ListString = FXCollections.observableArrayList(histories.get(i));
+            column.setSortable(false);
+
+            if(finalIdx==columnNames.size()-1){
+                column.setCellFactory(TextFieldTableCell.forTableColumn());
+                column.setEditable(true);
+                column.setResizable(true);
+            }
         }
 
         /*
          * Now, we can fill the table's content;
          */
-
+        tView.setEditable(true);
+        String defaut = "0";
         //If the whole history must be displayed :
         if (root) {
 
             //For each component :
-            for (int componentId = 0; componentId < histories.size(); componentId++) {
+            for (String name:componentNames.keySet() ) {
 
+                Integer nameLine = componentNames.get(name);
+                //get array list on objects
+                ArrayList<String> regValues= new ArrayList<>();
+                regValues.add(0,name);
+                regValues.addAll(1,histories.get(nameLine));
+                System.out.println("Values :: "+regValues.toString());
 
-                //Create an empy arraylist representing the line;
-                ArrayList<String> row = new ArrayList<>();
+                if(regValues.size()<columnNames.size()){
+                    while (regValues.size()!=columnNames.size()){
+                        regValues.add(defaut);
+                    }
+                }
+                ObservableList<String> ListString = FXCollections.observableArrayList(regValues);
+                System.out.println("list :: "+ListString.toString());
 
-                //Add the name of the component at index 0 (left column)
-                row.add(componentNames.get(componentId));
-                //System.out.println("Component name ::"+componentNames.get(componentId));
-
-                //Add all values of the history in the line;
-                row.addAll(histories.get(componentId));
 
                 //Add the line to the tableView;
-                tView.getItems().add(FXCollections.observableArrayList(row));
+                tView.getItems().add(ListString);
 
             }
+
 
         } else {
             //If the history of the clicked point must be displayed :
