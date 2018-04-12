@@ -1,0 +1,8 @@
+EasyPross
+testEasyPross
+test_adder
+test_2MUX_1ALU
+test_data_memory
+test_dec_data_mem
+test_PC_PM_DEC
+testPC

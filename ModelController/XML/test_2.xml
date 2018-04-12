@@ -1,24 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <graph>
-    <pre>
-        <pre>
-
-
-
-
-
-
-            #2read  write#1
-            +     +
-            |     |
-            +v-----v-+
-            |        |
-            #3in_data |        | out_data#4
-            +------&gt;|   PC   |+------&gt;
-            |        |
-            |        |
-            +--------+</pre>
-    </pre>
     <wire id="1" type="1" size="1" desc="control writre">
         <io>1</io>
     </wire>

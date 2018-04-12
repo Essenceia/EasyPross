@@ -192,10 +192,8 @@ public class Graph_Manager_Controller implements Interface.Graph_Manager_Interfa
                 objectRegister.transfertData(newData);
                 //TODO add checks to verify the data
                 objectRegister.reloadFileBuffer();
-                Helper_Controller.debugMessage2("File updating");
                 retVal = true;
             }else{
-                Helper_Controller.errorMessage("Unknown id "+Id);
                 retVal = false;
             }
 

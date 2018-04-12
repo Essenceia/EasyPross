@@ -1,0 +1,8 @@
+.idea/**
+.idea
+dir/**
+dir
+out
+out/**
+nbproject
+.nbproject/**

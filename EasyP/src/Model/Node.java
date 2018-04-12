@@ -24,9 +24,8 @@ public class Node<T> extends Object {
         try {
             for (Attribute a : l) {
                 switch (a.getName()) {
-                    case "memory_block_size":
+                    case "memory_block_size=":
                         this.blockLenght = a.getIntValue();
-
                         break;
                     case "memory_number_block":
                         this.blockSize = a.getIntValue();

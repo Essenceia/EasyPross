@@ -91,24 +91,23 @@ public class Helper_Data_Handler {
         }
     }
     public static String createTmpFile() {
-        String tempFilePath="easypross.tmp";
-        String absolutePath="easypross.tmp";
-        System.out.println("Creating tmp file ");
+    	String tempFilePath="easypross.tmp";
+    	      String absolutePath="easypross.tmp";
+    	       System.out.println("Creating tmp file ");
             //create a temp file
             try {
                 File temp = File.createTempFile(Long.toString(System.currentTimeMillis()), ".tmp");
 
                 //Get tempropary file path
-                absolutePath = temp.getAbsolutePath();
+                 absolutePath = temp.getAbsolutePath();
                 tempFilePath = absolutePath.
                         substring(0,absolutePath.lastIndexOf(File.separator));
 
             }catch(IOException e){
-                System.out.println("Error creating file");
+
                 e.printStackTrace();
 
         }
-        System.out.println("File path "+absolutePath);
         return absolutePath;
     }
     public static String toWireWithDot(String in, Integer size){

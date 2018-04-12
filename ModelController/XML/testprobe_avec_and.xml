@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<graph>
+    <probe id="1" type="2">
+        <wire id="7"></wire>
+    </probe>
+    <probe id="2" type="2">
+        <wire id="8"></wire>
+    </probe>
+    <probe id="3" type="2">
+        <wire id="9"></wire>
+    </probe>
+    <probe id="4" type="2">
+        <wire id="10"></wire>
+    </probe>
+    <probe id="5" type="2">
+        <wire id="11"></wire>
+    </probe>
+    <probe id="6" type="3">
+        <wire id="12"></wire>
+    </probe>
+    <wire id="7" type="1" size="3">
+        <io>1</io>
+        <io>1</io>
+        <io>1</io>
+    </wire>
+    <wire id="8" type="1" size="3">
+        <io>1</io>
+        <io>1</io>
+        <io>1</io>
+    </wire>
+    <wire id="9" type="1" size="3">
+        <io>1</io>
+        <io>1</io>
+        <io>1</io>
+    </wire>
+    <wire id="10" type="1" size="3">
+        <io>1</io>
+        <io>1</io>
+        <io>1</io>
+    </wire>
+    <wire id="11" type="1" size="3">
+        <io>1</io>
+        <io>1</io>
+        <io>1</io>
+    </wire>
+    <wire id="12" type="1" size="3">
+        <io>1</io>
+        <io>1</io>
+        <io>1</io>
+    </wire>
+    <node id="13" type="10" control_bits="3">
+        <wire_in id="7"></wire_in>
+        <wire_in id="8"></wire_in>
+        <wire_in id="9"></wire_in>
+        <wire_in id="10"></wire_in>
+        <wire_in id="11"></wire_in>
+        <wire_out id="12"></wire_out>
+    </node>
+</graph>
+

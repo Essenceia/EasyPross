@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graph id="11" description ="schema" name="EasyPross Module" height="448" width="500" pos_x="0" pos_y="0">
+
+<wire id="30" type="1" size="8" desc="PC in new value ">
+		<io> 1 </io>
+		<io> 1 </io>
+		<io> 0 </io>
+		<io> 0 </io>
+		<io> 0 </io>
+		<io> 0 </io>
+		<io> 0 </io>
+		<io> 0 </io>
+	</wire>
+	<wire id="31" type="1" size="1" desc="PC read commande ">
+		<io>0</io>
+	</wire>
+	<wire id="32" type="1" size="1" desc="PC write commande">
+		<io>0</io>
+	</wire>
+	<wire id="1" type="1" size="8" desc="pc wire out">
+		<io> 0 </io>
+		<io> 0 </io>
+		<io> 1 </io>
+		<io> 0 </io>
+		<io> 0 </io>
+		<io> 0 </io>
+		<io> 0 </io>
+		<io> 0 </io>
+	</wire>
+
+	<wire id="33" type="1" size="1" desc="Prog memory write commande">
+		<io>1</io>
+	</wire>
+	<wire id="34" type="1" size="14" desc="prog memory wire out">
+		<io> 0 </io>
+		<io> 0 </io>
+		<io> 1 </io>
+		<io> 0 </io>
+		<io> 0 </io>
+		<io> 0 </io>
+		<io> 0 </io>
+		<io> 0 </io>
+		<io> 0 </io>
+		<io> 0 </io>
+		<io> 1 </io>
+		<io> 0 </io>
+		<io> 0 </io>
+		<io> 1 </io>
+	</wire>
+
+
+	<wire id="3" type="1" size="1" desc="control mux 1">
+		<io>0</io>
+	</wire>
+	<wire id="35" type="1" size="1" desc="control mux 2">
+		<io>0</io>
+	</wire>
+	<wire id="4" type="1" size="3" desc="addr op1">
+		<io>0</io>
+		<io>0</io>
+		<io>0</io>
+	</wire>
+	<wire id="36" type="1" size="3" desc="addr op2">
+		<io>0</io>
+		<io>0</io>
+		<io>0</io>
+	</wire>
+	<wire id="5" type="1" size="1" desc="DM decodeur data AF">
+		<io>0</io>
+	</wire>
+	<wire id="40" type="1" size="1" desc="DM decodeur data RW">
+		<io>0</io>
+	</wire>
+	<wire id="6" type="1" size="8" desc="cste">
+	</wire>
+	<wire id="7" type="1" size="3" desc="ctrl dm">
+		<io>0</io>
+		<io>0</io>
+		<io>0</io>
+		<io>0</io>
+		<io>0</io>
+		<io>0</io>
+	</wire>
+
+	<probe id="40" type="2" desc="Probe connected to PC read">
+		<wire id="31"/>
+	</probe>
+	<probe id="42" type="2" desc="Probe connected to PC write">
+		<wire id="32"/>
+	</probe>
+
+	
+
+	<node id="50"  type="5" name="PC" description="PC" path="/home/rick/Documents/code/PPE/EasyPross_new/" file_name="pc.txt" memory_block_size="8"
+    height="45" width="105" pos_x="206" pos_y="269">
+		<wire_in id="31" name ="read command PC" description="register"
+    	height="10" width="45" pos_x="160" pos_y="287"/>
+		<wire_in id="32" name="write command PC" description="register"
+    	height="41" width="6" pos_x="440" pos_y="217"/>
+		<wire_in id="30" name="data in PC" description="register"
+    	height="41" width="6" pos_x="440" pos_y="277"/>
+
+		<wire_out id="1" name="wire out pc (instruction address)" description="register"
+    	height="85" width="172" pos_x="312" pos_y="279"/>
+	</node>
+
+
+	<node id="8" type="6" name="program memory" description="PM" path="/home/rick/Documents/code/PPE/EasyPross_new/" file_name="prog.txt" memory_block_size="14" memory_number_block="8"
+    height="77" width="151" pos_x="485" pos_y="253">
+        <wire_in id="33" name="write command PM" description="register"
+    	height="35" width="6" pos_x="522" pos_y="218"/>
+        <wire_in id="1" name="data instruction addresse PM" description="register"
+    	height="85" width="172" pos_x="312" pos_y="279"/>
+
+		<wire_out id="34" name="wire out programme memory (instruction)" description="register"
+    	height="17" width="92" pos_x="637" pos_y="291"/>
+    </node>
+
+	<node id="9" type="13" description="decoder" name="decoder"
+    height="36" width="157" pos_x="650" pos_y="319">
+
+        <wire_in id="34" name="read command decoder" description="register"
+    	height="17" width="92" pos_x="637" pos_y="291"/>
+
+		<wire_out id="3" name="ctrl mux 1" description="register"
+    	height="10" width="91" pos_x="808" pos_y="320"/>
+		<wire_out id="35" name="ctrl mux 2" description="register"
+    	height="10" width="91" pos_x="808" pos_y="340"/>
+		<wire_out id="4" name="opa data" description="register"
+    	height="245" width="10" pos_x="674" pos_y="356"/>
+		<wire_out id="36" name="opb data" description="register"
+    	height="218" width="10" pos_x="652" pos_y="356"/>
+        <wire_out id="7" name="ctlralu data" description="register"
+    	height="246" width="10" pos_x="780" pos_y="356"/>
+        <wire_out id="5" name="ctrl DM decodeur data AF" description="register"
+    	height="295" width="10" pos_x="724" pos_y="356"/>
+        <wire_out id="40" name="ctrl DM decodeur data RW" description="register"
+    	height="282" width="10" pos_x="691" pos_y="356"/>
+        <wire_out id="6" name="CST data" description="register"
+    	height="276" width="10" pos_x="748" pos_y="356"/>
+    </node>
+</graph>
