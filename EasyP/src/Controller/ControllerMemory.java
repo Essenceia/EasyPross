@@ -11,6 +11,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.event.ActionEvent;
+import javafx.scene.layout.RowConstraints;
+import org.jdom2.Text;
+import sun.java2d.loops.GeneralRenderer;
 
 import javax.swing.*;
 import javax.swing.text.Position;
@@ -30,7 +33,9 @@ public class ControllerMemory {
 	@FXML
 	private Button ButtonUpdate;
 
-	private Vector<Label> grideaddr;
+	static Vector<TextField> grideaddr;
+	 Vector<String> regdata;
+	private boolean changes;
 	private Register reg;
 
 	public ControllerMemory() {
@@ -39,6 +44,8 @@ public class ControllerMemory {
 		DataGrid = new GridPane();
 		grideaddr = new Vector<>();
 		ButtonUpdate = new Button();
+		regdata = new Vector<>();
+		changes = false;
 
 
 
@@ -63,10 +70,11 @@ public class ControllerMemory {
 		}*/
 		System.out.println("File path is "+filename);
 		System.out.println("Gotten a node with lenght "+reg.getBlockLenght() +" size "+reg.getBlockSize());
+
 		loadmyfile(filename,reg.getBlockLenght(),reg.getBlockSize());
 	}
 
-	private void loadmyfile(String path,Integer block_length, Integer block_size) {
+	private void loadmyfile(String path,Integer block_length, Integer blocknumber) {
 		File file = new File(path);
 		BufferedReader br;
 		String line = "";
@@ -75,17 +83,20 @@ public class ControllerMemory {
 
 		if (file.exists() && !file.isDirectory())
 
-		{
 			try {
 				br = new BufferedReader(new java.io.FileReader(file));
-				while ((line = br.readLine()) != null && i < block_length) {
+				while ((line = br.readLine()) != null && i < blocknumber) {
 					Label inumber = new Label(String.format("%04X", i & 0xFFFFF));
 					to_store = line.replaceAll("\\.", "");
-					TextField data =new TextField(to_store);
-					addTextLimiter(data,block_length);
+
+					TextField data = new TextField(to_store);
+					this.grideaddr.add(data);
+					regdata.add(i, line);
+					addTextLimiter(data, block_length, i);
+
 					DataGrid.add(inumber, 0, i);
 					DataGrid.add(data, 1, i);
-					System.out.println("Adding data #"+inumber.getText()+" -- "+data.getText());
+					System.out.println("Adding data #" + inumber.getText() + " -- " + data.getText());
 					i++;
 				}
 				br.close();
@@ -95,8 +106,7 @@ public class ControllerMemory {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-
-		}else{
+		else{
 			System.err.println("Error file not found  "+path);
 		}
 
@@ -109,19 +119,18 @@ public class ControllerMemory {
 			// Button was clicked, get data from gride
 			String fname = Helper_Data_Handler.createTmpFile();
 			FileWriter fw;
-			ArrayList<String> data = new ArrayList<>(this.reg.getBlockSize());
-			ObservableList<Node> childrens = DataGrid.getChildren();
-			for (Node node : childrens) {
-				if (DataGrid.getColumnIndex(node) == 1) {
-					System.out.println("Getting data at id " + node.getId());
-					data.add(DataGrid.getRowIndex(node), Helper_Data_Handler.toWireWithDot(node.getAccessibleText(), reg.getBlockLenght()));
-				}
-			}
+			//ObservableList<Node> childrens = DataGrid.getChildren();
+
+		for (int i = 0; i < DataGrid.getRowConstraints().size(); i++) {
+			System.out.println("Data gride index of row is "+i );
+			regdata.set(i, Helper_Data_Handler.toWireWithDot(this.grideaddr.get(i).getText(), reg.getBlockLenght()));
+
+		}
 			try {
 				//write to our temportaty file
 				fw = new FileWriter(fname);
 				for (int i = 0; i < reg.getBlockSize(); i++) {
-					fw.write(data.get(i));
+					fw.write(regdata.get(i)+"\n");
 				}
 				fw.close();
 				reg.setNewdatapath(fname);
@@ -132,7 +141,7 @@ public class ControllerMemory {
 
 	}
 
-	public static void addTextLimiter(final TextField tf, final int maxLength) {
+	public static void addTextLimiter(final TextField tf, final int maxLength, final  int id) {
 		tf.textProperty().addListener(new ChangeListener<String>() {
 			@Override
 			public void changed(final ObservableValue<? extends String> ov, final String oldValue, final String newValue) {
@@ -141,8 +150,11 @@ public class ControllerMemory {
 					String s = tf.getText().substring(0, maxLength);
 					tf.setText(s);
 				}
+
+
 			}
 		});
 	}
+
 
 }

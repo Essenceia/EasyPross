@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import javafx.scene.canvas.*?>
-<?import javafx.embed.swing.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="926.0" prefWidth="1303.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="926.0" prefWidth="1303.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <TabPane layoutX="-2.0" layoutY="3.0" prefHeight="919.0" prefWidth="1303.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -48,7 +49,7 @@
                      <children>
                         <ImageView fx:id="imageView" fitHeight="805.0" fitWidth="1303.0" layoutX="1.0" layoutY="77.0" onMouseClicked="#onMouseClicked" pickOnBounds="true" preserveRatio="true" />
                         <Button fx:id="playButton" disable="true" layoutX="78.0" layoutY="11.0" mnemonicParsing="false" onAction="#onClickListener" text="Play (Simulate all ticks)" />
-                        <Button fx:id="tickButton" layoutX="301.0" layoutY="14.0" mnemonicParsing="false" onAction="#onClickListener" text="Tick (Simulate one tick)" />
+                        <Button fx:id="tickButton" layoutX="301.0" layoutY="14.0" mnemonicParsing="false" onAction="#onClickListener" style="-fx-background-color: #00cc00;" text="Tick (Simulate one tick)" textFill="#0d0d0d" />
                         <Button fx:id="pauseButton" disable="true" layoutX="514.0" layoutY="14.0" mnemonicParsing="false" onAction="#onClickListener" text="Pause (Put the simulation on Pause)" />
                         <Button fx:id="stopButton" layoutX="836.0" layoutY="14.0" mnemonicParsing="false" onAction="#onClickListener" text="Stop (Stop the simulation)" />
                      </children>

@@ -24,11 +24,12 @@ public class Node<T> extends Object {
         try {
             for (Attribute a : l) {
                 switch (a.getName()) {
-                    case "memory_block_size=":
-                        this.blockSize = a.getIntValue();
+                    case "memory_block_size":
+                        this.blockLenght = a.getIntValue();
+
                         break;
                     case "memory_number_block":
-                        this.blockLenght = a.getIntValue();
+                        this.blockSize = a.getIntValue();
                         break;
                     default:// Do nothing for any other attributes
                         break;

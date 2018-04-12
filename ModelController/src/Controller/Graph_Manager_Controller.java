@@ -186,13 +186,16 @@ public class Graph_Manager_Controller implements Interface.Graph_Manager_Interfa
         boolean retVal = false;
         File newData = new File(path);
         Register_Model_Abstract objectRegister;
-        if (newData.exists() && newData.isDirectory()) {
+        if (newData.exists() && !newData.isDirectory()) {
             if (GNoeuds.containsKey(Id)) {
                 objectRegister = (Register_Model_Abstract) GNoeuds.get(Id);
                 objectRegister.transfertData(newData);
                 //TODO add checks to verify the data
                 objectRegister.reloadFileBuffer();
+                Helper_Controller.debugMessage2("File updating");
+                retVal = true;
             }else{
+                Helper_Controller.errorMessage("Unknown id "+Id);
                 retVal = false;
             }
 

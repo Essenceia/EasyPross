@@ -7,4 +7,4 @@
 ####Secondary objectives 
 - [x] find a way to acces effciently wire by id from graph ( map ?)
 - [ ] Errors on EasyPross 
-    - [ ] Missing coord info on many nodes
+    - [x] Missing coord info on many nodes
