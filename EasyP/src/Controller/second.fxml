@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="926.0" prefWidth="1303.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TabPane layoutX="-2.0" layoutY="3.0" prefHeight="919.0" prefWidth="1303.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Description">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="labelDescription" alignment="CENTER" contentDisplay="CENTER" layoutX="3.0" layoutY="104.0" prefHeight="766.0" prefWidth="750.0" text="Label">
+                           <font>
+                              <Font size="13.0" />
+                           </font></Label>
+                        <Label alignment="CENTER" layoutX="849.0" layoutY="-7.0" prefHeight="106.0" prefWidth="269.0" text="Asm">
+                           <font>
+                              <Font size="61.0" />
+                           </font>
+                        </Label>
+                        <Button disable="true" layoutX="1118.0" layoutY="14.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="171.0" text="Open ASM file" visible="false" />
+                        <Label alignment="CENTER" layoutX="122.0" layoutY="4.0" prefHeight="89.0" prefWidth="383.0" text="Description">
+                           <font>
+                              <Font size="61.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="labelASM" alignment="CENTER" contentDisplay="CENTER" layoutX="758.0" layoutY="104.0" prefHeight="766.0" prefWidth="545.0" text="Label">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Label>
+                        <Separator layoutX="736.0" layoutY="-2.0" orientation="VERTICAL" prefHeight="882.0" prefWidth="43.0" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Simulation">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fx:id="imageView" fitHeight="805.0" fitWidth="1303.0" layoutX="1.0" layoutY="77.0" onMouseClicked="#onMouseClicked" pickOnBounds="true" preserveRatio="true" />
+                        <Button fx:id="playButton" disable="true" layoutX="78.0" layoutY="11.0" mnemonicParsing="false" onAction="#onClickListener" text="Play (Simulate all ticks)" />
+                        <Button fx:id="tickButton" layoutX="301.0" layoutY="14.0" mnemonicParsing="false" onAction="#onClickListener" style="-fx-background-color: #00cc00;" text="Tick (Simulate one tick)" textFill="#0d0d0d" />
+                        <Button fx:id="pauseButton" disable="true" layoutX="514.0" layoutY="14.0" mnemonicParsing="false" onAction="#onClickListener" text="Pause (Put the simulation on Pause)" />
+                        <Button fx:id="stopButton" layoutX="836.0" layoutY="14.0" mnemonicParsing="false" onAction="#onClickListener" text="Stop (Stop the simulation)" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</Pane>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graph>
+    <pre>
+        <pre>
+
+
+
+
+
+
+            #2read  write#1
+            +     +
+            |     |
+            +v-----v-+
+            |        |
+            #3in_data |        | out_data#4
+            +------&gt;|   PC   |+------&gt;
+            |        |
+            |        |
+            +--------+</pre>
+    </pre>
+    <wire id="1" type="1" size="1" desc="control writre">
+        <io>1</io>
+    </wire>
+    <wire id="2" type="1" size="1" desc="control read">
+        <io>0</io>
+    </wire>
+    <wire id="3" type="1" size="8" desc="data in">
+        <io>1</io>
+        <io>1</io>
+        <io>1</io>
+        <io>1</io>
+        <io>0</io>
+        <io>0</io>
+        <io>0</io>
+        <io>0</io>
+    </wire>
+    <wire id="4" type="1" size="8" desc="data out">
+        <io>0</io>
+        <io>0</io>
+        <io>0</io>
+        <io>0</io>
+        <io>0</io>
+        <io>0</io>
+        <io>0</io>
+        <io>0</io>
+        <io>0</io>
+    </wire>
+    <probe id="6" type="2" desc="control write probe">
+        <wire id="1" />
+    </probe>
+    <probe id="7" type="2" desc="control read probe">
+        <wire id="2" />
+    </probe>
+    <probe id="8" type="2" desc="data in probe">
+        <wire id="3" />
+    </probe>
+    <probe id="9" type="3" desc="data out probe end">
+        <wire id="4" />
+    </probe>
+
+    <node id="10" type="5" desc="pc" path="/home/rick/Documents/code/PPE/EasyPross_new/" file_name="pc.txt" memory_block_size="8">
+        <wire_in id="2" desc="read commande"/>
+        <wire_in id="1" desc="write commande"/>
+        <wire_in id="3" desc="in data"/>
+        <wire_out id="4" desc="out data"/>
+    </node>
+</graph>
